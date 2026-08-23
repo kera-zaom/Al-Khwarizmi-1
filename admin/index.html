@@ -49,6 +49,11 @@ body{
     overflow-x:hidden;
 }
 
+
+/* ================================
+   BACKGROUND
+================================ */
+
 .bg-circle{
 
     position:fixed;
@@ -105,6 +110,19 @@ body{
 
 }
 
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* ================================
+   LOADING
+================================ */
+
 #loadingScreen{
 
     position:fixed;
@@ -125,6 +143,10 @@ body{
 
     background:#050509;
 
+    padding:25px;
+
+    text-align:center;
+
 }
 
 .loader{
@@ -143,21 +165,91 @@ body{
 
 }
 
-@keyframes spin{
-
-    to{
-        transform:rotate(360deg);
-    }
-
-}
-
 .loading-text{
 
-    color:#999;
+    color:#aaa;
 
     font-size:14px;
 
 }
+
+
+/* ================================
+   ERROR
+================================ */
+
+.error-box{
+
+    max-width:500px;
+
+    width:100%;
+
+    padding:30px;
+
+    border-radius:24px;
+
+    background:
+    rgba(255,255,255,.04);
+
+    border:
+    1px solid
+    rgba(255,255,255,.08);
+
+}
+
+.error-icon{
+
+    font-size:50px;
+
+    margin-bottom:15px;
+
+}
+
+.error-box h2{
+
+    margin-bottom:10px;
+
+}
+
+.error-box p{
+
+    color:#999;
+
+    line-height:1.8;
+
+    word-break:break-word;
+
+}
+
+.retry-btn{
+
+    border:0;
+
+    margin-top:20px;
+
+    padding:13px 25px;
+
+    border-radius:13px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7448e8,
+        #3154df
+    );
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+}
+
+
+/* ================================
+   ACCESS DENIED
+================================ */
 
 #accessDenied{
 
@@ -237,11 +329,21 @@ body{
 
 }
 
+
+/* ================================
+   ADMIN APP
+================================ */
+
 #adminApp{
 
     display:none;
 
 }
+
+
+/* ================================
+   HEADER
+================================ */
 
 header{
 
@@ -303,6 +405,16 @@ header{
 
 }
 
+.header-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
 .admin-badge{
 
     padding:7px 12px;
@@ -322,6 +434,41 @@ header{
 
 }
 
+.logout-btn{
+
+    border:0;
+
+    cursor:pointer;
+
+    padding:10px 15px;
+
+    border-radius:12px;
+
+    color:#fff;
+
+    background:
+    rgba(255,70,70,.08);
+
+    border:
+    1px solid
+    rgba(255,70,70,.16);
+
+    transition:.3s;
+
+}
+
+.logout-btn:hover{
+
+    background:
+    rgba(255,70,70,.15);
+
+}
+
+
+/* ================================
+   CONTAINER
+================================ */
+
 .container{
 
     width:min(1200px,94%);
@@ -329,6 +476,11 @@ header{
     margin:auto;
 
 }
+
+
+/* ================================
+   TOP
+================================ */
 
 .admin-top{
 
@@ -349,7 +501,14 @@ header{
 
     color:#888;
 
+    line-height:1.8;
+
 }
+
+
+/* ================================
+   STATS
+================================ */
 
 .stats-grid{
 
@@ -418,6 +577,11 @@ header{
 
 }
 
+
+/* ================================
+   SECTION
+================================ */
+
 .section{
 
     padding:35px 0;
@@ -451,6 +615,11 @@ header{
     font-size:13px;
 
 }
+
+
+/* ================================
+   ACTIONS
+================================ */
 
 .actions-grid{
 
@@ -541,6 +710,11 @@ header{
 
 }
 
+
+/* ================================
+   INFO
+================================ */
+
 .info-box{
 
     padding:25px;
@@ -592,43 +766,14 @@ header{
 
     color:#cfc6ff;
 
-    max-width:70%;
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;
+    word-break:break-all;
 
 }
 
-.logout-btn{
 
-    border:0;
-
-    cursor:pointer;
-
-    padding:10px 15px;
-
-    border-radius:12px;
-
-    color:#fff;
-
-    background:
-    rgba(255,70,70,.08);
-
-    border:
-    1px solid
-    rgba(255,70,70,.16);
-
-    transition:.3s;
-
-}
-
-.logout-btn:hover{
-
-    background:
-    rgba(255,70,70,.15);
-
-}
+/* ================================
+   FOOTER
+================================ */
 
 footer{
 
@@ -653,6 +798,11 @@ footer span{
     color:#9b7cff;
 
 }
+
+
+/* ================================
+   MOBILE
+================================ */
 
 @media(max-width:900px){
 
@@ -719,34 +869,41 @@ footer span{
 
     }
 
-    .info-value{
-
-        max-width:100%;
-
-    }
-
 }
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <div class="bg-circle bg-one"></div>
 <div class="bg-circle bg-two"></div>
 
 
+<!-- =====================================================
+     LOADING
+===================================================== -->
+
 <div id="loadingScreen">
 
     <div class="loader"></div>
 
-    <div class="loading-text">
+    <div
+        id="loadingText"
+        class="loading-text"
+    >
         جاري التحقق من صلاحيات الأدمن...
     </div>
 
 </div>
 
+
+<!-- =====================================================
+     ACCESS DENIED
+===================================================== -->
 
 <div id="accessDenied">
 
@@ -776,6 +933,10 @@ footer span{
 </div>
 
 
+<!-- =====================================================
+     ADMIN APP
+===================================================== -->
+
 <div id="adminApp">
 
 
@@ -783,21 +944,18 @@ footer span{
 
 <div class="header-inner">
 
+
 <div class="logo">
 الخوارزمي
 </div>
 
-<div
-    style="
-    display:flex;
-    align-items:center;
-    gap:10px;
-    "
->
+
+<div class="header-actions">
 
 <div class="admin-badge">
 👑 لوحة الإدارة
 </div>
+
 
 <button
     id="logoutBtn"
@@ -808,6 +966,7 @@ footer span{
 </button>
 
 </div>
+
 
 </div>
 
@@ -826,11 +985,15 @@ footer span{
 </h1>
 
 <p>
-من هنا يمكنك إدارة منصة الخوارزمي ومتابعة الطلاب والاختبارات.
+من هنا يمكنك إدارة منصة الخوارزمي ومتابعة الطلاب والاختبارات والنتائج.
 </p>
 
 </section>
 
+
+<!-- =====================================================
+     STATS
+===================================================== -->
 
 <section>
 
@@ -904,12 +1067,13 @@ footer span{
 </div>
 
 <div class="stat-title">
-الطلاب المتصدرون
+حالة النظام
 </div>
 
 <div
-    id="topStudentsCount"
+    id="systemStatus"
     class="stat-number"
+    style="font-size:20px;"
 >
 —
 </div>
@@ -922,7 +1086,12 @@ footer span{
 </section>
 
 
+<!-- =====================================================
+     ACTIONS
+===================================================== -->
+
 <section class="section">
+
 
 <div class="section-title">
 
@@ -954,7 +1123,7 @@ Admin Control
 </h3>
 
 <p>
-عرض الطلاب وإدارة بيانات الحسابات ومتابعة الطلاب.
+عرض الطلاب وإدارة بيانات الحسابات ومتابعة بيانات الطلاب.
 </p>
 
 </a>
@@ -974,7 +1143,7 @@ Admin Control
 </h3>
 
 <p>
-إدارة الاختبارات وإضافة الاختبارات المتاحة للطلاب.
+إدارة الاختبارات الموجودة على المنصة.
 </p>
 
 </a>
@@ -1065,12 +1234,17 @@ Admin Control
 </section>
 
 
+<!-- =====================================================
+     ACCOUNT INFO
+===================================================== -->
+
 <section class="section">
+
 
 <div class="section-title">
 
 <h2>
-معلومات الحساب
+معلومات حساب الأدمن
 </h2>
 
 </div>
@@ -1089,7 +1263,7 @@ Admin Control
     id="accountRole"
     class="info-value"
 >
-جاري التحقق...
+—
 </span>
 
 </div>
@@ -1098,7 +1272,7 @@ Admin Control
 <div class="info-row">
 
 <span class="info-label">
-رقم المستخدم
+معرف المستخدم
 </span>
 
 <span
@@ -1153,463 +1327,631 @@ Admin Control
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- =====================================================
+     SUPABASE LIBRARY
+===================================================== -->
 
-<script src="../supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
 <script>
 
+/* =====================================================
+   SUPABASE
+===================================================== */
+
 "use strict";
 
 
-let supabaseClient = null;
+const SUPABASE_URL =
+    "https://fdqolsygigqukejlwcon.supabase.co";
 
 
-document.addEventListener(
-    "DOMContentLoaded",
-    async function(){
-
-        const loadingScreen =
-            document.getElementById(
-                "loadingScreen"
-            );
-
-        const accessDenied =
-            document.getElementById(
-                "accessDenied"
-            );
-
-        const adminApp =
-            document.getElementById(
-                "adminApp"
-            );
+const SUPABASE_KEY =
+    "sb_publishable_fO1Xb-dtqq8rnGuvXcPahg_zz9WeW9x";
 
 
-        function denyAccess(){
+/*
+   نستخدم نفس العميل في الصفحة
+   ونضعه أيضًا في window.supabaseClient
+*/
 
-            loadingScreen.style.display =
-                "none";
+if (
+    !window.supabaseClient &&
+    window.supabase
+) {
 
-            adminApp.style.display =
-                "none";
+    window.supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
 
-            accessDenied.style.display =
-                "flex";
-
-        }
-
-
-        try{
-
-            /* =========================================
-               SUPABASE
-            ========================================= */
-
-            supabaseClient =
-                window.supabaseClient;
+}
 
 
-            if(!supabaseClient){
+/* =====================================================
+   HELPERS
+===================================================== */
 
-                console.error(
-                    "Supabase غير متصل"
-                );
+function timeoutPromise(ms) {
 
-                denyAccess();
+    return new Promise(
+        function(_, reject) {
 
-                return;
+            setTimeout(
+                function() {
 
-            }
+                    reject(
+                        new Error(
+                            "انتهت مهلة الاتصال بـ Supabase."
+                        )
+                    );
 
-
-            /* =========================================
-               CURRENT USER
-            ========================================= */
-
-            const {
-                data: {
-                    user
                 },
-                error: userError
-            } =
-                await supabaseClient.auth.getUser();
-
-
-            if(
-                userError ||
-                !user
-            ){
-
-                window.location.replace(
-                    "../auth.html"
-                );
-
-                return;
-
-            }
-
-
-            /* =========================================
-               CHECK ADMIN FROM PROFILES
-            ========================================= */
-
-            const {
-                data: profile,
-                error: profileError
-            } =
-                await supabaseClient
-                    .from("profiles")
-                    .select("id, role, phone")
-                    .eq(
-                        "id",
-                        user.id
-                    )
-                    .maybeSingle();
-
-
-            if(profileError){
-
-                console.error(
-                    "PROFILE ERROR:",
-                    profileError
-                );
-
-                denyAccess();
-
-                return;
-
-            }
-
-
-            if(
-                !profile ||
-                profile.role !== "admin"
-            ){
-
-                console.warn(
-                    "Current role:",
-                    profile?.role
-                );
-
-                denyAccess();
-
-                return;
-
-            }
-
-
-            /* =========================================
-               ADMIN CONFIRMED
-            ========================================= */
-
-            document.getElementById(
-                "accountId"
-            ).textContent =
-                user.id;
-
-
-            document.getElementById(
-                "accountPhone"
-            ).textContent =
-                user.phone ||
-                profile.phone ||
-                "—";
-
-
-            document.getElementById(
-                "accountRole"
-            ).textContent =
-                "👑 Admin";
-
-
-            loadingScreen.style.display =
-                "none";
-
-
-            adminApp.style.display =
-                "block";
-
-
-            /* =========================================
-               LOAD STATISTICS
-            ========================================= */
-
-            await loadStats(
-                supabaseClient
+                ms
             );
-
 
         }
-        catch(error){
+    );
 
-            console.error(
-                "ADMIN ERROR:",
-                error
+}
+
+
+function waitWithTimeout(
+    promise,
+    ms
+) {
+
+    return Promise.race([
+        promise,
+        timeoutPromise(ms)
+    ]);
+
+}
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const loadingScreen =
+    document.getElementById(
+        "loadingScreen"
+    );
+
+
+const loadingText =
+    document.getElementById(
+        "loadingText"
+    );
+
+
+const accessDenied =
+    document.getElementById(
+        "accessDenied"
+    );
+
+
+const adminApp =
+    document.getElementById(
+        "adminApp"
+    );
+
+
+/* =====================================================
+   SHOW ERROR
+===================================================== */
+
+function showFatalError(message) {
+
+    loadingScreen.innerHTML = `
+
+        <div class="error-box">
+
+            <div class="error-icon">
+                ⚠️
+            </div>
+
+            <h2>
+                حدث خطأ
+            </h2>
+
+            <p>
+                ${escapeHtml(message)}
+            </p>
+
+            <button
+                class="retry-btn"
+                onclick="location.reload()"
+            >
+                إعادة المحاولة
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+function escapeHtml(text) {
+
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =====================================================
+   DENY
+===================================================== */
+
+function denyAccess() {
+
+    loadingScreen.style.display =
+        "none";
+
+    adminApp.style.display =
+        "none";
+
+    accessDenied.style.display =
+        "flex";
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+async function initializeAdmin() {
+
+    try {
+
+        console.log(
+            "[ADMIN] بدء تشغيل لوحة الإدارة"
+        );
+
+
+        /* =============================================
+           CHECK SUPABASE
+        ============================================= */
+
+        const client =
+            window.supabaseClient;
+
+
+        if (!client) {
+
+            showFatalError(
+                "Supabase غير متصل. تأكد من تحميل مكتبة Supabase."
             );
 
-            denyAccess();
+            return;
+
+        }
+
+
+        console.log(
+            "[ADMIN] Supabase متصل"
+        );
+
+
+        /* =============================================
+           GET USER
+        ============================================= */
+
+        loadingText.textContent =
+            "جاري الحصول على الحساب...";
+
+
+        const userResult =
+            await waitWithTimeout(
+                client.auth.getUser(),
+                10000
+            );
+
+
+        const user =
+            userResult?.data?.user;
+
+
+        console.log(
+            "[ADMIN] User:",
+            user
+        );
+
+
+        if (!user) {
+
+            window.location.replace(
+                "../auth.html"
+            );
+
+            return;
 
         }
 
 
         /* =============================================
-           LOGOUT
+           GET ROLE
         ============================================= */
 
-        const logoutBtn =
-            document.getElementById(
-                "logoutBtn"
+        loadingText.textContent =
+            "جاري التحقق من صلاحيات الأدمن...";
+
+
+        const roleResult =
+            await waitWithTimeout(
+
+                client
+                    .from("user_roles")
+                    .select("role")
+                    .eq(
+                        "user_id",
+                        user.id
+                    )
+                    .maybeSingle(),
+
+                10000
+
             );
 
 
-        if(logoutBtn){
-
-            logoutBtn.addEventListener(
-                "click",
-                async function(){
-
-                    logoutBtn.disabled =
-                        true;
-
-                    logoutBtn.textContent =
-                        "جاري تسجيل الخروج...";
+        console.log(
+            "[ADMIN] Role result:",
+            roleResult
+        );
 
 
-                    if(supabaseClient){
-
-                        await supabaseClient
-                            .auth
-                            .signOut();
-
-                    }
-
-
-                    window.location.replace(
-                        "../auth.html"
-                    );
-
-                }
-            );
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   LOAD STATISTICS
-===================================================== */
-
-async function loadStats(
-    supabaseClient
-){
-
-    /* ================================================
-       STUDENTS
-    ================================================ */
-
-    try{
-
-        const {
-            count,
-            error
-        } =
-            await supabaseClient
-                .from("students")
-                .select(
-                    "*",
-                    {
-                        count:"exact",
-                        head:true
-                    }
-                );
-
-
-        if(error){
+        if (roleResult.error) {
 
             console.error(
-                "Students Count Error:",
-                error
+                "ROLE ERROR:",
+                roleResult.error
             );
 
-        }
-        else{
 
-            document.getElementById(
-                "studentsCount"
-            ).textContent =
-                count ?? 0;
+            showFatalError(
+                "تعذر قراءة صلاحية الأدمن: " +
+                roleResult.error.message
+            );
+
+            return;
 
         }
+
+
+        const role =
+            roleResult.data?.role;
+
+
+        console.log(
+            "[ADMIN] Current role:",
+            role
+        );
+
+
+        if (role !== "admin") {
+
+            denyAccess();
+
+            return;
+
+        }
+
+
+        /* =============================================
+           ADMIN APPROVED
+        ============================================= */
+
+        console.log(
+            "[ADMIN] ADMIN ACCESS GRANTED"
+        );
+
+
+        document.getElementById(
+            "accountRole"
+        ).textContent =
+            "👑 Admin";
+
+
+        document.getElementById(
+            "accountId"
+        ).textContent =
+            user.id;
+
+
+        document.getElementById(
+            "accountPhone"
+        ).textContent =
+            user.phone || "—";
+
+
+        loadingScreen.style.display =
+            "none";
+
+
+        adminApp.style.display =
+            "block";
+
+
+        document.getElementById(
+            "systemStatus"
+        ).textContent =
+            "متصل ✓";
+
+
+        /* =============================================
+           LOAD STATISTICS
+        ============================================= */
+
+        await loadStatistics(
+            client
+        );
+
 
     }
-    catch(error){
+    catch(error) {
 
         console.error(
-            "Students Count:",
+            "[ADMIN] ERROR:",
             error
         );
 
-    }
 
-
-    /* ================================================
-       EXAMS
-    ================================================ */
-
-    try{
-
-        const {
-            count,
-            error
-        } =
-            await supabaseClient
-                .from("exams")
-                .select(
-                    "*",
-                    {
-                        count:"exact",
-                        head:true
-                    }
-                );
-
-
-        if(error){
-
-            console.error(
-                "Exams Count Error:",
-                error
-            );
-
-        }
-        else{
-
-            document.getElementById(
-                "examsCount"
-            ).textContent =
-                count ?? 0;
-
-        }
-
-    }
-    catch(error){
-
-        console.error(
-            "Exams Count:",
-            error
-        );
-
-    }
-
-
-    /* ================================================
-       RESULTS
-    ================================================ */
-
-    try{
-
-        const {
-            count,
-            error
-        } =
-            await supabaseClient
-                .from("results")
-                .select(
-                    "*",
-                    {
-                        count:"exact",
-                        head:true
-                    }
-                );
-
-
-        if(error){
-
-            console.error(
-                "Results Count Error:",
-                error
-            );
-
-        }
-        else{
-
-            document.getElementById(
-                "resultsCount"
-            ).textContent =
-                count ?? 0;
-
-        }
-
-    }
-    catch(error){
-
-        console.error(
-            "Results Count:",
-            error
-        );
-
-    }
-
-
-    /* ================================================
-       TOP STUDENTS
-       
-       لا نستخدم points لأن جدول students
-       عندك لا يحتوي على points.
-       
-       نعرض عدد الطلاب بدلًا من الاستعلام
-       عن عمود غير موجود.
-    ================================================ */
-
-    try{
-
-        const {
-            count,
-            error
-        } =
-            await supabaseClient
-                .from("students")
-                .select(
-                    "*",
-                    {
-                        count:"exact",
-                        head:true
-                    }
-                );
-
-
-        if(error){
-
-            console.error(
-                "Top Students Count Error:",
-                error
-            );
-
-        }
-        else{
-
-            document.getElementById(
-                "topStudentsCount"
-            ).textContent =
-                count ?? 0;
-
-        }
-
-    }
-    catch(error){
-
-        console.error(
-            "Top Students Count:",
-            error
+        showFatalError(
+            error?.message ||
+            "حدث خطأ غير معروف أثناء تشغيل لوحة الإدارة."
         );
 
     }
 
 }
 
+
+/* =====================================================
+   LOAD STATISTICS
+===================================================== */
+
+async function loadStatistics(client) {
+
+
+    /* =============================================
+       STUDENTS
+    ============================================= */
+
+    try {
+
+        const result =
+            await waitWithTimeout(
+
+                client
+                    .from("students")
+                    .select(
+                        "id",
+                        {
+                            count:"exact",
+                            head:true
+                        }
+                    ),
+
+                10000
+
+            );
+
+
+        console.log(
+            "[ADMIN] Students:",
+            result
+        );
+
+
+        if (!result.error) {
+
+            document.getElementById(
+                "studentsCount"
+            ).textContent =
+                result.count ?? 0;
+
+        }
+
+    }
+    catch(error) {
+
+        console.error(
+            "Students Count Error:",
+            error
+        );
+
+        document.getElementById(
+            "studentsCount"
+        ).textContent =
+            "—";
+
+    }
+
+
+    /* =============================================
+       EXAMS
+    ============================================= */
+
+    try {
+
+        const result =
+            await waitWithTimeout(
+
+                client
+                    .from("exams")
+                    .select(
+                        "id",
+                        {
+                            count:"exact",
+                            head:true
+                        }
+                    ),
+
+                10000
+
+            );
+
+
+        console.log(
+            "[ADMIN] Exams:",
+            result
+        );
+
+
+        if (!result.error) {
+
+            document.getElementById(
+                "examsCount"
+            ).textContent =
+                result.count ?? 0;
+
+        }
+
+    }
+    catch(error) {
+
+        console.error(
+            "Exams Count Error:",
+            error
+        );
+
+        document.getElementById(
+            "examsCount"
+        ).textContent =
+            "—";
+
+    }
+
+
+    /* =============================================
+       RESULTS
+    ============================================= */
+
+    try {
+
+        const result =
+            await waitWithTimeout(
+
+                client
+                    .from("results")
+                    .select(
+                        "id",
+                        {
+                            count:"exact",
+                            head:true
+                        }
+                    ),
+
+                10000
+
+            );
+
+
+        console.log(
+            "[ADMIN] Results:",
+            result
+        );
+
+
+        if (!result.error) {
+
+            document.getElementById(
+                "resultsCount"
+            ).textContent =
+                result.count ?? 0;
+
+        }
+
+    }
+    catch(error) {
+
+        console.error(
+            "Results Count Error:",
+            error
+        );
+
+        document.getElementById(
+            "resultsCount"
+        ).textContent =
+            "—";
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+document
+    .getElementById("logoutBtn")
+    .addEventListener(
+        "click",
+        async function() {
+
+            const button =
+                document.getElementById(
+                    "logoutBtn"
+                );
+
+
+            button.disabled =
+                true;
+
+
+            button.textContent =
+                "جاري تسجيل الخروج...";
+
+
+            try {
+
+                const client =
+                    window.supabaseClient;
+
+
+                if (client) {
+
+                    await client.auth.signOut();
+
+                }
+
+            }
+            catch(error) {
+
+                console.error(
+                    "Logout Error:",
+                    error
+                );
+
+            }
+
+
+            window.location.replace(
+                "../auth.html"
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   START ADMIN
+===================================================== */
+
+initializeAdmin();
+
 </script>
 
 </body>
+
 </html>
