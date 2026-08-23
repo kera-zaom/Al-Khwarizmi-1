@@ -3,942 +3,728 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>الخوارزمي | حسابي</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Tahoma, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            color: #fff;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(116,72,232,.20),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(49,84,223,.18),
+                    transparent 35%
+                ),
+                #050509;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .container {
+            width: min(1150px, 94%);
+            margin: auto;
+        }
+
+        /* ================= HEADER ================= */
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
 
-<title>الخوارزمي | منصة الاختبارات</title>
+            padding: 14px 0;
+
+            background:
+                rgba(5,5,9,.86);
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.07);
+
+            backdrop-filter: blur(20px);
+        }
 
-<style>
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
 
-/* =====================================
-   RESET
-===================================== */
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:
-        "Cairo",
-        Arial,
-        Tahoma,
-        sans-serif;
-}
+        .brand-logo {
+            width: 45px;
+            height: 45px;
 
-html{
-    scroll-behavior:smooth;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-body{
+            border-radius: 14px;
 
-    min-height:100vh;
+            background:
+                linear-gradient(
+                    135deg,
+                    #7448e8,
+                    #3154df
+                );
 
-    color:#fff;
+            box-shadow:
+                0 0 25px
+                rgba(116,72,232,.25);
+        }
 
-    background:
-        radial-gradient(
-            circle at 80% 15%,
-            rgba(116,72,232,.22),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 15% 80%,
-            rgba(49,84,223,.18),
-            transparent 30%
-        ),
-        #030305;
+        .brand-name {
+            font-size: 19px;
+            font-weight: 900;
+        }
 
-    overflow-x:hidden;
+        .brand-sub {
+            color: #777784;
+            font-size: 11px;
+            margin-top: 2px;
+        }
 
-}
+        .nav-actions {
+            display: flex;
+            gap: 8px;
+        }
 
+        .nav-btn {
+            border: 1px solid rgba(255,255,255,.08);
 
-/* =====================================
-   BACKGROUND
-===================================== */
+            background:
+                rgba(255,255,255,.04);
 
-.bg{
+            color: #ddd;
 
-    position:fixed;
+            padding: 10px 14px;
 
-    inset:0;
+            border-radius: 12px;
 
-    pointer-events:none;
+            text-decoration: none;
 
-    overflow:hidden;
+            cursor: pointer;
 
-    z-index:-1;
+            font-size: 13px;
+        }
 
-}
+        .nav-btn:hover {
+            border-color: #7448e8;
+        }
 
-.bg::before{
+        /* ================= HERO ================= */
 
-    content:"";
+        .hero {
+            margin-top: 30px;
 
-    position:absolute;
+            padding: 30px;
 
-    width:450px;
+            border-radius: 28px;
 
-    height:450px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(116,72,232,.13),
+                    rgba(49,84,223,.07)
+                );
 
-    top:20%;
+            border:
+                1px solid
+                rgba(255,255,255,.08);
 
-    right:15%;
+            position: relative;
+            overflow: hidden;
+        }
 
-    border-radius:50%;
+        .hero::before {
+            content: "";
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(116,72,232,.18),
-            transparent 70%
-        );
+            position: absolute;
 
-    filter:blur(30px);
+            width: 220px;
+            height: 220px;
 
-    animation:
-        floatGlow 7s ease-in-out infinite;
+            left: -100px;
+            top: -100px;
 
-}
+            border-radius: 50%;
 
-.bg::after{
+            background:
+                rgba(116,72,232,.15);
 
-    content:"";
+            filter: blur(30px);
+        }
 
-    position:absolute;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
 
-    width:350px;
+        .welcome {
+            color: #aaaab5;
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
 
-    height:350px;
+        .student-name {
+            font-size: clamp(27px, 5vw, 42px);
+            font-weight: 900;
 
-    bottom:10%;
+            background:
+                linear-gradient(
+                    90deg,
+                    #fff,
+                    #a98cff
+                );
 
-    left:10%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    border-radius:50%;
+        .hero-text {
+            color: #9999a5;
+            margin-top: 10px;
+            line-height: 1.8;
+            font-size: 14px;
+        }
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(49,84,223,.15),
-            transparent 70%
-        );
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
 
-    filter:blur(35px);
+            margin-top: 20px;
+        }
 
-    animation:
-        floatGlow 9s ease-in-out infinite reverse;
+        .main-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
 
-}
+            padding: 13px 20px;
 
-@keyframes floatGlow{
+            border: 0;
+            border-radius: 14px;
 
-    0%,100%{
-        transform:translate(0,0) scale(1);
-    }
+            color: #fff;
 
-    50%{
-        transform:translate(30px,-25px) scale(1.15);
-    }
+            background:
+                linear-gradient(
+                    135deg,
+                    #7448e8,
+                    #3154df
+                );
 
-}
+            text-decoration: none;
 
+            font-weight: 800;
 
-/* =====================================
-   HEADER
-===================================== */
+            cursor: pointer;
+        }
 
-header{
+        .secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
 
-    width:100%;
+            padding: 13px 20px;
 
-    padding:18px 6%;
+            border-radius: 14px;
 
-    display:flex;
+            color: #ddd;
 
-    align-items:center;
+            background:
+                rgba(255,255,255,.05);
 
-    justify-content:space-between;
+            border:
+                1px solid
+                rgba(255,255,255,.08);
 
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.06);
+            text-decoration: none;
 
-    background:
-        rgba(3,3,5,.55);
+            cursor: pointer;
+        }
 
-    backdrop-filter:blur(15px);
+        /* ================= STATS ================= */
 
-    position:sticky;
+        .stats {
+            display: grid;
 
-    top:0;
+            grid-template-columns:
+                repeat(3, 1fr);
 
-    z-index:100;
+            gap: 14px;
 
-}
+            margin-top: 18px;
+        }
 
-.logo{
+        .stat {
+            padding: 20px;
 
-    display:flex;
+            border-radius: 20px;
 
-    align-items:center;
+            background:
+                rgba(255,255,255,.035);
 
-    gap:12px;
+            border:
+                1px solid
+                rgba(255,255,255,.07);
+        }
 
-}
+        .stat-icon {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
 
-.logo-icon{
+        .stat-value {
+            font-size: 25px;
+            font-weight: 900;
+        }
 
-    width:45px;
+        .stat-label {
+            color: #858591;
+            font-size: 12px;
+            margin-top: 5px;
+        }
 
-    height:45px;
+        /* ================= SECTION ================= */
 
-    display:flex;
+        .section {
+            margin-top: 38px;
+        }
 
-    align-items:center;
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-    justify-content:center;
+            margin-bottom: 15px;
+        }
 
-    border-radius:14px;
+        .section-title h2 {
+            font-size: 22px;
+        }
 
-    font-size:24px;
+        .section-title span {
+            color: #777784;
+            font-size: 12px;
+        }
 
-    background:
-        linear-gradient(
-            135deg,
-            #7448e8,
-            #3154df
-        );
+        /* ================= CARDS ================= */
 
-    box-shadow:
-        0 0 25px
-        rgba(116,72,232,.35);
+        .grid {
+            display: grid;
 
-}
+            grid-template-columns:
+                repeat(3, 1fr);
 
-.logo-text{
+            gap: 15px;
+        }
 
-    font-size:20px;
+        .card {
+            padding: 20px;
 
-    font-weight:900;
+            border-radius: 21px;
 
-}
+            background:
+                rgba(255,255,255,.035);
 
-.logo-text span{
+            border:
+                1px solid
+                rgba(255,255,255,.07);
 
-    display:block;
+            transition: .25s;
+        }
 
-    color:#8f7be0;
+        .card:hover {
+            transform: translateY(-4px);
 
-    font-size:10px;
+            border-color:
+                rgba(116,72,232,.35);
+        }
 
-    font-weight:400;
+        .card-icon {
+            width: 50px;
+            height: 50px;
 
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-.logout{
+            border-radius: 15px;
 
-    border:1px solid
-        rgba(255,255,255,.1);
+            background:
+                rgba(116,72,232,.13);
 
-    background:#11111a;
+            font-size: 25px;
 
-    color:#fff;
+            margin-bottom: 14px;
+        }
 
-    padding:10px 17px;
+        .card h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
 
-    border-radius:12px;
+        .card p {
+            color: #888894;
+            line-height: 1.7;
+            font-size: 13px;
+        }
 
-    cursor:pointer;
+        .empty {
+            grid-column: 1 / -1;
 
-    transition:.25s;
+            padding: 30px;
 
-}
+            text-align: center;
 
-.logout:hover{
+            color: #777784;
 
-    border-color:#7448e8;
+            border:
+                1px dashed
+                rgba(255,255,255,.10);
 
-    transform:translateY(-2px);
+            border-radius: 18px;
+        }
 
-}
+        /* ================= OFFER ================= */
 
+        #offerButton {
+            width: 100%;
 
-/* =====================================
-   HERO
-===================================== */
+            padding: 17px;
 
-.hero{
+            border: 0;
 
-    min-height:
-        calc(100vh - 82px);
+            border-radius: 18px;
 
-    max-width:1200px;
+            color: #fff;
 
-    margin:auto;
+            font-size: 16px;
+            font-weight: 900;
 
-    padding:
-        70px 6%
-        80px;
+            cursor: pointer;
 
-    display:grid;
+            background:
+                linear-gradient(
+                    135deg,
+                    #7448e8,
+                    #3154df
+                );
 
-    grid-template-columns:
-        1.15fr
-        .85fr;
+            box-shadow:
+                0 15px 40px
+                rgba(116,72,232,.16);
+        }
 
-    align-items:center;
+        #offerContent {
+            display: none;
 
-    gap:60px;
+            margin-top: 15px;
 
-}
+            animation: openBox .45s ease;
+        }
 
+        #offerContent.show {
+            display: block;
+        }
 
-/* TEXT */
+        @keyframes openBox {
 
-.badge{
+            from {
+                opacity: 0;
+                transform: translateY(-12px);
+            }
 
-    display:inline-flex;
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
 
-    align-items:center;
+        }
 
-    gap:8px;
+        /* ================= BEST STUDENTS ================= */
 
-    padding:9px 15px;
+        .best-grid {
+            display: grid;
 
-    border-radius:30px;
+            grid-template-columns:
+                repeat(3, 1fr);
 
-    border:1px solid
-        rgba(116,72,232,.3);
+            gap: 15px;
 
-    background:
-        rgba(116,72,232,.08);
+            margin-top: 15px;
+        }
 
-    color:#b9a8ff;
+        .student-card {
+            padding: 20px;
 
-    font-size:12px;
+            border-radius: 22px;
 
-    margin-bottom:22px;
+            text-align: center;
 
-}
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.05),
+                    rgba(116,72,232,.06)
+                );
 
-.badge-dot{
+            border:
+                1px solid
+                rgba(255,255,255,.08);
 
-    width:7px;
+            animation:
+                studentIn .55s ease both;
+        }
 
-    height:7px;
+        @keyframes studentIn {
 
-    border-radius:50%;
+            from {
+                opacity: 0;
+                transform:
+                    translateY(20px)
+                    scale(.96);
+            }
 
-    background:#8d6cff;
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
 
-    box-shadow:
-        0 0 12px #8d6cff;
+        }
 
-}
+        .student-rank {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
 
-.hero h1{
+        .student-avatar {
+            width: 75px;
+            height: 75px;
 
-    font-size:
-        clamp(40px,6vw,76px);
+            margin: auto;
 
-    line-height:1.1;
+            overflow: hidden;
 
-    font-weight:1000;
+            border-radius: 50%;
 
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-.hero h1 span{
+            background:
+                linear-gradient(
+                    135deg,
+                    #7448e8,
+                    #3154df
+                );
 
-    background:
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #b19aff,
-            #7448e8
-        );
+            border:
+                2px solid
+                rgba(255,255,255,.12);
+        }
 
-    -webkit-background-clip:text;
+        .student-avatar img {
+            width: 100%;
+            height: 100%;
 
-    color:transparent;
+            object-fit: cover;
+        }
 
-}
+        .student-emoji {
+            width: 100%;
+            height: 100%;
 
-.hero p{
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    max-width:600px;
+            font-size: 32px;
+        }
 
-    color:#999;
+        .student-name {
+            margin-top: 12px;
 
-    line-height:2;
+            font-weight: 900;
 
-    font-size:16px;
+            color: #fff;
+        }
 
-    margin-top:22px;
+        .student-points {
+            margin-top: 7px;
 
-}
+            color: #a98cff;
 
+            font-size: 13px;
+        }
 
-/* BUTTONS */
+        .best-loading,
+        .best-empty,
+        .best-error {
+            grid-column: 1 / -1;
 
-.actions{
+            text-align: center;
 
-    display:flex;
+            padding: 25px;
 
-    flex-wrap:wrap;
+            border-radius: 18px;
 
-    gap:12px;
+            color: #999;
 
-    margin-top:30px;
+            background:
+                rgba(255,255,255,.03);
+        }
 
-}
+        /* ================= LOADING ================= */
 
-.primary{
+        .loading {
+            padding: 30px;
 
-    border:0;
+            text-align: center;
 
-    color:#fff;
+            color: #888;
+        }
 
-    padding:14px 23px;
+        /* ================= FOOTER ================= */
 
-    border-radius:14px;
+        footer {
+            margin-top: 55px;
 
-    cursor:pointer;
+            padding: 35px 0;
 
-    font-weight:bold;
+            border-top:
+                1px solid
+                rgba(255,255,255,.06);
 
-    background:
-        linear-gradient(
-            135deg,
-            #7448e8,
-            #3154df
-        );
+            text-align: center;
+        }
 
-    box-shadow:
-        0 12px 35px
-        rgba(116,72,232,.25);
+        .teacher-image {
+            width: 110px;
+            height: 110px;
 
-    transition:.25s;
+            margin: auto;
 
-}
+            border-radius: 50%;
 
-.primary:hover{
+            object-fit: cover;
 
-    transform:
-        translateY(-3px);
+            border:
+                2px solid
+                rgba(116,72,232,.55);
 
-    box-shadow:
-        0 18px 45px
-        rgba(116,72,232,.4);
+            box-shadow:
+                0 0 35px
+                rgba(116,72,232,.22);
 
-}
+            animation:
+                teacherFloat 3.5s ease-in-out infinite;
+        }
 
-.secondary{
+        @keyframes teacherFloat {
 
-    border:1px solid
-        rgba(255,255,255,.12);
+            0%,100% {
+                transform:
+                    translateY(0)
+                    rotate(-2deg);
+            }
 
-    background:
-        rgba(255,255,255,.03);
+            50% {
+                transform:
+                    translateY(-8px)
+                    rotate(2deg);
+            }
 
-    color:white;
+        }
 
-    padding:14px 23px;
+        .footer-title {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: 900;
+        }
 
-    border-radius:14px;
+        .footer-text {
+            color: #777784;
+            margin-top: 8px;
+            font-size: 13px;
+        }
 
-    cursor:pointer;
+        /* ================= MOBILE ================= */
 
-    transition:.25s;
+        @media (max-width: 800px) {
 
-}
+            .grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
 
-.secondary:hover{
+            .best-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
 
-    border-color:#7448e8;
+        }
 
-}
+        @media (max-width: 560px) {
 
+            .hero {
+                padding: 23px 18px;
+            }
 
-/* =====================================
-   MASTER CARD
-===================================== */
+            .stats {
+                grid-template-columns: 1fr;
+            }
 
-.teacher-wrap{
+            .grid {
+                grid-template-columns: 1fr;
+            }
 
-    display:flex;
+            .best-grid {
+                grid-template-columns: 1fr;
+            }
 
-    justify-content:center;
+            .nav-btn {
+                padding: 9px;
+                font-size: 12px;
+            }
 
-}
+        }
 
-.teacher-card{
-
-    width:320px;
-
-    min-height:410px;
-
-    position:relative;
-
-    border-radius:32px;
-
-    padding:25px;
-
-    text-align:center;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(25,22,40,.95),
-            rgba(8,8,13,.95)
-        );
-
-    border:1px solid
-        rgba(116,72,232,.28);
-
-    box-shadow:
-        0 30px 90px
-        rgba(0,0,0,.55),
-
-        0 0 50px
-        rgba(116,72,232,.12);
-
-    transform:
-        perspective(900px)
-        rotateY(-5deg);
-
-    transition:.4s;
-
-}
-
-.teacher-card:hover{
-
-    transform:
-        perspective(900px)
-        rotateY(0deg)
-        translateY(-8px);
-
-    border-color:
-        rgba(116,72,232,.6);
-
-}
-
-
-.teacher-glow{
-
-    position:absolute;
-
-    width:170px;
-
-    height:170px;
-
-    top:15px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    border-radius:50%;
-
-    background:
-        rgba(116,72,232,.3);
-
-    filter:blur(35px);
-
-}
-
-
-/* IMAGE */
-
-.teacher-image{
-
-    width:205px;
-
-    height:205px;
-
-    border-radius:50%;
-
-    object-fit:cover;
-
-    position:relative;
-
-    border:4px solid
-        rgba(145,110,255,.5);
-
-    box-shadow:
-        0 0 35px
-        rgba(116,72,232,.5);
-
-    animation:
-        teacherFloat 4s ease-in-out infinite;
-
-}
-
-@keyframes teacherFloat{
-
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-8px);
-    }
-
-}
-
-.teacher-card h2{
-
-    margin-top:22px;
-
-    font-size:25px;
-
-}
-
-.teacher-card .dragon{
-
-    font-size:25px;
-
-}
-
-.teacher-card p{
-
-    color:#928ba7;
-
-    margin-top:6px;
-
-    font-size:13px;
-
-}
-
-.teacher-line{
-
-    width:70px;
-
-    height:3px;
-
-    margin:
-        18px auto
-        0;
-
-    border-radius:20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #7448e8,
-            #3154df
-        );
-
-}
-
-
-/* =====================================
-   OFFER SECTION
-===================================== */
-
-.offer-section{
-
-    max-width:1100px;
-
-    margin:auto;
-
-    padding:
-        30px 6%
-        100px;
-
-}
-
-.section-title{
-
-    text-align:center;
-
-    font-size:35px;
-
-    margin-bottom:12px;
-
-}
-
-.section-subtitle{
-
-    text-align:center;
-
-    color:#888;
-
-    margin-bottom:45px;
-
-}
-
-.offer-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:18px;
-
-}
-
-.offer-card{
-
-    padding:25px;
-
-    border-radius:22px;
-
-    background:
-        rgba(255,255,255,.025);
-
-    border:
-        1px solid
-        rgba(255,255,255,.07);
-
-    transition:.3s;
-
-}
-
-.offer-card:hover{
-
-    transform:translateY(-6px);
-
-    border-color:
-        rgba(116,72,232,.45);
-
-    background:
-        rgba(116,72,232,.06);
-
-}
-
-.offer-icon{
-
-    width:50px;
-
-    height:50px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:15px;
-
-    background:
-        rgba(116,72,232,.12);
-
-    font-size:24px;
-
-    margin-bottom:18px;
-
-}
-
-.offer-card h3{
-
-    margin-bottom:8px;
-
-}
-
-.offer-card p{
-
-    color:#888;
-
-    font-size:13px;
-
-    line-height:1.8;
-
-}
-
-
-/* =====================================
-   MODAL
-===================================== */
-
-.modal{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:1000;
-
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-
-    background:
-        rgba(0,0,0,.78);
-
-    backdrop-filter:blur(12px);
-
-}
-
-.modal-box{
-
-    width:100%;
-
-    max-width:480px;
-
-    padding:30px;
-
-    border-radius:25px;
-
-    position:relative;
-
-    background:#101019;
-
-    border:
-        1px solid
-        rgba(116,72,232,.4);
-
-    box-shadow:
-        0 0 70px
-        rgba(116,72,232,.25);
-
-    animation:
-        modalIn .3s ease;
-
-}
-
-@keyframes modalIn{
-
-    from{
-        opacity:0;
-        transform:scale(.9);
-    }
-
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-
-}
-
-.modal-close{
-
-    position:absolute;
-
-    top:12px;
-
-    left:12px;
-
-    width:36px;
-
-    height:36px;
-
-    border:0;
-
-    border-radius:50%;
-
-    background:#20202c;
-
-    color:#fff;
-
-    cursor:pointer;
-
-    font-size:20px;
-
-}
-
-.modal-box h2{
-
-    margin-bottom:15px;
-
-}
-
-.modal-box p{
-
-    color:#999;
-
-    line-height:2;
-
-}
-
-
-/* =====================================
-   FOOTER
-===================================== */
-
-footer{
-
-    text-align:center;
-
-    padding:30px 20px;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,.06);
-
-    color:#666;
-
-    font-size:12px;
-
-}
-
-footer strong{
-
-    color:#917be0;
-
-}
-
-
-/* =====================================
-   MOBILE
-===================================== */
-
-@media(max-width:800px){
-
-    .hero{
-
-        grid-template-columns:1fr;
-
-        text-align:center;
-
-        padding-top:50px;
-
-    }
-
-    .hero p{
-
-        margin-left:auto;
-
-        margin-right:auto;
-
-    }
-
-    .actions{
-
-        justify-content:center;
-
-    }
-
-    .teacher-wrap{
-
-        margin-top:20px;
-
-    }
-
-    .offer-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .teacher-card{
-
-        width:290px;
-
-    }
-
-}
-
-</style>
+    </style>
 
 </head>
 
@@ -946,156 +732,103 @@ footer strong{
 <body>
 
 
-<div class="bg"></div>
-
-
-<!-- =====================================
+<!-- =====================================================
      HEADER
-===================================== -->
+===================================================== -->
 
 <header>
 
-    <div class="logo">
+    <div class="container nav">
 
-        <div class="logo-icon">
-            🧠
+        <div class="brand">
+
+            <div class="brand-logo">
+                🎓
+            </div>
+
+            <div>
+
+                <div class="brand-name">
+                    الخوارزمي
+                </div>
+
+                <div class="brand-sub">
+                    منصة التعليم والاختبارات
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="logo-text">
 
-            الخوارزمي
+        <div class="nav-actions">
 
-            <span>
-                منصة الاختبارات
-            </span>
+            <a
+                href="edit-profile.html"
+                class="nav-btn"
+            >
+                ⚙️ تعديل بياناتي
+            </a>
+
+            <button
+                id="logoutBtn"
+                class="nav-btn"
+                type="button"
+            >
+                خروج
+            </button>
 
         </div>
 
     </div>
-
-
-    <button
-        id="logoutBtn"
-        class="logout"
-        type="button"
-    >
-        تسجيل الخروج
-    </button>
 
 </header>
 
 
-<!-- =====================================
-     HERO
-===================================== -->
 
-<main>
+<main class="container">
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section class="hero">
 
+    <div class="hero-content">
 
-    <div>
-
-        <div class="badge">
-
-            <span class="badge-dot"></span>
-
-            منصة الخوارزمي التعليمية
-
+        <div class="welcome">
+            👋 أهلاً بك في حسابك
         </div>
 
+        <div
+            id="studentName"
+            class="student-name"
+        >
+            جاري التحميل...
+        </div>
 
-        <h1>
-
-            مستعد
-            <span>
-                للتحدي؟
-            </span>
-
-        </h1>
-
-
-        <p>
-
-            اختبر معلوماتك، طور مستواك،
-            واجمع النقاط من خلال اختبارات
-            الرياضيات الإلكترونية.
-
-            <br>
-
-            ومعانا...
-
-            <strong>
-                المستر أمير 🐉
-            </strong>
-
+        <p class="hero-text">
+            كل ما تحتاجه من كورسات ومحاضرات
+            وملفات وامتحانات موجود هنا.
         </p>
 
 
-        <div class="actions">
+        <div class="hero-buttons">
 
-            <button
-                id="testsBtn"
-                class="primary"
-                type="button"
+            <a
+                href="#courses"
+                class="main-btn"
             >
-                🚀 ابدأ الاختبارات
-            </button>
+                📚 استعرض الكورسات
+            </a>
 
-
-            <button
-                id="whatWeOfferBtn"
-                class="secondary"
-                type="button"
+            <a
+                href="edit-profile.html"
+                class="secondary-btn"
             >
-                ✨ ماذا نقدم لكم؟
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- MASTER -->
-
-    <div class="teacher-wrap">
-
-        <div class="teacher-card">
-
-            <div class="teacher-glow"></div>
-
-
-            <img
-                id="studentPhoto"
-                class="teacher-image"
-                src="teacher.png"
-                alt="المستر أمير"
-            >
-
-
-            <h2>
-
-                المستر أمير
-
-                <span class="dragon">
-                    🐉
-                </span>
-
-            </h2>
-
-
-            <p>
-                مدرس الرياضيات
-            </p>
-
-
-            <div class="teacher-line"></div>
-
-
-            <p>
-                معاك خطوة بخطوة
-                لحد ما تكسر التحدي 💜
-            </p>
+                ✏️ تعديل بياناتي
+            </a>
 
         </div>
 
@@ -1104,272 +837,871 @@ footer strong{
 </section>
 
 
-<!-- =====================================
-     OFFERS
-===================================== -->
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
+<section class="stats">
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            ⭐
+        </div>
+
+        <div
+            id="pointsValue"
+            class="stat-value"
+        >
+            0
+        </div>
+
+        <div class="stat-label">
+            نقاطي
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            📚
+        </div>
+
+        <div
+            id="coursesCount"
+            class="stat-value"
+        >
+            0
+        </div>
+
+        <div class="stat-label">
+            الكورسات
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            📝
+        </div>
+
+        <div
+            id="examsCount"
+            class="stat-value"
+        >
+            0
+        </div>
+
+        <div class="stat-label">
+            الامتحانات
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     COURSES
+===================================================== -->
 
 <section
-    id="whatWeOffer"
-    class="offer-section"
+    id="courses"
+    class="section"
 >
 
-    <h2 class="section-title">
-        ماذا نقدم لكم؟
-    </h2>
+    <div class="section-title">
 
-    <p class="section-subtitle">
-        كل اللي تحتاجه عشان تختبر مستواك وتطور نفسك
-    </p>
+        <h2>
+            📚 الكورسات المتاحة
+        </h2>
+
+        <span>
+            الكورسات الخاصة بك
+        </span>
+
+    </div>
 
 
-    <div class="offer-grid">
+    <div
+        id="coursesGrid"
+        class="grid"
+    >
 
-
-        <div class="offer-card">
-
-            <div class="offer-icon">
-                📝
-            </div>
-
-            <h3>
-                اختبارات إلكترونية
-            </h3>
-
-            <p>
-                اختبارات رياضيات مصممة
-                لمختلف الصفوف الدراسية.
-            </p>
-
+        <div class="loading">
+            ⏳ جاري تحميل الكورسات...
         </div>
-
-
-        <div class="offer-card">
-
-            <div class="offer-icon">
-                ⏱️
-            </div>
-
-            <h3>
-                تحدي بالوقت
-            </h3>
-
-            <p>
-                اختبر سرعتك ودقتك
-                في اختبارات بوقت محدد.
-            </p>
-
-        </div>
-
-
-        <div class="offer-card">
-
-            <div class="offer-icon">
-                🏆
-            </div>
-
-            <h3>
-                نقاط ونتائج
-            </h3>
-
-            <p>
-                تابع نتائجك واجمع النقاط
-                وتنافس على المراكز الأولى.
-            </p>
-
-        </div>
-
 
     </div>
 
 </section>
+
+
+
+<!-- =====================================================
+     LESSONS
+===================================================== -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            🎥 المحاضرات
+        </h2>
+
+        <span>
+            آخر المحاضرات المتاحة
+        </span>
+
+    </div>
+
+
+    <div
+        id="lessonsGrid"
+        class="grid"
+    >
+
+        <div class="loading">
+            ⏳ جاري تحميل المحاضرات...
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PDF FILES
+===================================================== -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            📄 الملفات والمذكرات
+        </h2>
+
+        <span>
+            ملفات متاحة لك
+        </span>
+
+    </div>
+
+
+    <div
+        id="filesGrid"
+        class="grid"
+    >
+
+        <div class="loading">
+            ⏳ جاري تحميل الملفات...
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EXAMS
+===================================================== -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            📝 الامتحانات
+        </h2>
+
+        <span>
+            اختباراتك
+        </span>
+
+    </div>
+
+
+    <div
+        id="examsGrid"
+        class="grid"
+    >
+
+        <div class="loading">
+            ⏳ جاري تحميل الامتحانات...
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WHAT WE OFFER
+===================================================== -->
+
+<section class="section">
+
+    <button
+        id="offerButton"
+        type="button"
+    >
+        ✨ ماذا نقدم لكم؟
+    </button>
+
+
+    <div
+        id="offerContent"
+    >
+
+        <div class="grid">
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📚
+                </div>
+
+                <h3>
+                    كورسات
+                </h3>
+
+                <p>
+                    كورسات منظمة تساعدك على فهم
+                    المادة ومتابعة مستواك.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🎥
+                </div>
+
+                <h3>
+                    محاضرات
+                </h3>
+
+                <p>
+                    الوصول إلى المحاضرات والشرح
+                    المتاح لك من المنصة.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📄
+                </div>
+
+                <h3>
+                    ملفات PDF
+                </h3>
+
+                <p>
+                    المذكرات والملفات الخاصة
+                    بالكورسات المتاحة لك.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📝
+                </div>
+
+                <h3>
+                    امتحانات
+                </h3>
+
+                <p>
+                    اختبر نفسك واعرف مستواك
+                    واحصل على نتيجتك.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="section-title"
+            style="margin-top:30px;"
+        >
+
+            <h2>
+                🏆 أفضل الطلاب
+            </h2>
+
+            <span>
+                حسب النقاط
+            </span>
+
+        </div>
+
+
+        <div
+            id="bestStudentsGrid"
+            class="best-grid"
+        >
+
+            <div class="best-loading">
+                اضغط على ماذا نقدم لعرض أفضل الطلاب
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
 
 </main>
 
 
-<!-- =====================================
-     MODAL
-===================================== -->
 
-<div
-    id="offerModal"
-    class="modal"
->
-
-    <div class="modal-box">
-
-        <button
-            id="closeOffer"
-            class="modal-close"
-            type="button"
-        >
-            ×
-        </button>
-
-
-        <h2>
-            🐉 ماذا نقدم لكم؟
-        </h2>
-
-
-        <p>
-
-            معاك المستر أمير في رحلة
-            الاختبارات والتحديات.
-
-            <br><br>
-
-            اختبارات رياضيات،
-            وقت محدد،
-            نتائج،
-            نقاط،
-            وترتيب أفضل الطلاب.
-
-            <br><br>
-
-            جاهز تبدأ التحدي؟ 🚀
-
-        </p>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================
+<!-- =====================================================
      FOOTER
-===================================== -->
+===================================================== -->
 
 <footer>
 
-    الخوارزمي © 2026
+    <div class="container">
 
-    <br><br>
+        <img
+            src="teacher.png"
+            class="teacher-image"
+            alt="المستر"
+        >
 
-    بإشراف
-    <strong>
-        المستر أمير 🐉
-    </strong>
+        <div class="footer-title">
+            مع المستر ❤️
+        </div>
+
+        <div class="footer-text">
+            منصة الخوارزمي للتعليم والاختبارات
+        </div>
+
+    </div>
 
 </footer>
 
 
-<!-- =====================================
-     SCRIPTS
-===================================== -->
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="js/supabase.js"></script>
+<script src="supabase.js"></script>
+
+
+<!-- =====================================================
+     HOME JS
+===================================================== -->
 
 <script src="home.js"></script>
 
 
 <script>
 
+"use strict";
+
+
 document.addEventListener(
     "DOMContentLoaded",
-    function(){
+    async function () {
 
-        const offerBtn =
-            document.getElementById(
-                "whatWeOfferBtn"
+
+        /* ===============================================
+           CHECK SUPABASE
+        =============================================== */
+
+        if (
+            typeof supabaseClient ===
+                "undefined" ||
+            !supabaseClient
+        ) {
+
+            console.error(
+                "Supabase غير متصل"
             );
 
-        const modal =
-            document.getElementById(
-                "offerModal"
-            );
-
-        const closeBtn =
-            document.getElementById(
-                "closeOffer"
-            );
-
-
-        /* ماذا نقدم لكم */
-
-        if(offerBtn){
-
-            offerBtn.addEventListener(
-                "click",
-                function(){
-
-                    modal.style.display =
-                        "flex";
-
-                }
-            );
+            return;
 
         }
 
 
-        /* إغلاق */
+        /* ===============================================
+           GET USER
+        =============================================== */
 
-        if(closeBtn){
-
-            closeBtn.addEventListener(
-                "click",
-                function(){
-
-                    modal.style.display =
-                        "none";
-
-                }
-            );
-
-        }
+        const {
+            data: authData,
+            error: authError
+        } =
+        await supabaseClient.auth.getUser();
 
 
-        /* الضغط خارج النافذة */
+        if (
+            authError ||
+            !authData.user
+        ) {
 
-        if(modal){
+            window.location.href =
+                "auth.html";
 
-            modal.addEventListener(
-                "click",
-                function(e){
-
-                    if(
-                        e.target === modal
-                    ){
-
-                        modal.style.display =
-                            "none";
-
-                    }
-
-                }
-            );
+            return;
 
         }
 
 
-        /* زر الاختبارات */
+        const user =
+            authData.user;
 
-        const testsBtn =
+
+        /* ===============================================
+           GET STUDENT
+        =============================================== */
+
+        const {
+            data: student,
+            error: studentError
+        } =
+        await supabaseClient
+            .from("students")
+            .select(`
+                id,
+                full_name,
+                phone,
+                grade,
+                points,
+                avatar_url
+            `)
+            .eq(
+                "id",
+                user.id
+            )
+            .maybeSingle();
+
+
+        if (studentError) {
+
+            console.error(
+                "Student:",
+                studentError
+            );
+
             document.getElementById(
-                "testsBtn"
-            );
+                "studentName"
+            ).textContent =
+                "مرحباً بك";
 
-        if(testsBtn){
+        } else if (student) {
 
-            testsBtn.addEventListener(
+            document.getElementById(
+                "studentName"
+            ).textContent =
+                student.full_name ||
+                "طالب";
+
+
+            document.getElementById(
+                "pointsValue"
+            ).textContent =
+                Number(
+                    student.points || 0
+                );
+
+        }
+
+
+        /* ===============================================
+           LOAD COURSES
+        =============================================== */
+
+        loadCourses(user.id);
+
+
+        /* ===============================================
+           LOAD EXAMS
+        =============================================== */
+
+        loadExams(user.id);
+
+
+        /* ===============================================
+           LOGOUT
+        =============================================== */
+
+        document
+            .getElementById(
+                "logoutBtn"
+            )
+            .addEventListener(
                 "click",
-                function(){
+                async function () {
+
+                    await supabaseClient.auth.signOut();
 
                     window.location.href =
-                        "tests.html";
+                        "auth.html";
 
                 }
             );
-
-        }
 
     }
 );
 
+
+/* =====================================================
+   COURSES
+===================================================== */
+
+async function loadCourses(
+    studentId
+) {
+
+    const grid =
+        document.getElementById(
+            "coursesGrid"
+        );
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+            .from("course_students")
+            .select(`
+                course_id,
+                courses (
+                    id,
+                    title,
+                    description,
+                    image_url,
+                    grade,
+                    is_active
+                )
+            `)
+            .eq(
+                "student_id",
+                studentId
+            );
+
+
+        if (error) {
+            throw error;
+        }
+
+
+        const courses =
+            (data || [])
+                .map(
+                    item =>
+                        item.courses
+                )
+                .filter(
+                    course =>
+                        course &&
+                        course.is_active
+                );
+
+
+        document.getElementById(
+            "coursesCount"
+        ).textContent =
+            courses.length;
+
+
+        if (!courses.length) {
+
+            grid.innerHTML = `
+                <div class="empty">
+                    📚 لا توجد كورسات متاحة لك حالياً.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        grid.innerHTML = "";
+
+
+        courses.forEach(
+            course => {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+                card.className =
+                    "card";
+
+
+                card.innerHTML = `
+
+                    <div class="card-icon">
+                        📚
+                    </div>
+
+                    <h3>
+                        ${escapeHTML(
+                            course.title
+                        )}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(
+                            course.description ||
+                            "كورسات تعليمية متاحة لك."
+                        )}
+                    </p>
+
+                    ${
+                        course.grade
+                        ?
+                        `<p style="margin-top:8px;">
+                            🎓 ${escapeHTML(course.grade)}
+                        </p>`
+                        :
+                        ""
+                    }
+
+                `;
+
+
+                grid.appendChild(card);
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Courses:",
+            error
+        );
+
+        grid.innerHTML = `
+            <div class="empty">
+                ❌ تعذر تحميل الكورسات.
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   EXAMS
+===================================================== */
+
+async function loadExams(
+    studentId
+) {
+
+    const grid =
+        document.getElementById(
+            "examsGrid"
+        );
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+            .from("exams")
+            .select(`
+                id,
+                title,
+                description,
+                grade,
+                duration_minutes,
+                exam_code,
+                is_active
+            `)
+            .eq(
+                "is_active",
+                true
+            )
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
+
+
+        if (error) {
+            throw error;
+        }
+
+
+        const exams =
+            data || [];
+
+
+        document.getElementById(
+            "examsCount"
+        ).textContent =
+            exams.length;
+
+
+        if (!exams.length) {
+
+            grid.innerHTML = `
+                <div class="empty">
+                    📝 لا توجد امتحانات متاحة حالياً.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        grid.innerHTML = "";
+
+
+        exams.forEach(
+            exam => {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+                card.className =
+                    "card";
+
+
+                card.innerHTML = `
+
+                    <div class="card-icon">
+                        📝
+                    </div>
+
+                    <h3>
+                        ${escapeHTML(
+                            exam.title
+                        )}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(
+                            exam.description ||
+                            "اختبار متاح للطلاب."
+                        )}
+                    </p>
+
+                    <p style="margin-top:8px;">
+                        ⏱️ ${Number(
+                            exam.duration_minutes || 30
+                        )} دقيقة
+                    </p>
+
+                    <a
+                        href="exam.html?id=${encodeURIComponent(exam.id)}"
+                        class="main-btn"
+                        style="
+                            width:100%;
+                            margin-top:15px;
+                        "
+                    >
+                        🚀 بدء الامتحان
+                    </a>
+
+                `;
+
+
+                grid.appendChild(card);
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Exams:",
+            error
+        );
+
+        grid.innerHTML = `
+            <div class="empty">
+                ❌ تعذر تحميل الامتحانات.
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   ESCAPE
+===================================================== */
+
+function escapeHTML(
+    value
+) {
+
+    return String(
+        value ?? ""
+    )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
 </script>
 
-
 </body>
-
 </html>
