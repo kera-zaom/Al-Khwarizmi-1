@@ -508,8 +508,6 @@ header{
 
     display:flex;
 
-    flex-direction:column;
-
     align-items:center;
 
     justify-content:center;
@@ -549,14 +547,6 @@ header{
     box-shadow:
     0 15px 40px
     rgba(37,211,102,.18);
-}
-
-.phone-hidden{
-    font-size:13px;
-
-    color:#bfffd1;
-
-    margin-top:5px;
 }
 
 
@@ -805,11 +795,6 @@ header{
     }
 }
 
-
-/* =========================
-   RANK
-========================= */
-
 .student-rank{
     position:absolute;
 
@@ -838,11 +823,6 @@ header{
 
     z-index:2;
 }
-
-
-/* =========================
-   AVATAR
-========================= */
 
 .student-avatar{
     width:100px;
@@ -891,11 +871,6 @@ header{
     font-size:43px;
 }
 
-
-/* =========================
-   NAME
-========================= */
-
 .student-name{
     font-size:17px;
 
@@ -932,11 +907,6 @@ header{
 
     font-size:13px;
 }
-
-
-/* =========================
-   EMPTY / ERROR
-========================= */
 
 .best-empty,
 .best-error,
@@ -1242,9 +1212,7 @@ footer span{
 
 </head>
 
-
 <body>
-
 
 <div class="bubble b1"></div>
 <div class="bubble b2"></div>
@@ -1299,11 +1267,9 @@ alt="المستر أمير طلعت"
 
 </div>
 
-
 <div class="badge">
 ✨ أهلاً بكم في منصة الخوارزمي
 </div>
-
 
 <h1>
 
@@ -1316,11 +1282,9 @@ alt="المستر أمير طلعت"
 
 </h1>
 
-
 <h2>
 👨‍🏫 المستر أمير طلعت
 </h2>
-
 
 <p>
 
@@ -1329,7 +1293,6 @@ alt="المستر أمير طلعت"
 بتجربة بسيطة تساعدك على التطور.
 
 </p>
-
 
 <div class="buttons">
 
@@ -1375,7 +1338,6 @@ class="section"
 
 </div>
 
-
 <div class="teacher-card">
 
 <img
@@ -1394,7 +1356,6 @@ alt="المستر أمير طلعت"
 تكون جاهز وتدخل الامتحان بثقة.
 
 </p>
-
 
 <div class="features">
 
@@ -1421,21 +1382,15 @@ alt="المستر أمير طلعت"
 </div>
 
 
+<!-- الرقم غير ظاهر، والضغط يفتح واتساب -->
+
 <a
 href="https://wa.me/201212101614"
 target="_blank"
-rel="noopener"
+rel="noopener noreferrer"
 class="contact-btn"
 >
-
-<span>
-👨‍🏫 تواصل مع المستر امير
-</span>
-
-<span class="phone-hidden">
-+20 12 12101614
-</span>
-
+💚 تواصل مع المستر
 </a>
 
 </div>
@@ -1464,28 +1419,19 @@ class="contact-btn"
 </div>
 
 
-<!-- الزر الوحيد -->
-
 <button
 id="offerButton"
 class="offer-button"
 type="button"
 >
-
 ✨ ماذا نقدم لكم؟
-
 </button>
 
-
-<!-- كل المحتوى يظهر بعد الضغط -->
 
 <div
 id="offerContent"
 class="offer-content"
 >
-
-
-<!-- الخدمات -->
 
 <div class="offer-grid">
 
@@ -1631,7 +1577,6 @@ class="best-grid"
 
 </div>
 
-
 </div>
 
 </div>
@@ -1733,7 +1678,7 @@ alt="المطور"
 <a
 href="https://wa.me/201227052758"
 target="_blank"
-rel="noopener"
+rel="noopener noreferrer"
 class="developer-whatsapp"
 >
 
@@ -1778,7 +1723,7 @@ class="developer-whatsapp"
 </footer>
 
 
-<!-- ================= SUPABASE ================= -->
+<!-- ================= SCRIPTS ================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1786,6 +1731,72 @@ class="developer-whatsapp"
 
 <script src="home.js"></script>
 
+
+<!-- ================= OFFER BUTTON SCRIPT ================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        const offerButton =
+            document.getElementById(
+                "offerButton"
+            );
+
+        const offerContent =
+            document.getElementById(
+                "offerContent"
+            );
+
+
+        if(
+            !offerButton ||
+            !offerContent
+        ){
+
+            console.error(
+                "Offer elements not found"
+            );
+
+            return;
+
+        }
+
+
+        offerButton.addEventListener(
+            "click",
+            function(){
+
+                offerContent.classList.toggle(
+                    "show"
+                );
+
+
+                if(
+                    offerContent.classList.contains(
+                        "show"
+                    )
+                ){
+
+                    offerButton.innerHTML =
+                        "🔽 إخفاء ما نقدمه لكم";
+
+                }else{
+
+                    offerButton.innerHTML =
+                        "✨ ماذا نقدم لكم؟";
+
+                }
+
+            }
+        );
+
+    }
+);
+
+</script>
 
 </body>
 
