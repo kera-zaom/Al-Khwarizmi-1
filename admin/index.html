@@ -14,10 +14,6 @@
 
 <style>
 
-/* =====================================================
-   RESET
-===================================================== */
-
 *{
     margin:0;
     padding:0;
@@ -51,13 +47,7 @@ body{
     color:#fff;
 
     overflow-x:hidden;
-
 }
-
-
-/* =====================================================
-   BACKGROUND
-===================================================== */
 
 .bg-circle{
 
@@ -115,11 +105,6 @@ body{
 
 }
 
-
-/* =====================================================
-   LOADING
-===================================================== */
-
 #loadingScreen{
 
     position:fixed;
@@ -173,11 +158,6 @@ body{
     font-size:14px;
 
 }
-
-
-/* =====================================================
-   ACCESS DENIED
-===================================================== */
 
 #accessDenied{
 
@@ -257,21 +237,11 @@ body{
 
 }
 
-
-/* =====================================================
-   APP
-===================================================== */
-
 #adminApp{
 
     display:none;
 
 }
-
-
-/* =====================================================
-   HEADER
-===================================================== */
 
 header{
 
@@ -352,11 +322,6 @@ header{
 
 }
 
-
-/* =====================================================
-   CONTAINER
-===================================================== */
-
 .container{
 
     width:min(1200px,94%);
@@ -364,11 +329,6 @@ header{
     margin:auto;
 
 }
-
-
-/* =====================================================
-   TOP
-===================================================== */
 
 .admin-top{
 
@@ -390,11 +350,6 @@ header{
     color:#888;
 
 }
-
-
-/* =====================================================
-   STATS
-===================================================== */
 
 .stats-grid{
 
@@ -463,11 +418,6 @@ header{
 
 }
 
-
-/* =====================================================
-   SECTION
-===================================================== */
-
 .section{
 
     padding:35px 0;
@@ -501,11 +451,6 @@ header{
     font-size:13px;
 
 }
-
-
-/* =====================================================
-   ACTIONS
-===================================================== */
 
 .actions-grid{
 
@@ -596,11 +541,6 @@ header{
 
 }
 
-
-/* =====================================================
-   QUICK INFO
-===================================================== */
-
 .info-box{
 
     padding:25px;
@@ -652,12 +592,13 @@ header{
 
     color:#cfc6ff;
 
+    max-width:70%;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
 }
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
 
 .logout-btn{
 
@@ -689,11 +630,6 @@ header{
 
 }
 
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
 footer{
 
     padding:35px 0;
@@ -717,11 +653,6 @@ footer span{
     color:#9b7cff;
 
 }
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
 
 @media(max-width:900px){
 
@@ -788,28 +719,23 @@ footer span{
 
     }
 
+    .info-value{
+
+        max-width:100%;
+
+    }
+
 }
 
 </style>
 
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
-     BACKGROUND
-===================================================== -->
-
 <div class="bg-circle bg-one"></div>
-
 <div class="bg-circle bg-two"></div>
 
-
-<!-- =====================================================
-     LOADING
-===================================================== -->
 
 <div id="loadingScreen">
 
@@ -821,10 +747,6 @@ footer span{
 
 </div>
 
-
-<!-- =====================================================
-     ACCESS DENIED
-===================================================== -->
 
 <div id="accessDenied">
 
@@ -854,10 +776,6 @@ footer span{
 </div>
 
 
-<!-- =====================================================
-     ADMIN APP
-===================================================== -->
-
 <div id="adminApp">
 
 
@@ -865,11 +783,9 @@ footer span{
 
 <div class="header-inner">
 
-
 <div class="logo">
 الخوارزمي
 </div>
-
 
 <div
     style="
@@ -883,7 +799,6 @@ footer span{
 👑 لوحة الإدارة
 </div>
 
-
 <button
     id="logoutBtn"
     class="logout-btn"
@@ -894,18 +809,12 @@ footer span{
 
 </div>
 
-
 </div>
 
 </header>
 
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
 <main>
-
 
 <div class="container">
 
@@ -922,10 +831,6 @@ footer span{
 
 </section>
 
-
-<!-- =====================================================
-     STATS
-===================================================== -->
 
 <section>
 
@@ -999,7 +904,7 @@ footer span{
 </div>
 
 <div class="stat-title">
-أفضل الطلاب
+الطلاب المتصدرون
 </div>
 
 <div
@@ -1017,12 +922,7 @@ footer span{
 </section>
 
 
-<!-- =====================================================
-     ACTIONS
-===================================================== -->
-
 <section class="section">
-
 
 <div class="section-title">
 
@@ -1165,12 +1065,7 @@ Admin Control
 </section>
 
 
-<!-- =====================================================
-     ADMIN INFO
-===================================================== -->
-
 <section class="section">
-
 
 <div class="section-title">
 
@@ -1194,7 +1089,7 @@ Admin Control
     id="accountRole"
     class="info-value"
 >
-Admin
+جاري التحقق...
 </span>
 
 </div>
@@ -1258,10 +1153,6 @@ Admin
 </div>
 
 
-<!-- =====================================================
-     SUPABASE
-===================================================== -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script src="../supabase.js"></script>
@@ -1270,6 +1161,9 @@ Admin
 <script>
 
 "use strict";
+
+
+let supabaseClient = null;
 
 
 document.addEventListener(
@@ -1308,12 +1202,11 @@ document.addEventListener(
 
         try{
 
+            /* =========================================
+               SUPABASE
+            ========================================= */
 
-            // =================================================
-            // SUPABASE
-            // =================================================
-
-            const supabaseClient =
+            supabaseClient =
                 window.supabaseClient;
 
 
@@ -1330,9 +1223,9 @@ document.addEventListener(
             }
 
 
-            // =================================================
-            // USER
-            // =================================================
+            /* =========================================
+               CURRENT USER
+            ========================================= */
 
             const {
                 data: {
@@ -1357,29 +1250,29 @@ document.addEventListener(
             }
 
 
-            // =================================================
-            // ADMIN ROLE
-            // =================================================
+            /* =========================================
+               CHECK ADMIN FROM PROFILES
+            ========================================= */
 
             const {
-                data: roleData,
-                error: roleError
+                data: profile,
+                error: profileError
             } =
                 await supabaseClient
-                    .from("user_roles")
-                    .select("role")
+                    .from("profiles")
+                    .select("id, role, phone")
                     .eq(
-                        "user_id",
+                        "id",
                         user.id
                     )
                     .maybeSingle();
 
 
-            if(roleError){
+            if(profileError){
 
                 console.error(
-                    "ROLE ERROR:",
-                    roleError
+                    "PROFILE ERROR:",
+                    profileError
                 );
 
                 denyAccess();
@@ -1390,12 +1283,13 @@ document.addEventListener(
 
 
             if(
-                !roleData ||
-                roleData.role !== "admin"
+                !profile ||
+                profile.role !== "admin"
             ){
 
                 console.warn(
-                    "ليس Admin"
+                    "Current role:",
+                    profile?.role
                 );
 
                 denyAccess();
@@ -1405,9 +1299,9 @@ document.addEventListener(
             }
 
 
-            // =================================================
-            // ADMIN ACCESS
-            // =================================================
+            /* =========================================
+               ADMIN CONFIRMED
+            ========================================= */
 
             document.getElementById(
                 "accountId"
@@ -1418,7 +1312,9 @@ document.addEventListener(
             document.getElementById(
                 "accountPhone"
             ).textContent =
-                user.phone || "—";
+                user.phone ||
+                profile.phone ||
+                "—";
 
 
             document.getElementById(
@@ -1430,13 +1326,14 @@ document.addEventListener(
             loadingScreen.style.display =
                 "none";
 
+
             adminApp.style.display =
                 "block";
 
 
-            // =================================================
-            // LOAD STATS
-            // =================================================
+            /* =========================================
+               LOAD STATISTICS
+            ========================================= */
 
             await loadStats(
                 supabaseClient
@@ -1456,9 +1353,9 @@ document.addEventListener(
         }
 
 
-        // =====================================================
-        // LOGOUT
-        // =====================================================
+        /* =============================================
+           LOGOUT
+        ============================================= */
 
         const logoutBtn =
             document.getElementById(
@@ -1479,7 +1376,13 @@ document.addEventListener(
                         "جاري تسجيل الخروج...";
 
 
-                    await supabaseClient.auth.signOut();
+                    if(supabaseClient){
+
+                        await supabaseClient
+                            .auth
+                            .signOut();
+
+                    }
 
 
                     window.location.replace(
@@ -1490,7 +1393,6 @@ document.addEventListener(
             );
 
         }
-
 
     }
 );
@@ -1504,9 +1406,9 @@ async function loadStats(
     supabaseClient
 ){
 
-    // -----------------------------------------------
-    // STUDENTS
-    // -----------------------------------------------
+    /* ================================================
+       STUDENTS
+    ================================================ */
 
     try{
 
@@ -1525,7 +1427,15 @@ async function loadStats(
                 );
 
 
-        if(!error){
+        if(error){
+
+            console.error(
+                "Students Count Error:",
+                error
+            );
+
+        }
+        else{
 
             document.getElementById(
                 "studentsCount"
@@ -1545,9 +1455,9 @@ async function loadStats(
     }
 
 
-    // -----------------------------------------------
-    // EXAMS
-    // -----------------------------------------------
+    /* ================================================
+       EXAMS
+    ================================================ */
 
     try{
 
@@ -1566,7 +1476,15 @@ async function loadStats(
                 );
 
 
-        if(!error){
+        if(error){
+
+            console.error(
+                "Exams Count Error:",
+                error
+            );
+
+        }
+        else{
 
             document.getElementById(
                 "examsCount"
@@ -1586,9 +1504,9 @@ async function loadStats(
     }
 
 
-    // -----------------------------------------------
-    // RESULTS
-    // -----------------------------------------------
+    /* ================================================
+       RESULTS
+    ================================================ */
 
     try{
 
@@ -1607,7 +1525,15 @@ async function loadStats(
                 );
 
 
-        if(!error){
+        if(error){
+
+            console.error(
+                "Results Count Error:",
+                error
+            );
+
+        }
+        else{
 
             document.getElementById(
                 "resultsCount"
@@ -1627,9 +1553,15 @@ async function loadStats(
     }
 
 
-    // -----------------------------------------------
-    // TOP STUDENTS
-    // -----------------------------------------------
+    /* ================================================
+       TOP STUDENTS
+       
+       لا نستخدم points لأن جدول students
+       عندك لا يحتوي على points.
+       
+       نعرض عدد الطلاب بدلًا من الاستعلام
+       عن عمود غير موجود.
+    ================================================ */
 
     try{
 
@@ -1645,15 +1577,18 @@ async function loadStats(
                         count:"exact",
                         head:true
                     }
-                )
-                .not(
-                    "points",
-                    "is",
-                    null
                 );
 
 
-        if(!error){
+        if(error){
+
+            console.error(
+                "Top Students Count Error:",
+                error
+            );
+
+        }
+        else{
 
             document.getElementById(
                 "topStudentsCount"
@@ -1676,7 +1611,5 @@ async function loadStats(
 
 </script>
 
-
 </body>
-
 </html>
