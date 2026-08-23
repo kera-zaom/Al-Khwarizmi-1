@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>الخوارزمي | إضافة أفضل الطلاب</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Tahoma,sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:
+    radial-gradient(
+        circle at 10% 10%,
+        rgba(116,72,232,.18),
+        transparent 30%
+    ),
+
+    radial-gradient(
+        circle at 90% 80%,
+        rgba(49,84,223,.14),
+        transparent 32%
+    ),
+
+    #050509;
+
+    color:#fff;
+
+}
+
+button,
+input,
+select{
+    font-family:inherit;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+#loadingScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:99999;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    background:#050509;
+
+}
+
+.loader{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    border:4px solid
+    rgba(255,255,255,.08);
+
+    border-top-color:#7952ed;
+
+    animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+#loadingText{
+
+    color:#999;
+
+    font-size:14px;
+
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+#adminApp{
+
+    display:none;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    height:70px;
+
+    background:
+    rgba(5,5,9,.85);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:
+    1px solid
+    rgba(255,255,255,.07);
+
+}
+
+.header-inner{
+
+    width:min(1200px,94%);
+
+    height:70px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+}
+
+.logo{
+
+    font-size:23px;
+
+    font-weight:900;
+
+    background:
+    linear-gradient(
+        90deg,
+        #fff,
+        #9b7cff
+    );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    color:transparent;
+
+}
+
+.header-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.admin-badge{
+
+    padding:7px 12px;
+
+    border-radius:30px;
+
+    color:#c9baff;
+
+    background:
+    rgba(116,72,232,.10);
+
+    border:
+    1px solid
+    rgba(116,72,232,.22);
+
+    font-size:12px;
+
+}
+
+.back-btn{
+
+    text-decoration:none;
+
+    color:#fff;
+
+    padding:9px 14px;
+
+    border-radius:11px;
+
+    background:
+    rgba(255,255,255,.06);
+
+    border:
+    1px solid
+    rgba(255,255,255,.08);
+
+    font-size:13px;
+
+}
+
+.logout-btn{
+
+    border:0;
+
+    cursor:pointer;
+
+    padding:9px 14px;
+
+    border-radius:11px;
+
+    color:#fff;
+
+    background:
+    rgba(255,70,70,.08);
+
+    border:
+    1px solid
+    rgba(255,70,70,.18);
+
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+
+    width:min(1100px,94%);
+
+    margin:auto;
+
+}
+
+
+/* =====================================================
+   TOP
+===================================================== */
+
+.page-top{
+
+    padding:40px 0 25px;
+
+}
+
+.page-top h1{
+
+    font-size:
+    clamp(28px,5vw,42px);
+
+    margin-bottom:10px;
+
+}
+
+.page-top p{
+
+    color:#888;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-box{
+
+    padding:25px;
+
+    border-radius:24px;
+
+    background:
+    rgba(255,255,255,.035);
+
+    border:
+    1px solid
+    rgba(255,255,255,.08);
+
+    margin-bottom:25px;
+
+}
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:15px;
+
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.form-group.full{
+
+    grid-column:1/-1;
+
+}
+
+label{
+
+    color:#bbb;
+
+    font-size:13px;
+
+}
+
+input,
+select{
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:13px;
+
+    border:1px solid #29293a;
+
+    background:#090910;
+
+    color:#fff;
+
+    outline:none;
+
+}
+
+input:focus,
+select:focus{
+
+    border-color:#7448e8;
+
+    box-shadow:
+    0 0 15px
+    rgba(116,72,232,.15);
+
+}
+
+.submit-btn{
+
+    margin-top:20px;
+
+    width:100%;
+
+    border:0;
+
+    cursor:pointer;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    color:#fff;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7448e8,
+        #3154df
+    );
+
+}
+
+.submit-btn:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message{
+
+    display:none;
+
+    padding:14px;
+
+    border-radius:13px;
+
+    margin-bottom:20px;
+
+    text-align:center;
+
+    font-size:13px;
+
+}
+
+.message.success{
+
+    display:block;
+
+    color:#63ffb0;
+
+    background:
+    rgba(40,200,120,.08);
+
+    border:
+    1px solid
+    rgba(40,200,120,.2);
+
+}
+
+.message.error{
+
+    display:block;
+
+    color:#ff7e8a;
+
+    background:
+    rgba(255,60,80,.08);
+
+    border:
+    1px solid
+    rgba(255,60,80,.2);
+
+}
+
+
+/* =====================================================
+   LIST
+===================================================== */
+
+.list-box{
+
+    padding:25px;
+
+    border-radius:24px;
+
+    background:
+    rgba(255,255,255,.035);
+
+    border:
+    1px solid
+    rgba(255,255,255,.08);
+
+    margin-bottom:40px;
+
+}
+
+.list-title{
+
+    font-size:21px;
+
+    margin-bottom:20px;
+
+}
+
+.students-list{
+
+    display:grid;
+
+    gap:12px;
+
+}
+
+.student-card{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    background:
+    rgba(255,255,255,.035);
+
+    border:
+    1px solid
+    rgba(255,255,255,.06);
+
+}
+
+.student-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.student-photo{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    background:#111;
+
+    border:
+    1px solid
+    rgba(116,72,232,.3);
+
+}
+
+.student-name{
+
+    font-weight:bold;
+
+    margin-bottom:5px;
+
+}
+
+.student-grade{
+
+    color:#9f8be8;
+
+    font-size:12px;
+
+}
+
+.delete-btn{
+
+    border:0;
+
+    cursor:pointer;
+
+    padding:9px 13px;
+
+    border-radius:10px;
+
+    color:#ff8d97;
+
+    background:
+    rgba(255,60,80,.08);
+
+    border:
+    1px solid
+    rgba(255,60,80,.15);
+
+}
+
+.empty{
+
+    text-align:center;
+
+    padding:40px 20px;
+
+    color:#777;
+
+}
+
+.empty-icon{
+
+    font-size:45px;
+
+    margin-bottom:12px;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:700px){
+
+    .admin-badge{
+
+        display:none;
+
+    }
+
+    .header-inner{
+
+        height:65px;
+
+    }
+
+    header{
+
+        height:65px;
+
+    }
+
+    .logo{
+
+        font-size:19px;
+
+    }
+
+    .back-btn{
+
+        display:none;
+
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .student-card{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+    }
+
+    .delete-btn{
+
+        width:100%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOADING
+===================================================== -->
+
+<div id="loadingScreen">
+
+    <div class="loader"></div>
+
+    <div id="loadingText">
+        جاري التحقق من صلاحيات الأدمن...
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     APP
+===================================================== -->
+
+<div id="adminApp">
+
+
+<header>
+
+<div class="header-inner">
+
+    <div class="logo">
+        الخوارزمي
+    </div>
+
+    <div class="header-actions">
+
+        <div class="admin-badge">
+            👑 لوحة الإدارة
+        </div>
+
+        <a
+            href="index.html"
+            class="back-btn"
+        >
+            لوحة الإدارة
+        </a>
+
+        <button
+            id="logoutBtn"
+            class="logout-btn"
+            type="button"
+        >
+            خروج
+        </button>
+
+    </div>
+
+</div>
+
+</header>
+
+
+<main>
+
+<div class="container">
+
+
+<section class="page-top">
+
+    <h1>
+        إضافة أفضل الطلاب 🏆
+    </h1>
+
+    <p>
+        اختر الطالب والصف الدراسي لإضافته إلى قائمة أفضل الطلاب.
+    </p>
+
+</section>
+
+
+<div
+    id="message"
+    class="message"
+></div>
+
+
+<!-- =====================================================
+     FORM
+===================================================== -->
+
+<section class="form-box">
+
+<form id="topStudentForm">
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+الطالب
+</label>
+
+<select
+    id="studentSelect"
+    required
+>
+
+<option value="">
+جاري تحميل الطلاب...
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+الصف الدراسي
+</label>
+
+<select
+    id="grade"
+    required
+>
+
+<option value="">
+اختر الصف
+</option>
+
+<option value="أولى إعدادي">
+أولى إعدادي
+</option>
+
+<option value="ثانية إعدادي">
+ثانية إعدادي
+</option>
+
+<option value="ثالثة إعدادي">
+ثالثة إعدادي
+</option>
+
+<option value="أولى ثانوي">
+أولى ثانوي
+</option>
+
+<option value="ثانية ثانوي">
+ثانية ثانوي
+</option>
+
+<option value="ثالثة ثانوي">
+ثالثة ثانوي
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+الترتيب
+</label>
+
+<input
+    type="number"
+    id="rank"
+    min="1"
+    placeholder="مثال: 1"
+    required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+صورة الطالب
+</label>
+
+<input
+    type="url"
+    id="photoUrl"
+    placeholder="رابط صورة الطالب"
+>
+
+</div>
+
+
+</div>
+
+
+<button
+    id="submitBtn"
+    class="submit-btn"
+    type="submit"
+>
+إضافة أفضل طالب
+</button>
+
+</form>
+
+</section>
+
+
+<!-- =====================================================
+     LIST
+===================================================== -->
+
+<section class="list-box">
+
+<h2 class="list-title">
+أفضل الطلاب المضافون 🏆
+</h2>
+
+
+<div
+    id="studentsList"
+    class="students-list"
+>
+
+</div>
+
+
+<div
+    id="emptyState"
+    class="empty"
+    style="display:none;"
+>
+
+    <div class="empty-icon">
+        🏆
+    </div>
+
+    لا يوجد أفضل طلاب مضافون حتى الآن.
+
+</div>
+
+</section>
+
+
+</div>
+
+</main>
+
+
+<footer>
+
+© 2026 منصة
+<span>الخوارزمي</span>
+— إضافة أفضل الطلاب
+
+</footer>
+
+
+</div>
+
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../supabase.js"></script>
+
+
+<script>
+
+"use strict";
+
+
+let supabaseClient = null;
+
+let currentUser = null;
+
+let students = [];
+
+
+const loadingScreen =
+    document.getElementById(
+        "loadingScreen"
+    );
+
+const loadingText =
+    document.getElementById(
+        "loadingText"
+    );
+
+const adminApp =
+    document.getElementById(
+        "adminApp"
+    );
+
+const studentSelect =
+    document.getElementById(
+        "studentSelect"
+    );
+
+const topStudentForm =
+    document.getElementById(
+        "topStudentForm"
+    );
+
+const studentsList =
+    document.getElementById(
+        "studentsList"
+    );
+
+const emptyState =
+    document.getElementById(
+        "emptyState"
+    );
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+const submitBtn =
+    document.getElementById(
+        "submitBtn"
+    );
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(text,type){
+
+    message.textContent = text;
+
+    message.className =
+        "message " + type;
+
+    setTimeout(() => {
+
+        message.className =
+            "message";
+
+    },4000);
+
+}
+
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+async function getSupabase(){
+
+    if(window.supabaseClient){
+
+        return window.supabaseClient;
+
+    }
+
+    throw new Error(
+        "supabaseClient غير موجود في ../supabase.js"
+    );
+
+}
+
+
+/* =====================================================
+   ADMIN CHECK
+===================================================== */
+
+async function checkAdmin(){
+
+    supabaseClient =
+        await getSupabase();
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.auth.getSession();
+
+
+    if(error){
+
+        throw error;
+
+    }
+
+
+    if(
+        !data ||
+        !data.session ||
+        !data.session.user
+    ){
+
+        window.location.replace(
+            "../auth.html"
+        );
+
+        return false;
+
+    }
+
+
+    currentUser =
+        data.session.user;
+
+
+    loadingText.textContent =
+        "جاري التحقق من صلاحيات الأدمن...";
+
+
+    const {
+        data: roleData,
+        error: roleError
+    } =
+        await supabaseClient
+            .from("user_roles")
+            .select("role")
+            .eq(
+                "user_id",
+                currentUser.id
+            )
+            .maybeSingle();
+
+
+    if(roleError){
+
+        throw roleError;
+
+    }
+
+
+    if(
+        !roleData ||
+        roleData.role !== "admin"
+    ){
+
+        throw new Error(
+            "هذا الحساب ليس لديه صلاحية Admin."
+        );
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =====================================================
+   LOAD STUDENTS
+===================================================== */
+
+async function loadStudents(){
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("students")
+            .select(
+                "id,full_name,grade,photo_url"
+            )
+            .order(
+                "full_name",
+                {
+                    ascending:true
+                }
+            );
+
+
+    if(error){
+
+        throw error;
+
+    }
+
+
+    students =
+        data || [];
+
+
+    studentSelect.innerHTML = `
+        <option value="">
+            اختر الطالب
+        </option>
+    `;
+
+
+    students.forEach(student => {
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+        option.value =
+            student.id;
+
+        option.textContent =
+            `${student.full_name || "بدون اسم"} — ${student.grade || "بدون صف"}`;
+
+        studentSelect.appendChild(
+            option
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   LOAD TOP STUDENTS
+===================================================== */
+
+async function loadTopStudents(){
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("top_students")
+            .select("*")
+            .order(
+                "rank",
+                {
+                    ascending:true
+                }
+            );
+
+
+    if(error){
+
+        throw error;
+
+    }
+
+
+    renderTopStudents(
+        data || []
+    );
+
+}
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function renderTopStudents(data){
+
+    studentsList.innerHTML = "";
+
+
+    if(!data.length){
+
+        emptyState.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    emptyState.style.display =
+        "none";
+
+
+    data.forEach(item => {
+
+        const card =
+            document.createElement(
+                "div"
+            );
+
+        card.className =
+            "student-card";
+
+
+        card.innerHTML = `
+
+            <div class="student-info">
+
+                ${
+                    item.photo_url
+                    ?
+                    `
+                    <img
+                        src="${escapeHtml(item.photo_url)}"
+                        class="student-photo"
+                        alt=""
+                    >
+                    `
+                    :
+                    `
+                    <div
+                        class="student-photo"
+                        style="
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            font-size:22px;
+                        "
+                    >
+                        🏆
+                    </div>
+                    `
+                }
+
+                <div>
+
+                    <div class="student-name">
+                        ${escapeHtml(
+                            item.name ||
+                            item.full_name ||
+                            "أفضل طالب"
+                        )}
+                    </div>
+
+                    <div class="student-grade">
+                        ${escapeHtml(
+                            item.grade ||
+                            "بدون صف"
+                        )}
+                        —
+                        المركز
+                        ${escapeHtml(
+                            item.rank ||
+                            "—"
+                        )}
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="delete-btn"
+                type="button"
+                data-id="${escapeHtml(item.id)}"
+            >
+                حذف
+            </button>
+
+        `;
+
+
+        studentsList.appendChild(
+            card
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   ESCAPE
+===================================================== */
+
+function escapeHtml(value){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return "";
+
+    }
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   ADD TOP STUDENT
+===================================================== */
+
+topStudentForm.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+
+        const studentId =
+            studentSelect.value;
+
+        const grade =
+            document.getElementById(
+                "grade"
+            ).value;
+
+        const rank =
+            Number(
+                document.getElementById(
+                    "rank"
+                ).value
+            );
+
+        const photoUrl =
+            document.getElementById(
+                "photoUrl"
+            ).value.trim();
+
+
+        const student =
+            students.find(
+                item =>
+                    String(item.id) ===
+                    String(studentId)
+            );
+
+
+        if(!student){
+
+            showMessage(
+                "اختر الطالب أولاً.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        submitBtn.disabled = true;
+
+        submitBtn.textContent =
+            "جاري الإضافة...";
+
+
+        try{
+
+            /*
+             * نحاول استخدام الأعمدة الشائعة
+             * الموجودة في جدول top_students
+             */
+
+            const insertData = {
+
+                name:
+                    student.full_name,
+
+                grade:
+                    grade,
+
+                rank:
+                    rank,
+
+                photo_url:
+                    photoUrl ||
+                    student.photo_url ||
+                    null,
+
+                created_by:
+                    currentUser.id
+
+            };
+
+
+            const {
+                error
+            } =
+                await supabaseClient
+                    .from("top_students")
+                    .insert(
+                        insertData
+                    );
+
+
+            if(error){
+
+                throw error;
+
+            }
+
+
+            showMessage(
+                "تمت إضافة أفضل طالب بنجاح 🏆",
+                "success"
+            );
+
+
+            topStudentForm.reset();
+
+
+            await loadTopStudents();
+
+        }
+        catch(error){
+
+            console.error(
+                "ADD TOP STUDENT ERROR:",
+                error
+            );
+
+
+            showMessage(
+                "فشل الإضافة: " +
+                error.message,
+                "error"
+            );
+
+        }
+        finally{
+
+            submitBtn.disabled = false;
+
+            submitBtn.textContent =
+                "إضافة أفضل طالب";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   DELETE
+===================================================== */
+
+studentsList.addEventListener(
+    "click",
+    async function(event){
+
+        const button =
+            event.target.closest(
+                ".delete-btn"
+            );
+
+
+        if(!button){
+            return;
+        }
+
+
+        const id =
+            button.dataset.id;
+
+
+        if(
+            !confirm(
+                "هل أنت متأكد من حذف هذا الطالب من قائمة أفضل الطلاب؟"
+            )
+        ){
+
+            return;
+
+        }
+
+
+        try{
+
+            const {
+                error
+            } =
+                await supabaseClient
+                    .from("top_students")
+                    .delete()
+                    .eq(
+                        "id",
+                        id
+                    );
+
+
+            if(error){
+
+                throw error;
+
+            }
+
+
+            showMessage(
+                "تم الحذف بنجاح.",
+                "success"
+            );
+
+
+            await loadTopStudents();
+
+        }
+        catch(error){
+
+            console.error(
+                error
+            );
+
+
+            showMessage(
+                "فشل الحذف: " +
+                error.message,
+                "error"
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+document
+    .getElementById("logoutBtn")
+    .addEventListener(
+        "click",
+        async function(){
+
+            await supabaseClient
+                .auth
+                .signOut();
+
+            window.location.replace(
+                "../auth.html"
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   START
+===================================================== */
+
+(async function(){
+
+    try{
+
+        const isAdmin =
+            await checkAdmin();
+
+
+        if(!isAdmin){
+            return;
+        }
+
+
+        await loadStudents();
+
+        await loadTopStudents();
+
+
+        loadingScreen.style.display =
+            "none";
+
+        adminApp.style.display =
+            "block";
+
+    }
+    catch(error){
+
+        console.error(
+            "TOP STUDENTS ERROR:",
+            error
+        );
+
+
+        loadingText.textContent =
+            "حدث خطأ: " +
+            error.message;
+
+    }
+
+})();
+
+</script>
+
+</body>
+
+  </html>
