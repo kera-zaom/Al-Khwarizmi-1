@@ -1,704 +1,290 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-<meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>الخوارزمي | تسجيل الدخول</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Tahoma,sans-serif;
-}
-
-body{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    color:#fff;
-
-    background:
-        radial-gradient(
-            circle at 15% 15%,
-            rgba(116,72,232,.25),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 85% 80%,
-            rgba(49,84,223,.20),
-            transparent 35%
-        ),
-        #050509;
-
-    overflow-x:hidden;
-}
-
-.bubble{
-    position:fixed;
-    border-radius:50%;
-    pointer-events:none;
-    filter:blur(4px);
-    opacity:.25;
-    animation:floatBubble 7s ease-in-out infinite;
-    z-index:-1;
-}
-
-.bubble.one{
-    width:120px;
-    height:120px;
-    background:#7448e8;
-    top:8%;
-    right:5%;
-}
-
-.bubble.two{
-    width:75px;
-    height:75px;
-    background:#3154df;
-    bottom:10%;
-    left:7%;
-    animation-delay:2s;
-}
-
-@keyframes floatBubble{
-    0%,100%{
-        transform:translate(0,0);
-    }
-
-    50%{
-        transform:translate(15px,-25px);
-    }
-}
-
-.card{
-    width:min(500px,100%);
-    padding:30px 24px;
-    border-radius:30px;
-
-    background:rgba(10,10,16,.90);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    box-shadow:
-        0 30px 90px rgba(0,0,0,.55),
-        0 0 60px rgba(116,72,232,.12);
-
-    backdrop-filter:blur(22px);
-    -webkit-backdrop-filter:blur(22px);
-}
-
-.logo{
-    text-align:center;
-    margin-bottom:26px;
-}
-
-.teacher-logo{
-    width:110px;
-    height:110px;
-    margin:0 auto;
-    padding:4px;
-    border-radius:50%;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7448e8,
-            #3154df,
-            #a36cff
-        );
-
-    box-shadow:
-        0 0 25px rgba(116,72,232,.45),
-        0 0 60px rgba(49,84,223,.20);
-
-    position:relative;
-    overflow:hidden;
-
-    animation:
-        teacherFloat 3s ease-in-out infinite,
-        teacherGlow 2.5s ease-in-out infinite alternate;
-}
-
-.teacher-logo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-    border-radius:50%;
-    position:relative;
-    z-index:2;
-}
-
-.teacher-logo::before{
-    content:"";
-    position:absolute;
-    inset:7px;
-    border-radius:50%;
-    border:1px solid rgba(255,255,255,.30);
-    z-index:3;
-    pointer-events:none;
-}
-
-.teacher-logo::after{
-    content:"";
-    position:absolute;
-    width:45%;
-    height:150%;
-    top:-25%;
-    left:-80%;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.45),
-            transparent
-        );
-
-    transform:rotate(25deg);
-    z-index:4;
-    pointer-events:none;
-
-    animation:
-        teacherShine 3.5s ease-in-out infinite;
-}
-
-@keyframes teacherFloat{
-
-    0%,100%{
-        transform:translateY(0) rotate(0deg);
-    }
-
-    50%{
-        transform:translateY(-9px) rotate(1deg);
-    }
-}
-
-@keyframes teacherGlow{
-
-    from{
-        box-shadow:
-            0 0 20px rgba(116,72,232,.35),
-            0 0 45px rgba(49,84,223,.15);
-    }
-
-    to{
-        box-shadow:
-            0 0 35px rgba(116,72,232,.70),
-            0 0 75px rgba(49,84,223,.28);
-    }
-}
-
-@keyframes teacherShine{
-
-    0%{
-        left:-80%;
-    }
-
-    45%,100%{
-        left:140%;
-    }
-}
-
-.logo h1{
-    margin-top:16px;
-    font-size:31px;
-    font-weight:900;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #bca8ff
-        );
-
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-.logo p{
-    color:#888894;
-    margin-top:7px;
-    font-size:14px;
-}
-
-.tabs{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:6px;
-    padding:5px;
-    margin-bottom:22px;
-    border-radius:15px;
-    background:rgba(255,255,255,.04);
-}
-
-.tab{
-    border:0;
-    padding:13px;
-    border-radius:11px;
-    color:#888;
-    background:transparent;
-    cursor:pointer;
-    font-weight:bold;
-    font-size:14px;
-    transition:.3s;
-}
-
-.tab.active{
-    color:#fff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7448e8,
-            #3154df
-        );
-
-    box-shadow:
-        0 5px 20px
-        rgba(116,72,232,.18);
-}
-
-.form{
-    display:none;
-}
-
-.form.active{
-    display:block;
-    animation:showForm .35s ease;
-}
-
-@keyframes showForm{
-
-    from{
-        opacity:0;
-        transform:translateY(12px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.field{
-    margin-bottom:15px;
-}
-
-.field label{
-    display:block;
-    margin-bottom:7px;
-    color:#bdbdc6;
-    font-size:13px;
-}
-
-.input{
-    width:100%;
-    padding:14px;
-    border-radius:13px;
-    outline:none;
-    color:#fff;
-
-    background:
-        rgba(255,255,255,.045);
-
-    border:
-        1px solid
-        rgba(255,255,255,.09);
-
-    transition:.25s;
-}
-
-.input:focus{
-    border-color:#7448e8;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(116,72,232,.10);
-}
-
-.input::placeholder{
-    color:#666672;
-}
-
-select.input option{
-    color:#000;
-}
-
-.two{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-}
-
-.button{
-    width:100%;
-    border:0;
-    padding:15px;
-    border-radius:14px;
-    color:#fff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7448e8,
-            #3154df
-        );
-
-    font-size:16px;
-    font-weight:900;
-    cursor:pointer;
-    transition:.25s;
-
-    box-shadow:
-        0 12px 30px
-        rgba(116,72,232,.18);
-}
-
-.button:hover{
-    transform:translateY(-2px);
-
-    box-shadow:
-        0 17px 35px
-        rgba(116,72,232,.30);
-}
-
-.button:disabled{
-    opacity:.55;
-    cursor:not-allowed;
-    transform:none;
-}
-
-.message{
-    display:none;
-    padding:12px;
-    margin-bottom:15px;
-    border-radius:12px;
-    text-align:center;
-    font-size:13px;
-    line-height:1.8;
-}
-
-.message.show{
-    display:block;
-}
-
-.message.error{
-    color:#ffb0b0;
-    background:rgba(255,70,70,.08);
-    border:1px solid rgba(255,70,70,.15);
-}
-
-.message.success{
-    color:#aaffc2;
-    background:rgba(40,220,100,.07);
-    border:1px solid rgba(40,220,100,.15);
-}
-
-.otp-box{
-    display:none;
-    margin-top:15px;
-    padding-top:5px;
-    animation:showForm .35s ease;
-}
-
-.otp-box.show{
-    display:block;
-}
-
-.otp-input{
-    text-align:center;
-    letter-spacing:9px;
-    font-size:25px;
-    font-weight:900;
-}
-
-.small-button{
-    width:100%;
-    margin-top:10px;
-    padding:11px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.08);
-
-    border-radius:12px;
-
-    background:
-        rgba(255,255,255,.035);
-
-    color:#aaa;
-    cursor:pointer;
-    transition:.25s;
-}
-
-.small-button:hover{
-    color:#fff;
-    border-color:
-        rgba(116,72,232,.35);
-}
-
-.back{
-    display:block;
-    text-align:center;
-    margin-top:20px;
-    color:#888;
-    text-decoration:none;
-    font-size:13px;
-}
-
-.back:hover{
-    color:#a78cff;
-}
-
-@media(max-width:550px){
-
-    body{
-        padding:12px;
-        align-items:flex-start;
-        padding-top:20px;
-    }
-
-    .card{
-        padding:25px 16px;
-        border-radius:25px;
-    }
-
-    .two{
-        grid-template-columns:1fr;
-    }
-
-    .teacher-logo{
-        width:100px;
-        height:100px;
-    }
-
-    .logo h1{
-        font-size:28px;
-    }
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>الخوارزمي | تسجيل الدخول</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Cairo, Tahoma, Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(116,72,232,.22), transparent 35%),
+                radial-gradient(circle at 80% 80%, rgba(49,84,223,.18), transparent 35%),
+                #050509;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .box {
+            width: 100%;
+            max-width: 460px;
+            background: rgba(15,15,24,.92);
+            border: 1px solid rgba(140,100,255,.25);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 25px 80px rgba(0,0,0,.55);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 34px;
+            font-weight: 900;
+            background: linear-gradient(135deg,#7448e8,#3154df);
+            box-shadow: 0 0 35px rgba(116,72,232,.45);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 7px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            background: #0a0a10;
+            padding: 6px;
+            border-radius: 14px;
+            margin-bottom: 22px;
+        }
+
+        .tab {
+            width: 50%;
+            border: 0;
+            padding: 12px;
+            border-radius: 10px;
+            background: transparent;
+            color: #999;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg,#7448e8,#3154df);
+            color: white;
+        }
+
+        .form {
+            display: none;
+        }
+
+        .form.active {
+            display: block;
+        }
+
+        .field {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #ddd;
+            font-size: 14px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            border: 1px solid #29293a;
+            background: #090910;
+            color: white;
+            padding: 14px;
+            border-radius: 12px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #7448e8;
+            box-shadow: 0 0 15px rgba(116,72,232,.15);
+        }
+
+        button.submit {
+            width: 100%;
+            border: 0;
+            padding: 15px;
+            border-radius: 13px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(135deg,#7448e8,#3154df);
+            margin-top: 8px;
+        }
+
+        button.submit:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .message.success {
+            display: block;
+            background: rgba(40,200,120,.12);
+            color: #5cffad;
+            border: 1px solid rgba(40,200,120,.25);
+        }
+
+        .message.error {
+            display: block;
+            background: rgba(255,60,80,.12);
+            color: #ff7b88;
+            border: 1px solid rgba(255,60,80,.25);
+        }
+
+        .note {
+            margin-top: 20px;
+            text-align: center;
+            color: #777;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #9c7cff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="bubble one"></div>
-<div class="bubble two"></div>
+<div class="box">
 
-<div class="card">
+    <div class="logo">خ</div>
 
-    <div class="logo">
+    <h1>الخوارزمي</h1>
 
-        <div class="teacher-logo">
-
-            <img
-                src="teacher.png"
-                alt="صورة المستر"
-                onerror="this.src='teacher.jpg';"
-            >
-
-        </div>
-
-        <h1>الخوارزمي</h1>
-
-        <p>
-            منصة الاختبارات والتعليم
-        </p>
-
+    <div class="subtitle">
+        منصة الاختبارات
     </div>
 
     <div class="tabs">
-
-        <button
-            type="button"
-            id="loginTab"
-            class="tab active"
-        >
+        <button class="tab active" id="loginTab">
             تسجيل الدخول
         </button>
 
-        <button
-            type="button"
-            id="registerTab"
-            class="tab"
-        >
+        <button class="tab" id="registerTab">
             إنشاء حساب
         </button>
-
     </div>
-
-    <div
-        id="message"
-        class="message"
-    ></div>
 
     <!-- ================= LOGIN ================= -->
 
-    <form
-        id="loginForm"
-        class="form active"
-    >
+    <div class="form active" id="loginForm">
 
         <div class="field">
-
-            <label>
-                رقم الموبايل
-            </label>
+            <label>رقم الهاتف</label>
 
             <input
-                id="loginPhone"
-                class="input"
                 type="tel"
-                inputmode="numeric"
-                maxlength="11"
-                placeholder="01xxxxxxxxx"
+                id="loginPhone"
+                placeholder="مثال: 01234567890"
                 autocomplete="tel"
-                required
             >
-
         </div>
 
-        <button
-            id="loginOtpButton"
-            class="button"
-            type="submit"
-        >
-            📱 إرسال كود الدخول
+        <div class="field">
+            <label>كلمة المرور</label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="كلمة المرور"
+                autocomplete="current-password"
+            >
+        </div>
+
+        <button class="submit" id="loginBtn">
+            تسجيل الدخول
         </button>
 
-        <div
-            id="loginOtpBox"
-            class="otp-box"
-        >
+        <div id="loginMessage" class="message"></div>
 
-            <div class="field">
-
-                <label>
-                    أدخل كود التحقق
-                </label>
-
-                <input
-                    id="loginOtp"
-                    class="input otp-input"
-                    type="text"
-                    inputmode="numeric"
-                    maxlength="6"
-                    placeholder="••••••"
-                    autocomplete="one-time-code"
-                >
-
-            </div>
-
-            <button
-                id="verifyLoginButton"
-                class="button"
-                type="button"
-            >
-                🔐 تأكيد الكود والدخول
-            </button>
-
-            <button
-                id="resendLoginButton"
-                class="small-button"
-                type="button"
-            >
-                🔄 إرسال الكود مرة أخرى
-            </button>
-
-        </div>
-
-    </form>
+    </div>
 
     <!-- ================= REGISTER ================= -->
 
-    <form
-        id="registerForm"
-        class="form"
-    >
+    <div class="form" id="registerForm">
 
         <div class="field">
-
-            <label>
-                الاسم بالكامل
-            </label>
+            <label>الاسم بالكامل</label>
 
             <input
-                id="fullName"
-                class="input"
                 type="text"
+                id="registerName"
                 placeholder="اكتب اسمك بالكامل"
-                autocomplete="name"
-                required
             >
-
-        </div>
-
-        <div class="two">
-
-            <div class="field">
-
-                <label>
-                    رقم الموبايل
-                </label>
-
-                <input
-                    id="registerPhone"
-                    class="input"
-                    type="tel"
-                    inputmode="numeric"
-                    maxlength="11"
-                    placeholder="01xxxxxxxxx"
-                    autocomplete="tel"
-                    required
-                >
-
-            </div>
-
-            <div class="field">
-
-                <label>
-                    رقم ولي الأمر
-                </label>
-
-                <input
-                    id="parentPhone"
-                    class="input"
-                    type="tel"
-                    inputmode="numeric"
-                    maxlength="11"
-                    placeholder="01xxxxxxxxx"
-                    required
-                >
-
-            </div>
-
         </div>
 
         <div class="field">
+            <label>رقم الهاتف</label>
 
-            <label>
-                الصف الدراسي
-            </label>
-
-            <select
-                id="grade"
-                class="input"
-                required
+            <input
+                type="tel"
+                id="registerPhone"
+                placeholder="مثال: 01234567890"
+                autocomplete="tel"
             >
+        </div>
 
-                <option value="">
-                    اختر الصف
-                </option>
+        <div class="field">
+            <label>رقم ولي الأمر</label>
+
+            <input
+                type="tel"
+                id="parentPhone"
+                placeholder="رقم ولي الأمر"
+            >
+        </div>
+
+        <div class="field">
+            <label>الصف الدراسي</label>
+
+            <select id="grade">
+                <option value="">اختر الصف</option>
 
                 <option value="أولى إعدادي">
                     أولى إعدادي
@@ -723,1402 +309,536 @@ select.input option{
                 <option value="ثالثة ثانوي">
                     ثالثة ثانوي
                 </option>
-
             </select>
-
-        </div>
-
-        <div class="two">
-
-            <div class="field">
-
-                <label>
-                    المحافظة
-                </label>
-
-                <input
-                    id="governorate"
-                    class="input"
-                    type="text"
-                    placeholder="المحافظة"
-                >
-
-            </div>
-
-            <div class="field">
-
-                <label>
-                    المدينة
-                </label>
-
-                <input
-                    id="city"
-                    class="input"
-                    type="text"
-                    placeholder="المدينة"
-                >
-
-            </div>
-
         </div>
 
         <div class="field">
-
-            <label>
-                المدرسة
-            </label>
+            <label>كلمة المرور</label>
 
             <input
-                id="school"
-                class="input"
-                type="text"
-                placeholder="اسم المدرسة"
-            >
-
-        </div>
-
-        <div class="field">
-
-            <label>
-                كلمة المرور
-            </label>
-
-            <input
-                id="password"
-                class="input"
                 type="password"
-                minlength="6"
-                placeholder="6 أحرف على الأقل"
+                id="registerPassword"
+                placeholder="6 أحرف أو أكثر"
                 autocomplete="new-password"
-                required
             >
-
         </div>
 
         <div class="field">
-
-            <label>
-                تأكيد كلمة المرور
-            </label>
+            <label>تأكيد كلمة المرور</label>
 
             <input
+                type="password"
                 id="confirmPassword"
-                class="input"
-                type="password"
-                minlength="6"
-                placeholder="أعد كلمة المرور"
+                placeholder="أعد كتابة كلمة المرور"
                 autocomplete="new-password"
-                required
             >
-
         </div>
 
-        <button
-            id="sendRegisterOtp"
-            class="button"
-            type="submit"
-        >
-            📱 إنشاء الحساب وإرسال الكود
+        <button class="submit" id="registerBtn">
+            إنشاء الحساب
         </button>
 
-        <div
-            id="registerOtpBox"
-            class="otp-box"
-        >
+        <div id="registerMessage" class="message"></div>
 
-            <div class="field">
+    </div>
 
-                <label>
-                    أدخل كود التحقق المرسل إلى هاتفك
-                </label>
+    <div class="note">
+        التسجيل يتم مباشرة بدون إرسال OTP.
+    </div>
 
-                <input
-                    id="registerOtp"
-                    class="input otp-input"
-                    type="text"
-                    inputmode="numeric"
-                    maxlength="6"
-                    placeholder="••••••"
-                    autocomplete="one-time-code"
-                >
-
-            </div>
-
-            <button
-                id="verifyRegisterButton"
-                class="button"
-                type="button"
-            >
-                ✅ تأكيد الكود وإنشاء الحساب
-            </button>
-
-            <button
-                id="resendRegisterButton"
-                class="small-button"
-                type="button"
-            >
-                🔄 إرسال الكود مرة أخرى
-            </button>
-
-        </div>
-
-    </form>
-
-    <a
-        href="index.html"
-        class="back"
-    >
-        ← العودة للصفحة الرئيسية
+    <a href="index.html" class="back">
+        العودة للرئيسية
     </a>
 
 </div>
 
-<!-- SUPABASE -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script src="supabase.js"></script>
-
 <script>
 
-"use strict";
+/* =====================================================
+   SUPABASE
+===================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+const SUPABASE_URL =
+    "https://fdqolsygigqukejlwcon.supabase.co";
 
-    /* ==================================================
-       ELEMENTS
-    ================================================== */
+const SUPABASE_KEY =
+    "sb_publishable_fO1Xb-dtqq8rnGuvXcPahg_zz9WeW9x";
 
-    const loginTab =
-        document.getElementById("loginTab");
-
-    const registerTab =
-        document.getElementById("registerTab");
-
-    const loginForm =
-        document.getElementById("loginForm");
-
-    const registerForm =
-        document.getElementById("registerForm");
-
-    const message =
-        document.getElementById("message");
-
-    const loginOtpBox =
-        document.getElementById("loginOtpBox");
-
-    const registerOtpBox =
-        document.getElementById("registerOtpBox");
-
-    let loginPhoneSaved = "";
-
-    let registerPhoneSaved = "";
-
-
-    /* ==================================================
-       SUPABASE
-    ================================================== */
-
-    function getSupabase(){
-
-        if(
-            !window.supabaseClient
-        ){
-
-            throw new Error(
-                "Supabase غير متصل. تأكد من supabase.js."
-            );
-
-        }
-
-        return window.supabaseClient;
-    }
-
-
-    /* ==================================================
-       PHONE
-    ================================================== */
-
-    function cleanPhone(phone){
-
-        return String(phone)
-            .replace(/\s+/g,"")
-            .replace(/-/g,"")
-            .trim();
-
-    }
-
-
-    function validEgyptianPhone(phone){
-
-        const clean =
-            cleanPhone(phone);
-
-        return /^01[0125][0-9]{8}$/.test(clean);
-
-    }
-
-
-    function normalizePhone(phone){
-
-        const clean =
-            cleanPhone(phone);
-
-        if(clean.startsWith("+20")){
-            return clean;
-        }
-
-        if(clean.startsWith("20")){
-            return "+" + clean;
-        }
-
-        if(clean.startsWith("01")){
-            return "+20" + clean.substring(1);
-        }
-
-        return clean;
-
-    }
-
-
-    /* ==================================================
-       MESSAGE
-    ================================================== */
-
-    function showMessage(text,type){
-
-        message.textContent =
-            text;
-
-        message.className =
-            "message show " + type;
-
-    }
-
-
-    function hideMessage(){
-
-        message.textContent = "";
-
-        message.className =
-            "message";
-
-    }
-
-
-    /* ==================================================
-       LOADING
-    ================================================== */
-
-    function setLoading(
-        button,
-        state,
-        text
-    ){
-
-        button.disabled =
-            state;
-
-        button.textContent =
-            state
-                ? "⏳ جاري..."
-                : text;
-
-    }
-
-
-    /* ==================================================
-       TABS
-    ================================================== */
-
-    loginTab.addEventListener(
-        "click",
-        () => {
-
-            loginTab.classList.add("active");
-
-            registerTab.classList.remove("active");
-
-            loginForm.classList.add("active");
-
-            registerForm.classList.remove("active");
-
-            hideMessage();
-
-        }
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
     );
 
 
-    registerTab.addEventListener(
-        "click",
-        () => {
+/* =====================================================
+   ELEMENTS
+===================================================== */
 
-            registerTab.classList.add("active");
+const loginTab =
+    document.getElementById("loginTab");
 
-            loginTab.classList.remove("active");
+const registerTab =
+    document.getElementById("registerTab");
 
-            registerForm.classList.add("active");
+const loginForm =
+    document.getElementById("loginForm");
 
-            loginForm.classList.remove("active");
+const registerForm =
+    document.getElementById("registerForm");
 
-            hideMessage();
 
-        }
-    );
+/* =====================================================
+   TABS
+===================================================== */
 
+loginTab.addEventListener("click", () => {
 
-    /* ==================================================
-       REGISTER SEND OTP
-    ================================================== */
+    loginTab.classList.add("active");
+    registerTab.classList.remove("active");
 
-    registerForm.addEventListener(
-        "submit",
-        async (event) => {
-
-            event.preventDefault();
-
-            hideMessage();
-
-            const fullName =
-                document
-                    .getElementById("fullName")
-                    .value
-                    .trim();
-
-            const phoneInput =
-                document
-                    .getElementById("registerPhone")
-                    .value
-                    .trim();
-
-            const parentPhoneInput =
-                document
-                    .getElementById("parentPhone")
-                    .value
-                    .trim();
-
-            const grade =
-                document
-                    .getElementById("grade")
-                    .value;
-
-            const governorate =
-                document
-                    .getElementById("governorate")
-                    .value
-                    .trim();
-
-            const city =
-                document
-                    .getElementById("city")
-                    .value
-                    .trim();
-
-            const school =
-                document
-                    .getElementById("school")
-                    .value
-                    .trim();
-
-            const password =
-                document
-                    .getElementById("password")
-                    .value;
-
-            const confirmPassword =
-                document
-                    .getElementById("confirmPassword")
-                    .value;
-
-            const button =
-                document.getElementById(
-                    "sendRegisterOtp"
-                );
-
-
-            /* VALIDATION */
-
-            if(fullName.length < 3){
-
-                showMessage(
-                    "❌ اكتب الاسم بالكامل.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            if(
-                !validEgyptianPhone(
-                    phoneInput
-                )
-            ){
-
-                showMessage(
-                    "❌ رقم الموبايل المصري غير صحيح.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            if(
-                !validEgyptianPhone(
-                    parentPhoneInput
-                )
-            ){
-
-                showMessage(
-                    "❌ رقم ولي الأمر غير صحيح.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            if(!grade){
-
-                showMessage(
-                    "❌ اختر الصف الدراسي.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            if(password.length < 6){
-
-                showMessage(
-                    "❌ كلمة المرور يجب أن تكون 6 أحرف على الأقل.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            if(password !== confirmPassword){
-
-                showMessage(
-                    "❌ كلمتا المرور غير متطابقتين.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            const phone =
-                normalizePhone(
-                    phoneInput
-                );
-
-            registerPhoneSaved =
-                phone;
-
-
-            const registerData = {
-
-                full_name:
-                    fullName,
-
-                phone:
-                    phone,
-
-                parent_phone:
-                    normalizePhone(
-                        parentPhoneInput
-                    ),
-
-                grade:
-                    grade,
-
-                governorate:
-                    governorate || null,
-
-                city:
-                    city || null,
-
-                school:
-                    school || null,
-
-                password:
-                    password
-
-            };
-
-
-            sessionStorage.setItem(
-                "register_data",
-                JSON.stringify(
-                    registerData
-                )
-            );
-
-
-            setLoading(
-                button,
-                true,
-                "📱 إنشاء الحساب وإرسال الكود"
-            );
-
-
-            try{
-
-                const supabase =
-                    getSupabase();
-
-
-                /*
-                 * OTP REGISTRATION
-                 *
-                 * shouldCreateUser:true
-                 * يسمح بإنشاء المستخدم الجديد
-                 */
-
-                const {
-                    error
-                } =
-                await supabase.auth
-                    .signInWithOtp({
-
-                        phone: phone,
-
-                        options: {
-
-                            shouldCreateUser:
-                                true,
-
-                            channel:
-                                "sms"
-
-                        }
-
-                    });
-
-
-                if(error){
-
-                    throw error;
-
-                }
-
-
-                registerOtpBox
-                    .classList
-                    .add("show");
-
-
-                showMessage(
-                    "📱 تم إرسال كود التحقق إلى هاتفك.",
-                    "success"
-                );
-
-
-                document
-                    .getElementById(
-                        "registerOtp"
-                    )
-                    .focus();
-
-
-            }
-            catch(error){
-
-                console.error(
-                    "REGISTER OTP ERROR:",
-                    error
-                );
-
-                showMessage(
-                    friendlyError(error),
-                    "error"
-                );
-
-            }
-            finally{
-
-                setLoading(
-                    button,
-                    false,
-                    "📱 إنشاء الحساب وإرسال الكود"
-                );
-
-            }
-
-        }
-    );
-
-
-    /* ==================================================
-       VERIFY REGISTER OTP
-    ================================================== */
-
-    document
-        .getElementById(
-            "verifyRegisterButton"
-        )
-        .addEventListener(
-            "click",
-            async function(){
-
-                const button =
-                    this;
-
-                const otp =
-                    document
-                        .getElementById(
-                            "registerOtp"
-                        )
-                        .value
-                        .trim();
-
-
-                if(!/^[0-9]{6}$/.test(otp)){
-
-                    showMessage(
-                        "❌ أدخل كود التحقق المكون من 6 أرقام.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                setLoading(
-                    button,
-                    true,
-                    "✅ تأكيد الكود وإنشاء الحساب"
-                );
-
-
-                try{
-
-                    const supabase =
-                        getSupabase();
-
-
-                    const {
-                        data,
-                        error
-                    } =
-                    await supabase.auth
-                        .verifyOtp({
-
-                            phone:
-                                registerPhoneSaved,
-
-                            token:
-                                otp,
-
-                            type:
-                                "sms"
-
-                        });
-
-
-                    if(error){
-
-                        throw error;
-
-                    }
-
-
-                    if(!data || !data.user){
-
-                        throw new Error(
-                            "لم يتم إنشاء المستخدم."
-                        );
-
-                    }
-
-
-                    const saved =
-                        sessionStorage.getItem(
-                            "register_data"
-                        );
-
-
-                    if(!saved){
-
-                        throw new Error(
-                            "بيانات التسجيل غير موجودة."
-                        );
-
-                    }
-
-
-                    const student =
-                        JSON.parse(saved);
-
-
-                    /*
-                     * حفظ الطالب في students
-                     */
-
-                    const {
-                        error:
-                        studentError
-                    } =
-                    await supabase
-                        .from("students")
-                        .upsert({
-
-                            id:
-                                data.user.id,
-
-                            full_name:
-                                student.full_name,
-
-                            phone:
-                                student.phone,
-
-                            parent_phone:
-                                student.parent_phone,
-
-                            grade:
-                                student.grade,
-
-                            governorate:
-                                student.governorate,
-
-                            city:
-                                student.city,
-
-                            school:
-                                student.school,
-
-                            points:
-                                0
-
-                        },{
-                            onConflict:"id"
-                        });
-
-
-                    if(studentError){
-
-                        console.error(
-                            "STUDENT INSERT ERROR:",
-                            studentError
-                        );
-
-                        throw studentError;
-
-                    }
-
-
-                    sessionStorage.removeItem(
-                        "register_data"
-                    );
-
-
-                    showMessage(
-                        "🎉 تم إنشاء الحساب بنجاح!",
-                        "success"
-                    );
-
-
-                    setTimeout(
-                        () => {
-
-                            window.location.href =
-                                "home.html";
-
-                        },
-                        900
-                    );
-
-                }
-                catch(error){
-
-                    console.error(
-                        "VERIFY REGISTER ERROR:",
-                        error
-                    );
-
-                    showMessage(
-                        friendlyError(error),
-                        "error"
-                    );
-
-                }
-                finally{
-
-                    setLoading(
-                        button,
-                        false,
-                        "✅ تأكيد الكود وإنشاء الحساب"
-                    );
-
-                }
-
-            }
-        );
-
-
-    /* ==================================================
-       RESEND REGISTER OTP
-    ================================================== */
-
-    document
-        .getElementById(
-            "resendRegisterButton"
-        )
-        .addEventListener(
-            "click",
-            async function(){
-
-                if(!registerPhoneSaved){
-
-                    showMessage(
-                        "❌ ابدأ التسجيل أولًا.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                try{
-
-                    const supabase =
-                        getSupabase();
-
-
-                    const {
-                        error
-                    } =
-                    await supabase.auth
-                        .signInWithOtp({
-
-                            phone:
-                                registerPhoneSaved,
-
-                            options:{
-
-                                shouldCreateUser:
-                                    true,
-
-                                channel:
-                                    "sms"
-
-                            }
-
-                        });
-
-
-                    if(error){
-
-                        throw error;
-
-                    }
-
-
-                    showMessage(
-                        "📱 تم إرسال كود جديد.",
-                        "success"
-                    );
-
-                }
-                catch(error){
-
-                    console.error(error);
-
-                    showMessage(
-                        friendlyError(error),
-                        "error"
-                    );
-
-                }
-
-            }
-        );
-
-
-    /* ==================================================
-       LOGIN SEND OTP
-    ================================================== */
-
-    loginForm.addEventListener(
-        "submit",
-        async (event) => {
-
-            event.preventDefault();
-
-            hideMessage();
-
-            const phoneInput =
-                document
-                    .getElementById(
-                        "loginPhone"
-                    )
-                    .value
-                    .trim();
-
-            const button =
-                document.getElementById(
-                    "loginOtpButton"
-                );
-
-
-            if(
-                !validEgyptianPhone(
-                    phoneInput
-                )
-            ){
-
-                showMessage(
-                    "❌ رقم الموبايل المصري غير صحيح.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            const phone =
-                normalizePhone(
-                    phoneInput
-                );
-
-
-            loginPhoneSaved =
-                phone;
-
-
-            setLoading(
-                button,
-                true,
-                "📱 إرسال كود الدخول"
-            );
-
-
-            try{
-
-                const supabase =
-                    getSupabase();
-
-
-                const {
-                    error
-                } =
-                await supabase.auth
-                    .signInWithOtp({
-
-                        phone:
-                            phone,
-
-                        options:{
-
-                            shouldCreateUser:
-                                false,
-
-                            channel:
-                                "sms"
-
-                        }
-
-                    });
-
-
-                if(error){
-
-                    throw error;
-
-                }
-
-
-                loginOtpBox
-                    .classList
-                    .add("show");
-
-
-                showMessage(
-                    "📱 تم إرسال كود الدخول إلى هاتفك.",
-                    "success"
-                );
-
-
-                document
-                    .getElementById(
-                        "loginOtp"
-                    )
-                    .focus();
-
-            }
-            catch(error){
-
-                console.error(
-                    "LOGIN OTP ERROR:",
-                    error
-                );
-
-                showMessage(
-                    friendlyError(error),
-                    "error"
-                );
-
-            }
-            finally{
-
-                setLoading(
-                    button,
-                    false,
-                    "📱 إرسال كود الدخول"
-                );
-
-            }
-
-        }
-    );
-
-
-    /* ==================================================
-       VERIFY LOGIN OTP
-    ================================================== */
-
-    document
-        .getElementById(
-            "verifyLoginButton"
-        )
-        .addEventListener(
-            "click",
-            async function(){
-
-                const button =
-                    this;
-
-                const otp =
-                    document
-                        .getElementById(
-                            "loginOtp"
-                        )
-                        .value
-                        .trim();
-
-
-                if(!/^[0-9]{6}$/.test(otp)){
-
-                    showMessage(
-                        "❌ أدخل كود التحقق المكون من 6 أرقام.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                setLoading(
-                    button,
-                    true,
-                    "🔐 تأكيد الكود والدخول"
-                );
-
-
-                try{
-
-                    const supabase =
-                        getSupabase();
-
-
-                    const {
-                        data,
-                        error
-                    } =
-                    await supabase.auth
-                        .verifyOtp({
-
-                            phone:
-                                loginPhoneSaved,
-
-                            token:
-                                otp,
-
-                            type:
-                                "sms"
-
-                        });
-
-
-                    if(error){
-
-                        throw error;
-
-                    }
-
-
-                    if(
-                        !data ||
-                        !data.user
-                    ){
-
-                        throw new Error(
-                            "لم يتم تسجيل الدخول."
-                        );
-
-                    }
-
-
-                    showMessage(
-                        "🎉 تم تسجيل الدخول بنجاح.",
-                        "success"
-                    );
-
-
-                    setTimeout(
-                        () => {
-
-                            window.location.href =
-                                "home.html";
-
-                        },
-                        800
-                    );
-
-                }
-                catch(error){
-
-                    console.error(
-                        "VERIFY LOGIN ERROR:",
-                        error
-                    );
-
-                    showMessage(
-                        friendlyError(error),
-                        "error"
-                    );
-
-                }
-                finally{
-
-                    setLoading(
-                        button,
-                        false,
-                        "🔐 تأكيد الكود والدخول"
-                    );
-
-                }
-
-            }
-        );
-
-
-    /* ==================================================
-       RESEND LOGIN OTP
-    ================================================== */
-
-    document
-        .getElementById(
-            "resendLoginButton"
-        )
-        .addEventListener(
-            "click",
-            async function(){
-
-                if(!loginPhoneSaved){
-
-                    showMessage(
-                        "❌ اكتب رقم الهاتف أولًا.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                try{
-
-                    const supabase =
-                        getSupabase();
-
-
-                    const {
-                        error
-                    } =
-                    await supabase.auth
-                        .signInWithOtp({
-
-                            phone:
-                                loginPhoneSaved,
-
-                            options:{
-
-                                shouldCreateUser:
-                                    false,
-
-                                channel:
-                                    "sms"
-
-                            }
-
-                        });
-
-
-                    if(error){
-
-                        throw error;
-
-                    }
-
-
-                    showMessage(
-                        "📱 تم إرسال كود جديد.",
-                        "success"
-                    );
-
-                }
-                catch(error){
-
-                    console.error(error);
-
-                    showMessage(
-                        friendlyError(error),
-                        "error"
-                    );
-
-                }
-
-            }
-        );
-
-
-    /* ==================================================
-       ERRORS
-    ================================================== */
-
-    function friendlyError(error){
-
-        const text =
-            String(
-                error?.message ||
-                error ||
-                ""
-            );
-
-        const lower =
-            text.toLowerCase();
-
-
-        if(
-            lower.includes(
-                "signups not allowed"
-            )
-        ){
-
-            return (
-                "❌ Supabase يمنع إنشاء مستخدم جديد بالـOTP. " +
-                "تأكد من تفعيل السماح بتسجيل المستخدمين الجدد " +
-                "في Authentication → Settings."
-            );
-
-        }
-
-
-        if(
-            lower.includes(
-                "rate limit"
-            )
-        ){
-
-            return (
-                "⏳ تم تجاوز حد إرسال الرسائل مؤقتًا. " +
-                "انتظر قليلًا ثم حاول مرة أخرى."
-            );
-
-        }
-
-
-        if(
-            lower.includes(
-                "invalid phone"
-            )
-        ){
-
-            return "❌ رقم الهاتف غير صحيح.";
-
-        }
-
-
-        if(
-            lower.includes(
-                "invalid otp"
-            )
-        ){
-
-            return "❌ كود التحقق غير صحيح.";
-
-        }
-
-
-        if(
-            lower.includes(
-                "expired"
-            )
-        ){
-
-            return "⌛ انتهت صلاحية الكود. اطلب كودًا جديدًا.";
-
-        }
-
-
-        if(
-            lower.includes(
-                "row-level security"
-            )
-        ){
-
-            return (
-                "❌ تم تأكيد الهاتف، لكن قاعدة البيانات " +
-                "رفضت حفظ بيانات الطالب بسبب RLS."
-            );
-
-        }
-
-
-        if(
-            lower.includes(
-                "duplicate"
-            ) ||
-            lower.includes(
-                "already registered"
-            )
-        ){
-
-            return "⚠️ رقم الهاتف مسجل بالفعل. استخدم تسجيل الدخول.";
-
-        }
-
-
-        return "❌ " + text;
-
-    }
-
-
-    /* ==================================================
-       URL MODE
-    ================================================== */
-
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
-
-
-    if(
-        params.get("mode") ===
-        "register"
-    ){
-
-        registerTab.click();
-
-    }
+    loginForm.classList.add("active");
+    registerForm.classList.remove("active");
 
 });
+
+
+registerTab.addEventListener("click", () => {
+
+    registerTab.classList.add("active");
+    loginTab.classList.remove("active");
+
+    registerForm.classList.add("active");
+    loginForm.classList.remove("active");
+
+});
+
+
+/* =====================================================
+   PHONE FORMAT
+===================================================== */
+
+function normalizeEgyptPhone(phone) {
+
+    phone = phone.trim();
+
+    // 01234567890
+    if (/^01\d{9}$/.test(phone)) {
+        return "+20" + phone.substring(1);
+    }
+
+    // +201234567890
+    if (/^\+201\d{9}$/.test(phone)) {
+        return phone;
+    }
+
+    return null;
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(element, text, type) {
+
+    element.textContent = text;
+
+    element.className =
+        "message " + type;
+
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+document
+    .getElementById("loginBtn")
+    .addEventListener("click", async () => {
+
+        const btn =
+            document.getElementById("loginBtn");
+
+        const message =
+            document.getElementById("loginMessage");
+
+        const phone =
+            normalizeEgyptPhone(
+                document.getElementById("loginPhone").value
+            );
+
+        const password =
+            document.getElementById("loginPassword").value;
+
+        if (!phone) {
+
+            showMessage(
+                message,
+                "اكتب رقم هاتف مصري صحيح.",
+                "error"
+            );
+
+            return;
+        }
+
+        if (!password) {
+
+            showMessage(
+                message,
+                "اكتب كلمة المرور.",
+                "error"
+            );
+
+            return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = "جاري الدخول...";
+
+        const { data, error } =
+            await supabaseClient.auth.signInWithPassword({
+
+                phone: phone,
+                password: password
+
+            });
+
+        if (error) {
+
+            showMessage(
+                message,
+                error.message,
+                "error"
+            );
+
+            btn.disabled = false;
+            btn.textContent = "تسجيل الدخول";
+
+            return;
+        }
+
+
+        /* =============================================
+           GET PROFILE
+        ============================================= */
+
+        const user =
+            data.user;
+
+        let role = "student";
+
+        const { data: profile } =
+            await supabaseClient
+                .from("profiles")
+                .select("role")
+                .eq("id", user.id)
+                .maybeSingle();
+
+        if (profile && profile.role) {
+            role = profile.role;
+        }
+
+
+        /* =============================================
+           REDIRECT
+        ============================================= */
+
+        if (role === "admin") {
+
+            window.location.href =
+                "admin/index.html";
+
+        } else {
+
+            window.location.href =
+                "home.html";
+
+        }
+
+    });
+
+
+/* =====================================================
+   REGISTER
+===================================================== */
+
+document
+    .getElementById("registerBtn")
+    .addEventListener("click", async () => {
+
+        const btn =
+            document.getElementById("registerBtn");
+
+        const message =
+            document.getElementById("registerMessage");
+
+
+        const name =
+            document
+                .getElementById("registerName")
+                .value
+                .trim();
+
+        const phone =
+            normalizeEgyptPhone(
+                document.getElementById("registerPhone").value
+            );
+
+        const parentPhone =
+            normalizeEgyptPhone(
+                document.getElementById("parentPhone").value
+            );
+
+        const grade =
+            document
+                .getElementById("grade")
+                .value;
+
+        const password =
+            document
+                .getElementById("registerPassword")
+                .value;
+
+        const confirmPassword =
+            document
+                .getElementById("confirmPassword")
+                .value;
+
+
+        /* =============================================
+           VALIDATION
+        ============================================= */
+
+        if (!name) {
+
+            showMessage(
+                message,
+                "اكتب الاسم بالكامل.",
+                "error"
+            );
+
+            return;
+        }
+
+        if (!phone) {
+
+            showMessage(
+                message,
+                "رقم الهاتف غير صحيح.",
+                "error"
+            );
+
+            return;
+        }
+
+        if (!parentPhone) {
+
+            showMessage(
+                message,
+                "اكتب رقم ولي الأمر بشكل صحيح.",
+                "error"
+            );
+
+            return;
+        }
+
+        if (!grade) {
+
+            showMessage(
+                message,
+                "اختر الصف الدراسي.",
+                "error"
+            );
+
+            return;
+        }
+
+        if (password.length < 6) {
+
+            showMessage(
+                message,
+                "كلمة المرور يجب أن تكون 6 أحرف على الأقل.",
+                "error"
+            );
+
+            return;
+        }
+
+        if (password !== confirmPassword) {
+
+            showMessage(
+                message,
+                "كلمتا المرور غير متطابقتين.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        btn.disabled = true;
+        btn.textContent = "جاري إنشاء الحساب...";
+
+
+        /* =============================================
+           SUPABASE SIGN UP
+        ============================================= */
+
+        const { data, error } =
+            await supabaseClient.auth.signUp({
+
+                phone: phone,
+
+                password: password,
+
+                options: {
+                    data: {
+                        full_name: name,
+                        parent_phone: parentPhone,
+                        grade: grade
+                    }
+                }
+
+            });
+
+
+        if (error) {
+
+            showMessage(
+                message,
+                error.message,
+                "error"
+            );
+
+            btn.disabled = false;
+            btn.textContent = "إنشاء الحساب";
+
+            return;
+        }
+
+
+        /* =============================================
+           CHECK USER
+        ============================================= */
+
+        if (!data.user) {
+
+            showMessage(
+                message,
+                "حدث خطأ أثناء إنشاء الحساب.",
+                "error"
+            );
+
+            btn.disabled = false;
+            btn.textContent = "إنشاء الحساب";
+
+            return;
+        }
+
+
+        /* =============================================
+           CREATE PROFILE
+        ============================================= */
+
+        const { error: profileError } =
+            await supabaseClient
+                .from("profiles")
+                .upsert({
+
+                    id: data.user.id,
+
+                    full_name: name,
+
+                    phone: phone,
+
+                    parent_phone: parentPhone,
+
+                    grade: grade,
+
+                    role: "student"
+
+                });
+
+
+        if (profileError) {
+
+            console.error(
+                "Profile Error:",
+                profileError
+            );
+
+            /*
+             الحساب نفسه تم إنشاؤه.
+             لو حصل خطأ في profiles،
+             نكمل الدخول.
+            */
+
+        }
+
+
+        /* =============================================
+           SUCCESS
+        ============================================= */
+
+        showMessage(
+            message,
+            "تم إنشاء حسابك بنجاح، جاري الدخول...",
+            "success"
+        );
+
+
+        setTimeout(() => {
+
+            window.location.href =
+                "home.html";
+
+        }, 1000);
+
+    });
+
+
+/* =====================================================
+   SESSION CHECK
+===================================================== */
+
+(async function checkSession() {
+
+    const {
+        data: {
+            session
+        }
+    } =
+        await supabaseClient.auth.getSession();
+
+    if (!session) {
+        return;
+    }
+
+    const user =
+        session.user;
+
+    const { data: profile } =
+        await supabaseClient
+            .from("profiles")
+            .select("role")
+            .eq("id", user.id)
+            .maybeSingle();
+
+    if (profile?.role === "admin") {
+
+        window.location.href =
+            "admin/index.html";
+
+    } else {
+
+        window.location.href =
+            "home.html";
+
+    }
+
+})();
 
 </script>
 
