@@ -7,7 +7,7 @@
 
 <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width,initial-scale=1.0"
 >
 
 <title>الخوارزمي | إدارة المحتوى</title>
@@ -31,13 +31,11 @@ body{
         rgba(116,72,232,.18),
         transparent 30%
     ),
-
     radial-gradient(
         circle at 90% 80%,
         rgba(49,84,223,.14),
         transparent 32%
     ),
-
     #050509;
 
     color:#fff;
@@ -45,6 +43,7 @@ body{
 
 button,
 input,
+textarea,
 select{
     font-family:inherit;
 }
@@ -65,7 +64,12 @@ select{
 
     gap:18px;
 
+    padding:20px;
+
+    text-align:center;
+
     background:#050509;
+
 }
 
 .loader{
@@ -81,6 +85,7 @@ select{
     border-top-color:#7952ed;
 
     animation:spin 1s linear infinite;
+
 }
 
 @keyframes spin{
@@ -88,10 +93,35 @@ select{
     to{
         transform:rotate(360deg);
     }
+
 }
 
 #loadingText{
+
     color:#aaa;
+
+    font-size:14px;
+
+}
+
+#errorBox{
+
+    display:none;
+
+    width:min(650px,94%);
+
+    padding:20px;
+
+    border-radius:18px;
+
+    background:rgba(255,60,80,.08);
+
+    border:1px solid rgba(255,60,80,.2);
+
+    color:#ff8993;
+
+    line-height:1.9;
+
 }
 
 #adminApp{
@@ -100,12 +130,13 @@ select{
 
 header{
 
-    height:70px;
-
     position:sticky;
+
     top:0;
 
     z-index:1000;
+
+    height:70px;
 
     background:
     rgba(5,5,9,.86);
@@ -115,6 +146,7 @@ header{
     border-bottom:
     1px solid
     rgba(255,255,255,.07);
+
 }
 
 .header-inner{
@@ -130,11 +162,15 @@ header{
     align-items:center;
 
     justify-content:space-between;
+
+    gap:15px;
+
 }
 
 .logo{
 
     font-size:23px;
+
     font-weight:900;
 
     background:
@@ -145,15 +181,40 @@ header{
     );
 
     -webkit-background-clip:text;
+
     background-clip:text;
 
     color:transparent;
+
 }
 
 .header-actions{
 
     display:flex;
+
+    align-items:center;
+
     gap:10px;
+
+}
+
+.admin-badge{
+
+    padding:7px 12px;
+
+    border-radius:30px;
+
+    color:#c9baff;
+
+    background:
+    rgba(116,72,232,.1);
+
+    border:
+    1px solid
+    rgba(116,72,232,.22);
+
+    font-size:12px;
+
 }
 
 .back-btn,
@@ -167,31 +228,46 @@ header{
 
     text-decoration:none;
 
-    border:
-    1px solid
-    rgba(255,255,255,.08);
+    font-size:13px;
+
+}
+
+.back-btn{
 
     background:
     rgba(255,255,255,.06);
 
-    cursor:pointer;
+    border:
+    1px solid
+    rgba(255,255,255,.08);
+
 }
 
 .logout-btn{
 
+    cursor:pointer;
+
     background:
-    rgba(255,60,80,.08);
+    rgba(255,70,70,.08);
+
+    border:
+    1px solid
+    rgba(255,70,70,.18);
+
 }
 
 .container{
 
-    width:min(1100px,94%);
+    width:min(1200px,94%);
+
     margin:auto;
+
 }
 
 .page-top{
 
     padding:40px 0 25px;
+
 }
 
 .page-top h1{
@@ -200,12 +276,15 @@ header{
     clamp(28px,5vw,42px);
 
     margin-bottom:10px;
+
 }
 
 .page-top p{
 
     color:#888;
+
     line-height:1.8;
+
 }
 
 .tabs{
@@ -215,9 +294,14 @@ header{
     gap:10px;
 
     margin-bottom:20px;
+
 }
 
 .tab{
+
+    padding:12px 20px;
+
+    border-radius:13px;
 
     border:1px solid
     rgba(255,255,255,.08);
@@ -227,11 +311,8 @@ header{
 
     color:#aaa;
 
-    padding:12px 22px;
-
-    border-radius:12px;
-
     cursor:pointer;
+
 }
 
 .tab.active{
@@ -244,9 +325,12 @@ header{
         #7448e8,
         #3154df
     );
+
+    border-color:transparent;
+
 }
 
-.card{
+.form-box{
 
     padding:25px;
 
@@ -257,28 +341,60 @@ header{
 
     border:
     1px solid
-    rgba(255,255,255,.08);
+    rgba(255,255,255,.07);
 
     margin-bottom:25px;
+
 }
 
-.form-group{
+.form-title{
 
-    margin-bottom:17px;
+    font-size:21px;
+
+    font-weight:bold;
+
+    margin-bottom:20px;
+
+}
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:15px;
+
+}
+
+.field{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.field.full{
+
+    grid-column:
+    1 / -1;
+
 }
 
 label{
 
-    display:block;
-
-    margin-bottom:8px;
-
-    color:#bbb;
+    color:#aaa;
 
     font-size:13px;
+
 }
 
 input,
+textarea,
 select{
 
     width:100%;
@@ -287,42 +403,77 @@ select{
 
     border-radius:12px;
 
-    outline:none;
-
-    border:
-    1px solid #29293a;
+    border:1px solid #29293a;
 
     background:#090910;
 
     color:#fff;
+
+    outline:none;
+
+}
+
+textarea{
+
+    min-height:110px;
+
+    resize:vertical;
+
 }
 
 input:focus,
+textarea:focus,
 select:focus{
 
     border-color:#7448e8;
+
+    box-shadow:
+    0 0 15px
+    rgba(116,72,232,.12);
+
 }
 
-.file-input{
+.checkbox{
 
-    padding:12px;
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding-top:10px;
+
 }
 
-.primary-btn{
+.checkbox input{
+
+    width:18px;
+
+    height:18px;
+
+    accent-color:#7448e8;
+
+}
+
+.submit-btn{
+
+    margin-top:20px;
 
     width:100%;
 
-    border:0;
+    padding:15px;
 
-    padding:14px;
+    border:0;
 
     border-radius:13px;
 
     color:#fff;
 
-    cursor:pointer;
+    font-size:15px;
 
     font-weight:bold;
+
+    cursor:pointer;
 
     background:
     linear-gradient(
@@ -330,12 +481,15 @@ select:focus{
         #7448e8,
         #3154df
     );
+
 }
 
-.primary-btn:disabled{
+.submit-btn:disabled{
 
     opacity:.5;
+
     cursor:not-allowed;
+
 }
 
 .message{
@@ -346,11 +500,12 @@ select:focus{
 
     border-radius:12px;
 
-    margin-bottom:18px;
+    margin-bottom:15px;
 
     text-align:center;
 
-    line-height:1.7;
+    font-size:13px;
+
 }
 
 .message.success{
@@ -361,6 +516,11 @@ select:focus{
 
     background:
     rgba(40,200,120,.08);
+
+    border:
+    1px solid
+    rgba(40,200,120,.2);
+
 }
 
 .message.error{
@@ -371,17 +531,205 @@ select:focus{
 
     background:
     rgba(255,60,80,.08);
+
+    border:
+    1px solid
+    rgba(255,60,80,.2);
+
 }
 
-.info{
+.list-title{
 
-    color:#777;
+    display:flex;
 
-    font-size:12px;
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
+
+}
+
+.list-title h2{
+
+    font-size:23px;
+
+}
+
+.count{
+
+    color:#9b7cff;
+
+    font-size:13px;
+
+}
+
+.content-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+    margin-bottom:40px;
+
+}
+
+.content-card{
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:
+    rgba(255,255,255,.035);
+
+    border:
+    1px solid
+    rgba(255,255,255,.07);
+
+}
+
+.content-icon{
+
+    width:50px;
+
+    height:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:14px;
+
+    background:
+    rgba(116,72,232,.12);
+
+    font-size:25px;
+
+    margin-bottom:15px;
+
+}
+
+.content-card h3{
+
+    margin-bottom:8px;
+
+    word-break:break-word;
+
+}
+
+.content-description{
+
+    color:#888;
+
+    font-size:13px;
 
     line-height:1.8;
 
-    margin-top:10px;
+    min-height:45px;
+
+    margin-bottom:12px;
+
+}
+
+.content-meta{
+
+    color:#9b7cff;
+
+    font-size:12px;
+
+    margin-bottom:15px;
+
+}
+
+.content-url{
+
+    display:block;
+
+    color:#aaa;
+
+    font-size:11px;
+
+    word-break:break-all;
+
+    margin-bottom:15px;
+
+}
+
+.card-actions{
+
+    display:flex;
+
+    gap:8px;
+
+}
+
+.delete-btn{
+
+    flex:1;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    border:1px solid
+    rgba(255,60,80,.15);
+
+    color:#ff8d97;
+
+    background:
+    rgba(255,60,80,.08);
+
+    cursor:pointer;
+
+}
+
+.open-btn{
+
+    flex:1;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    border:1px solid
+    rgba(116,72,232,.2);
+
+    color:#cdbfff;
+
+    background:
+    rgba(116,72,232,.08);
+
+    text-decoration:none;
+
+    text-align:center;
+
+}
+
+.empty{
+
+    padding:60px 20px;
+
+    text-align:center;
+
+    color:#777;
+
+    background:
+    rgba(255,255,255,.025);
+
+    border-radius:20px;
+
+    border:1px solid
+    rgba(255,255,255,.06);
+
+    grid-column:
+    1 / -1;
+
 }
 
 footer{
@@ -395,10 +743,78 @@ footer{
     border-top:
     1px solid
     rgba(255,255,255,.06);
+
+    font-size:12px;
+
 }
 
 footer span{
     color:#9b7cff;
+}
+
+@media(max-width:850px){
+
+    .content-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .field.full{
+
+        grid-column:auto;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .admin-badge,
+    .back-btn{
+
+        display:none;
+
+    }
+
+    .header-inner,
+    header{
+
+        height:65px;
+
+    }
+
+    .logo{
+
+        font-size:19px;
+
+    }
+
+    .content-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .tabs{
+
+        overflow-x:auto;
+
+    }
+
+    .tab{
+
+        white-space:nowrap;
+
+    }
+
 }
 
 </style>
@@ -410,16 +826,19 @@ footer span{
 
 <div id="loadingScreen">
 
-<div class="loader"></div>
+    <div class="loader"></div>
 
-<div id="loadingText">
-جاري التحقق من صلاحيات الأدمن...
-</div>
+    <div id="loadingText">
+        جاري التحقق من صلاحيات الأدمن...
+    </div>
+
+    <div id="errorBox"></div>
 
 </div>
 
 
 <div id="adminApp">
+
 
 <header>
 
@@ -430,6 +849,10 @@ footer span{
 </div>
 
 <div class="header-actions">
+
+<div class="admin-badge">
+👑 لوحة الإدارة
+</div>
 
 <a
     href="index.html"
@@ -456,30 +879,25 @@ footer span{
 
 <div class="container">
 
+
 <section class="page-top">
 
-<h1>
-إدارة المحتوى 📚
+<h1 id="pageTitle">
+إدارة المحتوى
 </h1>
 
-<p>
-إضافة ملفات PDF وفيديوهات للطلاب من لوحة الإدارة.
+<p id="pageDescription">
+إضافة وإدارة ملفات PDF والفيديوهات التعليمية.
 </p>
 
 </section>
-
-
-<div
-    id="message"
-    class="message"
-></div>
 
 
 <div class="tabs">
 
 <button
     id="pdfTab"
-    class="tab active"
+    class="tab"
 >
 📄 PDF
 </button>
@@ -488,101 +906,181 @@ footer span{
     id="videoTab"
     class="tab"
 >
-🎬 فيديو
+🎬 فيديوهات
 </button>
 
 </div>
 
 
 <div
+    id="message"
+    class="message"
+></div>
+
+
+<!-- =====================================================
+     PDF FORM
+===================================================== -->
+
+<section
     id="pdfSection"
-    class="card"
+    class="form-box"
 >
 
-<h2 style="margin-bottom:20px">
-إضافة ملف PDF
-</h2>
+<div class="form-title">
+📄 إضافة ملف PDF
+</div>
 
-<div class="form-group">
+<form id="pdfForm">
+
+<div class="form-grid">
+
+
+<div class="field">
 
 <label>
-اسم الملف
+عنوان الملف
 </label>
 
 <input
     id="pdfTitle"
     type="text"
     placeholder="مثال: مراجعة الجبر"
-/>
+    required
+>
 
 </div>
 
 
-<div class="form-group">
+<div class="field">
 
 <label>
 الصف الدراسي
 </label>
 
-<select id="pdfGrade">
+<select
+    id="pdfGrade"
+    required
+>
 
 <option value="">
 اختر الصف
 </option>
 
-<option>أولى إعدادي</option>
-<option>ثانية إعدادي</option>
-<option>ثالثة إعدادي</option>
-<option>أولى ثانوي</option>
-<option>ثانية ثانوي</option>
-<option>ثالثة ثانوي</option>
+<option value="أولى إعدادي">
+أولى إعدادي
+</option>
+
+<option value="ثانية إعدادي">
+ثانية إعدادي
+</option>
+
+<option value="ثالثة إعدادي">
+ثالثة إعدادي
+</option>
+
+<option value="أولى ثانوي">
+أولى ثانوي
+</option>
+
+<option value="ثانية ثانوي">
+ثانية ثانوي
+</option>
+
+<option value="ثالثة ثانوي">
+ثالثة ثانوي
+</option>
 
 </select>
 
 </div>
 
 
-<div class="form-group">
+<div class="field full">
 
 <label>
-ملف PDF
+الوصف
+</label>
+
+<textarea
+    id="pdfDescription"
+    placeholder="اكتب وصف الملف..."
+></textarea>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+رابط ملف PDF
 </label>
 
 <input
-    id="pdfFile"
-    class="file-input"
-    type="file"
-    accept="application/pdf"
-/>
+    id="pdfUrl"
+    type="url"
+    placeholder="https://..."
+    required
+>
+
+</div>
+
+
+<div class="field full">
+
+<label class="checkbox">
+
+<input
+    id="pdfActive"
+    type="checkbox"
+    checked
+>
+
+<span>
+إظهار الملف للطلاب
+</span>
+
+</label>
+
+</div>
+
 
 </div>
 
 
 <button
-    id="uploadPdfBtn"
-    class="primary-btn"
+    id="pdfSubmit"
+    class="submit-btn"
+    type="submit"
 >
-رفع PDF
+إضافة PDF
 </button>
 
-<div class="info">
-سيتم رفع الملف إلى Supabase Storage.
-</div>
+</form>
 
-</div>
+</section>
 
 
-<div
+<!-- =====================================================
+     VIDEO FORM
+===================================================== -->
+
+<section
     id="videoSection"
-    class="card"
-    style="display:none"
+    class="form-box"
+    style="display:none;"
 >
 
-<h2 style="margin-bottom:20px">
-إضافة فيديو
-</h2>
+<div class="form-title">
+🎬 إضافة فيديو YouTube
+</div>
 
-<div class="form-group">
+<form id="videoForm">
+
+<div class="form-grid">
+
+
+<div class="field">
 
 <label>
 عنوان الفيديو
@@ -592,58 +1090,165 @@ footer span{
     id="videoTitle"
     type="text"
     placeholder="مثال: شرح الدرس الأول"
-/>
+    required
+>
 
 </div>
 
 
-<div class="form-group">
+<div class="field">
 
 <label>
 الصف الدراسي
 </label>
 
-<select id="videoGrade">
+<select
+    id="videoGrade"
+    required
+>
 
 <option value="">
 اختر الصف
 </option>
 
-<option>أولى إعدادي</option>
-<option>ثانية إعدادي</option>
-<option>ثالثة إعدادي</option>
-<option>أولى ثانوي</option>
-<option>ثانية ثانوي</option>
-<option>ثالثة ثانوي</option>
+<option value="أولى إعدادي">
+أولى إعدادي
+</option>
+
+<option value="ثانية إعدادي">
+ثانية إعدادي
+</option>
+
+<option value="ثالثة إعدادي">
+ثالثة إعدادي
+</option>
+
+<option value="أولى ثانوي">
+أولى ثانوي
+</option>
+
+<option value="ثانية ثانوي">
+ثانية ثانوي
+</option>
+
+<option value="ثالثة ثانوي">
+ثالثة ثانوي
+</option>
 
 </select>
 
 </div>
 
 
-<div class="form-group">
+<div class="field full">
+
+<label>
+الوصف
+</label>
+
+<textarea
+    id="videoDescription"
+    placeholder="اكتب وصف الفيديو..."
+></textarea>
+
+</div>
+
+
+<div class="field full">
 
 <label>
 رابط YouTube
 </label>
 
 <input
-    id="videoUrl"
+    id="youtubeUrl"
     type="url"
     placeholder="https://www.youtube.com/watch?v=..."
-/>
+    required
+>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+رابط صورة الفيديو - اختياري
+</label>
+
+<input
+    id="thumbnailUrl"
+    type="url"
+    placeholder="https://..."
+>
+
+</div>
+
+
+<div class="field full">
+
+<label class="checkbox">
+
+<input
+    id="videoActive"
+    type="checkbox"
+    checked
+>
+
+<span>
+إظهار الفيديو للطلاب
+</span>
+
+</label>
+
+</div>
+
 
 </div>
 
 
 <button
-    id="addVideoBtn"
-    class="primary-btn"
+    id="videoSubmit"
+    class="submit-btn"
+    type="submit"
 >
 إضافة الفيديو
 </button>
 
+</form>
+
+</section>
+
+
+<!-- =====================================================
+     LIST
+===================================================== -->
+
+<section>
+
+<div class="list-title">
+
+<h2 id="listTitle">
+ملفات PDF
+</h2>
+
+<span
+    id="contentCount"
+    class="count"
+>
+0 عنصر
+</span>
+
 </div>
+
+
+<div
+    id="contentGrid"
+    class="content-grid"
+></div>
+
+</section>
+
 
 </div>
 
@@ -658,6 +1263,7 @@ footer span{
 
 </footer>
 
+
 </div>
 
 
@@ -665,495 +1271,1244 @@ footer span{
 
 <script src="../supabase.js"></script>
 
-<script src="admin-auth.js"></script>
-
 
 <script>
 
 "use strict";
 
-let client = null;
+
+let client=null;
+
+let currentType="pdf";
+
+let currentUser=null;
 
 
-const loadingScreen =
-    document.getElementById(
-        "loadingScreen"
-    );
+const loadingScreen=
+document.getElementById(
+    "loadingScreen"
+);
 
-const adminApp =
-    document.getElementById(
-        "adminApp"
-    );
+const loadingText=
+document.getElementById(
+    "loadingText"
+);
 
-const message =
-    document.getElementById(
-        "message"
-    );
+const errorBox=
+document.getElementById(
+    "errorBox"
+);
+
+const adminApp=
+document.getElementById(
+    "adminApp"
+);
+
+const message=
+document.getElementById(
+    "message"
+);
+
+const pdfSection=
+document.getElementById(
+    "pdfSection"
+);
+
+const videoSection=
+document.getElementById(
+    "videoSection"
+);
+
+const contentGrid=
+document.getElementById(
+    "contentGrid"
+);
+
+const contentCount=
+document.getElementById(
+    "contentCount"
+);
+
+const listTitle=
+document.getElementById(
+    "listTitle"
+);
+
+const pageTitle=
+document.getElementById(
+    "pageTitle"
+);
+
+const pageDescription=
+document.getElementById(
+    "pageDescription"
+);
+
+const pdfTab=
+document.getElementById(
+    "pdfTab"
+);
+
+const videoTab=
+document.getElementById(
+    "videoTab"
+);
 
 
-function showMessage(
-    text,
-    type
-){
+/* =====================================================
+   ESCAPE
+===================================================== */
 
-    message.textContent =
-        text;
+function escapeHtml(value){
 
-    message.className =
-        "message " + type;
+    return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
 
-document
-    .getElementById("pdfTab")
-    .addEventListener(
-        "click",
-        function(){
+/* =====================================================
+   ERROR
+===================================================== */
 
-            this.classList.add("active");
+function showError(text){
 
-            document
-                .getElementById("videoTab")
-                .classList.remove("active");
+    const loader=
+    document.querySelector(".loader");
 
-            document
-                .getElementById("pdfSection")
-                .style.display =
-                "block";
+    if(loader){
 
-            document
-                .getElementById("videoSection")
-                .style.display =
-                "none";
-        }
-    );
+        loader.style.display="none";
 
+    }
 
-document
-    .getElementById("videoTab")
-    .addEventListener(
-        "click",
-        function(){
 
-            this.classList.add("active");
+    loadingText.style.display="none";
 
-            document
-                .getElementById("pdfTab")
-                .classList.remove("active");
+    errorBox.style.display="block";
 
-            document
-                .getElementById("pdfSection")
-                .style.display =
-                "none";
 
-            document
-                .getElementById("videoSection")
-                .style.display =
-                "block";
-        }
-    );
+    errorBox.innerHTML=`
 
+        <b>حدث خطأ</b>
 
-/*
-=====================================================
- ADD VIDEO
-=====================================================
-*/
+        <br><br>
 
-document
-    .getElementById("addVideoBtn")
-    .addEventListener(
-        "click",
-        async function(){
+        ${escapeHtml(text)}
 
-            const btn = this;
+        <br><br>
 
-            const title =
-                document
-                    .getElementById("videoTitle")
-                    .value
-                    .trim();
+        <button
+            onclick="location.reload()"
+            style="
+                padding:10px 18px;
+                border:0;
+                border-radius:10px;
+                color:#fff;
+                background:linear-gradient(135deg,#7448e8,#3154df);
+                cursor:pointer;
+            "
+        >
+            إعادة المحاولة
+        </button>
 
-            const grade =
-                document
-                    .getElementById("videoGrade")
-                    .value;
+    `;
 
-            const url =
-                document
-                    .getElementById("videoUrl")
-                    .value
-                    .trim();
+}
 
 
-            if(!title){
+/* =====================================================
+   MESSAGE
+===================================================== */
 
-                showMessage(
-                    "اكتب اسم الفيديو.",
-                    "error"
-                );
+function showMessage(text,type){
 
-                return;
-            }
+    message.textContent=text;
 
+    message.className=
+    "message "+type;
 
-            if(!grade){
 
-                showMessage(
-                    "اختر الصف الدراسي.",
-                    "error"
-                );
+    setTimeout(()=>{
 
-                return;
-            }
+        message.className="message";
 
+    },4500);
 
-            if(!url){
+}
 
-                showMessage(
-                    "أدخل رابط الفيديو.",
-                    "error"
-                );
 
-                return;
-            }
+/* =====================================================
+   ADMIN CHECK
+===================================================== */
 
+async function checkAdmin(){
 
-            btn.disabled = true;
+    loadingText.textContent=
+    "جاري الاتصال بـ Supabase...";
 
-            btn.textContent =
-                "جاري الإضافة...";
 
+    let tries=0;
 
-            try{
 
-                /*
-                غيّر اسم الجدول إذا كان
-                جدول الفيديوهات عندك باسم مختلف.
-                */
+    while(
+        !window.supabaseClient &&
+        tries<50
+    ){
 
-                const {
-                    error
-                } = await client
-                    .from("videos")
-                    .insert({
+        await new Promise(
+            resolve=>
+            setTimeout(resolve,100)
+        );
 
-                        title: title,
+        tries++;
 
-                        grade: grade,
+    }
 
-                        video_url: url,
 
-                        created_by:
-                            ADMIN_AUTH.user.id
+    if(!window.supabaseClient){
 
-                    });
+        throw new Error(
+            "ملف ../supabase.js لم يتم تحميله."
+        );
 
+    }
 
-                if(error){
-                    throw error;
-                }
 
+    client=
+    window.supabaseClient;
 
-                document
-                    .getElementById("videoTitle")
-                    .value = "";
 
-                document
-                    .getElementById("videoGrade")
-                    .value = "";
+    loadingText.textContent=
+    "جاري التحقق من تسجيل الدخول...";
 
-                document
-                    .getElementById("videoUrl")
-                    .value = "";
 
+    const {
+        data,
+        error
+    }=
+    await client.auth.getSession();
 
-                showMessage(
-                    "تم إضافة الفيديو بنجاح ✅",
-                    "success"
-                );
 
-            }
-            catch(error){
+    if(error){
 
-                console.error(
-                    "VIDEO ERROR:",
-                    error
-                );
+        throw new Error(
+            error.message
+        );
 
-                showMessage(
-                    "فشل إضافة الفيديو: " +
-                    error.message,
-                    "error"
-                );
+    }
 
-            }
-            finally{
 
-                btn.disabled = false;
+    if(
+        !data ||
+        !data.session
+    ){
 
-                btn.textContent =
-                    "إضافة الفيديو";
-            }
+        location.replace(
+            "../auth.html"
+        );
 
-        }
-    );
+        return false;
 
+    }
 
-/*
-=====================================================
- ADD PDF
-=====================================================
-*/
 
-document
-    .getElementById("uploadPdfBtn")
-    .addEventListener(
-        "click",
-        async function(){
+    currentUser=
+    data.session.user;
 
-            const btn = this;
 
+    if(!currentUser){
 
-            const title =
-                document
-                    .getElementById("pdfTitle")
-                    .value
-                    .trim();
+        location.replace(
+            "../auth.html"
+        );
 
+        return false;
 
-            const grade =
-                document
-                    .getElementById("pdfGrade")
-                    .value;
+    }
 
 
-            const file =
-                document
-                    .getElementById("pdfFile")
-                    .files[0];
+    loadingText.textContent=
+    "جاري التحقق من صلاحيات الأدمن...";
 
 
-            if(!title){
+    const {
+        data:roleData,
+        error:roleError
+    }=
+    await client
+    .from("user_roles")
+    .select("user_id,role")
+    .eq(
+        "user_id",
+        currentUser.id
+    )
+    .maybeSingle();
 
-                showMessage(
-                    "اكتب اسم ملف PDF.",
-                    "error"
-                );
 
-                return;
-            }
+    if(roleError){
 
+        throw new Error(
+            "خطأ في user_roles: "+
+            roleError.message
+        );
 
-            if(!grade){
+    }
 
-                showMessage(
-                    "اختر الصف الدراسي.",
-                    "error"
-                );
 
-                return;
-            }
+    if(!roleData){
 
+        throw new Error(
+            "لم يتم العثور على صلاحية الأدمن لهذا الحساب."
+        );
 
-            if(!file){
+    }
 
-                showMessage(
-                    "اختر ملف PDF.",
-                    "error"
-                );
 
-                return;
-            }
+    if(roleData.role!=="admin"){
 
+        throw new Error(
+            "هذا الحساب ليس Admin."
+        );
 
-            if(
-                file.type !==
-                "application/pdf"
-            ){
+    }
 
-                showMessage(
-                    "الملف يجب أن يكون PDF.",
-                    "error"
-                );
 
-                return;
-            }
+    return true;
 
+}
 
-            btn.disabled = true;
 
-            btn.textContent =
-                "جاري رفع PDF...";
+/* =====================================================
+   SWITCH TYPE
+===================================================== */
 
+function switchType(type){
 
-            try{
+    currentType=type;
 
-                const fileName =
-                    Date.now() +
-                    "-" +
-                    file.name
-                        .replace(
-                            /[^a-zA-Z0-9._-]/g,
-                            "_"
-                        );
 
+    if(type==="pdf"){
 
-                /*
-                اسم Storage Bucket:
-                content
-                */
+        pdfSection.style.display="block";
 
-                const {
-                    error:
-                    uploadError
-                } =
-                    await client
-                        .storage
-                        .from("content")
-                        .upload(
-                            "pdf/" + fileName,
-                            file,
-                            {
-                                contentType:
-                                    "application/pdf",
-                                upsert:false
-                            }
-                        );
+        videoSection.style.display="none";
 
+        pdfTab.classList.add("active");
 
-                if(uploadError){
-                    throw uploadError;
-                }
+        videoTab.classList.remove("active");
 
+        pageTitle.textContent=
+        "إدارة ملفات PDF 📄";
 
-                const {
-                    data:
-                    publicData
-                } =
-                    client
-                        .storage
-                        .from("content")
-                        .getPublicUrl(
-                            "pdf/" + fileName
-                        );
+        pageDescription.textContent=
+        "إضافة وإدارة ملفات PDF الخاصة بالطلاب.";
 
+        listTitle.textContent=
+        "ملفات PDF";
 
-                const fileUrl =
-                    publicData.publicUrl;
+    }
+    else{
 
+        pdfSection.style.display="none";
 
-                /*
-                غيّر اسم الجدول إذا كان
-                جدول ملفات PDF عندك مختلفًا.
-                */
+        videoSection.style.display="block";
 
-                const {
-                    error:
-                    dbError
-                } =
-                    await client
-                        .from("pdfs")
-                        .insert({
+        pdfTab.classList.remove("active");
 
-                            title: title,
+        videoTab.classList.add("active");
 
-                            grade: grade,
+        pageTitle.textContent=
+        "إدارة الفيديوهات 🎬";
 
-                            file_url: fileUrl,
+        pageDescription.textContent=
+        "إضافة وإدارة فيديوهات YouTube الخاصة بالطلاب.";
 
-                            created_by:
-                                ADMIN_AUTH.user.id
+        listTitle.textContent=
+        "الفيديوهات";
 
-                        });
+    }
 
 
-                if(dbError){
+    loadContent();
 
-                    throw dbError;
-                }
+}
 
 
-                document
-                    .getElementById("pdfTitle")
-                    .value = "";
+/* =====================================================
+   LOAD CONTENT
+===================================================== */
 
-                document
-                    .getElementById("pdfGrade")
-                    .value = "";
+async function loadContent(){
 
-                document
-                    .getElementById("pdfFile")
-                    .value = "";
+    contentGrid.innerHTML=
+    `<div class="empty">جاري تحميل المحتوى...</div>`;
 
-
-                showMessage(
-                    "تم رفع ملف PDF بنجاح ✅",
-                    "success"
-                );
-
-            }
-            catch(error){
-
-                console.error(
-                    "PDF ERROR:",
-                    error
-                );
-
-                showMessage(
-                    "فشل رفع PDF: " +
-                    error.message,
-                    "error"
-                );
-
-            }
-            finally{
-
-                btn.disabled = false;
-
-                btn.textContent =
-                    "رفع PDF";
-            }
-
-        }
-    );
-
-
-/*
-=====================================================
- START
-=====================================================
-*/
-
-(async function(){
 
     try{
 
-        const admin =
-            await ADMIN_AUTH.init();
+        if(currentType==="pdf"){
+
+            const {
+                data,
+                error
+            }=
+            await client
+            .from("pdf_files")
+            .select(`
+                id,
+                title,
+                description,
+                grade,
+                pdf_url,
+                is_active,
+                created_by,
+                created_at
+            `)
+            .order(
+                "created_at",
+                {
+                    ascending:false
+                }
+            );
 
 
-        if(!admin){
-            return;
+            if(error){
+
+                throw new Error(
+                    "خطأ في pdf_files: "+
+                    error.message
+                );
+
+            }
+
+
+            renderPDFs(data || []);
+
+        }
+        else{
+
+            const {
+                data,
+                error
+            }=
+            await client
+            .from("videos")
+            .select(`
+                id,
+                title,
+                description,
+                grade,
+                youtube_url,
+                thumbnail_url,
+                is_active,
+                created_by,
+                created_at
+            `)
+            .order(
+                "created_at",
+                {
+                    ascending:false
+                }
+            );
+
+
+            if(error){
+
+                throw new Error(
+                    "خطأ في videos: "+
+                    error.message
+                );
+
+            }
+
+
+            renderVideos(data || []);
+
+        }
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        contentGrid.innerHTML=
+        `<div class="empty">
+            ${escapeHtml(error.message)}
+        </div>`;
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER PDF
+===================================================== */
+
+function renderPDFs(items){
+
+    contentGrid.innerHTML="";
+
+    contentCount.textContent=
+    `${items.length} ملف`;
+
+
+    if(!items.length){
+
+        contentGrid.innerHTML=
+        `<div class="empty">
+            📄
+            <br><br>
+            لا توجد ملفات PDF حتى الآن.
+        </div>`;
+
+        return;
+
+    }
+
+
+    items.forEach(item=>{
+
+        const card=
+        document.createElement("div");
+
+        card.className=
+        "content-card";
+
+
+        card.innerHTML=`
+
+            <div class="content-icon">
+                📄
+            </div>
+
+            <h3>
+                ${escapeHtml(item.title)}
+            </h3>
+
+            <div class="content-description">
+                ${escapeHtml(
+                    item.description ||
+                    "بدون وصف"
+                )}
+            </div>
+
+            <div class="content-meta">
+                الصف:
+                ${escapeHtml(
+                    item.grade
+                )}
+                <br>
+                الحالة:
+                ${item.is_active ? "ظاهر" : "مخفي"}
+            </div>
+
+            <div class="content-url">
+                ${escapeHtml(
+                    item.pdf_url
+                )}
+            </div>
+
+            <div class="card-actions">
+
+                <a
+                    class="open-btn"
+                    href="${escapeHtml(item.pdf_url)}"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    فتح PDF
+                </a>
+
+                <button
+                    class="delete-btn"
+                    data-id="${escapeHtml(item.id)}"
+                >
+                    حذف
+                </button>
+
+            </div>
+
+        `;
+
+
+        contentGrid.appendChild(card);
+
+    });
+
+}
+
+
+/* =====================================================
+   YOUTUBE THUMBNAIL
+===================================================== */
+
+function getYoutubeId(url){
+
+    if(!url) return "";
+
+    const regex=
+    /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([^&?\/\s]+)/;
+
+    const match=
+    String(url).match(regex);
+
+    return match
+        ? match[1]
+        : "";
+
+}
+
+
+/* =====================================================
+   RENDER VIDEOS
+===================================================== */
+
+function renderVideos(items){
+
+    contentGrid.innerHTML="";
+
+    contentCount.textContent=
+    `${items.length} فيديو`;
+
+
+    if(!items.length){
+
+        contentGrid.innerHTML=
+        `<div class="empty">
+            🎬
+            <br><br>
+            لا توجد فيديوهات حتى الآن.
+        </div>`;
+
+        return;
+
+    }
+
+
+    items.forEach(item=>{
+
+        const card=
+        document.createElement("div");
+
+        card.className=
+        "content-card";
+
+
+        let thumbnail=
+        item.thumbnail_url;
+
+
+        if(!thumbnail){
+
+            const youtubeId=
+            getYoutubeId(
+                item.youtube_url
+            );
+
+
+            if(youtubeId){
+
+                thumbnail=
+                `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`;
+
+            }
+
         }
 
 
-        client =
-            admin.client;
+        const image=
+        thumbnail
+        ?
+        `
+        <img
+            src="${escapeHtml(thumbnail)}"
+            style="
+                width:100%;
+                height:150px;
+                object-fit:cover;
+                border-radius:14px;
+                margin-bottom:15px;
+            "
+            onerror="
+                this.style.display='none'
+            "
+        >
+        `
+        :
+        "";
 
 
-        loadingScreen.style.display =
-            "none";
+        card.innerHTML=`
+
+            ${image}
+
+            <div class="content-icon">
+                🎬
+            </div>
+
+            <h3>
+                ${escapeHtml(item.title)}
+            </h3>
+
+            <div class="content-description">
+                ${escapeHtml(
+                    item.description ||
+                    "بدون وصف"
+                )}
+            </div>
+
+            <div class="content-meta">
+                الصف:
+                ${escapeHtml(item.grade)}
+                <br>
+                الحالة:
+                ${item.is_active ? "ظاهر" : "مخفي"}
+            </div>
+
+            <div class="content-url">
+                ${escapeHtml(
+                    item.youtube_url
+                )}
+            </div>
+
+            <div class="card-actions">
+
+                <a
+                    class="open-btn"
+                    href="${escapeHtml(item.youtube_url)}"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    فتح الفيديو
+                </a>
+
+                <button
+                    class="delete-btn"
+                    data-id="${escapeHtml(item.id)}"
+                >
+                    حذف
+                </button>
+
+            </div>
+
+        `;
 
 
-        adminApp.style.display =
-            "block";
+        contentGrid.appendChild(card);
+
+    });
+
+}
 
 
-        console.log(
-            "CONTENT ADMIN READY"
+/* =====================================================
+   ADD PDF
+===================================================== */
+
+document
+.getElementById("pdfForm")
+.addEventListener(
+"submit",
+async event=>{
+
+    event.preventDefault();
+
+
+    const button=
+    document.getElementById(
+        "pdfSubmit"
+    );
+
+
+    const title=
+    document.getElementById(
+        "pdfTitle"
+    ).value.trim();
+
+
+    const description=
+    document.getElementById(
+        "pdfDescription"
+    ).value.trim();
+
+
+    const grade=
+    document.getElementById(
+        "pdfGrade"
+    ).value;
+
+
+    const pdfUrl=
+    document.getElementById(
+        "pdfUrl"
+    ).value.trim();
+
+
+    const isActive=
+    document.getElementById(
+        "pdfActive"
+    ).checked;
+
+
+    if(!title || !grade || !pdfUrl){
+
+        showMessage(
+            "من فضلك أكمل البيانات المطلوبة.",
+            "error"
         );
+
+        return;
+
+    }
+
+
+    try{
+
+        button.disabled=true;
+
+        button.textContent=
+        "جاري إضافة PDF...";
+
+
+        const {
+            error
+        }=
+        await client
+        .from("pdf_files")
+        .insert({
+
+            title:title,
+
+            description:
+            description || null,
+
+            grade:grade,
+
+            pdf_url:pdfUrl,
+
+            is_active:isActive,
+
+            created_by:
+            currentUser.id
+
+        });
+
+
+        if(error){
+
+            throw new Error(
+                error.message
+            );
+
+        }
+
+
+        document
+        .getElementById("pdfForm")
+        .reset();
+
+
+        document
+        .getElementById("pdfActive")
+        .checked=true;
+
+
+        showMessage(
+            "تم إضافة ملف PDF بنجاح ✅",
+            "success"
+        );
+
+
+        await loadContent();
+
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "فشل إضافة PDF: "+
+            error.message,
+            "error"
+        );
+
+    }
+    finally{
+
+        button.disabled=false;
+
+        button.textContent=
+        "إضافة PDF";
+
+    }
+
+});
+
+
+/* =====================================================
+   ADD VIDEO
+===================================================== */
+
+document
+.getElementById("videoForm")
+.addEventListener(
+"submit",
+async event=>{
+
+    event.preventDefault();
+
+
+    const button=
+    document.getElementById(
+        "videoSubmit"
+    );
+
+
+    const title=
+    document.getElementById(
+        "videoTitle"
+    ).value.trim();
+
+
+    const description=
+    document.getElementById(
+        "videoDescription"
+    ).value.trim();
+
+
+    const grade=
+    document.getElementById(
+        "videoGrade"
+    ).value;
+
+
+    const youtubeUrl=
+    document.getElementById(
+        "youtubeUrl"
+    ).value.trim();
+
+
+    const thumbnailUrl=
+    document.getElementById(
+        "thumbnailUrl"
+    ).value.trim();
+
+
+    const isActive=
+    document.getElementById(
+        "videoActive"
+    ).checked;
+
+
+    if(!title || !grade || !youtubeUrl){
+
+        showMessage(
+            "من فضلك أكمل البيانات المطلوبة.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !youtubeUrl.includes("youtube.com") &&
+        !youtubeUrl.includes("youtu.be")
+    ){
+
+        showMessage(
+            "من فضلك أدخل رابط YouTube صحيح.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        button.disabled=true;
+
+        button.textContent=
+        "جاري إضافة الفيديو...";
+
+
+        const {
+            error
+        }=
+        await client
+        .from("videos")
+        .insert({
+
+            title:title,
+
+            description:
+            description || null,
+
+            grade:grade,
+
+            youtube_url:
+            youtubeUrl,
+
+            thumbnail_url:
+            thumbnailUrl || null,
+
+            is_active:
+            isActive,
+
+            created_by:
+            currentUser.id
+
+        });
+
+
+        if(error){
+
+            throw new Error(
+                error.message
+            );
+
+        }
+
+
+        document
+        .getElementById("videoForm")
+        .reset();
+
+
+        document
+        .getElementById("videoActive")
+        .checked=true;
+
+
+        showMessage(
+            "تم إضافة الفيديو بنجاح ✅",
+            "success"
+        );
+
+
+        await loadContent();
+
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "فشل إضافة الفيديو: "+
+            error.message,
+            "error"
+        );
+
+    }
+    finally{
+
+        button.disabled=false;
+
+        button.textContent=
+        "إضافة الفيديو";
+
+    }
+
+});
+
+
+/* =====================================================
+   DELETE CONTENT
+===================================================== */
+
+contentGrid.addEventListener(
+"click",
+async event=>{
+
+    const button=
+    event.target.closest(
+        ".delete-btn"
+    );
+
+
+    if(!button) return;
+
+
+    const id=
+    button.dataset.id;
+
+
+    if(!id) return;
+
+
+    const confirmDelete=
+    confirm(
+        currentType==="pdf"
+        ?
+        "هل أنت متأكد من حذف ملف PDF؟"
+        :
+        "هل أنت متأكد من حذف الفيديو؟"
+    );
+
+
+    if(!confirmDelete){
+
+        return;
+
+    }
+
+
+    try{
+
+        button.disabled=true;
+
+        button.textContent=
+        "جاري...";
+
+
+        const tableName=
+        currentType==="pdf"
+        ?
+        "pdf_files"
+        :
+        "videos";
+
+
+        const {
+            error
+        }=
+        await client
+        .from(tableName)
+        .delete()
+        .eq(
+            "id",
+            id
+        );
+
+
+        if(error){
+
+            throw new Error(
+                error.message
+            );
+
+        }
+
+
+        showMessage(
+            "تم الحذف بنجاح.",
+            "success"
+        );
+
+
+        await loadContent();
+
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "فشل الحذف: "+
+            error.message,
+            "error"
+        );
+
+
+        button.disabled=false;
+
+        button.textContent=
+        "حذف";
+
+    }
+
+});
+
+
+/* =====================================================
+   TABS
+===================================================== */
+
+pdfTab.addEventListener(
+    "click",
+    ()=>switchType("pdf")
+);
+
+videoTab.addEventListener(
+    "click",
+    ()=>switchType("video")
+);
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+document
+.getElementById("logoutBtn")
+.addEventListener(
+"click",
+async()=>{
+
+    await client.auth.signOut();
+
+    location.replace(
+        "../auth.html"
+    );
+
+});
+
+
+/* =====================================================
+   START
+===================================================== */
+
+(async()=>{
+
+    try{
+
+        const ok=
+        await checkAdmin();
+
+
+        if(!ok) return;
+
+
+        const params=
+        new URLSearchParams(
+            location.search
+        );
+
+
+        const type=
+        params.get("type");
+
+
+        if(type==="video"){
+
+            switchType("video");
+
+        }
+        else{
+
+            switchType("pdf");
+
+        }
+
+
+        loadingScreen.style.display=
+        "none";
+
+        adminApp.style.display=
+        "block";
+
 
     }
     catch(error){
@@ -1164,53 +2519,11 @@ document
         );
 
 
-        loadingScreen.innerHTML = `
+        showError(
+            error.message ||
+            "حدث خطأ غير معروف."
+        );
 
-            <div style="
-                width:min(600px,92%);
-                padding:25px;
-                border-radius:20px;
-                background:rgba(255,255,255,.04);
-                border:1px solid rgba(255,255,255,.08);
-                text-align:center;
-            ">
-
-                <div style="
-                    font-size:45px;
-                    margin-bottom:15px;
-                ">
-                    🔒
-                </div>
-
-                <h2>
-                    تعذر فتح إدارة المحتوى
-                </h2>
-
-                <p style="
-                    color:#999;
-                    margin-top:12px;
-                    line-height:1.8;
-                ">
-                    ${String(error.message)
-                        .replace(/</g,"&lt;")
-                        .replace(/>/g,"&gt;")}
-                </p>
-
-                <button
-                    onclick="location.reload()"
-                    style="
-                        margin-top:20px;
-                        padding:12px 20px;
-                        border:0;
-                        border-radius:12px;
-                        cursor:pointer;
-                    "
-                >
-                    إعادة المحاولة
-                </button>
-
-            </div>
-        `;
     }
 
 })();
