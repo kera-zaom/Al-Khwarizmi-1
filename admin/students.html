@@ -14,10 +14,6 @@
 
 <style>
 
-/* =====================================================
-   RESET
-===================================================== */
-
 *{
     margin:0;
     padding:0;
@@ -45,7 +41,6 @@ body{
     #050509;
 
     color:#fff;
-
 }
 
 button,
@@ -54,35 +49,26 @@ select{
     font-family:inherit;
 }
 
-
-/* =====================================================
-   LOADING
-===================================================== */
-
 #loadingScreen{
 
     position:fixed;
-
     inset:0;
 
     z-index:99999;
 
-    background:#050509;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
 
     flex-direction:column;
 
     gap:18px;
 
-    padding:25px;
+    background:#050509;
+
+    padding:20px;
 
     text-align:center;
-
 }
 
 .loader{
@@ -98,7 +84,6 @@ select{
     border-top-color:#7952ed;
 
     animation:spin 1s linear infinite;
-
 }
 
 @keyframes spin{
@@ -112,120 +97,67 @@ select{
 #loadingText{
 
     color:#aaa;
-
     font-size:14px;
-
-    line-height:1.8;
-
 }
 
-#loadingError{
+#errorBox{
 
     display:none;
 
-    width:min(600px,100%);
+    max-width:600px;
 
-    padding:20px;
-
-    border-radius:18px;
+    color:#ff8b95;
 
     background:
     rgba(255,60,80,.08);
 
     border:
     1px solid
-    rgba(255,60,80,.25);
+    rgba(255,60,80,.2);
 
-    color:#ff8792;
+    padding:20px;
 
-    line-height:1.9;
+    border-radius:16px;
 
-    word-break:break-word;
-
+    line-height:1.8;
 }
-
-.retry-btn{
-
-    margin-top:15px;
-
-    border:0;
-
-    padding:12px 20px;
-
-    border-radius:12px;
-
-    color:#fff;
-
-    cursor:pointer;
-
-    background:
-    linear-gradient(
-        135deg,
-        #7448e8,
-        #3154df
-    );
-
-}
-
-
-/* =====================================================
-   APP
-===================================================== */
 
 #adminApp{
-
     display:none;
-
 }
-
-
-/* =====================================================
-   HEADER
-===================================================== */
 
 header{
 
     position:sticky;
-
     top:0;
-
     z-index:1000;
 
     height:70px;
 
     background:
-    rgba(5,5,9,.85);
+    rgba(5,5,9,.86);
 
     backdrop-filter:blur(18px);
 
     border-bottom:
     1px solid
     rgba(255,255,255,.07);
-
 }
 
 .header-inner{
 
     width:min(1200px,94%);
-
     height:70px;
-
     margin:auto;
 
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
-    gap:15px;
-
 }
 
 .logo{
 
     font-size:23px;
-
     font-weight:900;
 
     background:
@@ -236,51 +168,26 @@ header{
     );
 
     -webkit-background-clip:text;
-
     background-clip:text;
 
     color:transparent;
-
 }
 
 .header-actions{
 
     display:flex;
-
     align-items:center;
-
     gap:10px;
-
 }
 
-.admin-badge{
-
-    padding:7px 12px;
-
-    border-radius:30px;
-
-    color:#c9baff;
-
-    background:
-    rgba(116,72,232,.10);
-
-    border:
-    1px solid
-    rgba(116,72,232,.22);
-
-    font-size:12px;
-
-}
-
-.back-btn{
-
-    text-decoration:none;
-
-    color:#fff;
+.back-btn,
+.logout-btn{
 
     padding:9px 14px;
-
     border-radius:11px;
+
+    color:#fff;
+    text-decoration:none;
 
     background:
     rgba(255,255,255,.06);
@@ -289,53 +196,27 @@ header{
     1px solid
     rgba(255,255,255,.08);
 
-    font-size:13px;
-
+    cursor:pointer;
 }
 
 .logout-btn{
 
-    border:0;
-
-    cursor:pointer;
-
-    padding:9px 14px;
-
-    border-radius:11px;
-
-    color:#fff;
-
     background:
-    rgba(255,70,70,.08);
+    rgba(255,60,80,.08);
 
-    border:
-    1px solid
-    rgba(255,70,70,.18);
-
+    border-color:
+    rgba(255,60,80,.18);
 }
-
-
-/* =====================================================
-   CONTAINER
-===================================================== */
 
 .container{
 
     width:min(1200px,94%);
-
     margin:auto;
-
 }
-
-
-/* =====================================================
-   TOP
-===================================================== */
 
 .page-top{
 
     padding:40px 0 25px;
-
 }
 
 .page-top h1{
@@ -344,21 +225,13 @@ header{
     clamp(28px,5vw,42px);
 
     margin-bottom:10px;
-
 }
 
 .page-top p{
 
     color:#888;
-
     line-height:1.8;
-
 }
-
-
-/* =====================================================
-   STATS
-===================================================== */
 
 .stats{
 
@@ -370,7 +243,6 @@ header{
     gap:15px;
 
     margin-bottom:25px;
-
 }
 
 .stat{
@@ -385,33 +257,21 @@ header{
     border:
     1px solid
     rgba(255,255,255,.08);
-
 }
 
 .stat-title{
 
     color:#888;
-
     font-size:13px;
-
     margin-bottom:8px;
-
 }
 
 .stat-number{
 
     font-size:30px;
-
     font-weight:900;
-
     color:#cbbdff;
-
 }
-
-
-/* =====================================================
-   CONTROLS
-===================================================== */
 
 .controls{
 
@@ -427,7 +287,6 @@ header{
     rgba(255,255,255,.07);
 
     margin-bottom:20px;
-
 }
 
 .controls-grid{
@@ -438,7 +297,6 @@ header{
     1fr 220px;
 
     gap:12px;
-
 }
 
 input,
@@ -447,8 +305,7 @@ select{
     width:100%;
 
     border:
-    1px solid
-    #29293a;
+    1px solid #29293a;
 
     background:#090910;
 
@@ -459,26 +316,13 @@ select{
     border-radius:12px;
 
     outline:none;
-
-    font-size:14px;
-
 }
 
 input:focus,
 select:focus{
 
     border-color:#7448e8;
-
-    box-shadow:
-    0 0 15px
-    rgba(116,72,232,.15);
-
 }
-
-
-/* =====================================================
-   TABLE
-===================================================== */
 
 .table-box{
 
@@ -494,15 +338,11 @@ select:focus{
     rgba(255,255,255,.07);
 
     margin-bottom:40px;
-
 }
 
 .table-wrapper{
-
     width:100%;
-
     overflow-x:auto;
-
 }
 
 table{
@@ -511,15 +351,13 @@ table{
 
     border-collapse:collapse;
 
-    min-width:900px;
-
+    min-width:850px;
 }
 
 thead{
 
     background:
     rgba(116,72,232,.08);
-
 }
 
 th{
@@ -531,9 +369,6 @@ th{
     color:#bdb2ee;
 
     font-size:13px;
-
-    white-space:nowrap;
-
 }
 
 td{
@@ -547,22 +382,7 @@ td{
     color:#ddd;
 
     font-size:13px;
-
-    white-space:nowrap;
-
 }
-
-tr:hover td{
-
-    background:
-    rgba(255,255,255,.025);
-
-}
-
-
-/* =====================================================
-   STUDENT
-===================================================== */
 
 .student-cell{
 
@@ -571,49 +391,36 @@ tr:hover td{
     align-items:center;
 
     gap:12px;
-
 }
 
 .student-photo{
 
     width:42px;
-
     height:42px;
 
     border-radius:50%;
 
     object-fit:cover;
 
-    border:
-    1px solid
-    rgba(116,72,232,.3);
-
     background:#111;
 
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
 }
 
 .student-name{
 
     font-weight:bold;
-
-    color:#fff;
-
     margin-bottom:4px;
-
 }
 
 .student-id{
 
     color:#666;
-
     font-size:10px;
-
 }
-
-
-/* =====================================================
-   BADGE
-===================================================== */
 
 .grade-badge{
 
@@ -631,13 +438,7 @@ tr:hover td{
     border:
     1px solid
     rgba(116,72,232,.18);
-
 }
-
-
-/* =====================================================
-   DELETE
-===================================================== */
 
 .delete-btn{
 
@@ -657,20 +458,7 @@ tr:hover td{
     border:
     1px solid
     rgba(255,60,80,.15);
-
 }
-
-.delete-btn:hover{
-
-    background:
-    rgba(255,60,80,.15);
-
-}
-
-
-/* =====================================================
-   EMPTY
-===================================================== */
 
 .empty{
 
@@ -679,21 +467,7 @@ tr:hover td{
     text-align:center;
 
     color:#777;
-
 }
-
-.empty-icon{
-
-    font-size:50px;
-
-    margin-bottom:15px;
-
-}
-
-
-/* =====================================================
-   MESSAGE
-===================================================== */
 
 .message{
 
@@ -706,11 +480,6 @@ tr:hover td{
     margin-bottom:15px;
 
     text-align:center;
-
-    font-size:13px;
-
-    line-height:1.7;
-
 }
 
 .message.success{
@@ -721,11 +490,6 @@ tr:hover td{
 
     background:
     rgba(40,200,120,.08);
-
-    border:
-    1px solid
-    rgba(40,200,120,.2);
-
 }
 
 .message.error{
@@ -736,17 +500,7 @@ tr:hover td{
 
     background:
     rgba(255,60,80,.08);
-
-    border:
-    1px solid
-    rgba(255,60,80,.2);
-
 }
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
 
 footer{
 
@@ -761,68 +515,24 @@ footer{
     rgba(255,255,255,.06);
 
     font-size:12px;
-
 }
 
 footer span{
-
     color:#9b7cff;
-
 }
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
 
 @media(max-width:700px){
 
-    .admin-badge{
-
-        display:none;
-
-    }
-
-    .header-inner{
-
-        height:65px;
-
-    }
-
-    header{
-
-        height:65px;
-
-    }
-
-    .logo{
-
-        font-size:19px;
-
-    }
-
-    .back-btn{
-
-        display:none;
-
-    }
-
     .stats{
-
         grid-template-columns:1fr;
-
     }
 
     .controls-grid{
-
         grid-template-columns:1fr;
-
     }
 
-    .page-top{
-
-        padding-top:30px;
-
+    .back-btn{
+        display:none;
     }
 
 }
@@ -833,94 +543,65 @@ footer span{
 
 <body>
 
-
-<!-- =====================================================
-     LOADING
-===================================================== -->
-
 <div id="loadingScreen">
 
     <div class="loader"></div>
 
     <div id="loadingText">
-
         جاري التحقق من صلاحيات الأدمن...
-
     </div>
 
-    <div id="loadingError"></div>
+    <div id="errorBox"></div>
 
 </div>
 
 
-<!-- =====================================================
-     ADMIN APP
-===================================================== -->
-
 <div id="adminApp">
-
 
 <header>
 
 <div class="header-inner">
 
+<div class="logo">
+الخوارزمي
+</div>
 
-    <div class="logo">
-        الخوارزمي
-    </div>
+<div class="header-actions">
 
+<a
+    href="index.html"
+    class="back-btn"
+>
+لوحة الإدارة
+</a>
 
-    <div class="header-actions">
+<button
+    id="logoutBtn"
+    class="logout-btn"
+>
+خروج
+</button>
 
-
-        <div class="admin-badge">
-            👑 لوحة الإدارة
-        </div>
-
-
-        <a
-            href="index.html"
-            class="back-btn"
-        >
-            لوحة الإدارة
-        </a>
-
-
-        <button
-            id="logoutBtn"
-            class="logout-btn"
-            type="button"
-        >
-            خروج
-        </button>
-
-
-    </div>
-
+</div>
 
 </div>
 
 </header>
 
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
 <main>
 
 <div class="container">
 
-
 <section class="page-top">
 
-    <h1>
-        إدارة الطلاب 👨‍🎓
-    </h1>
+<h1>
+إدارة الطلاب 👨‍🎓
+</h1>
 
-    <p>
-        عرض ومتابعة الطلاب المسجلين في منصة الخوارزمي.
-    </p>
+<p>
+عرض ومتابعة الطلاب المسجلين في منصة الخوارزمي.
+</p>
 
 </section>
 
@@ -931,184 +612,132 @@ footer span{
 ></div>
 
 
-<!-- =====================================================
-     STATS
-===================================================== -->
-
 <section class="stats">
 
+<div class="stat">
 
-    <div class="stat">
+<div class="stat-title">
+إجمالي الطلاب
+</div>
 
-        <div class="stat-title">
-            إجمالي الطلاب
-        </div>
+<div
+    id="totalStudents"
+    class="stat-number"
+>
+0
+</div>
 
-        <div
-            id="totalStudents"
-            class="stat-number"
-        >
-            0
-        </div>
-
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-title">
-            النتائج المعروضة
-        </div>
-
-        <div
-            id="visibleStudents"
-            class="stat-number"
-        >
-            0
-        </div>
-
-    </div>
+</div>
 
 
-    <div class="stat">
+<div class="stat">
 
-        <div class="stat-title">
-            الصفوف
-        </div>
+<div class="stat-title">
+الطلاب المعروضون
+</div>
 
-        <div
-            id="gradesCount"
-            class="stat-number"
-        >
-            0
-        </div>
+<div
+    id="visibleStudents"
+    class="stat-number"
+>
+0
+</div>
 
-    </div>
+</div>
 
+
+<div class="stat">
+
+<div class="stat-title">
+عدد الصفوف
+</div>
+
+<div
+    id="gradesCount"
+    class="stat-number"
+>
+0
+</div>
+
+</div>
 
 </section>
 
-
-<!-- =====================================================
-     SEARCH
-===================================================== -->
 
 <section class="controls">
 
+<div class="controls-grid">
 
-    <div class="controls-grid">
+<input
+    id="searchInput"
+    type="search"
+    placeholder="ابحث باسم الطالب أو الهاتف..."
+>
 
+<select id="gradeFilter">
 
-        <input
-            type="search"
-            id="searchInput"
-            placeholder="ابحث باسم الطالب أو رقم الهاتف..."
-            autocomplete="off"
-        >
+<option value="">
+كل الصفوف
+</option>
 
+<option value="أولى إعدادي">
+أولى إعدادي
+</option>
 
-        <select id="gradeFilter">
+<option value="ثانية إعدادي">
+ثانية إعدادي
+</option>
 
-            <option value="">
-                كل الصفوف
-            </option>
+<option value="ثالثة إعدادي">
+ثالثة إعدادي
+</option>
 
-            <option value="أولى إعدادي">
-                أولى إعدادي
-            </option>
+<option value="أولى ثانوي">
+أولى ثانوي
+</option>
 
-            <option value="ثانية إعدادي">
-                ثانية إعدادي
-            </option>
+<option value="ثانية ثانوي">
+ثانية ثانوي
+</option>
 
-            <option value="ثالثة إعدادي">
-                ثالثة إعدادي
-            </option>
+<option value="ثالثة ثانوي">
+ثالثة ثانوي
+</option>
 
-            <option value="أولى ثانوي">
-                أولى ثانوي
-            </option>
+</select>
 
-            <option value="ثانية ثانوي">
-                ثانية ثانوي
-            </option>
-
-            <option value="ثالثة ثانوي">
-                ثالثة ثانوي
-            </option>
-
-        </select>
-
-
-    </div>
-
+</div>
 
 </section>
 
 
-<!-- =====================================================
-     TABLE
-===================================================== -->
-
 <section class="table-box">
-
 
 <div class="table-wrapper">
 
-
 <table>
-
 
 <thead>
 
 <tr>
 
-    <th>
-        الطالب
-    </th>
-
-    <th>
-        الهاتف
-    </th>
-
-    <th>
-        ولي الأمر
-    </th>
-
-    <th>
-        الصف
-    </th>
-
-    <th>
-        المحافظة
-    </th>
-
-    <th>
-        المدينة
-    </th>
-
-    <th>
-        المدرسة
-    </th>
-
-    <th>
-        التسجيل
-    </th>
-
-    <th>
-        إدارة
-    </th>
+<th>الطالب</th>
+<th>الهاتف</th>
+<th>ولي الأمر</th>
+<th>الصف</th>
+<th>المحافظة</th>
+<th>المدينة</th>
+<th>المدرسة</th>
+<th>التسجيل</th>
+<th>إدارة</th>
 
 </tr>
 
 </thead>
 
-
 <tbody id="studentsTable"></tbody>
 
-
 </table>
-
 
 </div>
 
@@ -1116,22 +745,18 @@ footer span{
 <div
     id="emptyState"
     class="empty"
-    style="display:none;"
+    style="display:none"
 >
 
-    <div class="empty-icon">
-        👨‍🎓
-    </div>
+👨‍🎓
 
-    <div>
-        لا يوجد طلاب لعرضهم.
-    </div>
+<br><br>
+
+لا يوجد طلاب لعرضهم.
 
 </div>
 
-
 </section>
-
 
 </div>
 
@@ -1146,824 +771,260 @@ footer span{
 
 </footer>
 
-
 </div>
 
-
-<!-- =====================================================
-     SUPABASE
-===================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script src="../supabase.js"></script>
+
+<script src="admin-auth.js"></script>
 
 
 <script>
 
 "use strict";
 
-
-/* =====================================================
-   GLOBAL
-===================================================== */
-
-let supabaseClient = null;
-
-let allStudents = [];
-
-
-/* =====================================================
-   ELEMENTS
-===================================================== */
+let client = null;
+let students = [];
 
 const loadingScreen =
-    document.getElementById(
-        "loadingScreen"
-    );
+    document.getElementById("loadingScreen");
 
 const loadingText =
-    document.getElementById(
-        "loadingText"
-    );
+    document.getElementById("loadingText");
 
-const loadingError =
-    document.getElementById(
-        "loadingError"
-    );
+const errorBox =
+    document.getElementById("errorBox");
 
 const adminApp =
-    document.getElementById(
-        "adminApp"
-    );
+    document.getElementById("adminApp");
 
-const studentsTable =
-    document.getElementById(
-        "studentsTable"
-    );
+const table =
+    document.getElementById("studentsTable");
 
-const emptyState =
-    document.getElementById(
-        "emptyState"
-    );
+const empty =
+    document.getElementById("emptyState");
 
-const searchInput =
-    document.getElementById(
-        "searchInput"
-    );
+const search =
+    document.getElementById("searchInput");
 
-const gradeFilter =
-    document.getElementById(
-        "gradeFilter"
-    );
+const grade =
+    document.getElementById("gradeFilter");
 
 const message =
-    document.getElementById(
-        "message"
-    );
+    document.getElementById("message");
 
 
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
+function esc(value){
 
-function escapeHtml(value){
-
-    if(
-        value === null ||
-        value === undefined
-    ){
-
+    if(value === null || value === undefined){
         return "";
-
     }
-
 
     return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 }
 
 
-/* =====================================================
-   DATE
-===================================================== */
+function showMessage(text,type){
 
-function formatDate(date){
-
-    if(!date){
-
-        return "—";
-
-    }
-
-
-    try{
-
-        return new Date(
-            date
-        ).toLocaleDateString(
-            "ar-EG",
-            {
-                year:"numeric",
-                month:"short",
-                day:"numeric"
-            }
-        );
-
-    }
-
-    catch{
-
-        return "—";
-
-    }
-
-}
-
-
-/* =====================================================
-   MESSAGE
-===================================================== */
-
-function showMessage(
-    text,
-    type
-){
-
-    message.textContent =
-        text;
-
+    message.textContent = text;
     message.className =
         "message " + type;
 
-
-    setTimeout(
-        function(){
-
-            message.className =
-                "message";
-
-        },
-        4000
-    );
-
+    setTimeout(() => {
+        message.className =
+            "message";
+    },4000);
 }
 
 
-/* =====================================================
-   LOADING ERROR
-===================================================== */
+function dateFormat(value){
 
-function showLoadingError(
-    text
-){
-
-    const loader =
-        document.querySelector(
-            ".loader"
-        );
-
-
-    if(loader){
-
-        loader.style.display =
-            "none";
-
+    if(!value){
+        return "—";
     }
 
+    try{
 
-    loadingText.style.display =
-        "none";
+        return new Date(value)
+            .toLocaleDateString("ar-EG");
 
+    }catch{
 
-    loadingError.style.display =
-        "block";
-
-
-    loadingError.innerHTML = `
-
-        <strong>
-            حدث خطأ
-        </strong>
-
-        <br><br>
-
-        ${escapeHtml(text)}
-
-        <br><br>
-
-        <button
-            class="retry-btn"
-            onclick="location.reload()"
-        >
-            إعادة المحاولة
-        </button>
-
-        <br><br>
-
-        <a
-            href="index.html"
-            style="
-                color:#a990ff;
-                text-decoration:none;
-            "
-        >
-            العودة إلى لوحة الإدارة
-        </a>
-
-    `;
-
+        return "—";
+    }
 }
 
-
-/* =====================================================
-   GET SUPABASE
-===================================================== */
-
-async function getSupabase(){
-
-    /*
-       نستخدم نفس supabaseClient
-       الموجود في ../supabase.js
-    */
-
-    if(
-        window.supabaseClient &&
-        window.supabaseClient.auth
-    ){
-
-        return window.supabaseClient;
-
-    }
-
-
-    /*
-       انتظار تحميل الملف
-    */
-
-    for(
-        let i = 0;
-        i < 50;
-        i++
-    ){
-
-        if(
-            window.supabaseClient &&
-            window.supabaseClient.auth
-        ){
-
-            return window.supabaseClient;
-
-        }
-
-
-        await new Promise(
-            function(resolve){
-
-                setTimeout(
-                    resolve,
-                    100
-                );
-
-            }
-        );
-
-    }
-
-
-    throw new Error(
-        "Supabase غير متصل. تأكد من ملف ../supabase.js"
-    );
-
-}
-
-
-/* =====================================================
-   CHECK ADMIN
-===================================================== */
-
-async function checkAdmin(){
-
-    loadingText.textContent =
-        "جاري الاتصال بـ Supabase...";
-
-
-    supabaseClient =
-        await getSupabase();
-
-
-    loadingText.textContent =
-        "جاري التحقق من تسجيل الدخول...";
-
-
-    /*
-       نفس الطريقة التي تعمل بها
-       لوحة الإدارة الرئيسية
-    */
-
-    const {
-        data,
-        error
-    } =
-        await supabaseClient
-            .auth
-            .getUser();
-
-
-    if(error){
-
-        console.error(
-            "GET USER ERROR:",
-            error
-        );
-
-
-        throw new Error(
-            "تعذر التحقق من تسجيل الدخول: " +
-            error.message
-        );
-
-    }
-
-
-    if(
-        !data ||
-        !data.user
-    ){
-
-        window.location.replace(
-            "../auth.html"
-        );
-
-        return false;
-
-    }
-
-
-    const user =
-        data.user;
-
-
-    console.log(
-        "CURRENT USER ID:",
-        user.id
-    );
-
-
-    loadingText.textContent =
-        "جاري التحقق من صلاحيات الأدمن...";
-
-
-    /*
-       جدول الصلاحيات:
-       user_roles
-
-       الأعمدة:
-       user_id
-       role
-    */
-
-    const {
-        data: roleData,
-        error: roleError
-    } =
-        await supabaseClient
-
-            .from(
-                "user_roles"
-            )
-
-            .select(
-                "user_id, role"
-            )
-
-            .eq(
-                "user_id",
-                user.id
-            )
-
-            .maybeSingle();
-
-
-    console.log(
-        "ROLE DATA:",
-        roleData
-    );
-
-
-    console.log(
-        "ROLE ERROR:",
-        roleError
-    );
-
-
-    if(roleError){
-
-        throw new Error(
-            "خطأ في قراءة صلاحية الأدمن: " +
-            roleError.message
-        );
-
-    }
-
-
-    if(!roleData){
-
-        throw new Error(
-            "لم يتم العثور على صلاحية Admin لهذا الحساب."
-        );
-
-    }
-
-
-    if(
-        String(
-            roleData.role
-        ).toLowerCase() !==
-        "admin"
-    ){
-
-        throw new Error(
-            "هذا الحساب ليس Admin."
-        );
-
-    }
-
-
-    console.log(
-        "ADMIN VERIFIED"
-    );
-
-
-    return true;
-
-}
-
-
-/* =====================================================
-   LOAD STUDENTS
-===================================================== */
 
 async function loadStudents(){
 
     loadingText.textContent =
         "جاري تحميل الطلاب...";
 
-
     const {
         data,
         error
-    } =
-        await supabaseClient
-
-            .from(
-                "students"
-            )
-
-            .select("*")
-
-            .order(
-                "created_at",
-                {
-                    ascending:false
-                }
-            );
-
-
-    if(error){
-
-        console.error(
-            "STUDENTS ERROR:",
-            error
+    } = await client
+        .from("students")
+        .select(`
+            id,
+            full_name,
+            phone,
+            parent_phone,
+            grade,
+            governorate,
+            city,
+            school,
+            photo_url,
+            created_at
+        `)
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
         );
 
+    if(error){
 
         throw new Error(
             "تعذر تحميل الطلاب: " +
             error.message
         );
-
     }
 
-
-    allStudents =
+    students =
         Array.isArray(data)
             ? data
             : [];
 
-
-    renderStudents(
-        allStudents
-    );
-
-
-    updateStats(
-        allStudents,
-        allStudents
-    );
-
+    render(students);
 }
 
 
-/* =====================================================
-   RENDER STUDENTS
-===================================================== */
+function render(list){
 
-function renderStudents(
-    students
-){
+    table.innerHTML = "";
 
-    studentsTable.innerHTML =
-        "";
+    empty.style.display =
+        list.length
+            ? "none"
+            : "block";
 
 
-    if(
-        !students ||
-        students.length === 0
-    ){
+    list.forEach(student => {
 
-        emptyState.style.display =
-            "block";
+        const tr =
+            document.createElement("tr");
 
-        return;
-
-    }
-
-
-    emptyState.style.display =
-        "none";
-
-
-    students.forEach(
-        function(student){
-
-            const tr =
-                document.createElement(
-                    "tr"
-                );
-
-
-            const photo =
-                student.photo_url
-                    ? escapeHtml(
-                        student.photo_url
-                    )
-                    : "";
-
-
-            let photoHTML;
-
-
-            if(photo){
-
-                photoHTML = `
-
+        const photo =
+            student.photo_url
+                ? `
                     <img
-                        src="${photo}"
+                        src="${esc(student.photo_url)}"
                         class="student-photo"
-                        alt="صورة الطالب"
                         onerror="
-                            this.style.display='none';
-                            this.nextElementSibling.style.display='flex';
+                            this.outerHTML='<div class=\\'student-photo\\'>👨‍🎓</div>'
                         "
                     >
-
-                    <div
-                        class="student-photo"
-                        style="
-                            display:none;
-                            align-items:center;
-                            justify-content:center;
-                            font-size:18px;
-                        "
-                    >
+                `
+                : `
+                    <div class="student-photo">
                         👨‍🎓
                     </div>
-
                 `;
 
-            }
 
-            else{
+        tr.innerHTML = `
 
-                photoHTML = `
+<td>
 
-                    <div
-                        class="student-photo"
-                        style="
-                            display:flex;
-                            align-items:center;
-                            justify-content:center;
-                            font-size:18px;
-                        "
-                    >
-                        👨‍🎓
-                    </div>
+<div class="student-cell">
 
-                `;
+${photo}
 
-            }
+<div>
 
+<div class="student-name">
+${esc(student.full_name || "بدون اسم")}
+</div>
 
-            const name =
-                student.full_name ||
-                student.name ||
-                "بدون اسم";
+<div class="student-id">
+${esc(student.id)}
+</div>
 
+</div>
 
-            const parentPhone =
-                student.parent_phone ||
-                student.parentPhone ||
-                "—";
+</div>
 
+</td>
 
-            const grade =
-                student.grade ||
-                student.class ||
-                "غير محدد";
+<td>
+${esc(student.phone || "—")}
+</td>
 
+<td>
+${esc(student.parent_phone || "—")}
+</td>
 
-            const governorate =
-                student.governorate ||
-                student.province ||
-                "—";
+<td>
 
+<span class="grade-badge">
+${esc(student.grade || "غير محدد")}
+</span>
 
-            const city =
-                student.city ||
-                "—";
+</td>
 
+<td>
+${esc(student.governorate || "—")}
+</td>
 
-            const school =
-                student.school ||
-                "—";
+<td>
+${esc(student.city || "—")}
+</td>
 
+<td>
+${esc(student.school || "—")}
+</td>
 
-            tr.innerHTML = `
+<td>
+${dateFormat(student.created_at)}
+</td>
 
-                <td>
+<td>
 
-                    <div class="student-cell">
+<button
+    class="delete-btn"
+    data-id="${esc(student.id)}"
+>
+حذف
+</button>
 
-                        ${photoHTML}
+</td>
 
-                        <div>
+`;
 
-                            <div class="student-name">
+        table.appendChild(tr);
 
-                                ${escapeHtml(
-                                    name
-                                )}
+    });
 
-                            </div>
 
-                            <div class="student-id">
-
-                                ${escapeHtml(
-                                    student.id || ""
-                                )}
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </td>
-
-
-                <td>
-
-                    ${escapeHtml(
-                        student.phone || "—"
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    ${escapeHtml(
-                        parentPhone
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    <span class="grade-badge">
-
-                        ${escapeHtml(
-                            grade
-                        )}
-
-                    </span>
-
-                </td>
-
-
-                <td>
-
-                    ${escapeHtml(
-                        governorate
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    ${escapeHtml(
-                        city
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    ${escapeHtml(
-                        school
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    ${formatDate(
-                        student.created_at
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    <button
-                        class="delete-btn"
-                        type="button"
-                        data-id="${escapeHtml(
-                            student.id
-                        )}"
-                    >
-                        حذف
-                    </button>
-
-                </td>
-
-            `;
-
-
-            studentsTable.appendChild(
-                tr
-            );
-
-        }
-    );
-
+    updateStats(list);
 }
 
 
-/* =====================================================
-   STATS
-===================================================== */
-
-function updateStats(
-    all,
-    visible
-){
+function updateStats(visible){
 
     document.getElementById(
         "totalStudents"
     ).textContent =
-        all.length;
+        students.length;
 
 
     document.getElementById(
@@ -1974,22 +1035,9 @@ function updateStats(
 
     const grades =
         new Set(
-
-            all
-
-                .map(
-                    function(student){
-
-                        return (
-                            student.grade ||
-                            student.class
-                        );
-
-                    }
-                )
-
+            students
+                .map(x => x.grade)
                 .filter(Boolean)
-
         );
 
 
@@ -1997,144 +1045,82 @@ function updateStats(
         "gradesCount"
     ).textContent =
         grades.size;
-
 }
 
 
-/* =====================================================
-   FILTER
-===================================================== */
+function filter(){
 
-function filterStudents(){
-
-    const search =
-        searchInput.value
+    const q =
+        search.value
             .trim()
             .toLowerCase();
 
-
-    const grade =
-        gradeFilter.value;
+    const selected =
+        grade.value;
 
 
     const filtered =
-        allStudents.filter(
-            function(student){
+        students.filter(student => {
 
-                const name =
-                    String(
-                        student.full_name ||
-                        student.name ||
-                        ""
-                    ).toLowerCase();
+            const name =
+                String(
+                    student.full_name || ""
+                ).toLowerCase();
 
+            const phone =
+                String(
+                    student.phone || ""
+                ).toLowerCase();
 
-                const phone =
-                    String(
-                        student.phone ||
-                        ""
-                    ).toLowerCase();
-
-
-                const parentPhone =
-                    String(
-                        student.parent_phone ||
-                        student.parentPhone ||
-                        ""
-                    ).toLowerCase();
+            const parent =
+                String(
+                    student.parent_phone || ""
+                ).toLowerCase();
 
 
-                const studentGrade =
-                    student.grade ||
-                    student.class ||
-                    "";
+            const searchMatch =
+                !q ||
+                name.includes(q) ||
+                phone.includes(q) ||
+                parent.includes(q);
 
 
-                const matchesSearch =
-
-                    !search ||
-
-                    name.includes(
-                        search
-                    ) ||
-
-                    phone.includes(
-                        search
-                    ) ||
-
-                    parentPhone.includes(
-                        search
-                    );
+            const gradeMatch =
+                !selected ||
+                student.grade === selected;
 
 
-                const matchesGrade =
-
-                    !grade ||
-
-                    studentGrade ===
-                    grade;
-
-
-                return (
-                    matchesSearch &&
-                    matchesGrade
-                );
-
-            }
-        );
+            return (
+                searchMatch &&
+                gradeMatch
+            );
+        });
 
 
-    renderStudents(
-        filtered
-    );
-
-
-    updateStats(
-        allStudents,
-        filtered
-    );
-
+    render(filtered);
 }
 
 
-/* =====================================================
-   DELETE STUDENT
-===================================================== */
+async function deleteStudent(id){
 
-async function deleteStudent(
-    id
-){
+    const student =
+        students.find(
+            x => String(x.id) === String(id)
+        );
 
-    if(!id){
+
+    if(!student){
         return;
     }
 
 
-    const student =
-        allStudents.find(
-            function(item){
-
-                return item.id === id;
-
-            }
-        );
-
-
-    const name =
-        student?.full_name ||
-        student?.name ||
-        "هذا الطالب";
-
-
-    const confirmed =
-        confirm(
-            "هل أنت متأكد من حذف الطالب:\n" +
-            name +
+    if(
+        !confirm(
+            "هل تريد حذف الطالب:\n" +
+            student.full_name +
             " ؟"
-        );
-
-
-    if(!confirmed){
+        )
+    ){
         return;
     }
 
@@ -2149,41 +1135,26 @@ async function deleteStudent(
 
         const {
             error
-        } =
-            await supabaseClient
-
-                .from(
-                    "students"
-                )
-
-                .delete()
-
-                .eq(
-                    "id",
-                    id
-                );
+        } = await client
+            .from("students")
+            .delete()
+            .eq("id",id);
 
 
         if(error){
-
-            throw new Error(
-                error.message
-            );
-
+            throw error;
         }
 
 
-        allStudents =
-            allStudents.filter(
-                function(item){
-
-                    return item.id !== id;
-
-                }
+        students =
+            students.filter(
+                x =>
+                    String(x.id) !==
+                    String(id)
             );
 
 
-        filterStudents();
+        filter();
 
 
         showMessage(
@@ -2192,179 +1163,115 @@ async function deleteStudent(
         );
 
     }
-
     catch(error){
 
-        console.error(
-            "DELETE ERROR:",
-            error
-        );
-
+        console.error(error);
 
         showMessage(
-            "فشل حذف الطالب: " +
+            "فشل الحذف: " +
             error.message,
             "error"
         );
-
     }
-
 }
 
 
-/* =====================================================
-   TABLE ACTION
-===================================================== */
-
-studentsTable.addEventListener(
+table.addEventListener(
     "click",
-    function(event){
+    event => {
 
         const button =
             event.target.closest(
                 ".delete-btn"
             );
 
-
         if(!button){
             return;
         }
 
-
         deleteStudent(
             button.dataset.id
         );
-
     }
 );
 
 
-/* =====================================================
-   SEARCH EVENTS
-===================================================== */
-
-searchInput.addEventListener(
+search.addEventListener(
     "input",
-    filterStudents
+    filter
 );
 
-
-gradeFilter.addEventListener(
+grade.addEventListener(
     "change",
-    filterStudents
+    filter
 );
 
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-document
-    .getElementById(
-        "logoutBtn"
-    )
-    .addEventListener(
-        "click",
-        async function(){
-
-            try{
-
-                await supabaseClient
-                    .auth
-                    .signOut();
-
-            }
-
-            catch(error){
-
-                console.error(
-                    "LOGOUT ERROR:",
-                    error
-                );
-
-            }
-
-
-            window.location.replace(
-                "../auth.html"
-            );
-
-        }
-    );
-
-
-/* =====================================================
-   START
-===================================================== */
 
 (async function(){
 
     try{
 
-        /*
-           1 - التحقق من Supabase
-           2 - التحقق من المستخدم
-           3 - التحقق من admin
-           4 - تحميل الطلاب
-        */
+        const admin =
+            await ADMIN_AUTH.init();
 
-        const isAdmin =
-            await checkAdmin();
-
-
-        if(!isAdmin){
-
+        if(!admin){
             return;
-
         }
 
+        client =
+            admin.client;
 
         await loadStudents();
-
-
-        /*
-           إخفاء شاشة التحميل
-        */
 
         loadingScreen.style.display =
             "none";
 
-
-        /*
-           إظهار لوحة الطلاب
-        */
-
         adminApp.style.display =
             "block";
 
-
-        console.log(
-            "================================"
-        );
-
-        console.log(
-            "STUDENTS ADMIN PAGE READY"
-        );
-
-        console.log(
-            "================================"
-        );
-
     }
-
     catch(error){
 
         console.error(
-            "STUDENTS PAGE ERROR:",
+            "STUDENTS ERROR:",
             error
         );
 
+        document.querySelector(
+            ".loader"
+        ).style.display =
+            "none";
 
-        showLoadingError(
-            error.message ||
-            "حدث خطأ غير معروف."
-        );
+        loadingText.style.display =
+            "none";
 
+        errorBox.style.display =
+            "block";
+
+        errorBox.innerHTML =
+            `
+            <strong>
+                حدث خطأ
+            </strong>
+
+            <br><br>
+
+            ${esc(error.message)}
+
+            <br><br>
+
+            <button
+                onclick="location.reload()"
+                style="
+                    border:0;
+                    padding:10px 18px;
+                    border-radius:10px;
+                    cursor:pointer;
+                "
+            >
+                إعادة المحاولة
+            </button>
+            `;
     }
 
 })();
@@ -2372,5 +1279,4 @@ document
 </script>
 
 </body>
-
 </html>
