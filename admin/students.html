@@ -5,11 +5,18 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>الخوارزمي | إدارة الطلاب</title>
 
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
 
 *{
     margin:0;
@@ -28,14 +35,17 @@ body{
         rgba(116,72,232,.18),
         transparent 30%
     ),
+
     radial-gradient(
         circle at 90% 80%,
         rgba(49,84,223,.14),
         transparent 32%
     ),
+
     #050509;
 
     color:#fff;
+
 }
 
 button,
@@ -52,6 +62,7 @@ select{
 #loadingScreen{
 
     position:fixed;
+
     inset:0;
 
     z-index:99999;
@@ -59,7 +70,9 @@ select{
     background:#050509;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     flex-direction:column;
@@ -69,6 +82,7 @@ select{
     padding:25px;
 
     text-align:center;
+
 }
 
 .loader{
@@ -84,6 +98,7 @@ select{
     border-top-color:#7952ed;
 
     animation:spin 1s linear infinite;
+
 }
 
 @keyframes spin{
@@ -114,15 +129,19 @@ select{
 
     border-radius:18px;
 
-    background:rgba(255,60,80,.08);
+    background:
+    rgba(255,60,80,.08);
 
-    border:1px solid rgba(255,60,80,.25);
+    border:
+    1px solid
+    rgba(255,60,80,.25);
 
     color:#ff8792;
 
     line-height:1.9;
 
     word-break:break-word;
+
 }
 
 .retry-btn{
@@ -145,6 +164,7 @@ select{
         #7448e8,
         #3154df
     );
+
 }
 
 
@@ -181,6 +201,7 @@ header{
     border-bottom:
     1px solid
     rgba(255,255,255,.07);
+
 }
 
 .header-inner{
@@ -198,6 +219,7 @@ header{
     justify-content:space-between;
 
     gap:15px;
+
 }
 
 .logo{
@@ -218,6 +240,7 @@ header{
     background-clip:text;
 
     color:transparent;
+
 }
 
 .header-actions{
@@ -227,6 +250,7 @@ header{
     align-items:center;
 
     gap:10px;
+
 }
 
 .admin-badge{
@@ -245,6 +269,7 @@ header{
     rgba(116,72,232,.22);
 
     font-size:12px;
+
 }
 
 .back-btn{
@@ -265,6 +290,7 @@ header{
     rgba(255,255,255,.08);
 
     font-size:13px;
+
 }
 
 .logout-btn{
@@ -285,6 +311,7 @@ header{
     border:
     1px solid
     rgba(255,70,70,.18);
+
 }
 
 
@@ -297,6 +324,7 @@ header{
     width:min(1200px,94%);
 
     margin:auto;
+
 }
 
 
@@ -307,6 +335,7 @@ header{
 .page-top{
 
     padding:40px 0 25px;
+
 }
 
 .page-top h1{
@@ -315,6 +344,7 @@ header{
     clamp(28px,5vw,42px);
 
     margin-bottom:10px;
+
 }
 
 .page-top p{
@@ -322,6 +352,7 @@ header{
     color:#888;
 
     line-height:1.8;
+
 }
 
 
@@ -339,6 +370,7 @@ header{
     gap:15px;
 
     margin-bottom:25px;
+
 }
 
 .stat{
@@ -353,6 +385,7 @@ header{
     border:
     1px solid
     rgba(255,255,255,.08);
+
 }
 
 .stat-title{
@@ -362,6 +395,7 @@ header{
     font-size:13px;
 
     margin-bottom:8px;
+
 }
 
 .stat-number{
@@ -371,6 +405,7 @@ header{
     font-weight:900;
 
     color:#cbbdff;
+
 }
 
 
@@ -392,6 +427,7 @@ header{
     rgba(255,255,255,.07);
 
     margin-bottom:20px;
+
 }
 
 .controls-grid{
@@ -402,6 +438,7 @@ header{
     1fr 220px;
 
     gap:12px;
+
 }
 
 input,
@@ -409,7 +446,9 @@ select{
 
     width:100%;
 
-    border:1px solid #29293a;
+    border:
+    1px solid
+    #29293a;
 
     background:#090910;
 
@@ -422,6 +461,7 @@ select{
     outline:none;
 
     font-size:14px;
+
 }
 
 input:focus,
@@ -432,6 +472,7 @@ select:focus{
     box-shadow:
     0 0 15px
     rgba(116,72,232,.15);
+
 }
 
 
@@ -453,6 +494,7 @@ select:focus{
     rgba(255,255,255,.07);
 
     margin-bottom:40px;
+
 }
 
 .table-wrapper{
@@ -460,6 +502,7 @@ select:focus{
     width:100%;
 
     overflow-x:auto;
+
 }
 
 table{
@@ -469,12 +512,14 @@ table{
     border-collapse:collapse;
 
     min-width:900px;
+
 }
 
 thead{
 
     background:
     rgba(116,72,232,.08);
+
 }
 
 th{
@@ -488,6 +533,7 @@ th{
     font-size:13px;
 
     white-space:nowrap;
+
 }
 
 td{
@@ -503,12 +549,14 @@ td{
     font-size:13px;
 
     white-space:nowrap;
+
 }
 
 tr:hover td{
 
     background:
     rgba(255,255,255,.025);
+
 }
 
 
@@ -523,6 +571,7 @@ tr:hover td{
     align-items:center;
 
     gap:12px;
+
 }
 
 .student-photo{
@@ -540,6 +589,7 @@ tr:hover td{
     rgba(116,72,232,.3);
 
     background:#111;
+
 }
 
 .student-name{
@@ -549,6 +599,7 @@ tr:hover td{
     color:#fff;
 
     margin-bottom:4px;
+
 }
 
 .student-id{
@@ -561,7 +612,7 @@ tr:hover td{
 
 
 /* =====================================================
-   BADGES
+   BADGE
 ===================================================== */
 
 .grade-badge{
@@ -580,11 +631,12 @@ tr:hover td{
     border:
     1px solid
     rgba(116,72,232,.18);
+
 }
 
 
 /* =====================================================
-   ACTIONS
+   DELETE
 ===================================================== */
 
 .delete-btn{
@@ -605,12 +657,14 @@ tr:hover td{
     border:
     1px solid
     rgba(255,60,80,.15);
+
 }
 
 .delete-btn:hover{
 
     background:
     rgba(255,60,80,.15);
+
 }
 
 
@@ -625,6 +679,7 @@ tr:hover td{
     text-align:center;
 
     color:#777;
+
 }
 
 .empty-icon{
@@ -632,6 +687,7 @@ tr:hover td{
     font-size:50px;
 
     margin-bottom:15px;
+
 }
 
 
@@ -654,6 +710,7 @@ tr:hover td{
     font-size:13px;
 
     line-height:1.7;
+
 }
 
 .message.success{
@@ -668,6 +725,7 @@ tr:hover td{
     border:
     1px solid
     rgba(40,200,120,.2);
+
 }
 
 .message.error{
@@ -682,6 +740,7 @@ tr:hover td{
     border:
     1px solid
     rgba(255,60,80,.2);
+
 }
 
 
@@ -702,11 +761,13 @@ footer{
     rgba(255,255,255,.06);
 
     font-size:12px;
+
 }
 
 footer span{
 
     color:#9b7cff;
+
 }
 
 
@@ -719,41 +780,49 @@ footer span{
     .admin-badge{
 
         display:none;
+
     }
 
     .header-inner{
 
         height:65px;
+
     }
 
     header{
 
         height:65px;
+
     }
 
     .logo{
 
         font-size:19px;
+
     }
 
     .back-btn{
 
         display:none;
+
     }
 
     .stats{
 
         grid-template-columns:1fr;
+
     }
 
     .controls-grid{
 
         grid-template-columns:1fr;
+
     }
 
     .page-top{
 
         padding-top:30px;
+
     }
 
 }
@@ -774,7 +843,9 @@ footer span{
     <div class="loader"></div>
 
     <div id="loadingText">
+
         جاري التحقق من صلاحيات الأدمن...
+
     </div>
 
     <div id="loadingError"></div>
@@ -793,15 +864,19 @@ footer span{
 
 <div class="header-inner">
 
+
     <div class="logo">
         الخوارزمي
     </div>
 
+
     <div class="header-actions">
+
 
         <div class="admin-badge">
             👑 لوحة الإدارة
         </div>
+
 
         <a
             href="index.html"
@@ -809,6 +884,7 @@ footer span{
         >
             لوحة الإدارة
         </a>
+
 
         <button
             id="logoutBtn"
@@ -818,12 +894,18 @@ footer span{
             خروج
         </button>
 
+
     </div>
+
 
 </div>
 
 </header>
 
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main>
 
@@ -843,10 +925,6 @@ footer span{
 </section>
 
 
-<!-- =====================================================
-     MESSAGE
-===================================================== -->
-
 <div
     id="message"
     class="message"
@@ -858,6 +936,7 @@ footer span{
 ===================================================== -->
 
 <section class="stats">
+
 
     <div class="stat">
 
@@ -906,6 +985,7 @@ footer span{
 
     </div>
 
+
 </section>
 
 
@@ -915,7 +995,9 @@ footer span{
 
 <section class="controls">
 
+
     <div class="controls-grid">
+
 
         <input
             type="search"
@@ -923,6 +1005,7 @@ footer span{
             placeholder="ابحث باسم الطالب أو رقم الهاتف..."
             autocomplete="off"
         >
+
 
         <select id="gradeFilter">
 
@@ -956,7 +1039,9 @@ footer span{
 
         </select>
 
+
     </div>
+
 
 </section>
 
@@ -967,9 +1052,12 @@ footer span{
 
 <section class="table-box">
 
+
 <div class="table-wrapper">
 
+
 <table>
+
 
 <thead>
 
@@ -1015,11 +1103,12 @@ footer span{
 
 </thead>
 
-<tbody id="studentsTable">
 
-</tbody>
+<tbody id="studentsTable"></tbody>
+
 
 </table>
+
 
 </div>
 
@@ -1039,6 +1128,7 @@ footer span{
     </div>
 
 </div>
+
 
 </section>
 
@@ -1075,7 +1165,7 @@ footer span{
 
 
 /* =====================================================
-   GLOBALS
+   GLOBAL
 ===================================================== */
 
 let supabaseClient = null;
@@ -1088,60 +1178,204 @@ let allStudents = [];
 ===================================================== */
 
 const loadingScreen =
-    document.getElementById("loadingScreen");
+    document.getElementById(
+        "loadingScreen"
+    );
 
 const loadingText =
-    document.getElementById("loadingText");
+    document.getElementById(
+        "loadingText"
+    );
 
 const loadingError =
-    document.getElementById("loadingError");
+    document.getElementById(
+        "loadingError"
+    );
 
 const adminApp =
-    document.getElementById("adminApp");
+    document.getElementById(
+        "adminApp"
+    );
 
 const studentsTable =
-    document.getElementById("studentsTable");
+    document.getElementById(
+        "studentsTable"
+    );
 
 const emptyState =
-    document.getElementById("emptyState");
+    document.getElementById(
+        "emptyState"
+    );
 
 const searchInput =
-    document.getElementById("searchInput");
+    document.getElementById(
+        "searchInput"
+    );
 
 const gradeFilter =
-    document.getElementById("gradeFilter");
+    document.getElementById(
+        "gradeFilter"
+    );
 
 const message =
-    document.getElementById("message");
+    document.getElementById(
+        "message"
+    );
 
 
 /* =====================================================
-   ERROR SCREEN
+   ESCAPE HTML
 ===================================================== */
 
-function showLoadingError(text){
+function escapeHtml(value){
 
-    const loader =
-        document.querySelector(".loader");
+    if(
+        value === null ||
+        value === undefined
+    ){
 
-    if(loader){
-        loader.style.display = "none";
+        return "";
+
     }
 
-    loadingText.style.display = "none";
 
-    loadingError.style.display = "block";
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function formatDate(date){
+
+    if(!date){
+
+        return "—";
+
+    }
+
+
+    try{
+
+        return new Date(
+            date
+        ).toLocaleDateString(
+            "ar-EG",
+            {
+                year:"numeric",
+                month:"short",
+                day:"numeric"
+            }
+        );
+
+    }
+
+    catch{
+
+        return "—";
+
+    }
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(
+    text,
+    type
+){
+
+    message.textContent =
+        text;
+
+    message.className =
+        "message " + type;
+
+
+    setTimeout(
+        function(){
+
+            message.className =
+                "message";
+
+        },
+        4000
+    );
+
+}
+
+
+/* =====================================================
+   LOADING ERROR
+===================================================== */
+
+function showLoadingError(
+    text
+){
+
+    const loader =
+        document.querySelector(
+            ".loader"
+        );
+
+
+    if(loader){
+
+        loader.style.display =
+            "none";
+
+    }
+
+
+    loadingText.style.display =
+        "none";
+
+
+    loadingError.style.display =
+        "block";
+
 
     loadingError.innerHTML = `
+
         <strong>
             حدث خطأ
         </strong>
 
-        <br>
+        <br><br>
 
         ${escapeHtml(text)}
 
-        <br>
+        <br><br>
 
         <button
             class="retry-btn"
@@ -1161,102 +1395,76 @@ function showLoadingError(text){
         >
             العودة إلى لوحة الإدارة
         </a>
+
     `;
-}
-
-
-/* =====================================================
-   HTML ESCAPE
-===================================================== */
-
-function escapeHtml(value){
-
-    if(value === null || value === undefined){
-        return "";
-    }
-
-    return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-}
-
-
-/* =====================================================
-   DATE
-===================================================== */
-
-function formatDate(date){
-
-    if(!date){
-        return "—";
-    }
-
-    try{
-
-        return new Date(date).toLocaleDateString(
-            "ar-EG",
-            {
-                year:"numeric",
-                month:"short",
-                day:"numeric"
-            }
-        );
-
-    }
-    catch{
-
-        return "—";
-
-    }
 
 }
 
 
 /* =====================================================
-   MESSAGE
-===================================================== */
-
-function showMessage(text,type){
-
-    message.textContent = text;
-
-    message.className =
-        "message " + type;
-
-    setTimeout(() => {
-
-        message.className =
-            "message";
-
-    },4000);
-
-}
-
-
-/* =====================================================
-   CHECK SUPABASE
+   GET SUPABASE
 ===================================================== */
 
 async function getSupabase(){
 
-    if(window.supabaseClient){
+    /*
+       نستخدم نفس supabaseClient
+       الموجود في ../supabase.js
+    */
+
+    if(
+        window.supabaseClient &&
+        window.supabaseClient.auth
+    ){
 
         return window.supabaseClient;
 
     }
 
+
+    /*
+       انتظار تحميل الملف
+    */
+
+    for(
+        let i = 0;
+        i < 50;
+        i++
+    ){
+
+        if(
+            window.supabaseClient &&
+            window.supabaseClient.auth
+        ){
+
+            return window.supabaseClient;
+
+        }
+
+
+        await new Promise(
+            function(resolve){
+
+                setTimeout(
+                    resolve,
+                    100
+                );
+
+            }
+        );
+
+    }
+
+
     throw new Error(
-        "supabaseClient غير موجود. تأكد من ملف ../supabase.js"
+        "Supabase غير متصل. تأكد من ملف ../supabase.js"
     );
 
 }
 
 
 /* =====================================================
-   CHECK LOGIN + ADMIN
+   CHECK ADMIN
 ===================================================== */
 
 async function checkAdmin(){
@@ -1273,26 +1481,39 @@ async function checkAdmin(){
         "جاري التحقق من تسجيل الدخول...";
 
 
+    /*
+       نفس الطريقة التي تعمل بها
+       لوحة الإدارة الرئيسية
+    */
+
     const {
-        data: sessionData,
-        error: sessionError
+        data,
+        error
     } =
-        await supabaseClient.auth.getSession();
+        await supabaseClient
+            .auth
+            .getUser();
 
 
-    if(sessionError){
+    if(error){
+
+        console.error(
+            "GET USER ERROR:",
+            error
+        );
+
 
         throw new Error(
-            "خطأ في جلسة الدخول: " +
-            sessionError.message
+            "تعذر التحقق من تسجيل الدخول: " +
+            error.message
         );
 
     }
 
 
     if(
-        !sessionData ||
-        !sessionData.session
+        !data ||
+        !data.user
     ){
 
         window.location.replace(
@@ -1305,22 +1526,11 @@ async function checkAdmin(){
 
 
     const user =
-        sessionData.session.user;
-
-
-    if(!user){
-
-        window.location.replace(
-            "../auth.html"
-        );
-
-        return false;
-
-    }
+        data.user;
 
 
     console.log(
-        "ADMIN USER ID:",
+        "CURRENT USER ID:",
         user.id
     );
 
@@ -1330,8 +1540,12 @@ async function checkAdmin(){
 
 
     /*
-       مهم:
-       نستخدم user_roles وليس profiles
+       جدول الصلاحيات:
+       user_roles
+
+       الأعمدة:
+       user_id
+       role
     */
 
     const {
@@ -1339,12 +1553,20 @@ async function checkAdmin(){
         error: roleError
     } =
         await supabaseClient
-            .from("user_roles")
-            .select("user_id, role")
+
+            .from(
+                "user_roles"
+            )
+
+            .select(
+                "user_id, role"
+            )
+
             .eq(
                 "user_id",
                 user.id
             )
+
             .maybeSingle();
 
 
@@ -1352,6 +1574,7 @@ async function checkAdmin(){
         "ROLE DATA:",
         roleData
     );
+
 
     console.log(
         "ROLE ERROR:",
@@ -1362,7 +1585,7 @@ async function checkAdmin(){
     if(roleError){
 
         throw new Error(
-            "تعذر قراءة صلاحية الأدمن من user_roles: " +
+            "خطأ في قراءة صلاحية الأدمن: " +
             roleError.message
         );
 
@@ -1372,17 +1595,21 @@ async function checkAdmin(){
     if(!roleData){
 
         throw new Error(
-            "لم يتم العثور على صلاحية لهذا الحساب في user_roles."
+            "لم يتم العثور على صلاحية Admin لهذا الحساب."
         );
 
     }
 
 
-    if(roleData.role !== "admin"){
+    if(
+        String(
+            roleData.role
+        ).toLowerCase() !==
+        "admin"
+    ){
 
         throw new Error(
-            "هذا الحساب ليس Admin. الصلاحية الحالية: " +
-            roleData.role
+            "هذا الحساب ليس Admin."
         );
 
     }
@@ -1413,20 +1640,13 @@ async function loadStudents(){
         error
     } =
         await supabaseClient
-            .from("students")
-            .select(`
-                id,
-                full_name,
-                phone,
-                parent_phone,
-                grade,
-                city,
-                school,
-                governorate,
-                photo_url,
-                created_at,
-                updated_at
-            `)
+
+            .from(
+                "students"
+            )
+
+            .select("*")
+
             .order(
                 "created_at",
                 {
@@ -1437,8 +1657,14 @@ async function loadStudents(){
 
     if(error){
 
+        console.error(
+            "STUDENTS ERROR:",
+            error
+        );
+
+
         throw new Error(
-            "تعذر تحميل جدول الطلاب: " +
+            "تعذر تحميل الطلاب: " +
             error.message
         );
 
@@ -1465,15 +1691,21 @@ async function loadStudents(){
 
 
 /* =====================================================
-   RENDER
+   RENDER STUDENTS
 ===================================================== */
 
-function renderStudents(students){
+function renderStudents(
+    students
+){
 
-    studentsTable.innerHTML = "";
+    studentsTable.innerHTML =
+        "";
 
 
-    if(!students || students.length === 0){
+    if(
+        !students ||
+        students.length === 0
+    ){
 
         emptyState.style.display =
             "block";
@@ -1487,21 +1719,30 @@ function renderStudents(students){
         "none";
 
 
-    students.forEach(student => {
+    students.forEach(
+        function(student){
 
-        const tr =
-            document.createElement("tr");
-
-
-        const photo =
-            student.photo_url
-                ? escapeHtml(student.photo_url)
-                : "";
+            const tr =
+                document.createElement(
+                    "tr"
+                );
 
 
-        const photoHtml =
-            photo
-                ? `
+            const photo =
+                student.photo_url
+                    ? escapeHtml(
+                        student.photo_url
+                    )
+                    : "";
+
+
+            let photoHTML;
+
+
+            if(photo){
+
+                photoHTML = `
+
                     <img
                         src="${photo}"
                         class="student-photo"
@@ -1523,8 +1764,15 @@ function renderStudents(students){
                     >
                         👨‍🎓
                     </div>
-                `
-                : `
+
+                `;
+
+            }
+
+            else{
+
+                photoHTML = `
+
                     <div
                         class="student-photo"
                         style="
@@ -1536,113 +1784,169 @@ function renderStudents(students){
                     >
                         👨‍🎓
                     </div>
+
                 `;
 
+            }
 
-        tr.innerHTML = `
 
-            <td>
+            const name =
+                student.full_name ||
+                student.name ||
+                "بدون اسم";
 
-                <div class="student-cell">
 
-                    ${photoHtml}
+            const parentPhone =
+                student.parent_phone ||
+                student.parentPhone ||
+                "—";
 
-                    <div>
 
-                        <div class="student-name">
-                            ${escapeHtml(
-                                student.full_name || "بدون اسم"
-                            )}
-                        </div>
+            const grade =
+                student.grade ||
+                student.class ||
+                "غير محدد";
 
-                        <div class="student-id">
-                            ${escapeHtml(
-                                student.id || ""
-                            )}
+
+            const governorate =
+                student.governorate ||
+                student.province ||
+                "—";
+
+
+            const city =
+                student.city ||
+                "—";
+
+
+            const school =
+                student.school ||
+                "—";
+
+
+            tr.innerHTML = `
+
+                <td>
+
+                    <div class="student-cell">
+
+                        ${photoHTML}
+
+                        <div>
+
+                            <div class="student-name">
+
+                                ${escapeHtml(
+                                    name
+                                )}
+
+                            </div>
+
+                            <div class="student-id">
+
+                                ${escapeHtml(
+                                    student.id || ""
+                                )}
+
+                            </div>
+
                         </div>
 
                     </div>
 
-                </div>
-
-            </td>
+                </td>
 
 
-            <td>
-                ${escapeHtml(
-                    student.phone || "—"
-                )}
-            </td>
-
-
-            <td>
-                ${escapeHtml(
-                    student.parent_phone || "—"
-                )}
-            </td>
-
-
-            <td>
-
-                <span class="grade-badge">
+                <td>
 
                     ${escapeHtml(
-                        student.grade || "غير محدد"
+                        student.phone || "—"
                     )}
 
-                </span>
-
-            </td>
+                </td>
 
 
-            <td>
-                ${escapeHtml(
-                    student.governorate || "—"
-                )}
-            </td>
+                <td>
+
+                    ${escapeHtml(
+                        parentPhone
+                    )}
+
+                </td>
 
 
-            <td>
-                ${escapeHtml(
-                    student.city || "—"
-                )}
-            </td>
+                <td>
+
+                    <span class="grade-badge">
+
+                        ${escapeHtml(
+                            grade
+                        )}
+
+                    </span>
+
+                </td>
 
 
-            <td>
-                ${escapeHtml(
-                    student.school || "—"
-                )}
-            </td>
+                <td>
+
+                    ${escapeHtml(
+                        governorate
+                    )}
+
+                </td>
 
 
-            <td>
-                ${formatDate(
-                    student.created_at
-                )}
-            </td>
+                <td>
+
+                    ${escapeHtml(
+                        city
+                    )}
+
+                </td>
 
 
-            <td>
+                <td>
 
-                <button
-                    class="delete-btn"
-                    type="button"
-                    data-id="${escapeHtml(student.id)}"
-                >
-                    حذف
-                </button>
+                    ${escapeHtml(
+                        school
+                    )}
 
-            </td>
-
-        `;
+                </td>
 
 
-        studentsTable.appendChild(
-            tr
-        );
+                <td>
 
-    });
+                    ${formatDate(
+                        student.created_at
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    <button
+                        class="delete-btn"
+                        type="button"
+                        data-id="${escapeHtml(
+                            student.id
+                        )}"
+                    >
+                        حذف
+                    </button>
+
+                </td>
+
+            `;
+
+
+            studentsTable.appendChild(
+                tr
+            );
+
+        }
+    );
 
 }
 
@@ -1670,9 +1974,22 @@ function updateStats(
 
     const grades =
         new Set(
+
             all
-                .map(student => student.grade)
+
+                .map(
+                    function(student){
+
+                        return (
+                            student.grade ||
+                            student.class
+                        );
+
+                    }
+                )
+
                 .filter(Boolean)
+
         );
 
 
@@ -1701,44 +2018,70 @@ function filterStudents(){
 
 
     const filtered =
-        allStudents.filter(student => {
+        allStudents.filter(
+            function(student){
 
-            const name =
-                String(
-                    student.full_name || ""
-                ).toLowerCase();
-
-
-            const phone =
-                String(
-                    student.phone || ""
-                ).toLowerCase();
+                const name =
+                    String(
+                        student.full_name ||
+                        student.name ||
+                        ""
+                    ).toLowerCase();
 
 
-            const parentPhone =
-                String(
-                    student.parent_phone || ""
-                ).toLowerCase();
+                const phone =
+                    String(
+                        student.phone ||
+                        ""
+                    ).toLowerCase();
 
 
-            const matchesSearch =
-                !search ||
-                name.includes(search) ||
-                phone.includes(search) ||
-                parentPhone.includes(search);
+                const parentPhone =
+                    String(
+                        student.parent_phone ||
+                        student.parentPhone ||
+                        ""
+                    ).toLowerCase();
 
 
-            const matchesGrade =
-                !grade ||
-                student.grade === grade;
+                const studentGrade =
+                    student.grade ||
+                    student.class ||
+                    "";
 
 
-            return (
-                matchesSearch &&
-                matchesGrade
-            );
+                const matchesSearch =
 
-        });
+                    !search ||
+
+                    name.includes(
+                        search
+                    ) ||
+
+                    phone.includes(
+                        search
+                    ) ||
+
+                    parentPhone.includes(
+                        search
+                    );
+
+
+                const matchesGrade =
+
+                    !grade ||
+
+                    studentGrade ===
+                    grade;
+
+
+                return (
+                    matchesSearch &&
+                    matchesGrade
+                );
+
+            }
+        );
 
 
     renderStudents(
@@ -1758,7 +2101,9 @@ function filterStudents(){
    DELETE STUDENT
 ===================================================== */
 
-async function deleteStudent(id){
+async function deleteStudent(
+    id
+){
 
     if(!id){
         return;
@@ -1767,18 +2112,25 @@ async function deleteStudent(id){
 
     const student =
         allStudents.find(
-            item => item.id === id
+            function(item){
+
+                return item.id === id;
+
+            }
         );
 
 
     const name =
         student?.full_name ||
+        student?.name ||
         "هذا الطالب";
 
 
     const confirmed =
         confirm(
-            `هل أنت متأكد من حذف الطالب:\n${name} ؟`
+            "هل أنت متأكد من حذف الطالب:\n" +
+            name +
+            " ؟"
         );
 
 
@@ -1799,8 +2151,13 @@ async function deleteStudent(id){
             error
         } =
             await supabaseClient
-                .from("students")
+
+                .from(
+                    "students"
+                )
+
                 .delete()
+
                 .eq(
                     "id",
                     id
@@ -1818,7 +2175,11 @@ async function deleteStudent(id){
 
         allStudents =
             allStudents.filter(
-                item => item.id !== id
+                function(item){
+
+                    return item.id !== id;
+
+                }
             );
 
 
@@ -1830,8 +2191,8 @@ async function deleteStudent(id){
             "success"
         );
 
-
     }
+
     catch(error){
 
         console.error(
@@ -1870,11 +2231,9 @@ studentsTable.addEventListener(
         }
 
 
-        const id =
-            button.dataset.id;
-
-
-        deleteStudent(id);
+        deleteStudent(
+            button.dataset.id
+        );
 
     }
 );
@@ -1901,23 +2260,34 @@ gradeFilter.addEventListener(
 ===================================================== */
 
 document
-    .getElementById("logoutBtn")
+    .getElementById(
+        "logoutBtn"
+    )
     .addEventListener(
         "click",
         async function(){
 
             try{
 
-                await supabaseClient.auth.signOut();
+                await supabaseClient
+                    .auth
+                    .signOut();
 
             }
-            finally{
 
-                window.location.replace(
-                    "../auth.html"
+            catch(error){
+
+                console.error(
+                    "LOGOUT ERROR:",
+                    error
                 );
 
             }
+
+
+            window.location.replace(
+                "../auth.html"
+            );
 
         }
     );
@@ -1931,32 +2301,57 @@ document
 
     try{
 
+        /*
+           1 - التحقق من Supabase
+           2 - التحقق من المستخدم
+           3 - التحقق من admin
+           4 - تحميل الطلاب
+        */
+
         const isAdmin =
             await checkAdmin();
 
 
         if(!isAdmin){
+
             return;
+
         }
 
 
         await loadStudents();
 
 
+        /*
+           إخفاء شاشة التحميل
+        */
+
         loadingScreen.style.display =
             "none";
 
+
+        /*
+           إظهار لوحة الطلاب
+        */
 
         adminApp.style.display =
             "block";
 
 
         console.log(
+            "================================"
+        );
+
+        console.log(
             "STUDENTS ADMIN PAGE READY"
         );
 
+        console.log(
+            "================================"
+        );
 
     }
+
     catch(error){
 
         console.error(
