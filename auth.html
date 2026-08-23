@@ -4,18 +4,12 @@
 <head>
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>الخوارزمي | تسجيل الدخول</title>
 
 <style>
-
-/* ==================================================
-   RESET
-================================================== */
 
 *{
     margin:0;
@@ -25,15 +19,11 @@
 }
 
 body{
-
     min-height:100vh;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     padding:20px;
-
     color:#fff;
 
     background:
@@ -42,67 +32,44 @@ body{
             rgba(116,72,232,.25),
             transparent 35%
         ),
-
         radial-gradient(
             circle at 85% 80%,
             rgba(49,84,223,.20),
             transparent 35%
         ),
-
         #050509;
 
     overflow-x:hidden;
 }
 
-
-/* ==================================================
-   BACKGROUND
-================================================== */
-
 .bubble{
-
     position:fixed;
-
     border-radius:50%;
-
     pointer-events:none;
-
     filter:blur(4px);
-
     opacity:.25;
-
-    animation:
-        floatBubble 7s ease-in-out infinite;
-
+    animation:floatBubble 7s ease-in-out infinite;
     z-index:-1;
 }
 
 .bubble.one{
-
     width:120px;
     height:120px;
-
     background:#7448e8;
-
     top:8%;
     right:5%;
 }
 
 .bubble.two{
-
     width:75px;
     height:75px;
-
     background:#3154df;
-
     bottom:10%;
     left:7%;
-
     animation-delay:2s;
 }
 
 @keyframes floatBubble{
-
     0%,100%{
         transform:translate(0,0);
     }
@@ -112,69 +79,36 @@ body{
     }
 }
 
-
-/* ==================================================
-   CARD
-================================================== */
-
 .card{
-
     width:min(500px,100%);
-
     padding:30px 24px;
-
     border-radius:30px;
 
-    background:
-        rgba(10,10,16,.90);
+    background:rgba(10,10,16,.90);
 
-    border:
-        1px solid
-        rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.08);
 
     box-shadow:
-
-        0 30px 90px
-        rgba(0,0,0,.55),
-
-        0 0 60px
-        rgba(116,72,232,.12);
+        0 30px 90px rgba(0,0,0,.55),
+        0 0 60px rgba(116,72,232,.12);
 
     backdrop-filter:blur(22px);
-
     -webkit-backdrop-filter:blur(22px);
 }
 
-
-/* ==================================================
-   LOGO
-================================================== */
-
 .logo{
-
     text-align:center;
-
     margin-bottom:26px;
 }
 
-
-/* ==================================================
-   TEACHER IMAGE
-================================================== */
-
 .teacher-logo{
-
     width:110px;
     height:110px;
-
     margin:0 auto;
-
     padding:4px;
-
     border-radius:50%;
 
     background:
-
         linear-gradient(
             135deg,
             #7448e8,
@@ -183,89 +117,46 @@ body{
         );
 
     box-shadow:
-
-        0 0 25px
-        rgba(116,72,232,.45),
-
-        0 0 60px
-        rgba(49,84,223,.20);
+        0 0 25px rgba(116,72,232,.45),
+        0 0 60px rgba(49,84,223,.20);
 
     position:relative;
-
     overflow:hidden;
 
     animation:
-
-        teacherFloat 3s
-        ease-in-out
-        infinite,
-
-        teacherGlow 2.5s
-        ease-in-out
-        infinite alternate;
+        teacherFloat 3s ease-in-out infinite,
+        teacherGlow 2.5s ease-in-out infinite alternate;
 }
 
-
-/* الصورة */
-
 .teacher-logo img{
-
     width:100%;
     height:100%;
-
     object-fit:cover;
-
     display:block;
-
     border-radius:50%;
-
     position:relative;
-
     z-index:2;
 }
 
-
-/* الحلقة الداخلية */
-
 .teacher-logo::before{
-
     content:"";
-
     position:absolute;
-
     inset:7px;
-
     border-radius:50%;
-
-    border:
-
-        1px solid
-        rgba(255,255,255,.30);
-
+    border:1px solid rgba(255,255,255,.30);
     z-index:3;
-
     pointer-events:none;
 }
 
-
-/* اللمعة */
-
 .teacher-logo::after{
-
     content:"";
-
     position:absolute;
-
     width:45%;
-
     height:150%;
-
     top:-25%;
-
     left:-80%;
 
     background:
-
         linear-gradient(
             90deg,
             transparent,
@@ -274,97 +165,56 @@ body{
         );
 
     transform:rotate(25deg);
-
     z-index:4;
-
     pointer-events:none;
 
     animation:
-        teacherShine 3.5s
-        ease-in-out
-        infinite;
+        teacherShine 3.5s ease-in-out infinite;
 }
-
 
 @keyframes teacherFloat{
 
     0%,100%{
-
-        transform:
-            translateY(0)
-            rotate(0deg);
-
+        transform:translateY(0) rotate(0deg);
     }
 
     50%{
-
-        transform:
-            translateY(-9px)
-            rotate(1deg);
-
+        transform:translateY(-9px) rotate(1deg);
     }
 }
-
 
 @keyframes teacherGlow{
 
     from{
-
         box-shadow:
-
-            0 0 20px
-            rgba(116,72,232,.35),
-
-            0 0 45px
-            rgba(49,84,223,.15);
-
+            0 0 20px rgba(116,72,232,.35),
+            0 0 45px rgba(49,84,223,.15);
     }
 
     to{
-
         box-shadow:
-
-            0 0 35px
-            rgba(116,72,232,.70),
-
-            0 0 75px
-            rgba(49,84,223,.28);
-
+            0 0 35px rgba(116,72,232,.70),
+            0 0 75px rgba(49,84,223,.28);
     }
 }
-
 
 @keyframes teacherShine{
 
     0%{
-
         left:-80%;
-
     }
 
-    45%,
-    100%{
-
+    45%,100%{
         left:140%;
-
     }
 }
 
-
-/* ==================================================
-   TITLE
-================================================== */
-
 .logo h1{
-
     margin-top:16px;
-
     font-size:31px;
-
     font-weight:900;
 
     background:
-
         linear-gradient(
             135deg,
             #ffffff,
@@ -372,71 +222,41 @@ body{
         );
 
     -webkit-background-clip:text;
-
     -webkit-text-fill-color:transparent;
 }
 
 .logo p{
-
     color:#888894;
-
     margin-top:7px;
-
     font-size:14px;
 }
-
-
-/* ==================================================
-   TABS
-================================================== */
 
 .tabs{
-
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:6px;
-
     padding:5px;
-
     margin-bottom:22px;
-
     border-radius:15px;
-
-    background:
-        rgba(255,255,255,.04);
+    background:rgba(255,255,255,.04);
 }
 
-
 .tab{
-
     border:0;
-
     padding:13px;
-
     border-radius:11px;
-
     color:#888;
-
     background:transparent;
-
     cursor:pointer;
-
     font-weight:bold;
-
     font-size:14px;
-
     transition:.3s;
 }
 
-
 .tab.active{
-
     color:#fff;
 
     background:
-
         linear-gradient(
             135deg,
             #7448e8,
@@ -444,154 +264,90 @@ body{
         );
 
     box-shadow:
-
         0 5px 20px
         rgba(116,72,232,.18);
 }
 
-
-/* ==================================================
-   FORMS
-================================================== */
-
 .form{
-
     display:none;
 }
 
-
 .form.active{
-
     display:block;
-
-    animation:
-        showForm .35s ease;
+    animation:showForm .35s ease;
 }
-
 
 @keyframes showForm{
 
     from{
-
         opacity:0;
-
-        transform:
-            translateY(12px);
-
+        transform:translateY(12px);
     }
 
     to{
-
         opacity:1;
-
-        transform:
-            translateY(0);
-
+        transform:translateY(0);
     }
 }
 
-
-/* ==================================================
-   INPUT
-================================================== */
-
 .field{
-
     margin-bottom:15px;
 }
 
-
 .field label{
-
     display:block;
-
     margin-bottom:7px;
-
     color:#bdbdc6;
-
     font-size:13px;
 }
 
-
 .input{
-
     width:100%;
-
     padding:14px;
-
     border-radius:13px;
-
     outline:none;
-
     color:#fff;
 
     background:
         rgba(255,255,255,.045);
 
     border:
-
         1px solid
         rgba(255,255,255,.09);
 
     transition:.25s;
 }
 
-
 .input:focus{
-
     border-color:#7448e8;
 
     box-shadow:
-
         0 0 0 3px
         rgba(116,72,232,.10);
 }
 
-
 .input::placeholder{
-
     color:#666672;
 }
 
-
 select.input option{
-
     color:#000;
 }
 
-
-/* ==================================================
-   TWO COLUMNS
-================================================== */
-
 .two{
-
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:10px;
 }
 
-
-/* ==================================================
-   BUTTON
-================================================== */
-
 .button{
-
     width:100%;
-
     border:0;
-
     padding:15px;
-
     border-radius:14px;
-
     color:#fff;
 
     background:
-
         linear-gradient(
             135deg,
             #7448e8,
@@ -599,140 +355,79 @@ select.input option{
         );
 
     font-size:16px;
-
     font-weight:900;
-
     cursor:pointer;
-
     transition:.25s;
 
     box-shadow:
-
         0 12px 30px
         rgba(116,72,232,.18);
 }
 
-
 .button:hover{
-
     transform:translateY(-2px);
 
     box-shadow:
-
         0 17px 35px
         rgba(116,72,232,.30);
 }
 
-
 .button:disabled{
-
     opacity:.55;
-
     cursor:not-allowed;
-
     transform:none;
 }
 
-
-/* ==================================================
-   MESSAGE
-================================================== */
-
 .message{
-
     display:none;
-
     padding:12px;
-
     margin-bottom:15px;
-
     border-radius:12px;
-
     text-align:center;
-
     font-size:13px;
-
     line-height:1.8;
 }
 
-
 .message.show{
-
     display:block;
 }
-
 
 .message.error{
-
     color:#ffb0b0;
-
-    background:
-        rgba(255,70,70,.08);
-
-    border:
-        1px solid
-        rgba(255,70,70,.15);
+    background:rgba(255,70,70,.08);
+    border:1px solid rgba(255,70,70,.15);
 }
-
 
 .message.success{
-
     color:#aaffc2;
-
-    background:
-        rgba(40,220,100,.07);
-
-    border:
-        1px solid
-        rgba(40,220,100,.15);
+    background:rgba(40,220,100,.07);
+    border:1px solid rgba(40,220,100,.15);
 }
-
-
-/* ==================================================
-   OTP
-================================================== */
 
 .otp-box{
-
     display:none;
-
     margin-top:15px;
-
     padding-top:5px;
-
-    animation:
-        showForm .35s ease;
+    animation:showForm .35s ease;
 }
 
-
 .otp-box.show{
-
     display:block;
 }
 
-
 .otp-input{
-
     text-align:center;
-
     letter-spacing:9px;
-
     font-size:25px;
-
     font-weight:900;
 }
 
-
 .small-button{
-
     width:100%;
-
     margin-top:10px;
-
     padding:11px;
 
     border:
-
         1px solid
         rgba(255,255,255,.08);
 
@@ -742,110 +437,65 @@ select.input option{
         rgba(255,255,255,.035);
 
     color:#aaa;
-
     cursor:pointer;
-
     transition:.25s;
 }
 
-
 .small-button:hover{
-
     color:#fff;
-
     border-color:
         rgba(116,72,232,.35);
 }
 
-
-/* ==================================================
-   BACK
-================================================== */
-
 .back{
-
     display:block;
-
     text-align:center;
-
     margin-top:20px;
-
     color:#888;
-
     text-decoration:none;
-
     font-size:13px;
 }
 
-
 .back:hover{
-
     color:#a78cff;
 }
-
-
-/* ==================================================
-   MOBILE
-================================================== */
 
 @media(max-width:550px){
 
     body{
-
         padding:12px;
-
         align-items:flex-start;
-
         padding-top:20px;
     }
 
-
     .card{
-
         padding:25px 16px;
-
         border-radius:25px;
     }
 
-
     .two{
-
         grid-template-columns:1fr;
     }
 
-
     .teacher-logo{
-
         width:100px;
         height:100px;
     }
 
-
     .logo h1{
-
         font-size:28px;
     }
-
 }
 
 </style>
-
 </head>
 
-
 <body>
-
 
 <div class="bubble one"></div>
 <div class="bubble two"></div>
 
-
 <div class="card">
-
-
-    <!-- ======================================
-         LOGO
-    ======================================= -->
 
     <div class="logo">
 
@@ -854,29 +504,18 @@ select.input option{
             <img
                 src="teacher.png"
                 alt="صورة المستر"
-                onerror="
-                    this.src='teacher.jpg';
-                "
+                onerror="this.src='teacher.jpg';"
             >
 
         </div>
 
-
-        <h1>
-            الخوارزمي
-        </h1>
-
+        <h1>الخوارزمي</h1>
 
         <p>
             منصة الاختبارات والتعليم
         </p>
 
     </div>
-
-
-    <!-- ======================================
-         TABS
-    ======================================= -->
 
     <div class="tabs">
 
@@ -885,42 +524,30 @@ select.input option{
             id="loginTab"
             class="tab active"
         >
-
             تسجيل الدخول
-
         </button>
-
 
         <button
             type="button"
             id="registerTab"
             class="tab"
         >
-
             إنشاء حساب
-
         </button>
 
     </div>
-
-
-    <!-- MESSAGE -->
 
     <div
         id="message"
         class="message"
     ></div>
 
-
-    <!-- ======================================
-         LOGIN
-    ======================================= -->
+    <!-- ================= LOGIN ================= -->
 
     <form
         id="loginForm"
         class="form active"
     >
-
 
         <div class="field">
 
@@ -941,19 +568,13 @@ select.input option{
 
         </div>
 
-
         <button
             id="loginOtpButton"
             class="button"
             type="submit"
         >
-
             📱 إرسال كود الدخول
-
         </button>
-
-
-        <!-- OTP LOGIN -->
 
         <div
             id="loginOtpBox"
@@ -963,7 +584,7 @@ select.input option{
             <div class="field">
 
                 <label>
-                    أدخل كود التحقق المرسل إلى هاتفك
+                    أدخل كود التحقق
                 </label>
 
                 <input
@@ -978,43 +599,32 @@ select.input option{
 
             </div>
 
-
             <button
                 id="verifyLoginButton"
                 class="button"
                 type="button"
             >
-
                 🔐 تأكيد الكود والدخول
-
             </button>
-
 
             <button
                 id="resendLoginButton"
                 class="small-button"
                 type="button"
             >
-
                 🔄 إرسال الكود مرة أخرى
-
             </button>
 
         </div>
 
-
     </form>
 
-
-    <!-- ======================================
-         REGISTER
-    ======================================= -->
+    <!-- ================= REGISTER ================= -->
 
     <form
         id="registerForm"
         class="form"
     >
-
 
         <div class="field">
 
@@ -1033,9 +643,7 @@ select.input option{
 
         </div>
 
-
         <div class="two">
-
 
             <div class="field">
 
@@ -1056,7 +664,6 @@ select.input option{
 
             </div>
 
-
             <div class="field">
 
                 <label>
@@ -1075,9 +682,7 @@ select.input option{
 
             </div>
 
-
         </div>
-
 
         <div class="field">
 
@@ -1123,9 +728,7 @@ select.input option{
 
         </div>
 
-
         <div class="two">
-
 
             <div class="field">
 
@@ -1142,7 +745,6 @@ select.input option{
 
             </div>
 
-
             <div class="field">
 
                 <label>
@@ -1158,9 +760,7 @@ select.input option{
 
             </div>
 
-
         </div>
-
 
         <div class="field">
 
@@ -1177,74 +777,59 @@ select.input option{
 
         </div>
 
+        <div class="field">
 
-        <div class="two">
+            <label>
+                كلمة المرور
+            </label>
 
-
-            <div class="field">
-
-                <label>
-                    كلمة المرور
-                </label>
-
-                <input
-                    id="password"
-                    class="input"
-                    type="password"
-                    minlength="6"
-                    placeholder="6 أحرف على الأقل"
-                    autocomplete="new-password"
-                    required
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    تأكيد كلمة المرور
-                </label>
-
-                <input
-                    id="confirmPassword"
-                    class="input"
-                    type="password"
-                    minlength="6"
-                    placeholder="أعد كلمة المرور"
-                    autocomplete="new-password"
-                    required
-                >
-
-            </div>
-
+            <input
+                id="password"
+                class="input"
+                type="password"
+                minlength="6"
+                placeholder="6 أحرف على الأقل"
+                autocomplete="new-password"
+                required
+            >
 
         </div>
 
+        <div class="field">
+
+            <label>
+                تأكيد كلمة المرور
+            </label>
+
+            <input
+                id="confirmPassword"
+                class="input"
+                type="password"
+                minlength="6"
+                placeholder="أعد كلمة المرور"
+                autocomplete="new-password"
+                required
+            >
+
+        </div>
 
         <button
             id="sendRegisterOtp"
             class="button"
             type="submit"
         >
-
             📱 إنشاء الحساب وإرسال الكود
-
         </button>
-
-
-        <!-- OTP REGISTER -->
 
         <div
             id="registerOtpBox"
             class="otp-box"
         >
 
-
             <div class="field">
 
                 <label>
-                    كود التحقق
+                    أدخل كود التحقق المرسل إلى هاتفك
                 </label>
 
                 <input
@@ -1259,1068 +844,836 @@ select.input option{
 
             </div>
 
-
             <button
                 id="verifyRegisterButton"
                 class="button"
                 type="button"
             >
-
                 ✅ تأكيد الكود وإنشاء الحساب
-
             </button>
-
 
             <button
                 id="resendRegisterButton"
                 class="small-button"
                 type="button"
             >
-
                 🔄 إرسال الكود مرة أخرى
-
             </button>
 
         </div>
 
-
     </form>
-
 
     <a
         href="index.html"
         class="back"
     >
-
         ← العودة للصفحة الرئيسية
-
     </a>
-
 
 </div>
 
-
-<!-- ==================================================
-     SUPABASE LIBRARY
-================================================== -->
+<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script src="supabase.js"></script>
 
-
 <script>
 
 "use strict";
 
+document.addEventListener("DOMContentLoaded", () => {
 
-/* ==================================================
-   VARIABLES
-================================================== */
+    /* ==================================================
+       ELEMENTS
+    ================================================== */
 
-const loginTab =
-    document.getElementById(
-        "loginTab"
-    );
+    const loginTab =
+        document.getElementById("loginTab");
 
+    const registerTab =
+        document.getElementById("registerTab");
 
-const registerTab =
-    document.getElementById(
-        "registerTab"
-    );
+    const loginForm =
+        document.getElementById("loginForm");
 
+    const registerForm =
+        document.getElementById("registerForm");
 
-const loginForm =
-    document.getElementById(
-        "loginForm"
-    );
+    const message =
+        document.getElementById("message");
 
+    const loginOtpBox =
+        document.getElementById("loginOtpBox");
 
-const registerForm =
-    document.getElementById(
-        "registerForm"
-    );
+    const registerOtpBox =
+        document.getElementById("registerOtpBox");
 
+    let loginPhoneSaved = "";
 
-const message =
-    document.getElementById(
-        "message"
-    );
+    let registerPhoneSaved = "";
 
 
-const loginOtpBox =
-    document.getElementById(
-        "loginOtpBox"
-    );
+    /* ==================================================
+       SUPABASE
+    ================================================== */
+
+    function getSupabase(){
+
+        if(
+            !window.supabaseClient
+        ){
+
+            throw new Error(
+                "Supabase غير متصل. تأكد من supabase.js."
+            );
+
+        }
+
+        return window.supabaseClient;
+    }
 
 
-const registerOtpBox =
-    document.getElementById(
-        "registerOtpBox"
-    );
+    /* ==================================================
+       PHONE
+    ================================================== */
 
+    function cleanPhone(phone){
 
-let loginPhoneSaved =
-    "";
-
-
-let registerPhoneSaved =
-    "";
-
-
-/* ==================================================
-   SUPABASE
-================================================== */
-
-function getSupabase(){
-
-    if(
-        typeof supabaseClient ===
-        "undefined" ||
-        !supabaseClient
-    ){
-
-        throw new Error(
-            "Supabase غير متصل. تأكد من ملف supabase.js."
-        );
+        return String(phone)
+            .replace(/\s+/g,"")
+            .replace(/-/g,"")
+            .trim();
 
     }
 
-    return supabaseClient;
-}
+
+    function validEgyptianPhone(phone){
+
+        const clean =
+            cleanPhone(phone);
+
+        return /^01[0125][0-9]{8}$/.test(clean);
+
+    }
 
 
-/* ==================================================
-   PHONE
-================================================== */
+    function normalizePhone(phone){
 
-function validEgyptianPhone(phone){
+        const clean =
+            cleanPhone(phone);
 
-    const clean =
-        String(phone)
-            .replace(/\s+/g,"")
-            .replace(/-/g,"");
+        if(clean.startsWith("+20")){
+            return clean;
+        }
 
+        if(clean.startsWith("20")){
+            return "+" + clean;
+        }
 
-    return /^01[0125][0-9]{8}$/
-        .test(clean);
-}
-
-
-function normalizePhone(phone){
-
-    let clean =
-        String(phone)
-            .replace(/\s+/g,"")
-            .replace(/-/g,"");
-
-
-    if(
-        clean.startsWith("+20")
-    ){
+        if(clean.startsWith("01")){
+            return "+20" + clean.substring(1);
+        }
 
         return clean;
 
     }
 
 
-    if(
-        clean.startsWith("20")
+    /* ==================================================
+       MESSAGE
+    ================================================== */
+
+    function showMessage(text,type){
+
+        message.textContent =
+            text;
+
+        message.className =
+            "message show " + type;
+
+    }
+
+
+    function hideMessage(){
+
+        message.textContent = "";
+
+        message.className =
+            "message";
+
+    }
+
+
+    /* ==================================================
+       LOADING
+    ================================================== */
+
+    function setLoading(
+        button,
+        state,
+        text
     ){
 
-        return "+" + clean;
+        button.disabled =
+            state;
+
+        button.textContent =
+            state
+                ? "⏳ جاري..."
+                : text;
 
     }
 
 
-    if(
-        clean.startsWith("01")
-    ){
+    /* ==================================================
+       TABS
+    ================================================== */
 
-        return "+20" +
-            clean.substring(1);
+    loginTab.addEventListener(
+        "click",
+        () => {
 
-    }
+            loginTab.classList.add("active");
 
+            registerTab.classList.remove("active");
 
-    return clean;
-}
+            loginForm.classList.add("active");
 
+            registerForm.classList.remove("active");
 
-/* ==================================================
-   MESSAGE
-================================================== */
+            hideMessage();
 
-function showMessage(
-    text,
-    type
-){
-
-    message.textContent =
-        text;
-
-    message.className =
-        "message show " +
-        type;
-}
-
-
-function hideMessage(){
-
-    message.textContent =
-        "";
-
-    message.className =
-        "message";
-}
-
-
-/* ==================================================
-   LOADING
-================================================== */
-
-function loading(
-    button,
-    state,
-    normalText
-){
-
-    button.disabled =
-        state;
-
-    button.textContent =
-        state
-        ? "⏳ جاري..."
-        : normalText;
-}
-
-
-/* ==================================================
-   LOGIN TAB
-================================================== */
-
-loginTab.addEventListener(
-    "click",
-    function(){
-
-        loginTab.classList.add(
-            "active"
-        );
-
-        registerTab.classList.remove(
-            "active"
-        );
-
-
-        loginForm.classList.add(
-            "active"
-        );
-
-        registerForm.classList.remove(
-            "active"
-        );
-
-
-        hideMessage();
-
-    }
-);
-
-
-/* ==================================================
-   REGISTER TAB
-================================================== */
-
-registerTab.addEventListener(
-    "click",
-    function(){
-
-        registerTab.classList.add(
-            "active"
-        );
-
-        loginTab.classList.remove(
-            "active"
-        );
-
-
-        registerForm.classList.add(
-            "active"
-        );
-
-        loginForm.classList.remove(
-            "active"
-        );
-
-
-        hideMessage();
-
-    }
-);
-
-
-/* ==================================================
-   REGISTER SEND OTP
-================================================== */
-
-registerForm.addEventListener(
-    "submit",
-    async function(event){
-
-        event.preventDefault();
-
-        hideMessage();
-
-
-        const fullName =
-            document
-                .getElementById(
-                    "fullName"
-                )
-                .value
-                .trim();
-
-
-        const phoneInput =
-            document
-                .getElementById(
-                    "registerPhone"
-                )
-                .value
-                .trim();
-
-
-        const parentPhoneInput =
-            document
-                .getElementById(
-                    "parentPhone"
-                )
-                .value
-                .trim();
-
-
-        const grade =
-            document
-                .getElementById(
-                    "grade"
-                )
-                .value;
-
-
-        const governorate =
-            document
-                .getElementById(
-                    "governorate"
-                )
-                .value
-                .trim();
-
-
-        const city =
-            document
-                .getElementById(
-                    "city"
-                )
-                .value
-                .trim();
-
-
-        const school =
-            document
-                .getElementById(
-                    "school"
-                )
-                .value
-                .trim();
-
-
-        const password =
-            document
-                .getElementById(
-                    "password"
-                )
-                .value;
-
-
-        const confirmPassword =
-            document
-                .getElementById(
-                    "confirmPassword"
-                )
-                .value;
-
-
-        const button =
-            document.getElementById(
-                "sendRegisterOtp"
-            );
-
-
-        if(
-            fullName.length < 3
-        ){
-
-            showMessage(
-                "❌ اكتب الاسم بالكامل.",
-                "error"
-            );
-
-            return;
         }
+    );
 
 
-        if(
-            !validEgyptianPhone(
-                phoneInput
-            )
-        ){
+    registerTab.addEventListener(
+        "click",
+        () => {
 
-            showMessage(
-                "❌ رقم الموبايل المصري غير صحيح.",
-                "error"
-            );
+            registerTab.classList.add("active");
 
-            return;
+            loginTab.classList.remove("active");
+
+            registerForm.classList.add("active");
+
+            loginForm.classList.remove("active");
+
+            hideMessage();
+
         }
+    );
 
 
-        if(
-            !validEgyptianPhone(
-                parentPhoneInput
-            )
-        ){
+    /* ==================================================
+       REGISTER SEND OTP
+    ================================================== */
 
-            showMessage(
-                "❌ رقم ولي الأمر غير صحيح.",
-                "error"
-            );
+    registerForm.addEventListener(
+        "submit",
+        async (event) => {
 
-            return;
-        }
+            event.preventDefault();
 
+            hideMessage();
 
-        if(!grade){
+            const fullName =
+                document
+                    .getElementById("fullName")
+                    .value
+                    .trim();
 
-            showMessage(
-                "❌ اختر الصف الدراسي.",
-                "error"
-            );
+            const phoneInput =
+                document
+                    .getElementById("registerPhone")
+                    .value
+                    .trim();
 
-            return;
-        }
+            const parentPhoneInput =
+                document
+                    .getElementById("parentPhone")
+                    .value
+                    .trim();
 
+            const grade =
+                document
+                    .getElementById("grade")
+                    .value;
 
-        if(
-            password.length < 6
-        ){
+            const governorate =
+                document
+                    .getElementById("governorate")
+                    .value
+                    .trim();
 
-            showMessage(
-                "❌ كلمة المرور يجب أن تكون 6 أحرف على الأقل.",
-                "error"
-            );
+            const city =
+                document
+                    .getElementById("city")
+                    .value
+                    .trim();
 
-            return;
-        }
+            const school =
+                document
+                    .getElementById("school")
+                    .value
+                    .trim();
 
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
 
-        if(
-            password !==
-            confirmPassword
-        ){
+            const confirmPassword =
+                document
+                    .getElementById("confirmPassword")
+                    .value;
 
-            showMessage(
-                "❌ كلمتا المرور غير متطابقتين.",
-                "error"
-            );
-
-            return;
-        }
-
-
-        const phone =
-            normalizePhone(
-                phoneInput
-            );
-
-
-        registerPhoneSaved =
-            phone;
-
-
-        loading(
-            button,
-            true,
-            "📱 إنشاء الحساب وإرسال الكود"
-        );
-
-
-        try{
-
-            const supabase =
-                getSupabase();
+            const button =
+                document.getElementById(
+                    "sendRegisterOtp"
+                );
 
 
-            /*
-             * إرسال OTP
-             */
+            /* VALIDATION */
 
-            const {
-                error
-            } =
-            await supabase.auth
-                .signInWithOtp({
+            if(fullName.length < 3){
 
-                    phone: phone,
+                showMessage(
+                    "❌ اكتب الاسم بالكامل.",
+                    "error"
+                );
 
-                    options:{
-
-                        shouldCreateUser:true
-
-                    }
-
-                });
-
-
-            if(error){
-
-                throw error;
-
+                return;
             }
 
 
-            /*
-             * حفظ بيانات التسجيل
-             * مؤقتًا حتى تأكيد OTP
-             */
+            if(
+                !validEgyptianPhone(
+                    phoneInput
+                )
+            ){
+
+                showMessage(
+                    "❌ رقم الموبايل المصري غير صحيح.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if(
+                !validEgyptianPhone(
+                    parentPhoneInput
+                )
+            ){
+
+                showMessage(
+                    "❌ رقم ولي الأمر غير صحيح.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if(!grade){
+
+                showMessage(
+                    "❌ اختر الصف الدراسي.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if(password.length < 6){
+
+                showMessage(
+                    "❌ كلمة المرور يجب أن تكون 6 أحرف على الأقل.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if(password !== confirmPassword){
+
+                showMessage(
+                    "❌ كلمتا المرور غير متطابقتين.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            const phone =
+                normalizePhone(
+                    phoneInput
+                );
+
+            registerPhoneSaved =
+                phone;
+
+
+            const registerData = {
+
+                full_name:
+                    fullName,
+
+                phone:
+                    phone,
+
+                parent_phone:
+                    normalizePhone(
+                        parentPhoneInput
+                    ),
+
+                grade:
+                    grade,
+
+                governorate:
+                    governorate || null,
+
+                city:
+                    city || null,
+
+                school:
+                    school || null,
+
+                password:
+                    password
+
+            };
+
 
             sessionStorage.setItem(
                 "register_data",
-                JSON.stringify({
-
-                    full_name:
-                        fullName,
-
-                    phone:
-                        phone,
-
-                    parent_phone:
-                        normalizePhone(
-                            parentPhoneInput
-                        ),
-
-                    grade:
-                        grade,
-
-                    governorate:
-                        governorate || null,
-
-                    city:
-                        city || null,
-
-                    school:
-                        school || null
-
-                })
-            );
-
-
-            registerOtpBox
-                .classList
-                .add("show");
-
-
-            showMessage(
-                "📱 تم إرسال كود التحقق إلى هاتفك.",
-                "success"
-            );
-
-
-            document
-                .getElementById(
-                    "registerOtp"
+                JSON.stringify(
+                    registerData
                 )
-                .focus();
-
-
-        }catch(error){
-
-            console.error(
-                "REGISTER OTP:",
-                error
             );
 
 
-            showMessage(
-                friendlyError(error),
-                "error"
+            setLoading(
+                button,
+                true,
+                "📱 إنشاء الحساب وإرسال الكود"
             );
 
-        }
+
+            try{
+
+                const supabase =
+                    getSupabase();
 
 
-        loading(
-            button,
-            false,
-            "📱 إنشاء الحساب وإرسال الكود"
-        );
+                /*
+                 * OTP REGISTRATION
+                 *
+                 * shouldCreateUser:true
+                 * يسمح بإنشاء المستخدم الجديد
+                 */
 
-    }
-);
+                const {
+                    error
+                } =
+                await supabase.auth
+                    .signInWithOtp({
+
+                        phone: phone,
+
+                        options: {
+
+                            shouldCreateUser:
+                                true,
+
+                            channel:
+                                "sms"
+
+                        }
+
+                    });
 
 
-/* ==================================================
-   VERIFY REGISTER OTP
-================================================== */
+                if(error){
 
-document
-    .getElementById(
-        "verifyRegisterButton"
-    )
-    .addEventListener(
-        "click",
-        async function(){
+                    throw error;
 
-            const button =
-                this;
+                }
 
 
-            const otp =
+                registerOtpBox
+                    .classList
+                    .add("show");
+
+
+                showMessage(
+                    "📱 تم إرسال كود التحقق إلى هاتفك.",
+                    "success"
+                );
+
+
                 document
                     .getElementById(
                         "registerOtp"
                     )
-                    .value
-                    .trim();
+                    .focus();
 
 
-            if(
-                !/^[0-9]{6}$/.test(
-                    otp
-                )
-            ){
+            }
+            catch(error){
+
+                console.error(
+                    "REGISTER OTP ERROR:",
+                    error
+                );
 
                 showMessage(
-                    "❌ أدخل كود التحقق المكون من 6 أرقام.",
+                    friendlyError(error),
                     "error"
                 );
 
-                return;
+            }
+            finally{
+
+                setLoading(
+                    button,
+                    false,
+                    "📱 إنشاء الحساب وإرسال الكود"
+                );
+
             }
 
-
-            loading(
-                button,
-                true,
-                "✅ تأكيد الكود وإنشاء الحساب"
-            );
+        }
+    );
 
 
-            try{
+    /* ==================================================
+       VERIFY REGISTER OTP
+    ================================================== */
 
-                const supabase =
-                    getSupabase();
+    document
+        .getElementById(
+            "verifyRegisterButton"
+        )
+        .addEventListener(
+            "click",
+            async function(){
 
+                const button =
+                    this;
 
-                const {
-                    data,
-                    error
-                } =
-                await supabase.auth
-                    .verifyOtp({
-
-                        phone:
-                            registerPhoneSaved,
-
-                        token:
-                            otp,
-
-                        type:
-                            "sms"
-
-                    });
-
-
-                if(error){
-
-                    throw error;
-
-                }
+                const otp =
+                    document
+                        .getElementById(
+                            "registerOtp"
+                        )
+                        .value
+                        .trim();
 
 
-                const user =
-                    data.user;
+                if(!/^[0-9]{6}$/.test(otp)){
 
-
-                if(!user){
-
-                    throw new Error(
-                        "لم يتم إنشاء المستخدم."
+                    showMessage(
+                        "❌ أدخل كود التحقق المكون من 6 أرقام.",
+                        "error"
                     );
 
+                    return;
                 }
 
 
-                const saved =
-                    sessionStorage.getItem(
+                setLoading(
+                    button,
+                    true,
+                    "✅ تأكيد الكود وإنشاء الحساب"
+                );
+
+
+                try{
+
+                    const supabase =
+                        getSupabase();
+
+
+                    const {
+                        data,
+                        error
+                    } =
+                    await supabase.auth
+                        .verifyOtp({
+
+                            phone:
+                                registerPhoneSaved,
+
+                            token:
+                                otp,
+
+                            type:
+                                "sms"
+
+                        });
+
+
+                    if(error){
+
+                        throw error;
+
+                    }
+
+
+                    if(!data || !data.user){
+
+                        throw new Error(
+                            "لم يتم إنشاء المستخدم."
+                        );
+
+                    }
+
+
+                    const saved =
+                        sessionStorage.getItem(
+                            "register_data"
+                        );
+
+
+                    if(!saved){
+
+                        throw new Error(
+                            "بيانات التسجيل غير موجودة."
+                        );
+
+                    }
+
+
+                    const student =
+                        JSON.parse(saved);
+
+
+                    /*
+                     * حفظ الطالب في students
+                     */
+
+                    const {
+                        error:
+                        studentError
+                    } =
+                    await supabase
+                        .from("students")
+                        .upsert({
+
+                            id:
+                                data.user.id,
+
+                            full_name:
+                                student.full_name,
+
+                            phone:
+                                student.phone,
+
+                            parent_phone:
+                                student.parent_phone,
+
+                            grade:
+                                student.grade,
+
+                            governorate:
+                                student.governorate,
+
+                            city:
+                                student.city,
+
+                            school:
+                                student.school,
+
+                            points:
+                                0
+
+                        },{
+                            onConflict:"id"
+                        });
+
+
+                    if(studentError){
+
+                        console.error(
+                            "STUDENT INSERT ERROR:",
+                            studentError
+                        );
+
+                        throw studentError;
+
+                    }
+
+
+                    sessionStorage.removeItem(
                         "register_data"
                     );
 
 
-                if(!saved){
+                    showMessage(
+                        "🎉 تم إنشاء الحساب بنجاح!",
+                        "success"
+                    );
 
-                    throw new Error(
-                        "بيانات التسجيل غير موجودة."
+
+                    setTimeout(
+                        () => {
+
+                            window.location.href =
+                                "home.html";
+
+                        },
+                        900
+                    );
+
+                }
+                catch(error){
+
+                    console.error(
+                        "VERIFY REGISTER ERROR:",
+                        error
+                    );
+
+                    showMessage(
+                        friendlyError(error),
+                        "error"
+                    );
+
+                }
+                finally{
+
+                    setLoading(
+                        button,
+                        false,
+                        "✅ تأكيد الكود وإنشاء الحساب"
                     );
 
                 }
 
-
-                const student =
-                    JSON.parse(
-                        saved
-                    );
-
-
-                /*
-                 * حفظ الطالب
-                 */
-
-                const {
-                    error:
-                    studentError
-                } =
-                await supabase
-                    .from("students")
-                    .upsert({
-
-                        id:
-                            user.id,
-
-                        full_name:
-                            student.full_name,
-
-                        phone:
-                            student.phone,
-
-                        parent_phone:
-                            student.parent_phone,
-
-                        grade:
-                            student.grade,
-
-                        governorate:
-                            student.governorate,
-
-                        city:
-                            student.city,
-
-                        school:
-                            student.school,
-
-                        points:
-                            0
-
-                    },{
-                        onConflict:"id"
-                    });
-
-
-                if(studentError){
-
-                    throw studentError;
-
-                }
-
-
-                sessionStorage.removeItem(
-                    "register_data"
-                );
-
-
-                showMessage(
-                    "🎉 تم إنشاء الحساب وتأكيد رقم الهاتف بنجاح!",
-                    "success"
-                );
-
-
-                setTimeout(
-                    function(){
-
-                        window.location.href =
-                            "home.html";
-
-                    },
-                    1000
-                );
-
-
-            }catch(error){
-
-                console.error(
-                    "VERIFY REGISTER:",
-                    error
-                );
-
-
-                showMessage(
-                    friendlyError(error),
-                    "error"
-                );
-
             }
-
-
-            loading(
-                button,
-                false,
-                "✅ تأكيد الكود وإنشاء الحساب"
-            );
-
-        }
-    );
-
-
-/* ==================================================
-   RESEND REGISTER OTP
-================================================== */
-
-document
-    .getElementById(
-        "resendRegisterButton"
-    )
-    .addEventListener(
-        "click",
-        async function(){
-
-            if(!registerPhoneSaved){
-
-                showMessage(
-                    "❌ ابدأ التسجيل أولًا.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            try{
-
-                const supabase =
-                    getSupabase();
-
-
-                const {
-                    error
-                } =
-                await supabase.auth
-                    .signInWithOtp({
-
-                        phone:
-                            registerPhoneSaved,
-
-                        options:{
-                            shouldCreateUser:true
-                        }
-
-                    });
-
-
-                if(error){
-
-                    throw error;
-
-                }
-
-
-                showMessage(
-                    "📱 تم إرسال كود جديد.",
-                    "success"
-                );
-
-
-            }catch(error){
-
-                console.error(error);
-
-                showMessage(
-                    friendlyError(error),
-                    "error"
-                );
-
-            }
-
-        }
-    );
-
-
-/* ==================================================
-   LOGIN SEND OTP
-================================================== */
-
-loginForm.addEventListener(
-    "submit",
-    async function(event){
-
-        event.preventDefault();
-
-        hideMessage();
-
-
-        const phoneInput =
-            document
-                .getElementById(
-                    "loginPhone"
-                )
-                .value
-                .trim();
-
-
-        const button =
-            document.getElementById(
-                "loginOtpButton"
-            );
-
-
-        if(
-            !validEgyptianPhone(
-                phoneInput
-            )
-        ){
-
-            showMessage(
-                "❌ رقم الموبايل المصري غير صحيح.",
-                "error"
-            );
-
-            return;
-        }
-
-
-        const phone =
-            normalizePhone(
-                phoneInput
-            );
-
-
-        loginPhoneSaved =
-            phone;
-
-
-        loading(
-            button,
-            true,
-            "📱 إرسال كود الدخول"
         );
 
 
-        try{
+    /* ==================================================
+       RESEND REGISTER OTP
+    ================================================== */
 
-            const supabase =
-                getSupabase();
+    document
+        .getElementById(
+            "resendRegisterButton"
+        )
+        .addEventListener(
+            "click",
+            async function(){
+
+                if(!registerPhoneSaved){
+
+                    showMessage(
+                        "❌ ابدأ التسجيل أولًا.",
+                        "error"
+                    );
+
+                    return;
+                }
 
 
-            const {
-                error
-            } =
-            await supabase.auth
-                .signInWithOtp({
+                try{
 
-                    phone:
-                        phone,
+                    const supabase =
+                        getSupabase();
 
-                    options:{
 
-                        shouldCreateUser:false
+                    const {
+                        error
+                    } =
+                    await supabase.auth
+                        .signInWithOtp({
+
+                            phone:
+                                registerPhoneSaved,
+
+                            options:{
+
+                                shouldCreateUser:
+                                    true,
+
+                                channel:
+                                    "sms"
+
+                            }
+
+                        });
+
+
+                    if(error){
+
+                        throw error;
 
                     }
 
-                });
 
+                    showMessage(
+                        "📱 تم إرسال كود جديد.",
+                        "success"
+                    );
 
-            if(error){
+                }
+                catch(error){
 
-                throw error;
+                    console.error(error);
+
+                    showMessage(
+                        friendlyError(error),
+                        "error"
+                    );
+
+                }
 
             }
-
-
-            loginOtpBox
-                .classList
-                .add("show");
-
-
-            showMessage(
-                "📱 تم إرسال كود الدخول إلى هاتفك.",
-                "success"
-            );
-
-
-            document
-                .getElementById(
-                    "loginOtp"
-                )
-                .focus();
-
-
-        }catch(error){
-
-            console.error(
-                "LOGIN OTP:",
-                error
-            );
-
-
-            showMessage(
-                friendlyError(error),
-                "error"
-            );
-
-        }
-
-
-        loading(
-            button,
-            false,
-            "📱 إرسال كود الدخول"
         );
 
-    }
-);
 
+    /* ==================================================
+       LOGIN SEND OTP
+    ================================================== */
 
-/* ==================================================
-   VERIFY LOGIN OTP
-================================================== */
+    loginForm.addEventListener(
+        "submit",
+        async (event) => {
 
-document
-    .getElementById(
-        "verifyLoginButton"
-    )
-    .addEventListener(
-        "click",
-        async function(){
+            event.preventDefault();
 
-            const button =
-                this;
+            hideMessage();
 
-
-            const otp =
+            const phoneInput =
                 document
                     .getElementById(
-                        "loginOtp"
+                        "loginPhone"
                     )
                     .value
                     .trim();
 
+            const button =
+                document.getElementById(
+                    "loginOtpButton"
+                );
+
 
             if(
-                !/^[0-9]{6}$/.test(
-                    otp
+                !validEgyptianPhone(
+                    phoneInput
                 )
             ){
 
                 showMessage(
-                    "❌ أدخل كود التحقق المكون من 6 أرقام.",
+                    "❌ رقم الموبايل المصري غير صحيح.",
                     "error"
                 );
 
@@ -2328,118 +1681,21 @@ document
             }
 
 
-            loading(
+            const phone =
+                normalizePhone(
+                    phoneInput
+                );
+
+
+            loginPhoneSaved =
+                phone;
+
+
+            setLoading(
                 button,
                 true,
-                "🔐 تأكيد الكود والدخول"
+                "📱 إرسال كود الدخول"
             );
-
-
-            try{
-
-                const supabase =
-                    getSupabase();
-
-
-                const {
-                    data,
-                    error
-                } =
-                await supabase.auth
-                    .verifyOtp({
-
-                        phone:
-                            loginPhoneSaved,
-
-                        token:
-                            otp,
-
-                        type:
-                            "sms"
-
-                    });
-
-
-                if(error){
-
-                    throw error;
-
-                }
-
-
-                if(!data.user){
-
-                    throw new Error(
-                        "لم يتم تسجيل الدخول."
-                    );
-
-                }
-
-
-                showMessage(
-                    "🎉 تم تسجيل الدخول بنجاح.",
-                    "success"
-                );
-
-
-                setTimeout(
-                    function(){
-
-                        window.location.href =
-                            "home.html";
-
-                    },
-                    800
-                );
-
-
-            }catch(error){
-
-                console.error(
-                    "VERIFY LOGIN:",
-                    error
-                );
-
-
-                showMessage(
-                    friendlyError(error),
-                    "error"
-                );
-
-            }
-
-
-            loading(
-                button,
-                false,
-                "🔐 تأكيد الكود والدخول"
-            );
-
-        }
-    );
-
-
-/* ==================================================
-   RESEND LOGIN OTP
-================================================== */
-
-document
-    .getElementById(
-        "resendLoginButton"
-    )
-    .addEventListener(
-        "click",
-        async function(){
-
-            if(!loginPhoneSaved){
-
-                showMessage(
-                    "❌ اكتب رقم الهاتف أولًا.",
-                    "error"
-                );
-
-                return;
-            }
 
 
             try{
@@ -2455,11 +1711,15 @@ document
                     .signInWithOtp({
 
                         phone:
-                            loginPhoneSaved,
+                            phone,
 
                         options:{
 
-                            shouldCreateUser:false
+                            shouldCreateUser:
+                                false,
+
+                            channel:
+                                "sms"
 
                         }
 
@@ -2473,19 +1733,43 @@ document
                 }
 
 
+                loginOtpBox
+                    .classList
+                    .add("show");
+
+
                 showMessage(
-                    "📱 تم إرسال كود جديد.",
+                    "📱 تم إرسال كود الدخول إلى هاتفك.",
                     "success"
                 );
 
 
-            }catch(error){
+                document
+                    .getElementById(
+                        "loginOtp"
+                    )
+                    .focus();
 
-                console.error(error);
+            }
+            catch(error){
+
+                console.error(
+                    "LOGIN OTP ERROR:",
+                    error
+                );
 
                 showMessage(
                     friendlyError(error),
                     "error"
+                );
+
+            }
+            finally{
+
+                setLoading(
+                    button,
+                    false,
+                    "📱 إرسال كود الدخول"
                 );
 
             }
@@ -2494,102 +1778,347 @@ document
     );
 
 
-/* ==================================================
-   ERRORS
-================================================== */
+    /* ==================================================
+       VERIFY LOGIN OTP
+    ================================================== */
 
-function friendlyError(error){
+    document
+        .getElementById(
+            "verifyLoginButton"
+        )
+        .addEventListener(
+            "click",
+            async function(){
 
-    const text =
-        String(
-            error?.message ||
-            error ||
-            ""
+                const button =
+                    this;
+
+                const otp =
+                    document
+                        .getElementById(
+                            "loginOtp"
+                        )
+                        .value
+                        .trim();
+
+
+                if(!/^[0-9]{6}$/.test(otp)){
+
+                    showMessage(
+                        "❌ أدخل كود التحقق المكون من 6 أرقام.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                setLoading(
+                    button,
+                    true,
+                    "🔐 تأكيد الكود والدخول"
+                );
+
+
+                try{
+
+                    const supabase =
+                        getSupabase();
+
+
+                    const {
+                        data,
+                        error
+                    } =
+                    await supabase.auth
+                        .verifyOtp({
+
+                            phone:
+                                loginPhoneSaved,
+
+                            token:
+                                otp,
+
+                            type:
+                                "sms"
+
+                        });
+
+
+                    if(error){
+
+                        throw error;
+
+                    }
+
+
+                    if(
+                        !data ||
+                        !data.user
+                    ){
+
+                        throw new Error(
+                            "لم يتم تسجيل الدخول."
+                        );
+
+                    }
+
+
+                    showMessage(
+                        "🎉 تم تسجيل الدخول بنجاح.",
+                        "success"
+                    );
+
+
+                    setTimeout(
+                        () => {
+
+                            window.location.href =
+                                "home.html";
+
+                        },
+                        800
+                    );
+
+                }
+                catch(error){
+
+                    console.error(
+                        "VERIFY LOGIN ERROR:",
+                        error
+                    );
+
+                    showMessage(
+                        friendlyError(error),
+                        "error"
+                    );
+
+                }
+                finally{
+
+                    setLoading(
+                        button,
+                        false,
+                        "🔐 تأكيد الكود والدخول"
+                    );
+
+                }
+
+            }
         );
 
 
-    const lower =
-        text.toLowerCase();
+    /* ==================================================
+       RESEND LOGIN OTP
+    ================================================== */
 
-
-    if(
-        lower.includes(
-            "rate limit"
+    document
+        .getElementById(
+            "resendLoginButton"
         )
-    ){
+        .addEventListener(
+            "click",
+            async function(){
 
-        return "⏳ تم تجاوز حد إرسال الرسائل مؤقتًا. انتظر قليلًا ثم حاول مرة أخرى.";
+                if(!loginPhoneSaved){
+
+                    showMessage(
+                        "❌ اكتب رقم الهاتف أولًا.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                try{
+
+                    const supabase =
+                        getSupabase();
+
+
+                    const {
+                        error
+                    } =
+                    await supabase.auth
+                        .signInWithOtp({
+
+                            phone:
+                                loginPhoneSaved,
+
+                            options:{
+
+                                shouldCreateUser:
+                                    false,
+
+                                channel:
+                                    "sms"
+
+                            }
+
+                        });
+
+
+                    if(error){
+
+                        throw error;
+
+                    }
+
+
+                    showMessage(
+                        "📱 تم إرسال كود جديد.",
+                        "success"
+                    );
+
+                }
+                catch(error){
+
+                    console.error(error);
+
+                    showMessage(
+                        friendlyError(error),
+                        "error"
+                    );
+
+                }
+
+            }
+        );
+
+
+    /* ==================================================
+       ERRORS
+    ================================================== */
+
+    function friendlyError(error){
+
+        const text =
+            String(
+                error?.message ||
+                error ||
+                ""
+            );
+
+        const lower =
+            text.toLowerCase();
+
+
+        if(
+            lower.includes(
+                "signups not allowed"
+            )
+        ){
+
+            return (
+                "❌ Supabase يمنع إنشاء مستخدم جديد بالـOTP. " +
+                "تأكد من تفعيل السماح بتسجيل المستخدمين الجدد " +
+                "في Authentication → Settings."
+            );
+
+        }
+
+
+        if(
+            lower.includes(
+                "rate limit"
+            )
+        ){
+
+            return (
+                "⏳ تم تجاوز حد إرسال الرسائل مؤقتًا. " +
+                "انتظر قليلًا ثم حاول مرة أخرى."
+            );
+
+        }
+
+
+        if(
+            lower.includes(
+                "invalid phone"
+            )
+        ){
+
+            return "❌ رقم الهاتف غير صحيح.";
+
+        }
+
+
+        if(
+            lower.includes(
+                "invalid otp"
+            )
+        ){
+
+            return "❌ كود التحقق غير صحيح.";
+
+        }
+
+
+        if(
+            lower.includes(
+                "expired"
+            )
+        ){
+
+            return "⌛ انتهت صلاحية الكود. اطلب كودًا جديدًا.";
+
+        }
+
+
+        if(
+            lower.includes(
+                "row-level security"
+            )
+        ){
+
+            return (
+                "❌ تم تأكيد الهاتف، لكن قاعدة البيانات " +
+                "رفضت حفظ بيانات الطالب بسبب RLS."
+            );
+
+        }
+
+
+        if(
+            lower.includes(
+                "duplicate"
+            ) ||
+            lower.includes(
+                "already registered"
+            )
+        ){
+
+            return "⚠️ رقم الهاتف مسجل بالفعل. استخدم تسجيل الدخول.";
+
+        }
+
+
+        return "❌ " + text;
 
     }
 
 
-    if(
-        lower.includes(
-            "invalid phone"
-        )
-    ){
+    /* ==================================================
+       URL MODE
+    ================================================== */
 
-        return "❌ رقم الهاتف غير صحيح.";
-
-    }
-
-
-    if(
-        lower.includes(
-            "invalid otp"
-        )
-    ){
-
-        return "❌ كود التحقق غير صحيح.";
-
-    }
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
 
 
     if(
-        lower.includes(
-            "expired"
-        )
+        params.get("mode") ===
+        "register"
     ){
 
-        return "⌛ انتهت صلاحية الكود. اطلب كودًا جديدًا.";
+        registerTab.click();
 
     }
 
-
-    if(
-        lower.includes(
-            "not found"
-        )
-    ){
-
-        return "❌ هذا الرقم غير مسجل.";
-
-    }
-
-
-    return "❌ " + text;
-
-}
-
-
-/* ==================================================
-   URL MODE
-================================================== */
-
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
-
-
-if(
-    params.get("mode") ===
-    "register"
-){
-
-    registerTab.click();
-
-}
+});
 
 </script>
 
