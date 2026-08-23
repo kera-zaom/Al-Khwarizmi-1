@@ -2,8 +2,13 @@
 <html lang="ar" dir="rtl">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>الخوارزمي | حسابي</title>
 
@@ -34,7 +39,8 @@ body{
         #050509;
 }
 
-button,a{
+button,
+a{
     -webkit-tap-highlight-color:transparent;
 }
 
@@ -211,10 +217,31 @@ header{
     font-size:14px;
 }
 
+.grade-badge{
+    display:inline-flex;
+    margin-top:14px;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    color:#d9ceff;
+
+    background:
+        rgba(116,72,232,.12);
+
+    border:
+        1px solid
+        rgba(116,72,232,.25);
+
+    font-size:13px;
+}
+
 .hero-buttons{
     display:flex;
     flex-wrap:wrap;
     gap:10px;
+
     margin-top:20px;
 }
 
@@ -320,6 +347,8 @@ header{
     align-items:center;
     justify-content:space-between;
 
+    gap:10px;
+
     margin-bottom:15px;
 }
 
@@ -394,13 +423,48 @@ header{
     font-size:13px;
 }
 
-.card-link{
+.card-image{
+    width:100%;
+    height:160px;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+    margin-bottom:14px;
+}
+
+.card-button{
     display:block;
+
+    width:100%;
+
     margin-top:15px;
+
+    padding:12px;
+
+    text-align:center;
+
+    border-radius:13px;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7448e8,
+            #3154df
+        );
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    font-size:13px;
 }
 
 .empty{
-    grid-column:1/-1;
+    grid-column:1 / -1;
 
     padding:30px;
 
@@ -413,16 +477,6 @@ header{
         rgba(255,255,255,.10);
 
     border-radius:18px;
-}
-
-.loading{
-    grid-column:1/-1;
-
-    padding:30px;
-
-    text-align:center;
-
-    color:#888;
 }
 
 /* ================= OFFER ================= */
@@ -511,27 +565,6 @@ header{
     border:
         1px solid
         rgba(255,255,255,.08);
-
-    animation:
-        studentIn .55s ease both;
-}
-
-@keyframes studentIn{
-
-    from{
-        opacity:0;
-        transform:
-            translateY(20px)
-            scale(.96);
-    }
-
-    to{
-        opacity:1;
-        transform:
-            translateY(0)
-            scale(1);
-    }
-
 }
 
 .student-rank{
@@ -568,6 +601,7 @@ header{
 .student-avatar img{
     width:100%;
     height:100%;
+
     object-fit:cover;
 }
 
@@ -598,18 +632,10 @@ header{
     font-size:13px;
 }
 
-.student-achievement{
-    margin-top:7px;
-
-    color:#777784;
-
-    font-size:12px;
-}
-
 .best-loading,
 .best-empty,
 .best-error{
-    grid-column:1/-1;
+    grid-column:1 / -1;
 
     text-align:center;
 
@@ -654,25 +680,6 @@ footer{
     box-shadow:
         0 0 35px
         rgba(116,72,232,.22);
-
-    animation:
-        teacherFloat 3.5s ease-in-out infinite;
-}
-
-@keyframes teacherFloat{
-
-    0%,100%{
-        transform:
-            translateY(0)
-            rotate(-2deg);
-    }
-
-    50%{
-        transform:
-            translateY(-8px)
-            rotate(2deg);
-    }
-
 }
 
 .footer-title{
@@ -729,6 +736,7 @@ footer{
 }
 
 </style>
+
 </head>
 
 <body>
@@ -783,6 +791,7 @@ type="button"
 
 <main class="container">
 
+
 <section class="hero">
 
 <div class="hero-content">
@@ -795,13 +804,20 @@ type="button"
 id="studentName"
 class="student-name"
 >
-جاري التحميل...
+جاري تحميل بياناتك...
+</div>
+
+<div
+id="studentGrade"
+class="grade-badge"
+style="display:none;"
+>
+🎓 الصف الدراسي
 </div>
 
 <p class="hero-text">
-مرحباً بك في منصة الخوارزمي. هنا ستجد
-الاختبارات والملفات والفيديوهات المتاحة
-لصفك الدراسي.
+من هنا يمكنك متابعة امتحاناتك وملفات الـ PDF
+والفيديوهات وأفضل الطلاب في صفك.
 </p>
 
 <div class="hero-buttons">
@@ -810,7 +826,7 @@ class="student-name"
 href="#exams"
 class="main-btn"
 >
-📝 الاختبارات
+📝 الامتحانات
 </a>
 
 <a
@@ -818,6 +834,13 @@ href="#files"
 class="secondary-btn"
 >
 📄 ملفات PDF
+</a>
+
+<a
+href="#videos"
+class="secondary-btn"
+>
+🎥 الفيديوهات
 </a>
 
 </div>
@@ -852,18 +875,18 @@ class="stat-value"
 <div class="stat">
 
 <div class="stat-icon">
-🎥
+📄
 </div>
 
 <div
-id="videosCount"
+id="filesCount"
 class="stat-value"
 >
 0
 </div>
 
 <div class="stat-label">
-الفيديوهات
+ملفات PDF
 </div>
 
 </div>
@@ -891,18 +914,54 @@ class="stat-value"
 </section>
 
 
-<!-- VIDEOS -->
+<!-- PDF -->
 
-<section class="section">
+<section
+id="files"
+class="section"
+>
 
 <div class="section-title">
 
 <h2>
-🎥 الفيديوهات
+📄 الملفات والمذكرات
 </h2>
 
-<span id="studentGradeLabel">
-حسب صفك
+<span id="filesGradeLabel">
+حسب صفك الدراسي
+</span>
+
+</div>
+
+<div
+id="filesGrid"
+class="grid"
+>
+
+<div class="loading">
+⏳ جاري تحميل الملفات...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- VIDEOS -->
+
+<section
+id="videos"
+class="section"
+>
+
+<div class="section-title">
+
+<h2>
+🎥 الفيديوهات والمحاضرات
+</h2>
+
+<span id="videosGradeLabel">
+حسب صفك الدراسي
 </span>
 
 </div>
@@ -921,39 +980,6 @@ class="grid"
 </section>
 
 
-<!-- PDF -->
-
-<section
-id="files"
-class="section"
->
-
-<div class="section-title">
-
-<h2>
-📄 الملفات والمذكرات
-</h2>
-
-<span>
-متاحة لصفك
-</span>
-
-</div>
-
-<div
-id="filesGrid"
-class="grid"
->
-
-<div class="loading">
-⏳ جاري تحميل ملفات PDF...
-</div>
-
-</div>
-
-</section>
-
-
 <!-- EXAMS -->
 
 <section
@@ -964,11 +990,11 @@ class="section"
 <div class="section-title">
 
 <h2>
-📝 الامتحانات
+📝 الامتحانات المتاحة
 </h2>
 
-<span>
-اختباراتك
+<span id="examsGradeLabel">
+حسب صفك الدراسي
 </span>
 
 </div>
@@ -987,92 +1013,24 @@ class="grid"
 </section>
 
 
-<!-- WHAT WE OFFER -->
+<!-- BEST STUDENTS -->
 
-<section class="section">
-
-<button
-id="offerButton"
-type="button"
+<section
+id="bestStudents"
+class="section"
 >
-✨ ماذا نقدم لكم؟
-</button>
 
-<div id="offerContent">
-
-<div class="grid">
-
-<div class="card">
-
-<div class="card-icon">
-📄
-</div>
-
-<h3>
-ملفات PDF
-</h3>
-
-<p>
-مذكرات وملفات تعليمية متاحة
-حسب الصف الدراسي.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-icon">
-🎥
-</div>
-
-<h3>
-فيديوهات
-</h3>
-
-<p>
-شروحات الفيديو المتاحة لك
-من خلال المنصة.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-icon">
-📝
-</div>
-
-<h3>
-امتحانات
-</h3>
-
-<p>
-اختبر نفسك وتابع نتائجك
-ودرجة تقدمك.
-</p>
-
-</div>
-
-</div>
-
-
-<div
-class="section-title"
-style="margin-top:30px;"
->
+<div class="section-title">
 
 <h2>
 🏆 أفضل الطلاب
 </h2>
 
-<span id="bestGradeTitle">
-حسب صفك
+<span id="bestGradeLabel">
+أفضل الطلاب في صفك
 </span>
 
 </div>
-
 
 <div
 id="bestStudentsGrid"
@@ -1085,9 +1043,8 @@ class="best-grid"
 
 </div>
 
-</div>
-
 </section>
+
 
 </main>
 
@@ -1100,7 +1057,6 @@ class="best-grid"
 src="teacher.png"
 class="teacher-image"
 alt="المستر"
-onerror="this.style.display='none'"
 >
 
 <div class="footer-title">
@@ -1118,26 +1074,12 @@ onerror="this.style.display='none'"
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script src="supabase.js"></script>
+
+
 <script>
 
 "use strict";
-
-
-/* =====================================================
-   SUPABASE
-===================================================== */
-
-const SUPABASE_URL =
-"https://fdqolsygigqukejlwcon.supabase.co";
-
-const SUPABASE_KEY =
-"sb_publishable_fO1Xb-dtqq8rnGuvXcPahg_zz9WeW9x";
-
-const supabaseClient =
-window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
 
 
 /* =====================================================
@@ -1146,6 +1088,7 @@ window.supabase.createClient(
 
 let currentUser = null;
 let currentStudent = null;
+let currentGrade = null;
 
 
 /* =====================================================
@@ -1153,8 +1096,118 @@ let currentStudent = null;
 ===================================================== */
 
 document.addEventListener(
-"DOMContentLoaded",
-async function(){
+    "DOMContentLoaded",
+    async function(){
+
+        try{
+
+            if(
+                typeof supabaseClient === "undefined" ||
+                !supabaseClient
+            ){
+
+                showGlobalError(
+                    "Supabase غير متصل. تأكد من ملف supabase.js."
+                );
+
+                return;
+            }
+
+
+            const {
+                data: authData,
+                error: authError
+            } =
+            await supabaseClient.auth.getUser();
+
+
+            if(
+                authError ||
+                !authData ||
+                !authData.user
+            ){
+
+                window.location.href =
+                    "auth.html";
+
+                return;
+            }
+
+
+            currentUser =
+                authData.user;
+
+
+            await loadStudent();
+
+
+            if(!currentStudent){
+
+                document.getElementById(
+                    "studentName"
+                ).textContent =
+                    "مرحباً بك";
+
+                showGlobalError(
+                    "لم يتم العثور على بيانات الطالب في قاعدة البيانات."
+                );
+
+                return;
+            }
+
+
+            await loadAllContent();
+
+
+        }catch(error){
+
+            console.error(
+                "HOME ERROR:",
+                error
+            );
+
+            showGlobalError(
+                "حدث خطأ أثناء تحميل بيانات حسابك."
+            );
+
+        }
+
+
+        document
+            .getElementById("logoutBtn")
+            .addEventListener(
+                "click",
+                async function(){
+
+                    await supabaseClient.auth.signOut();
+
+                    window.location.href =
+                        "auth.html";
+
+                }
+            );
+
+    }
+);
+
+
+/* =====================================================
+   LOAD STUDENT
+===================================================== */
+
+async function loadStudent(){
+
+    const userId =
+        currentUser.id;
+
+
+    let student = null;
+
+
+    /*
+       محاولة أولى:
+       students.id = auth user id
+    */
 
     try{
 
@@ -1162,143 +1215,418 @@ async function(){
             data,
             error
         } =
-        await supabaseClient.auth.getUser();
+        await supabaseClient
+            .from("students")
+            .select("*")
+            .eq(
+                "id",
+                userId
+            )
+            .maybeSingle();
 
-        if(
-            error ||
-            !data ||
-            !data.user
-        ){
 
-            window.location.href =
-            "auth.html";
+        if(!error && data){
 
-            return;
+            student = data;
+
         }
-
-        currentUser =
-        data.user;
-
-
-        await loadStudent();
-
-
-        await Promise.allSettled([
-            loadVideos(),
-            loadPDFs(),
-            loadExams(),
-            loadBestStudents()
-        ]);
-
 
     }catch(error){
 
-        console.error(
-            "HOME ERROR:",
+        console.log(
+            "students.id lookup:",
             error
         );
-
-        document.getElementById(
-            "studentName"
-        ).textContent =
-        "مرحباً بك";
 
     }
 
-});
+
+    /*
+       محاولة ثانية:
+       students.uid = auth user id
+    */
+
+    if(!student){
+
+        try{
+
+            const {
+                data,
+                error
+            } =
+            await supabaseClient
+                .from("students")
+                .select("*")
+                .eq(
+                    "uid",
+                    userId
+                )
+                .maybeSingle();
 
 
-/* =====================================================
-   STUDENT
-===================================================== */
+            if(!error && data){
 
-async function loadStudent(){
+                student = data;
 
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-        .from("students")
-        .select(`
-            id,
-            full_name,
-            phone,
-            grade,
-            points,
-            avatar_url
-        `)
-        .eq(
-            "id",
-            currentUser.id
-        )
-        .maybeSingle();
+            }
+
+        }catch(error){
+
+            console.log(
+                "students.uid lookup:",
+                error
+            );
+
+        }
+
+    }
 
 
-    if(error){
+    /*
+       محاولة ثالثة:
+       profiles.id
+    */
+
+    if(!student){
+
+        try{
+
+            const {
+                data: profile,
+                error
+            } =
+            await supabaseClient
+                .from("profiles")
+                .select("*")
+                .eq(
+                    "id",
+                    userId
+                )
+                .maybeSingle();
+
+
+            if(
+                !error &&
+                profile
+            ){
+
+                student = profile;
+
+            }
+
+        }catch(error){
+
+            console.log(
+                "profiles lookup:",
+                error
+            );
+
+        }
+
+    }
+
+
+    if(!student){
 
         console.error(
-            "STUDENT ERROR:",
-            error
+            "STUDENT NOT FOUND"
         );
 
-        document.getElementById(
-            "studentName"
-        ).textContent =
-        "مرحباً بك";
-
         return;
+
     }
 
 
     currentStudent =
-    data;
+        student;
 
 
-    if(!currentStudent){
+    /*
+       اسم الطالب
+    */
 
-        document.getElementById(
-            "studentName"
-        ).textContent =
-        currentUser.phone ||
-        currentUser.email ||
+    const studentName =
+        student.full_name ||
+        student.name ||
+        student.student_name ||
+        student.username ||
         "طالب";
-
-        return;
-    }
 
 
     document.getElementById(
         "studentName"
     ).textContent =
-    currentStudent.full_name ||
-    "طالب";
+        studentName;
 
+
+    /*
+       الصف
+    */
+
+    currentGrade =
+        student.grade ||
+        student.class ||
+        student.level ||
+        student.school_grade ||
+        null;
+
+
+    /*
+       النقاط
+    */
 
     document.getElementById(
         "pointsValue"
     ).textContent =
-    Number(
-        currentStudent.points || 0
-    );
+        Number(
+            student.points ||
+            student.score ||
+            0
+        );
 
 
-    document.getElementById(
-        "studentGradeLabel"
-    ).textContent =
-    currentStudent.grade ||
-    "حسب صفك";
+    if(currentGrade){
+
+        const gradeBadge =
+            document.getElementById(
+                "studentGrade"
+            );
+
+        gradeBadge.textContent =
+            "🎓 " + currentGrade;
+
+        gradeBadge.style.display =
+            "inline-flex";
+
+        document.getElementById(
+            "filesGradeLabel"
+        ).textContent =
+            "صف " + currentGrade;
+
+        document.getElementById(
+            "videosGradeLabel"
+        ).textContent =
+            "صف " + currentGrade;
+
+        document.getElementById(
+            "examsGradeLabel"
+        ).textContent =
+            "صف " + currentGrade;
+
+        document.getElementById(
+            "bestGradeLabel"
+        ).textContent =
+            "أفضل الطلاب في صف " + currentGrade;
+
+    }else{
+
+        document.getElementById(
+            "studentGrade"
+        ).style.display =
+            "none";
+
+    }
+
+}
 
 
-    document.getElementById(
-        "bestGradeTitle"
-    ).textContent =
-    currentStudent.grade
-    ?
-    "أفضل الطلاب في " +
-    currentStudent.grade
-    :
-    "حسب صفك";
+/* =====================================================
+   LOAD ALL
+===================================================== */
+
+async function loadAllContent(){
+
+    await Promise.allSettled([
+
+        loadPDFs(),
+
+        loadVideos(),
+
+        loadExams(),
+
+        loadBestStudents()
+
+    ]);
+
+}
+
+
+/* =====================================================
+   PDF
+===================================================== */
+
+async function loadPDFs(){
+
+    const grid =
+        document.getElementById(
+            "filesGrid"
+        );
+
+
+    if(!currentGrade){
+
+        grid.innerHTML = `
+            <div class="empty">
+                ⚠️ لا يمكن تحديد الصف الدراسي حالياً،
+                لذلك لا يمكن تحديد ملفات PDF المناسبة لك.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+            .from("pdf_files")
+            .select(`
+                id,
+                title,
+                description,
+                grade,
+                pdf_url,
+                is_active,
+                created_at
+            `)
+            .eq(
+                "is_active",
+                true
+            )
+            .eq(
+                "grade",
+                currentGrade
+            )
+            .order(
+                "created_at",
+                {
+                    ascending:false
+                }
+            );
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        const files =
+            data || [];
+
+
+        document.getElementById(
+            "filesCount"
+        ).textContent =
+            files.length;
+
+
+        if(!files.length){
+
+            grid.innerHTML = `
+                <div class="empty">
+                    📄 لا توجد ملفات PDF متاحة لصفك حالياً.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        grid.innerHTML = "";
+
+
+        files.forEach(
+            file => {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+                card.className =
+                    "card";
+
+
+                card.innerHTML = `
+
+                    <div class="card-icon">
+                        📄
+                    </div>
+
+                    <h3>
+                        ${escapeHTML(
+                            file.title
+                        )}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(
+                            file.description ||
+                            "ملف PDF تعليمي متاح لك."
+                        )}
+                    </p>
+
+                    <p style="margin-top:8px;">
+                        🎓 ${escapeHTML(
+                            file.grade
+                        )}
+                    </p>
+
+                    ${
+                        file.pdf_url
+                        ?
+                        `
+                        <a
+                            href="${escapeAttribute(
+                                file.pdf_url
+                            )}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="card-button"
+                        >
+                            📖 فتح الملف
+                        </a>
+                        `
+                        :
+                        `
+                        <div class="empty">
+                            رابط الملف غير متاح.
+                        </div>
+                        `
+                    }
+
+                `;
+
+
+                grid.appendChild(card);
+
+            }
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "PDF ERROR:",
+            error
+        );
+
+
+        grid.innerHTML = `
+            <div class="empty">
+                ❌ تعذر تحميل ملفات PDF.
+            </div>
+        `;
+
+    }
 
 }
 
@@ -1310,365 +1638,206 @@ async function loadStudent(){
 async function loadVideos(){
 
     const grid =
-    document.getElementById(
-        "videosGrid"
-    );
+        document.getElementById(
+            "videosGrid"
+        );
 
 
-    if(
-        !currentStudent ||
-        !currentStudent.grade
-    ){
+    if(!currentGrade){
 
         grid.innerHTML = `
             <div class="empty">
-                🎥 لا يمكن تحديد الصف الدراسي حالياً.
+                ⚠️ لا يمكن تحديد الصف الدراسي حالياً،
+                لذلك لا يمكن عرض الفيديوهات المناسبة لك.
             </div>
         `;
 
         return;
+
     }
 
 
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-        .from("videos")
-        .select(`
-            id,
-            title,
-            description,
-            grade,
-            youtube_url,
-            thumbnail_url,
-            is_active,
-            created_at
-        `)
-        .eq(
-            "is_active",
-            true
-        )
-        .eq(
-            "grade",
-            currentStudent.grade
-        )
-        .order(
-            "created_at",
-            {
-                ascending:false
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+            .from("videos")
+            .select(`
+                id,
+                title,
+                description,
+                grade,
+                youtube_url,
+                thumbnail_url,
+                is_active,
+                created_at
+            `)
+            .eq(
+                "is_active",
+                true
+            )
+            .eq(
+                "grade",
+                currentGrade
+            )
+            .order(
+                "created_at",
+                {
+                    ascending:false
+                }
+            );
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        const videos =
+            data || [];
+
+
+        if(!videos.length){
+
+            grid.innerHTML = `
+                <div class="empty">
+                    🎥 لا توجد فيديوهات متاحة لصفك حالياً.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        grid.innerHTML = "";
+
+
+        videos.forEach(
+            video => {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+                card.className =
+                    "card";
+
+
+                let thumbnail = "";
+
+
+                if(video.thumbnail_url){
+
+                    thumbnail = `
+                        <img
+                            src="${escapeAttribute(
+                                video.thumbnail_url
+                            )}"
+                            class="card-image"
+                            alt="صورة الفيديو"
+                        >
+                    `;
+
+                }else{
+
+                    const youtubeId =
+                        getYouTubeId(
+                            video.youtube_url
+                        );
+
+
+                    if(youtubeId){
+
+                        thumbnail = `
+                            <img
+                                src="https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg"
+                                class="card-image"
+                                alt="الفيديو"
+                            >
+                        `;
+
+                    }
+
+                }
+
+
+                card.innerHTML = `
+
+                    ${thumbnail}
+
+                    <div class="card-icon">
+                        🎥
+                    </div>
+
+                    <h3>
+                        ${escapeHTML(
+                            video.title
+                        )}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(
+                            video.description ||
+                            "محاضرة تعليمية متاحة لك."
+                        )}
+                    </p>
+
+                    <p style="margin-top:8px;">
+                        🎓 ${escapeHTML(
+                            video.grade
+                        )}
+                    </p>
+
+                    ${
+                        video.youtube_url
+                        ?
+                        `
+                        <a
+                            href="${escapeAttribute(
+                                video.youtube_url
+                            )}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="card-button"
+                        >
+                            ▶️ مشاهدة الفيديو
+                        </a>
+                        `
+                        :
+                        ""
+                    }
+
+                `;
+
+
+                grid.appendChild(card);
+
             }
         );
 
 
-    if(error){
+    }catch(error){
 
         console.error(
             "VIDEOS ERROR:",
             error
         );
 
-        grid.innerHTML = `
-            <div class="empty">
-                ❌ تعذر تحميل الفيديوهات حالياً.
-            </div>
-        `;
-
-        return;
-    }
-
-
-    document.getElementById(
-        "videosCount"
-    ).textContent =
-    data?.length || 0;
-
-
-    if(!data || !data.length){
 
         grid.innerHTML = `
             <div class="empty">
-                🎥 لا توجد فيديوهات متاحة لصفك حالياً.
+                ❌ تعذر تحميل الفيديوهات.
             </div>
         `;
 
-        return;
     }
-
-
-    grid.innerHTML = "";
-
-
-    data.forEach(
-    video => {
-
-        const card =
-        document.createElement(
-            "div"
-        );
-
-        card.className =
-        "card";
-
-
-        const youtube =
-        normalizeYouTubeURL(
-            video.youtube_url
-        );
-
-
-        const thumbnail =
-        video.thumbnail_url ||
-        getYouTubeThumbnail(
-            video.youtube_url
-        );
-
-
-        card.innerHTML = `
-
-            ${
-                thumbnail
-                ?
-                `
-                <img
-                    src="${escapeHTML(thumbnail)}"
-                    alt=""
-                    style="
-                        width:100%;
-                        height:170px;
-                        object-fit:cover;
-                        border-radius:15px;
-                        margin-bottom:15px;
-                    "
-                >
-                `
-                :
-                `
-                <div class="card-icon">
-                    🎥
-                </div>
-                `
-            }
-
-            <h3>
-                ${escapeHTML(
-                    video.title ||
-                    "فيديو تعليمي"
-                )}
-            </h3>
-
-            <p>
-                ${escapeHTML(
-                    video.description ||
-                    "شرح تعليمي متاح لك."
-                )}
-            </p>
-
-            ${
-                youtube
-                ?
-                `
-                <a
-                    href="${escapeHTML(youtube)}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="main-btn card-link"
-                >
-                    ▶️ مشاهدة الفيديو
-                </a>
-                `
-                :
-                `
-                <div
-                    style="
-                        margin-top:15px;
-                        color:#ff9d9d;
-                        font-size:12px;
-                    "
-                >
-                    رابط الفيديو غير متوفر.
-                </div>
-                `
-            }
-
-        `;
-
-
-        grid.appendChild(card);
-
-    });
-
-}
-
-
-/* =====================================================
-   PDF FILES
-===================================================== */
-
-async function loadPDFs(){
-
-    const grid =
-    document.getElementById(
-        "filesGrid"
-    );
-
-
-    if(
-        !currentStudent ||
-        !currentStudent.grade
-    ){
-
-        grid.innerHTML = `
-            <div class="empty">
-                📄 لا يمكن تحديد الصف الدراسي حالياً.
-            </div>
-        `;
-
-        return;
-    }
-
-
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-        .from("pdf_files")
-        .select(`
-            id,
-            title,
-            description,
-            grade,
-            pdf_url,
-            is_active,
-            created_at
-        `)
-        .eq(
-            "is_active",
-            true
-        )
-        .eq(
-            "grade",
-            currentStudent.grade
-        )
-        .order(
-            "created_at",
-            {
-                ascending:false
-            }
-        );
-
-
-    if(error){
-
-        console.error(
-            "PDF ERROR:",
-            error
-        );
-
-        grid.innerHTML = `
-            <div class="empty">
-                ❌ تعذر تحميل ملفات PDF حالياً.
-            </div>
-        `;
-
-        return;
-    }
-
-
-    if(!data || !data.length){
-
-        grid.innerHTML = `
-            <div class="empty">
-                📄 لا توجد ملفات PDF متاحة لصفك حالياً.
-            </div>
-        `;
-
-        return;
-    }
-
-
-    grid.innerHTML = "";
-
-
-    data.forEach(
-    file => {
-
-        const card =
-        document.createElement(
-            "div"
-        );
-
-        card.className =
-        "card";
-
-
-        card.innerHTML = `
-
-            <div class="card-icon">
-                📄
-            </div>
-
-            <h3>
-                ${escapeHTML(
-                    file.title ||
-                    "ملف PDF"
-                )}
-            </h3>
-
-            <p>
-                ${escapeHTML(
-                    file.description ||
-                    "ملف تعليمي متاح لك."
-                )}
-            </p>
-
-            ${
-                file.grade
-                ?
-                `
-                <p style="margin-top:8px;">
-                    🎓 ${escapeHTML(file.grade)}
-                </p>
-                `
-                :
-                ""
-            }
-
-            ${
-                file.pdf_url
-                ?
-                `
-                <a
-                    href="${escapeHTML(file.pdf_url)}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="main-btn card-link"
-                >
-                    📖 فتح ملف PDF
-                </a>
-                `
-                :
-                `
-                <div
-                    style="
-                        margin-top:15px;
-                        color:#ff9d9d;
-                        font-size:12px;
-                    "
-                >
-                    رابط الملف غير متوفر.
-                </div>
-                `
-            }
-
-        `;
-
-
-        grid.appendChild(card);
-
-    });
 
 }
 
@@ -1680,162 +1849,197 @@ async function loadPDFs(){
 async function loadExams(){
 
     const grid =
-    document.getElementById(
-        "examsGrid"
-    );
+        document.getElementById(
+            "examsGrid"
+        );
 
 
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-        .from("exams")
-        .select(`
-            id,
-            title,
-            description,
-            grade,
-            duration_minutes,
-            exam_code,
-            is_active,
-            created_at
-        `)
-        .eq(
-            "is_active",
-            true
-        )
-        .order(
-            "created_at",
-            {
-                ascending:false
+    if(!currentGrade){
+
+        grid.innerHTML = `
+            <div class="empty">
+                ⚠️ لا يمكن تحديد الصف الدراسي حالياً.
+                تأكد أن الصف الدراسي محفوظ في بيانات حسابك.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+            .from("exams")
+            .select(`
+                id,
+                title,
+                description,
+                grade,
+                duration_minutes,
+                exam_code,
+                is_active,
+                created_at
+            `)
+            .eq(
+                "is_active",
+                true
+            )
+            .eq(
+                "grade",
+                currentGrade
+            )
+            .order(
+                "created_at",
+                {
+                    ascending:false
+                }
+            );
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        const exams =
+            data || [];
+
+
+        document.getElementById(
+            "examsCount"
+        ).textContent =
+            exams.length;
+
+
+        if(!exams.length){
+
+            grid.innerHTML = `
+                <div class="empty">
+                    📝 لا توجد امتحانات متاحة لصفك حالياً.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        grid.innerHTML = "";
+
+
+        exams.forEach(
+            exam => {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+                card.className =
+                    "card";
+
+
+                card.innerHTML = `
+
+                    <div class="card-icon">
+                        📝
+                    </div>
+
+                    <h3>
+                        ${escapeHTML(
+                            exam.title
+                        )}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(
+                            exam.description ||
+                            "اختبار متاح لك."
+                        )}
+                    </p>
+
+                    <p style="margin-top:8px;">
+                        🎓 الصف:
+                        ${escapeHTML(
+                            exam.grade
+                        )}
+                    </p>
+
+                    <p style="margin-top:7px;">
+                        ⏱️ المدة:
+                        ${Number(
+                            exam.duration_minutes || 30
+                        )}
+                        دقيقة
+                    </p>
+
+                    ${
+                        exam.exam_code
+                        ?
+                        `
+                        <p style="
+                            margin-top:7px;
+                            color:#a98cff;
+                        ">
+                            🔑 الكود:
+                            ${escapeHTML(
+                                exam.exam_code
+                            )}
+                        </p>
+                        `
+                        :
+                        ""
+                    }
+
+                    <a
+                        href="exam.html?id=${encodeURIComponent(
+                            exam.id
+                        )}"
+                        class="card-button"
+                    >
+                        🚀 بدء الامتحان
+                    </a>
+
+                `;
+
+
+                grid.appendChild(card);
+
             }
         );
 
 
-    if(error){
+    }catch(error){
 
         console.error(
             "EXAMS ERROR:",
             error
         );
 
+
         grid.innerHTML = `
             <div class="empty">
                 ❌ تعذر تحميل الامتحانات.
+                <br><br>
+                ${
+                    error?.message
+                    ?
+                    escapeHTML(error.message)
+                    :
+                    ""
+                }
             </div>
         `;
 
-        return;
     }
-
-
-    let exams =
-    data || [];
-
-
-    if(
-        currentStudent &&
-        currentStudent.grade
-    ){
-
-        exams =
-        exams.filter(
-        exam =>
-            !exam.grade ||
-            exam.grade ===
-            currentStudent.grade
-        );
-
-    }
-
-
-    document.getElementById(
-        "examsCount"
-    ).textContent =
-    exams.length;
-
-
-    if(!exams.length){
-
-        grid.innerHTML = `
-            <div class="empty">
-                📝 لا توجد امتحانات متاحة لصفك حالياً.
-            </div>
-        `;
-
-        return;
-    }
-
-
-    grid.innerHTML = "";
-
-
-    exams.forEach(
-    exam => {
-
-        const card =
-        document.createElement(
-            "div"
-        );
-
-        card.className =
-        "card";
-
-
-        card.innerHTML = `
-
-            <div class="card-icon">
-                📝
-            </div>
-
-            <h3>
-                ${escapeHTML(
-                    exam.title ||
-                    "امتحان"
-                )}
-            </h3>
-
-            <p>
-                ${escapeHTML(
-                    exam.description ||
-                    "اختبار متاح لك."
-                )}
-            </p>
-
-            <p style="margin-top:8px;">
-                ⏱️ ${Number(
-                    exam.duration_minutes ||
-                    30
-                )} دقيقة
-            </p>
-
-            ${
-                exam.grade
-                ?
-                `
-                <p style="margin-top:7px;">
-                    🎓 ${escapeHTML(exam.grade)}
-                </p>
-                `
-                :
-                ""
-            }
-
-            <a
-                href="exam.html?id=${encodeURIComponent(exam.id)}"
-                class="main-btn card-link"
-                style="width:100%;"
-            >
-                🚀 بدء الامتحان
-            </a>
-
-        `;
-
-
-        grid.appendChild(card);
-
-    });
 
 }
 
@@ -1847,72 +2051,217 @@ async function loadExams(){
 async function loadBestStudents(){
 
     const grid =
-    document.getElementById(
-        "bestStudentsGrid"
-    );
+        document.getElementById(
+            "bestStudentsGrid"
+        );
 
 
-    if(
-        !currentStudent ||
-        !currentStudent.grade
-    ){
+    if(!currentGrade){
 
         grid.innerHTML = `
             <div class="best-empty">
-                🏆 لا يمكن تحديد الصف الدراسي حالياً.
+                ⚠️ لا يمكن تحديد الصف الدراسي لعرض أفضل الطلاب.
             </div>
         `;
 
         return;
+
     }
 
 
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-        .from("top_students")
-        .select(`
-            id,
-            student_id,
-            name,
-            grade,
-            photo_url,
-            rank,
-            points,
-            achievement,
-            is_active
-        `)
-        .eq(
-            "is_active",
-            true
-        )
-        .eq(
-            "grade",
-            currentStudent.grade
-        )
-        .order(
-            "rank",
-            {
-                ascending:true,
-                nullsFirst:false
-            }
-        )
-        .order(
-            "points",
-            {
-                ascending:false
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+            .from("top_students")
+            .select(`
+                id,
+                student_id,
+                name,
+                student_name,
+                grade,
+                photo_url,
+                rank,
+                position,
+                points,
+                score,
+                achievement,
+                description,
+                is_active
+            `)
+            .eq(
+                "is_active",
+                true
+            )
+            .eq(
+                "grade",
+                currentGrade
+            )
+            .order(
+                "rank",
+                {
+                    ascending:true,
+                    nullsFirst:false
+                }
+            )
+            .order(
+                "position",
+                {
+                    ascending:true,
+                    nullsFirst:false
+                }
+            );
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        const students =
+            data || [];
+
+
+        if(!students.length){
+
+            grid.innerHTML = `
+                <div class="best-empty">
+                    🏆 لا توجد بيانات لأفضل الطلاب في صفك حالياً.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        grid.innerHTML = "";
+
+
+        students.forEach(
+            student => {
+
+                const rank =
+                    student.rank ||
+                    student.position ||
+                    "—";
+
+
+                const name =
+                    student.name ||
+                    student.student_name ||
+                    "طالب";
+
+
+                const points =
+                    student.points ??
+                    student.score ??
+                    0;
+
+
+                let avatar;
+
+
+                if(student.photo_url){
+
+                    avatar = `
+                        <img
+                            src="${escapeAttribute(
+                                student.photo_url
+                            )}"
+                            alt="${escapeAttribute(
+                                name
+                            )}"
+                        >
+                    `;
+
+                }else{
+
+                    avatar = `
+                        <div class="student-emoji">
+                            👨‍🎓
+                        </div>
+                    `;
+
+                }
+
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+                card.className =
+                    "student-card";
+
+
+                card.innerHTML = `
+
+                    <div class="student-rank">
+                        ${
+                            rank == 1
+                            ? "🥇"
+                            : rank == 2
+                            ? "🥈"
+                            : rank == 3
+                            ? "🥉"
+                            : "🏆"
+                        }
+                        ${escapeHTML(rank)}
+                    </div>
+
+                    <div class="student-avatar">
+                        ${avatar}
+                    </div>
+
+                    <div class="best-name">
+                        ${escapeHTML(name)}
+                    </div>
+
+                    <div class="student-points">
+                        ⭐ ${escapeHTML(points)}
+                        نقطة
+                    </div>
+
+                    ${
+                        student.achievement
+                        ?
+                        `
+                        <div style="
+                            margin-top:8px;
+                            color:#888;
+                            font-size:12px;
+                        ">
+                            ${escapeHTML(
+                                student.achievement
+                            )}
+                        </div>
+                        `
+                        :
+                        ""
+                    }
+
+                `;
+
+
+                grid.appendChild(card);
+
             }
         );
 
 
-    if(error){
+    }catch(error){
 
         console.error(
-            "TOP STUDENTS ERROR:",
+            "BEST STUDENTS ERROR:",
             error
         );
+
 
         grid.innerHTML = `
             <div class="best-error">
@@ -1920,246 +2269,68 @@ async function loadBestStudents(){
             </div>
         `;
 
-        return;
     }
-
-
-    if(!data || !data.length){
-
-        grid.innerHTML = `
-            <div class="best-empty">
-                🏆 لا يوجد أفضل طلاب مضافون لصفك حالياً.
-            </div>
-        `;
-
-        return;
-    }
-
-
-    grid.innerHTML = "";
-
-
-    data.forEach(
-    (student,index) => {
-
-        const rank =
-        student.rank ||
-        index + 1;
-
-
-        let medal =
-        "🏅";
-
-        if(rank === 1)
-            medal = "🥇";
-
-        else if(rank === 2)
-            medal = "🥈";
-
-        else if(rank === 3)
-            medal = "🥉";
-
-
-        const card =
-        document.createElement(
-            "div"
-        );
-
-        card.className =
-        "student-card";
-
-
-        const avatar =
-        student.photo_url
-        ?
-        `
-        <img
-            src="${escapeHTML(student.photo_url)}"
-            alt="${escapeHTML(student.name || "طالب")}"
-        >
-        `
-        :
-        `
-        <div class="student-emoji">
-            👨‍🎓
-        </div>
-        `;
-
-
-        card.innerHTML = `
-
-            <div class="student-rank">
-                ${medal}
-                ${rank}
-            </div>
-
-            <div class="student-avatar">
-                ${avatar}
-            </div>
-
-            <div class="best-name">
-                ${escapeHTML(
-                    student.name ||
-                    "طالب"
-                )}
-            </div>
-
-            <div class="student-points">
-                ⭐ ${Number(
-                    student.points || 0
-                )} نقطة
-            </div>
-
-            ${
-                student.achievement
-                ?
-                `
-                <div class="student-achievement">
-                    ${escapeHTML(
-                        student.achievement
-                    )}
-                </div>
-                `
-                :
-                ""
-            }
-
-        `;
-
-
-        grid.appendChild(card);
-
-    });
 
 }
 
 
 /* =====================================================
-   YOUTUBE
+   YOUTUBE ID
 ===================================================== */
 
-function normalizeYouTubeURL(url){
+function getYouTubeId(url){
 
-    if(!url)
-        return "";
-
-
-    let value =
-    String(url).trim();
-
-
-    if(
-        value.includes("youtube.com/watch")
-    ){
-
-        try{
-
-            const parsed =
-            new URL(value);
-
-            const id =
-            parsed.searchParams.get(
-                "v"
-            );
-
-            if(id){
-
-                return
-                "https://www.youtube.com/watch?v=" +
-                encodeURIComponent(id);
-
-            }
-
-        }catch(e){}
-
+    if(!url){
+        return null;
     }
-
-
-    if(
-        value.includes("youtu.be/")
-    ){
-
-        try{
-
-            const parsed =
-            new URL(value);
-
-            const id =
-            parsed.pathname
-                .replace("/","")
-                .trim();
-
-            if(id){
-
-                return
-                "https://www.youtube.com/watch?v=" +
-                encodeURIComponent(id);
-
-            }
-
-        }catch(e){}
-
-    }
-
-
-    return value;
-
-}
-
-
-/* =====================================================
-   YOUTUBE THUMBNAIL
-===================================================== */
-
-function getYouTubeThumbnail(url){
-
-    if(!url)
-        return "";
 
 
     try{
 
-        const parsed =
-        new URL(url);
+        const value =
+            String(url).trim();
 
 
-        let id = "";
+        const patterns = [
+
+            /youtube\.com\/watch\?v=([^&]+)/i,
+
+            /youtu\.be\/([^?&]+)/i,
+
+            /youtube\.com\/embed\/([^?&]+)/i,
+
+            /youtube\.com\/shorts\/([^?&]+)/i
+
+        ];
 
 
-        if(
-            parsed.hostname.includes(
-                "youtu.be"
-            )
+        for(
+            const pattern of patterns
         ){
 
-            id =
-            parsed.pathname
-                .replace("/","");
-
-        }
-        else{
-
-            id =
-            parsed.searchParams.get(
-                "v"
-            ) || "";
-
-        }
+            const match =
+                value.match(pattern);
 
 
-        if(id){
+            if(match){
 
-            return
-            "https://img.youtube.com/vi/" +
-            encodeURIComponent(id) +
-            "/hqdefault.jpg";
+                return match[1];
+
+            }
 
         }
 
-    }catch(error){}
+    }catch(error){
+
+        console.error(
+            "YouTube URL:",
+            error
+        );
+
+    }
 
 
-    return "";
+    return null;
 
 }
 
@@ -2198,82 +2369,89 @@ function escapeHTML(value){
 
 
 /* =====================================================
-   OFFER BUTTON
+   ESCAPE ATTRIBUTE
 ===================================================== */
 
-document
-.getElementById("offerButton")
-.addEventListener(
-"click",
-function(){
+function escapeAttribute(value){
 
-    const content =
-    document.getElementById(
-        "offerContent"
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
     );
 
-
-    content.classList.toggle(
-        "show"
-    );
-
-
-    this.textContent =
-    content.classList.contains("show")
-    ?
-    "⬆️ إخفاء المحتوى"
-    :
-    "✨ ماذا نقدم لكم؟";
-
-});
+}
 
 
 /* =====================================================
-   LOGOUT
+   GLOBAL ERROR
 ===================================================== */
 
-document
-.getElementById("logoutBtn")
-.addEventListener(
-"click",
-async function(){
+function showGlobalError(message){
 
-    this.disabled =
-    true;
-
-    this.textContent =
-    "جاري الخروج...";
+    document.getElementById(
+        "studentName"
+    ).textContent =
+        "مرحباً بك";
 
 
-    const {
-        error
-    } =
-    await supabaseClient.auth.signOut();
+    document.getElementById(
+        "examsGrid"
+    ).innerHTML = `
+        <div class="empty">
+            ❌ ${escapeHTML(message)}
+        </div>
+    `;
+
+}
 
 
-    if(error){
+/* =====================================================
+   OFFER BUTTON
+===================================================== */
 
-        console.error(
-            "LOGOUT:",
-            error
-        );
+const offerButton =
+    document.getElementById(
+        "offerButton"
+    );
 
-        this.disabled =
-        false;
+if(offerButton){
 
-        this.textContent =
-        "خروج";
+    offerButton.addEventListener(
+        "click",
+        function(){
 
-        return;
-    }
+            const content =
+                document.getElementById(
+                    "offerContent"
+                );
 
 
-    window.location.href =
-    "auth.html";
+            content.classList.toggle(
+                "show"
+            );
 
-});
+        }
+    );
+
+}
 
 </script>
 
 </body>
+
 </html>
