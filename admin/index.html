@@ -14,6 +14,10 @@
 
 <style>
 
+/* =====================================================
+   RESET
+===================================================== */
+
 *{
     margin:0;
     padding:0;
@@ -47,12 +51,13 @@ body{
     color:#fff;
 
     overflow-x:hidden;
+
 }
 
 
-/* ================================
+/* =====================================================
    BACKGROUND
-================================ */
+===================================================== */
 
 .bg-circle{
 
@@ -110,18 +115,10 @@ body{
 
 }
 
-@keyframes spin{
 
-    to{
-        transform:rotate(360deg);
-    }
-
-}
-
-
-/* ================================
+/* =====================================================
    LOADING
-================================ */
+===================================================== */
 
 #loadingScreen{
 
@@ -143,10 +140,6 @@ body{
 
     background:#050509;
 
-    padding:25px;
-
-    text-align:center;
-
 }
 
 .loader{
@@ -165,91 +158,26 @@ body{
 
 }
 
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
 .loading-text{
 
-    color:#aaa;
+    color:#999;
 
     font-size:14px;
 
 }
 
 
-/* ================================
-   ERROR
-================================ */
-
-.error-box{
-
-    max-width:500px;
-
-    width:100%;
-
-    padding:30px;
-
-    border-radius:24px;
-
-    background:
-    rgba(255,255,255,.04);
-
-    border:
-    1px solid
-    rgba(255,255,255,.08);
-
-}
-
-.error-icon{
-
-    font-size:50px;
-
-    margin-bottom:15px;
-
-}
-
-.error-box h2{
-
-    margin-bottom:10px;
-
-}
-
-.error-box p{
-
-    color:#999;
-
-    line-height:1.8;
-
-    word-break:break-word;
-
-}
-
-.retry-btn{
-
-    border:0;
-
-    margin-top:20px;
-
-    padding:13px 25px;
-
-    border-radius:13px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #7448e8,
-        #3154df
-    );
-
-    color:#fff;
-
-    cursor:pointer;
-
-    font-weight:bold;
-
-}
-
-
-/* ================================
+/* =====================================================
    ACCESS DENIED
-================================ */
+===================================================== */
 
 #accessDenied{
 
@@ -330,9 +258,9 @@ body{
 }
 
 
-/* ================================
-   ADMIN APP
-================================ */
+/* =====================================================
+   APP
+===================================================== */
 
 #adminApp{
 
@@ -341,9 +269,9 @@ body{
 }
 
 
-/* ================================
+/* =====================================================
    HEADER
-================================ */
+===================================================== */
 
 header{
 
@@ -405,16 +333,6 @@ header{
 
 }
 
-.header-actions{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-}
-
 .admin-badge{
 
     padding:7px 12px;
@@ -434,40 +352,10 @@ header{
 
 }
 
-.logout-btn{
 
-    border:0;
-
-    cursor:pointer;
-
-    padding:10px 15px;
-
-    border-radius:12px;
-
-    color:#fff;
-
-    background:
-    rgba(255,70,70,.08);
-
-    border:
-    1px solid
-    rgba(255,70,70,.16);
-
-    transition:.3s;
-
-}
-
-.logout-btn:hover{
-
-    background:
-    rgba(255,70,70,.15);
-
-}
-
-
-/* ================================
+/* =====================================================
    CONTAINER
-================================ */
+===================================================== */
 
 .container{
 
@@ -478,9 +366,9 @@ header{
 }
 
 
-/* ================================
+/* =====================================================
    TOP
-================================ */
+===================================================== */
 
 .admin-top{
 
@@ -501,14 +389,12 @@ header{
 
     color:#888;
 
-    line-height:1.8;
-
 }
 
 
-/* ================================
+/* =====================================================
    STATS
-================================ */
+===================================================== */
 
 .stats-grid{
 
@@ -578,9 +464,9 @@ header{
 }
 
 
-/* ================================
+/* =====================================================
    SECTION
-================================ */
+===================================================== */
 
 .section{
 
@@ -617,9 +503,9 @@ header{
 }
 
 
-/* ================================
+/* =====================================================
    ACTIONS
-================================ */
+===================================================== */
 
 .actions-grid{
 
@@ -711,9 +597,9 @@ header{
 }
 
 
-/* ================================
-   INFO
-================================ */
+/* =====================================================
+   QUICK INFO
+===================================================== */
 
 .info-box{
 
@@ -766,14 +652,47 @@ header{
 
     color:#cfc6ff;
 
-    word-break:break-all;
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+.logout-btn{
+
+    border:0;
+
+    cursor:pointer;
+
+    padding:10px 15px;
+
+    border-radius:12px;
+
+    color:#fff;
+
+    background:
+    rgba(255,70,70,.08);
+
+    border:
+    1px solid
+    rgba(255,70,70,.16);
+
+    transition:.3s;
+
+}
+
+.logout-btn:hover{
+
+    background:
+    rgba(255,70,70,.15);
 
 }
 
 
-/* ================================
+/* =====================================================
    FOOTER
-================================ */
+===================================================== */
 
 footer{
 
@@ -800,9 +719,9 @@ footer span{
 }
 
 
-/* ================================
+/* =====================================================
    MOBILE
-================================ */
+===================================================== */
 
 @media(max-width:900px){
 
@@ -879,7 +798,12 @@ footer span{
 <body>
 
 
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
 <div class="bg-circle bg-one"></div>
+
 <div class="bg-circle bg-two"></div>
 
 
@@ -891,10 +815,7 @@ footer span{
 
     <div class="loader"></div>
 
-    <div
-        id="loadingText"
-        class="loading-text"
-    >
+    <div class="loading-text">
         جاري التحقق من صلاحيات الأدمن...
     </div>
 
@@ -950,7 +871,13 @@ footer span{
 </div>
 
 
-<div class="header-actions">
+<div
+    style="
+    display:flex;
+    align-items:center;
+    gap:10px;
+    "
+>
 
 <div class="admin-badge">
 👑 لوحة الإدارة
@@ -973,7 +900,12 @@ footer span{
 </header>
 
 
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
 <main>
+
 
 <div class="container">
 
@@ -985,7 +917,7 @@ footer span{
 </h1>
 
 <p>
-من هنا يمكنك إدارة منصة الخوارزمي ومتابعة الطلاب والاختبارات والنتائج.
+من هنا يمكنك إدارة منصة الخوارزمي ومتابعة الطلاب والاختبارات والمحتوى.
 </p>
 
 </section>
@@ -1067,13 +999,12 @@ footer span{
 </div>
 
 <div class="stat-title">
-حالة النظام
+أفضل الطلاب
 </div>
 
 <div
-    id="systemStatus"
+    id="topStudentsCount"
     class="stat-number"
-    style="font-size:20px;"
 >
 —
 </div>
@@ -1087,7 +1018,167 @@ footer span{
 
 
 <!-- =====================================================
-     ACTIONS
+     CONTENT MANAGEMENT
+===================================================== -->
+
+<section class="section">
+
+
+<div class="section-title">
+
+<h2>
+إدارة المحتوى
+</h2>
+
+<span>
+Content Management
+</span>
+
+</div>
+
+
+<div class="actions-grid">
+
+
+<!-- ADD EXAM -->
+
+<a
+    href="add-exam.html"
+    class="action-card"
+>
+
+<div class="action-icon">
+📝
+</div>
+
+<h3>
+إضافة امتحان
+</h3>
+
+<p>
+إنشاء امتحان جديد وتحديد الصف والمدة والكود.
+</p>
+
+</a>
+
+
+<!-- PDF -->
+
+<a
+    href="content.html?type=pdf"
+    class="action-card"
+>
+
+<div class="action-icon">
+📄
+</div>
+
+<h3>
+إضافة PDF
+</h3>
+
+<p>
+إضافة ملفات PDF وتحديد الصف الدراسي الخاص بها.
+</p>
+
+</a>
+
+
+<!-- VIDEOS -->
+
+<a
+    href="content.html?type=video"
+    class="action-card"
+>
+
+<div class="action-icon">
+🎬
+</div>
+
+<h3>
+إضافة فيديو
+</h3>
+
+<p>
+إضافة رابط YouTube وتحديد الصف الدراسي للفيديو.
+</p>
+
+</a>
+
+
+<!-- TOP STUDENTS -->
+
+<a
+    href="content.html?type=top-students"
+    class="action-card"
+>
+
+<div class="action-icon">
+🏆
+</div>
+
+<h3>
+أفضل الطلاب
+</h3>
+
+<p>
+إضافة وترتيب أفضل الطلاب لكل صف دراسي.
+</p>
+
+</a>
+
+
+<!-- QUESTIONS -->
+
+<a
+    href="questions.html"
+    class="action-card"
+>
+
+<div class="action-icon">
+❓
+</div>
+
+<h3>
+أسئلة الامتحانات
+</h3>
+
+<p>
+إضافة الأسئلة والاختيارات والإجابات الصحيحة.
+</p>
+
+</a>
+
+
+<!-- EXAMS -->
+
+<a
+    href="exams.html"
+    class="action-card"
+>
+
+<div class="action-icon">
+📚
+</div>
+
+<h3>
+إدارة الامتحانات
+</h3>
+
+<p>
+عرض وتعديل وحذف الامتحانات الموجودة.
+</p>
+
+</a>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PLATFORM MANAGEMENT
 ===================================================== -->
 
 <section class="section">
@@ -1109,6 +1200,8 @@ Admin Control
 <div class="actions-grid">
 
 
+<!-- STUDENTS -->
+
 <a
     href="students.html"
     class="action-card"
@@ -1123,71 +1216,35 @@ Admin Control
 </h3>
 
 <p>
-عرض الطلاب وإدارة بيانات الحسابات ومتابعة بيانات الطلاب.
+عرض الطلاب وإدارة بيانات الحسابات ومتابعة الطلاب.
 </p>
 
 </a>
 
 
+<!-- RESULTS -->
+
 <a
-    href="exams.html"
+    href="results.html"
     class="action-card"
 >
 
 <div class="action-icon">
-📝
+📊
 </div>
 
 <h3>
-الاختبارات
+النتائج
 </h3>
 
 <p>
-إدارة الاختبارات الموجودة على المنصة.
+عرض نتائج الاختبارات ومتابعة درجات الطلاب.
 </p>
 
 </a>
 
 
-<a
-    href="add-exam.html"
-    class="action-card"
->
-
-<div class="action-icon">
-➕
-</div>
-
-<h3>
-إضافة اختبار
-</h3>
-
-<p>
-إنشاء اختبار جديد وتحديد بياناته ومدة الاختبار.
-</p>
-
-</a>
-
-
-<a
-    href="questions.html"
-    class="action-card"
->
-
-<div class="action-icon">
-❓
-</div>
-
-<h3>
-الأسئلة
-</h3>
-
-<p>
-إدارة أسئلة الاختبارات والاختيارات والإجابات.
-</p>
-
-</a>
-
+<!-- PREVIEW -->
 
 <a
     href="../tests.html"
@@ -1208,6 +1265,8 @@ Admin Control
 
 </a>
 
+
+<!-- STUDENT HOME -->
 
 <a
     href="../home.html"
@@ -1263,7 +1322,7 @@ Admin Control
     id="accountRole"
     class="info-value"
 >
-—
+Admin
 </span>
 
 </div>
@@ -1272,7 +1331,7 @@ Admin Control
 <div class="info-row">
 
 <span class="info-label">
-معرف المستخدم
+رقم المستخدم
 </span>
 
 <span
@@ -1328,161 +1387,44 @@ Admin Control
 
 
 <!-- =====================================================
-     SUPABASE LIBRARY
+     SUPABASE
 ===================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script src="../supabase.js"></script>
+
 
 <script>
-
-/* =====================================================
-   SUPABASE
-===================================================== */
 
 "use strict";
 
 
-const SUPABASE_URL =
-    "https://fdqolsygigqukejlwcon.supabase.co";
-
-
-const SUPABASE_KEY =
-    "sb_publishable_fO1Xb-dtqq8rnGuvXcPahg_zz9WeW9x";
-
-
-/*
-   نستخدم نفس العميل في الصفحة
-   ونضعه أيضًا في window.supabaseClient
-*/
-
-if (
-    !window.supabaseClient &&
-    window.supabase
-) {
-
-    window.supabaseClient =
-        window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
-
-}
+let supabaseClient = null;
 
 
 /* =====================================================
-   HELPERS
+   WAIT FOR SUPABASE
 ===================================================== */
 
-function timeoutPromise(ms) {
+async function waitForSupabase(){
 
-    return new Promise(
-        function(_, reject) {
+    for(let i = 0; i < 50; i++){
 
-            setTimeout(
-                function() {
+        if(window.supabaseClient){
 
-                    reject(
-                        new Error(
-                            "انتهت مهلة الاتصال بـ Supabase."
-                        )
-                    );
-
-                },
-                ms
-            );
+            return window.supabaseClient;
 
         }
-    );
 
-}
+        await new Promise(
+            resolve =>
+            setTimeout(resolve,100)
+        );
 
+    }
 
-function waitWithTimeout(
-    promise,
-    ms
-) {
-
-    return Promise.race([
-        promise,
-        timeoutPromise(ms)
-    ]);
-
-}
-
-
-/* =====================================================
-   ELEMENTS
-===================================================== */
-
-const loadingScreen =
-    document.getElementById(
-        "loadingScreen"
-    );
-
-
-const loadingText =
-    document.getElementById(
-        "loadingText"
-    );
-
-
-const accessDenied =
-    document.getElementById(
-        "accessDenied"
-    );
-
-
-const adminApp =
-    document.getElementById(
-        "adminApp"
-    );
-
-
-/* =====================================================
-   SHOW ERROR
-===================================================== */
-
-function showFatalError(message) {
-
-    loadingScreen.innerHTML = `
-
-        <div class="error-box">
-
-            <div class="error-icon">
-                ⚠️
-            </div>
-
-            <h2>
-                حدث خطأ
-            </h2>
-
-            <p>
-                ${escapeHtml(message)}
-            </p>
-
-            <button
-                class="retry-btn"
-                onclick="location.reload()"
-            >
-                إعادة المحاولة
-            </button>
-
-        </div>
-
-    `;
-
-}
-
-
-function escapeHtml(text) {
-
-    return String(text)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    return null;
 
 }
 
@@ -1491,7 +1433,23 @@ function escapeHtml(text) {
    DENY
 ===================================================== */
 
-function denyAccess() {
+function denyAccess(){
+
+    const loadingScreen =
+        document.getElementById(
+            "loadingScreen"
+        );
+
+    const accessDenied =
+        document.getElementById(
+            "accessDenied"
+        );
+
+    const adminApp =
+        document.getElementById(
+            "adminApp"
+        );
+
 
     loadingScreen.style.display =
         "none";
@@ -1509,270 +1467,272 @@ function denyAccess() {
    START
 ===================================================== */
 
-async function initializeAdmin() {
+document.addEventListener(
+    "DOMContentLoaded",
+    async function(){
 
-    try {
+        try{
 
-        console.log(
-            "[ADMIN] بدء تشغيل لوحة الإدارة"
-        );
+            /*
+             * ننتظر supabase.js
+             * بدل ما الصفحة تفضل معلقة للأبد
+             */
 
-
-        /* =============================================
-           CHECK SUPABASE
-        ============================================= */
-
-        const client =
-            window.supabaseClient;
+            supabaseClient =
+                await waitForSupabase();
 
 
-        if (!client) {
+            if(!supabaseClient){
 
-            showFatalError(
-                "Supabase غير متصل. تأكد من تحميل مكتبة Supabase."
-            );
+                console.error(
+                    "Supabase غير متصل"
+                );
 
-            return;
+                denyAccess();
 
-        }
+                return;
 
-
-        console.log(
-            "[ADMIN] Supabase متصل"
-        );
+            }
 
 
-        /* =============================================
-           GET USER
-        ============================================= */
+            /* =========================================
+               GET USER
+            ========================================= */
 
-        loadingText.textContent =
-            "جاري الحصول على الحساب...";
-
-
-        const userResult =
-            await waitWithTimeout(
-                client.auth.getUser(),
-                10000
-            );
+            const {
+                data,
+                error
+            } =
+                await supabaseClient.auth.getUser();
 
 
-        const user =
-            userResult?.data?.user;
+            if(
+                error ||
+                !data ||
+                !data.user
+            ){
+
+                window.location.replace(
+                    "../auth.html"
+                );
+
+                return;
+
+            }
 
 
-        console.log(
-            "[ADMIN] User:",
-            user
-        );
+            const user =
+                data.user;
 
 
-        if (!user) {
+            /* =========================================
+               GET ADMIN ROLE
+            ========================================= */
 
-            window.location.replace(
-                "../auth.html"
-            );
-
-            return;
-
-        }
-
-
-        /* =============================================
-           GET ROLE
-        ============================================= */
-
-        loadingText.textContent =
-            "جاري التحقق من صلاحيات الأدمن...";
-
-
-        const roleResult =
-            await waitWithTimeout(
-
-                client
+            const {
+                data: roleData,
+                error: roleError
+            } =
+                await supabaseClient
                     .from("user_roles")
                     .select("role")
                     .eq(
                         "user_id",
                         user.id
                     )
-                    .maybeSingle(),
+                    .maybeSingle();
 
-                10000
 
+            if(roleError){
+
+                console.error(
+                    "ROLE ERROR:",
+                    roleError
+                );
+
+                denyAccess();
+
+                return;
+
+            }
+
+
+            if(
+                !roleData ||
+                roleData.role !== "admin"
+            ){
+
+                console.warn(
+                    "الحساب ليس Admin"
+                );
+
+                denyAccess();
+
+                return;
+
+            }
+
+
+            /* =========================================
+               SHOW ADMIN
+            ========================================= */
+
+            document.getElementById(
+                "accountId"
+            ).textContent =
+                user.id;
+
+
+            document.getElementById(
+                "accountPhone"
+            ).textContent =
+                user.phone || "—";
+
+
+            document.getElementById(
+                "accountRole"
+            ).textContent =
+                "👑 Admin";
+
+
+            document.getElementById(
+                "loadingScreen"
+            ).style.display =
+                "none";
+
+
+            document.getElementById(
+                "adminApp"
+            ).style.display =
+                "block";
+
+
+            /* =========================================
+               LOAD STATS
+            ========================================= */
+
+            await loadStats(
+                supabaseClient
             );
 
-
-        console.log(
-            "[ADMIN] Role result:",
-            roleResult
-        );
-
-
-        if (roleResult.error) {
-
-            console.error(
-                "ROLE ERROR:",
-                roleResult.error
-            );
-
-
-            showFatalError(
-                "تعذر قراءة صلاحية الأدمن: " +
-                roleResult.error.message
-            );
-
-            return;
 
         }
+        catch(error){
 
-
-        const role =
-            roleResult.data?.role;
-
-
-        console.log(
-            "[ADMIN] Current role:",
-            role
-        );
-
-
-        if (role !== "admin") {
+            console.error(
+                "ADMIN ERROR:",
+                error
+            );
 
             denyAccess();
 
-            return;
-
         }
 
 
         /* =============================================
-           ADMIN APPROVED
+           LOGOUT
         ============================================= */
 
-        console.log(
-            "[ADMIN] ADMIN ACCESS GRANTED"
-        );
+        const logoutBtn =
+            document.getElementById(
+                "logoutBtn"
+            );
 
 
-        document.getElementById(
-            "accountRole"
-        ).textContent =
-            "👑 Admin";
+        if(logoutBtn){
+
+            logoutBtn.addEventListener(
+                "click",
+                async function(){
+
+                    logoutBtn.disabled =
+                        true;
+
+                    logoutBtn.textContent =
+                        "جاري تسجيل الخروج...";
 
 
-        document.getElementById(
-            "accountId"
-        ).textContent =
-            user.id;
+                    try{
+
+                        await supabaseClient
+                            .auth
+                            .signOut();
+
+                    }
+                    catch(error){
+
+                        console.error(
+                            error
+                        );
+
+                    }
 
 
-        document.getElementById(
-            "accountPhone"
-        ).textContent =
-            user.phone || "—";
+                    window.location.replace(
+                        "../auth.html"
+                    );
 
+                }
+            );
 
-        loadingScreen.style.display =
-            "none";
-
-
-        adminApp.style.display =
-            "block";
-
-
-        document.getElementById(
-            "systemStatus"
-        ).textContent =
-            "متصل ✓";
-
-
-        /* =============================================
-           LOAD STATISTICS
-        ============================================= */
-
-        await loadStatistics(
-            client
-        );
-
+        }
 
     }
-    catch(error) {
-
-        console.error(
-            "[ADMIN] ERROR:",
-            error
-        );
-
-
-        showFatalError(
-            error?.message ||
-            "حدث خطأ غير معروف أثناء تشغيل لوحة الإدارة."
-        );
-
-    }
-
-}
+);
 
 
 /* =====================================================
    LOAD STATISTICS
 ===================================================== */
 
-async function loadStatistics(client) {
-
+async function loadStats(
+    client
+){
 
     /* =============================================
        STUDENTS
     ============================================= */
 
-    try {
+    try{
 
-        const result =
-            await waitWithTimeout(
+        const {
+            count,
+            error
+        } =
+            await client
+                .from("students")
+                .select(
+                    "*",
+                    {
+                        count:"exact",
+                        head:true
+                    }
+                );
 
-                client
-                    .from("students")
-                    .select(
-                        "id",
-                        {
-                            count:"exact",
-                            head:true
-                        }
-                    ),
 
-                10000
+        if(error){
 
+            console.error(
+                "Students:",
+                error
             );
 
-
-        console.log(
-            "[ADMIN] Students:",
-            result
-        );
-
-
-        if (!result.error) {
+        }
+        else{
 
             document.getElementById(
                 "studentsCount"
             ).textContent =
-                result.count ?? 0;
+                count ?? 0;
 
         }
 
     }
-    catch(error) {
+    catch(error){
 
         console.error(
-            "Students Count Error:",
             error
         );
-
-        document.getElementById(
-            "studentsCount"
-        ).textContent =
-            "—";
 
     }
 
@@ -1781,53 +1741,46 @@ async function loadStatistics(client) {
        EXAMS
     ============================================= */
 
-    try {
+    try{
 
-        const result =
-            await waitWithTimeout(
+        const {
+            count,
+            error
+        } =
+            await client
+                .from("exams")
+                .select(
+                    "*",
+                    {
+                        count:"exact",
+                        head:true
+                    }
+                );
 
-                client
-                    .from("exams")
-                    .select(
-                        "id",
-                        {
-                            count:"exact",
-                            head:true
-                        }
-                    ),
 
-                10000
+        if(error){
 
+            console.error(
+                "Exams:",
+                error
             );
 
-
-        console.log(
-            "[ADMIN] Exams:",
-            result
-        );
-
-
-        if (!result.error) {
+        }
+        else{
 
             document.getElementById(
                 "examsCount"
             ).textContent =
-                result.count ?? 0;
+                count ?? 0;
 
         }
 
     }
-    catch(error) {
+    catch(error){
 
         console.error(
-            "Exams Count Error:",
             error
         );
-
-        document.getElementById(
-            "examsCount"
-        ).textContent =
-            "—";
 
     }
 
@@ -1836,121 +1789,101 @@ async function loadStatistics(client) {
        RESULTS
     ============================================= */
 
-    try {
+    try{
 
-        const result =
-            await waitWithTimeout(
+        const {
+            count,
+            error
+        } =
+            await client
+                .from("results")
+                .select(
+                    "*",
+                    {
+                        count:"exact",
+                        head:true
+                    }
+                );
 
-                client
-                    .from("results")
-                    .select(
-                        "id",
-                        {
-                            count:"exact",
-                            head:true
-                        }
-                    ),
 
-                10000
+        if(error){
 
+            console.error(
+                "Results:",
+                error
             );
 
-
-        console.log(
-            "[ADMIN] Results:",
-            result
-        );
-
-
-        if (!result.error) {
+        }
+        else{
 
             document.getElementById(
                 "resultsCount"
             ).textContent =
-                result.count ?? 0;
+                count ?? 0;
 
         }
 
     }
-    catch(error) {
+    catch(error){
 
         console.error(
-            "Results Count Error:",
             error
         );
 
-        document.getElementById(
-            "resultsCount"
-        ).textContent =
-            "—";
+    }
+
+
+    /* =============================================
+       TOP STUDENTS
+    ============================================= */
+
+    try{
+
+        const {
+            count,
+            error
+        } =
+            await client
+                .from("top_students")
+                .select(
+                    "*",
+                    {
+                        count:"exact",
+                        head:true
+                    }
+                );
+
+
+        if(error){
+
+            console.error(
+                "Top Students:",
+                error
+            );
+
+        }
+        else{
+
+            document.getElementById(
+                "topStudentsCount"
+            ).textContent =
+                count ?? 0;
+
+        }
+
+    }
+    catch(error){
+
+        console.error(
+            error
+        );
 
     }
 
 }
 
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-document
-    .getElementById("logoutBtn")
-    .addEventListener(
-        "click",
-        async function() {
-
-            const button =
-                document.getElementById(
-                    "logoutBtn"
-                );
-
-
-            button.disabled =
-                true;
-
-
-            button.textContent =
-                "جاري تسجيل الخروج...";
-
-
-            try {
-
-                const client =
-                    window.supabaseClient;
-
-
-                if (client) {
-
-                    await client.auth.signOut();
-
-                }
-
-            }
-            catch(error) {
-
-                console.error(
-                    "Logout Error:",
-                    error
-                );
-
-            }
-
-
-            window.location.replace(
-                "../auth.html"
-            );
-
-        }
-    );
-
-
-/* =====================================================
-   START ADMIN
-===================================================== */
-
-initializeAdmin();
-
 </script>
+
 
 </body>
 
