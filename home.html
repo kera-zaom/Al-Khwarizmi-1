@@ -2,1518 +2,1673 @@
 <html lang="ar" dir="rtl">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>الخوارزمي | حسابي</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Tahoma,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    color:#fff;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(116,72,232,.20),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(49,84,223,.18),
+            transparent 35%
+        ),
+        #050509;
+}
+
+button,a{
+    -webkit-tap-highlight-color:transparent;
+}
 
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>الخوارزمي | حسابي</title>
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Tahoma, sans-serif;
-        }
-
-        body {
-            min-height: 100vh;
-            color: #fff;
-
-            background:
-                radial-gradient(
-                    circle at 10% 10%,
-                    rgba(116,72,232,.20),
-                    transparent 32%
-                ),
-                radial-gradient(
-                    circle at 90% 80%,
-                    rgba(49,84,223,.18),
-                    transparent 35%
-                ),
-                #050509;
-        }
+.container{
+    width:min(1150px,94%);
+    margin:auto;
+}
 
-        button,
-        a {
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .container {
-            width: min(1150px, 94%);
-            margin: auto;
-        }
+/* ================= HEADER ================= */
 
-        /* ================= HEADER ================= */
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
 
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
+    padding:14px 0;
 
-            padding: 14px 0;
+    background:rgba(5,5,9,.86);
 
-            background:
-                rgba(5,5,9,.86);
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.07);
 
-            border-bottom:
-                1px solid
-                rgba(255,255,255,.07);
+    backdrop-filter:blur(20px);
+}
 
-            backdrop-filter: blur(20px);
-        }
+.nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
 
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-        }
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+.brand-logo{
+    width:45px;
+    height:45px;
 
-        .brand-logo {
-            width: 45px;
-            height: 45px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    border-radius:14px;
 
-            border-radius: 14px;
+    background:
+        linear-gradient(
+            135deg,
+            #7448e8,
+            #3154df
+        );
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #7448e8,
-                    #3154df
-                );
+    box-shadow:
+        0 0 25px
+        rgba(116,72,232,.25);
+}
 
-            box-shadow:
-                0 0 25px
-                rgba(116,72,232,.25);
-        }
+.brand-name{
+    font-size:19px;
+    font-weight:900;
+}
 
-        .brand-name {
-            font-size: 19px;
-            font-weight: 900;
-        }
+.brand-sub{
+    color:#777784;
+    font-size:11px;
+    margin-top:2px;
+}
 
-        .brand-sub {
-            color: #777784;
-            font-size: 11px;
-            margin-top: 2px;
-        }
+.nav-actions{
+    display:flex;
+    gap:8px;
+}
 
-        .nav-actions {
-            display: flex;
-            gap: 8px;
-        }
+.nav-btn{
+    border:1px solid rgba(255,255,255,.08);
 
-        .nav-btn {
-            border: 1px solid rgba(255,255,255,.08);
+    background:
+        rgba(255,255,255,.04);
 
-            background:
-                rgba(255,255,255,.04);
+    color:#ddd;
 
-            color: #ddd;
+    padding:10px 14px;
 
-            padding: 10px 14px;
+    border-radius:12px;
 
-            border-radius: 12px;
+    text-decoration:none;
 
-            text-decoration: none;
+    cursor:pointer;
 
-            cursor: pointer;
+    font-size:13px;
+}
 
-            font-size: 13px;
-        }
+.nav-btn:hover{
+    border-color:#7448e8;
+}
 
-        .nav-btn:hover {
-            border-color: #7448e8;
-        }
+/* ================= HERO ================= */
 
-        /* ================= HERO ================= */
+.hero{
+    margin-top:30px;
 
-        .hero {
-            margin-top: 30px;
+    padding:30px;
 
-            padding: 30px;
+    border-radius:28px;
 
-            border-radius: 28px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(116,72,232,.13),
+            rgba(49,84,223,.07)
+        );
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(116,72,232,.13),
-                    rgba(49,84,223,.07)
-                );
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
-            border:
-                1px solid
-                rgba(255,255,255,.08);
+    position:relative;
+    overflow:hidden;
+}
 
-            position: relative;
-            overflow: hidden;
-        }
+.hero::before{
+    content:"";
 
-        .hero::before {
-            content: "";
+    position:absolute;
 
-            position: absolute;
+    width:220px;
+    height:220px;
 
-            width: 220px;
-            height: 220px;
+    left:-100px;
+    top:-100px;
 
-            left: -100px;
-            top: -100px;
+    border-radius:50%;
 
-            border-radius: 50%;
+    background:
+        rgba(116,72,232,.15);
 
-            background:
-                rgba(116,72,232,.15);
+    filter:blur(30px);
+}
 
-            filter: blur(30px);
-        }
+.hero-content{
+    position:relative;
+    z-index:2;
+}
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
+.welcome{
+    color:#aaaab5;
+    font-size:14px;
+    margin-bottom:7px;
+}
 
-        .welcome {
-            color: #aaaab5;
-            font-size: 14px;
-            margin-bottom: 7px;
-        }
+.student-name{
+    font-size:clamp(27px,5vw,42px);
+    font-weight:900;
 
-        .student-name {
-            font-size: clamp(27px, 5vw, 42px);
-            font-weight: 900;
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #a98cff
+        );
 
-            background:
-                linear-gradient(
-                    90deg,
-                    #fff,
-                    #a98cff
-                );
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
 
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+.hero-text{
+    color:#9999a5;
+    margin-top:10px;
+    line-height:1.8;
+    font-size:14px;
+}
 
-        .hero-text {
-            color: #9999a5;
-            margin-top: 10px;
-            line-height: 1.8;
-            font-size: 14px;
-        }
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
 
-        .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+.main-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
 
-            margin-top: 20px;
-        }
+    padding:13px 20px;
 
-        .main-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+    border:0;
+    border-radius:14px;
 
-            padding: 13px 20px;
+    color:#fff;
 
-            border: 0;
-            border-radius: 14px;
+    background:
+        linear-gradient(
+            135deg,
+            #7448e8,
+            #3154df
+        );
 
-            color: #fff;
+    text-decoration:none;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #7448e8,
-                    #3154df
-                );
+    font-weight:800;
 
-            text-decoration: none;
+    cursor:pointer;
+}
 
-            font-weight: 800;
+.secondary-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
 
-            cursor: pointer;
-        }
+    padding:13px 20px;
 
-        .secondary-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+    border-radius:14px;
 
-            padding: 13px 20px;
+    color:#ddd;
 
-            border-radius: 14px;
+    background:
+        rgba(255,255,255,.05);
 
-            color: #ddd;
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
-            background:
-                rgba(255,255,255,.05);
+    text-decoration:none;
 
-            border:
-                1px solid
-                rgba(255,255,255,.08);
+    cursor:pointer;
+}
 
-            text-decoration: none;
+/* ================= STATS ================= */
 
-            cursor: pointer;
-        }
+.stats{
+    display:grid;
 
-        /* ================= STATS ================= */
+    grid-template-columns:
+        repeat(3,1fr);
 
-        .stats {
-            display: grid;
+    gap:14px;
 
-            grid-template-columns:
-                repeat(3, 1fr);
+    margin-top:18px;
+}
 
-            gap: 14px;
+.stat{
+    padding:20px;
 
-            margin-top: 18px;
-        }
+    border-radius:20px;
 
-        .stat {
-            padding: 20px;
+    background:
+        rgba(255,255,255,.035);
 
-            border-radius: 20px;
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+}
 
-            background:
-                rgba(255,255,255,.035);
+.stat-icon{
+    font-size:25px;
+    margin-bottom:10px;
+}
 
-            border:
-                1px solid
-                rgba(255,255,255,.07);
-        }
+.stat-value{
+    font-size:25px;
+    font-weight:900;
+}
 
-        .stat-icon {
-            font-size: 25px;
-            margin-bottom: 10px;
-        }
+.stat-label{
+    color:#858591;
+    font-size:12px;
+    margin-top:5px;
+}
 
-        .stat-value {
-            font-size: 25px;
-            font-weight: 900;
-        }
+/* ================= SECTION ================= */
 
-        .stat-label {
-            color: #858591;
-            font-size: 12px;
-            margin-top: 5px;
-        }
+.section{
+    margin-top:38px;
+}
 
-        /* ================= SECTION ================= */
+.section-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-        .section {
-            margin-top: 38px;
-        }
+    margin-bottom:15px;
+}
 
-        .section-title {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+.section-title h2{
+    font-size:22px;
+}
 
-            margin-bottom: 15px;
-        }
+.section-title span{
+    color:#777784;
+    font-size:12px;
+}
 
-        .section-title h2 {
-            font-size: 22px;
-        }
+/* ================= CARDS ================= */
 
-        .section-title span {
-            color: #777784;
-            font-size: 12px;
-        }
+.grid{
+    display:grid;
 
-        /* ================= CARDS ================= */
+    grid-template-columns:
+        repeat(3,1fr);
 
-        .grid {
-            display: grid;
+    gap:15px;
+}
 
-            grid-template-columns:
-                repeat(3, 1fr);
+.card{
+    padding:20px;
 
-            gap: 15px;
-        }
+    border-radius:21px;
 
-        .card {
-            padding: 20px;
+    background:
+        rgba(255,255,255,.035);
 
-            border-radius: 21px;
+    border:
+        1px solid
+        rgba(255,255,255,.07);
 
-            background:
-                rgba(255,255,255,.035);
+    transition:.25s;
+}
 
-            border:
-                1px solid
-                rgba(255,255,255,.07);
+.card:hover{
+    transform:translateY(-4px);
 
-            transition: .25s;
-        }
+    border-color:
+        rgba(116,72,232,.35);
+}
 
-        .card:hover {
-            transform: translateY(-4px);
+.card-icon{
+    width:50px;
+    height:50px;
 
-            border-color:
-                rgba(116,72,232,.35);
-        }
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-        .card-icon {
-            width: 50px;
-            height: 50px;
+    border-radius:15px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    background:
+        rgba(116,72,232,.13);
 
-            border-radius: 15px;
+    font-size:25px;
 
-            background:
-                rgba(116,72,232,.13);
+    margin-bottom:14px;
+}
 
-            font-size: 25px;
+.card h3{
+    font-size:17px;
+    margin-bottom:8px;
+}
 
-            margin-bottom: 14px;
-        }
+.card p{
+    color:#888894;
+    line-height:1.7;
+    font-size:13px;
+}
 
-        .card h3 {
-            font-size: 17px;
-            margin-bottom: 8px;
-        }
+.card-link{
+    display:block;
+    margin-top:15px;
+}
 
-        .card p {
-            color: #888894;
-            line-height: 1.7;
-            font-size: 13px;
-        }
+.empty{
+    grid-column:1/-1;
 
-        .empty {
-            grid-column: 1 / -1;
+    padding:30px;
 
-            padding: 30px;
+    text-align:center;
 
-            text-align: center;
+    color:#777784;
 
-            color: #777784;
+    border:
+        1px dashed
+        rgba(255,255,255,.10);
 
-            border:
-                1px dashed
-                rgba(255,255,255,.10);
+    border-radius:18px;
+}
 
-            border-radius: 18px;
-        }
+.loading{
+    grid-column:1/-1;
 
-        /* ================= OFFER ================= */
+    padding:30px;
 
-        #offerButton {
-            width: 100%;
+    text-align:center;
 
-            padding: 17px;
+    color:#888;
+}
 
-            border: 0;
+/* ================= OFFER ================= */
 
-            border-radius: 18px;
+#offerButton{
+    width:100%;
 
-            color: #fff;
+    padding:17px;
 
-            font-size: 16px;
-            font-weight: 900;
+    border:0;
 
-            cursor: pointer;
+    border-radius:18px;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #7448e8,
-                    #3154df
-                );
+    color:#fff;
 
-            box-shadow:
-                0 15px 40px
-                rgba(116,72,232,.16);
-        }
+    font-size:16px;
+    font-weight:900;
 
-        #offerContent {
-            display: none;
+    cursor:pointer;
 
-            margin-top: 15px;
+    background:
+        linear-gradient(
+            135deg,
+            #7448e8,
+            #3154df
+        );
 
-            animation: openBox .45s ease;
-        }
+    box-shadow:
+        0 15px 40px
+        rgba(116,72,232,.16);
+}
 
-        #offerContent.show {
-            display: block;
-        }
+#offerContent{
+    display:none;
 
-        @keyframes openBox {
+    margin-top:15px;
 
-            from {
-                opacity: 0;
-                transform: translateY(-12px);
-            }
+    animation:openBox .45s ease;
+}
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+#offerContent.show{
+    display:block;
+}
 
-        }
+@keyframes openBox{
 
-        /* ================= BEST STUDENTS ================= */
+    from{
+        opacity:0;
+        transform:translateY(-12px);
+    }
 
-        .best-grid {
-            display: grid;
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 
-            grid-template-columns:
-                repeat(3, 1fr);
+}
 
-            gap: 15px;
+/* ================= BEST STUDENTS ================= */
 
-            margin-top: 15px;
-        }
+.best-grid{
+    display:grid;
 
-        .student-card {
-            padding: 20px;
+    grid-template-columns:
+        repeat(3,1fr);
 
-            border-radius: 22px;
+    gap:15px;
 
-            text-align: center;
+    margin-top:15px;
+}
 
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,.05),
-                    rgba(116,72,232,.06)
-                );
+.student-card{
+    padding:20px;
 
-            border:
-                1px solid
-                rgba(255,255,255,.08);
+    border-radius:22px;
 
-            animation:
-                studentIn .55s ease both;
-        }
+    text-align:center;
 
-        @keyframes studentIn {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.05),
+            rgba(116,72,232,.06)
+        );
 
-            from {
-                opacity: 0;
-                transform:
-                    translateY(20px)
-                    scale(.96);
-            }
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
-            to {
-                opacity: 1;
-                transform:
-                    translateY(0)
-                    scale(1);
-            }
+    animation:
+        studentIn .55s ease both;
+}
 
-        }
+@keyframes studentIn{
 
-        .student-rank {
-            font-size: 25px;
-            margin-bottom: 10px;
-        }
+    from{
+        opacity:0;
+        transform:
+            translateY(20px)
+            scale(.96);
+    }
 
-        .student-avatar {
-            width: 75px;
-            height: 75px;
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
 
-            margin: auto;
+}
 
-            overflow: hidden;
+.student-rank{
+    font-size:25px;
+    margin-bottom:10px;
+}
 
-            border-radius: 50%;
+.student-avatar{
+    width:75px;
+    height:75px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    margin:auto;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #7448e8,
-                    #3154df
-                );
+    overflow:hidden;
 
-            border:
-                2px solid
-                rgba(255,255,255,.12);
-        }
+    border-radius:50%;
 
-        .student-avatar img {
-            width: 100%;
-            height: 100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-            object-fit: cover;
-        }
+    background:
+        linear-gradient(
+            135deg,
+            #7448e8,
+            #3154df
+        );
 
-        .student-emoji {
-            width: 100%;
-            height: 100%;
+    border:
+        2px solid
+        rgba(255,255,255,.12);
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+.student-avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
 
-            font-size: 32px;
-        }
+.student-emoji{
+    width:100%;
+    height:100%;
 
-        .student-name {
-            margin-top: 12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-            font-weight: 900;
+    font-size:32px;
+}
 
-            color: #fff;
-        }
+.best-name{
+    margin-top:12px;
 
-        .student-points {
-            margin-top: 7px;
+    font-weight:900;
 
-            color: #a98cff;
+    color:#fff;
+}
 
-            font-size: 13px;
-        }
+.student-points{
+    margin-top:7px;
 
-        .best-loading,
-        .best-empty,
-        .best-error {
-            grid-column: 1 / -1;
+    color:#a98cff;
 
-            text-align: center;
+    font-size:13px;
+}
 
-            padding: 25px;
+.student-achievement{
+    margin-top:7px;
 
-            border-radius: 18px;
+    color:#777784;
 
-            color: #999;
+    font-size:12px;
+}
 
-            background:
-                rgba(255,255,255,.03);
-        }
+.best-loading,
+.best-empty,
+.best-error{
+    grid-column:1/-1;
 
-        /* ================= LOADING ================= */
+    text-align:center;
 
-        .loading {
-            padding: 30px;
+    padding:25px;
 
-            text-align: center;
+    border-radius:18px;
 
-            color: #888;
-        }
+    color:#999;
 
-        /* ================= FOOTER ================= */
+    background:
+        rgba(255,255,255,.03);
+}
 
-        footer {
-            margin-top: 55px;
+/* ================= FOOTER ================= */
 
-            padding: 35px 0;
+footer{
+    margin-top:55px;
 
-            border-top:
-                1px solid
-                rgba(255,255,255,.06);
+    padding:35px 0;
 
-            text-align: center;
-        }
+    border-top:
+        1px solid
+        rgba(255,255,255,.06);
 
-        .teacher-image {
-            width: 110px;
-            height: 110px;
+    text-align:center;
+}
 
-            margin: auto;
+.teacher-image{
+    width:110px;
+    height:110px;
 
-            border-radius: 50%;
+    margin:auto;
 
-            object-fit: cover;
+    border-radius:50%;
 
-            border:
-                2px solid
-                rgba(116,72,232,.55);
+    object-fit:cover;
 
-            box-shadow:
-                0 0 35px
-                rgba(116,72,232,.22);
+    border:
+        2px solid
+        rgba(116,72,232,.55);
 
-            animation:
-                teacherFloat 3.5s ease-in-out infinite;
-        }
+    box-shadow:
+        0 0 35px
+        rgba(116,72,232,.22);
 
-        @keyframes teacherFloat {
+    animation:
+        teacherFloat 3.5s ease-in-out infinite;
+}
 
-            0%,100% {
-                transform:
-                    translateY(0)
-                    rotate(-2deg);
-            }
+@keyframes teacherFloat{
 
-            50% {
-                transform:
-                    translateY(-8px)
-                    rotate(2deg);
-            }
+    0%,100%{
+        transform:
+            translateY(0)
+            rotate(-2deg);
+    }
 
-        }
+    50%{
+        transform:
+            translateY(-8px)
+            rotate(2deg);
+    }
 
-        .footer-title {
-            margin-top: 15px;
-            font-size: 18px;
-            font-weight: 900;
-        }
+}
 
-        .footer-text {
-            color: #777784;
-            margin-top: 8px;
-            font-size: 13px;
-        }
+.footer-title{
+    margin-top:15px;
+    font-size:18px;
+    font-weight:900;
+}
 
-        /* ================= MOBILE ================= */
+.footer-text{
+    color:#777784;
+    margin-top:8px;
+    font-size:13px;
+}
 
-        @media (max-width: 800px) {
+/* ================= MOBILE ================= */
 
-            .grid {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
+@media(max-width:800px){
 
-            .best-grid {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
+    .grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
 
-        }
+    .best-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
 
-        @media (max-width: 560px) {
+}
 
-            .hero {
-                padding: 23px 18px;
-            }
+@media(max-width:560px){
 
-            .stats {
-                grid-template-columns: 1fr;
-            }
+    .hero{
+        padding:23px 18px;
+    }
 
-            .grid {
-                grid-template-columns: 1fr;
-            }
+    .stats{
+        grid-template-columns:1fr;
+    }
 
-            .best-grid {
-                grid-template-columns: 1fr;
-            }
+    .grid{
+        grid-template-columns:1fr;
+    }
 
-            .nav-btn {
-                padding: 9px;
-                font-size: 12px;
-            }
+    .best-grid{
+        grid-template-columns:1fr;
+    }
 
-        }
+    .nav-btn{
+        padding:9px;
+        font-size:12px;
+    }
 
-    </style>
+}
 
+</style>
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <header>
 
-    <div class="container nav">
+<div class="container nav">
 
-        <div class="brand">
+<div class="brand">
 
-            <div class="brand-logo">
-                🎓
-            </div>
+<div class="brand-logo">
+🎓
+</div>
 
-            <div>
+<div>
 
-                <div class="brand-name">
-                    الخوارزمي
-                </div>
+<div class="brand-name">
+الخوارزمي
+</div>
 
-                <div class="brand-sub">
-                    منصة التعليم والاختبارات
-                </div>
+<div class="brand-sub">
+منصة التعليم والاختبارات
+</div>
 
-            </div>
+</div>
 
-        </div>
+</div>
 
+<div class="nav-actions">
 
-        <div class="nav-actions">
+<a
+href="edit-profile.html"
+class="nav-btn"
+>
+⚙️ تعديل بياناتي
+</a>
 
-            <a
-                href="edit-profile.html"
-                class="nav-btn"
-            >
-                ⚙️ تعديل بياناتي
-            </a>
+<button
+id="logoutBtn"
+class="nav-btn"
+type="button"
+>
+خروج
+</button>
 
-            <button
-                id="logoutBtn"
-                class="nav-btn"
-                type="button"
-            >
-                خروج
-            </button>
+</div>
 
-        </div>
-
-    </div>
+</div>
 
 </header>
 
 
-
 <main class="container">
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
 
 <section class="hero">
 
-    <div class="hero-content">
+<div class="hero-content">
 
-        <div class="welcome">
-            👋 أهلاً بك في حسابك
-        </div>
+<div class="welcome">
+👋 أهلاً بك في حسابك
+</div>
 
-        <div
-            id="studentName"
-            class="student-name"
-        >
-            جاري التحميل...
-        </div>
+<div
+id="studentName"
+class="student-name"
+>
+جاري التحميل...
+</div>
 
-        <p class="hero-text">
-            كل ما تحتاجه من كورسات ومحاضرات
-            وملفات وامتحانات موجود هنا.
-        </p>
+<p class="hero-text">
+مرحباً بك في منصة الخوارزمي. هنا ستجد
+الاختبارات والملفات والفيديوهات المتاحة
+لصفك الدراسي.
+</p>
 
+<div class="hero-buttons">
 
-        <div class="hero-buttons">
+<a
+href="#exams"
+class="main-btn"
+>
+📝 الاختبارات
+</a>
 
-            <a
-                href="#courses"
-                class="main-btn"
-            >
-                📚 استعرض الكورسات
-            </a>
+<a
+href="#files"
+class="secondary-btn"
+>
+📄 ملفات PDF
+</a>
 
-            <a
-                href="edit-profile.html"
-                class="secondary-btn"
-            >
-                ✏️ تعديل بياناتي
-            </a>
+</div>
 
-        </div>
-
-    </div>
+</div>
 
 </section>
 
-
-
-<!-- =====================================================
-     STATS
-===================================================== -->
 
 <section class="stats">
 
-    <div class="stat">
+<div class="stat">
 
-        <div class="stat-icon">
-            ⭐
-        </div>
+<div class="stat-icon">
+⭐
+</div>
 
-        <div
-            id="pointsValue"
-            class="stat-value"
-        >
-            0
-        </div>
+<div
+id="pointsValue"
+class="stat-value"
+>
+0
+</div>
 
-        <div class="stat-label">
-            نقاطي
-        </div>
+<div class="stat-label">
+نقاطي
+</div>
 
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-icon">
-            📚
-        </div>
-
-        <div
-            id="coursesCount"
-            class="stat-value"
-        >
-            0
-        </div>
-
-        <div class="stat-label">
-            الكورسات
-        </div>
-
-    </div>
+</div>
 
 
-    <div class="stat">
+<div class="stat">
 
-        <div class="stat-icon">
-            📝
-        </div>
+<div class="stat-icon">
+🎥
+</div>
 
-        <div
-            id="examsCount"
-            class="stat-value"
-        >
-            0
-        </div>
+<div
+id="videosCount"
+class="stat-value"
+>
+0
+</div>
 
-        <div class="stat-label">
-            الامتحانات
-        </div>
+<div class="stat-label">
+الفيديوهات
+</div>
 
-    </div>
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+📝
+</div>
+
+<div
+id="examsCount"
+class="stat-value"
+>
+0
+</div>
+
+<div class="stat-label">
+الامتحانات
+</div>
+
+</div>
 
 </section>
 
 
+<!-- VIDEOS -->
 
-<!-- =====================================================
-     COURSES
-===================================================== -->
+<section class="section">
 
-<section
-    id="courses"
-    class="section"
+<div class="section-title">
+
+<h2>
+🎥 الفيديوهات
+</h2>
+
+<span id="studentGradeLabel">
+حسب صفك
+</span>
+
+</div>
+
+<div
+id="videosGrid"
+class="grid"
 >
 
-    <div class="section-title">
+<div class="loading">
+⏳ جاري تحميل الفيديوهات...
+</div>
 
-        <h2>
-            📚 الكورسات المتاحة
-        </h2>
-
-        <span>
-            الكورسات الخاصة بك
-        </span>
-
-    </div>
-
-
-    <div
-        id="coursesGrid"
-        class="grid"
-    >
-
-        <div class="loading">
-            ⏳ جاري تحميل الكورسات...
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
+<!-- PDF -->
 
-<!-- =====================================================
-     LESSONS
-===================================================== -->
+<section
+id="files"
+class="section"
+>
+
+<div class="section-title">
+
+<h2>
+📄 الملفات والمذكرات
+</h2>
+
+<span>
+متاحة لصفك
+</span>
+
+</div>
+
+<div
+id="filesGrid"
+class="grid"
+>
+
+<div class="loading">
+⏳ جاري تحميل ملفات PDF...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- EXAMS -->
+
+<section
+id="exams"
+class="section"
+>
+
+<div class="section-title">
+
+<h2>
+📝 الامتحانات
+</h2>
+
+<span>
+اختباراتك
+</span>
+
+</div>
+
+<div
+id="examsGrid"
+class="grid"
+>
+
+<div class="loading">
+⏳ جاري تحميل الامتحانات...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- WHAT WE OFFER -->
 
 <section class="section">
 
-    <div class="section-title">
+<button
+id="offerButton"
+type="button"
+>
+✨ ماذا نقدم لكم؟
+</button>
 
-        <h2>
-            🎥 المحاضرات
-        </h2>
+<div id="offerContent">
 
-        <span>
-            آخر المحاضرات المتاحة
-        </span>
+<div class="grid">
 
-    </div>
+<div class="card">
+
+<div class="card-icon">
+📄
+</div>
+
+<h3>
+ملفات PDF
+</h3>
+
+<p>
+مذكرات وملفات تعليمية متاحة
+حسب الصف الدراسي.
+</p>
+
+</div>
 
 
-    <div
-        id="lessonsGrid"
-        class="grid"
-    >
+<div class="card">
 
-        <div class="loading">
-            ⏳ جاري تحميل المحاضرات...
-        </div>
+<div class="card-icon">
+🎥
+</div>
 
-    </div>
+<h3>
+فيديوهات
+</h3>
+
+<p>
+شروحات الفيديو المتاحة لك
+من خلال المنصة.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">
+📝
+</div>
+
+<h3>
+امتحانات
+</h3>
+
+<p>
+اختبر نفسك وتابع نتائجك
+ودرجة تقدمك.
+</p>
+
+</div>
+
+</div>
+
+
+<div
+class="section-title"
+style="margin-top:30px;"
+>
+
+<h2>
+🏆 أفضل الطلاب
+</h2>
+
+<span id="bestGradeTitle">
+حسب صفك
+</span>
+
+</div>
+
+
+<div
+id="bestStudentsGrid"
+class="best-grid"
+>
+
+<div class="best-loading">
+⏳ جاري تحميل أفضل الطلاب...
+</div>
+
+</div>
+
+</div>
 
 </section>
-
-
-
-<!-- =====================================================
-     PDF FILES
-===================================================== -->
-
-<section class="section">
-
-    <div class="section-title">
-
-        <h2>
-            📄 الملفات والمذكرات
-        </h2>
-
-        <span>
-            ملفات متاحة لك
-        </span>
-
-    </div>
-
-
-    <div
-        id="filesGrid"
-        class="grid"
-    >
-
-        <div class="loading">
-            ⏳ جاري تحميل الملفات...
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     EXAMS
-===================================================== -->
-
-<section class="section">
-
-    <div class="section-title">
-
-        <h2>
-            📝 الامتحانات
-        </h2>
-
-        <span>
-            اختباراتك
-        </span>
-
-    </div>
-
-
-    <div
-        id="examsGrid"
-        class="grid"
-    >
-
-        <div class="loading">
-            ⏳ جاري تحميل الامتحانات...
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     WHAT WE OFFER
-===================================================== -->
-
-<section class="section">
-
-    <button
-        id="offerButton"
-        type="button"
-    >
-        ✨ ماذا نقدم لكم؟
-    </button>
-
-
-    <div
-        id="offerContent"
-    >
-
-        <div class="grid">
-
-            <div class="card">
-
-                <div class="card-icon">
-                    📚
-                </div>
-
-                <h3>
-                    كورسات
-                </h3>
-
-                <p>
-                    كورسات منظمة تساعدك على فهم
-                    المادة ومتابعة مستواك.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    🎥
-                </div>
-
-                <h3>
-                    محاضرات
-                </h3>
-
-                <p>
-                    الوصول إلى المحاضرات والشرح
-                    المتاح لك من المنصة.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    📄
-                </div>
-
-                <h3>
-                    ملفات PDF
-                </h3>
-
-                <p>
-                    المذكرات والملفات الخاصة
-                    بالكورسات المتاحة لك.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    📝
-                </div>
-
-                <h3>
-                    امتحانات
-                </h3>
-
-                <p>
-                    اختبر نفسك واعرف مستواك
-                    واحصل على نتيجتك.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div
-            class="section-title"
-            style="margin-top:30px;"
-        >
-
-            <h2>
-                🏆 أفضل الطلاب
-            </h2>
-
-            <span>
-                حسب النقاط
-            </span>
-
-        </div>
-
-
-        <div
-            id="bestStudentsGrid"
-            class="best-grid"
-        >
-
-            <div class="best-loading">
-                اضغط على ماذا نقدم لعرض أفضل الطلاب
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
 
 </main>
 
 
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
 <footer>
 
-    <div class="container">
+<div class="container">
 
-        <img
-            src="teacher.png"
-            class="teacher-image"
-            alt="المستر"
-        >
+<img
+src="teacher.png"
+class="teacher-image"
+alt="المستر"
+onerror="this.style.display='none'"
+>
 
-        <div class="footer-title">
-            مع المستر ❤️
-        </div>
+<div class="footer-title">
+مع المستر أمير ❤️
+</div>
 
-        <div class="footer-text">
-            منصة الخوارزمي للتعليم والاختبارات
-        </div>
+<div class="footer-text">
+منصة الخوارزمي للتعليم والاختبارات
+</div>
 
-    </div>
+</div>
 
 </footer>
 
 
-
-<!-- =====================================================
-     SUPABASE
-===================================================== -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script src="supabase.js"></script>
-
-
-<!-- =====================================================
-     HOME JS
-===================================================== -->
-
-<script src="home.js"></script>
-
 
 <script>
 
 "use strict";
 
 
-document.addEventListener(
-    "DOMContentLoaded",
-    async function () {
+/* =====================================================
+   SUPABASE
+===================================================== */
 
+const SUPABASE_URL =
+"https://fdqolsygigqukejlwcon.supabase.co";
 
-        /* ===============================================
-           CHECK SUPABASE
-        =============================================== */
+const SUPABASE_KEY =
+"sb_publishable_fO1Xb-dtqq8rnGuvXcPahg_zz9WeW9x";
 
-        if (
-            typeof supabaseClient ===
-                "undefined" ||
-            !supabaseClient
-        ) {
-
-            console.error(
-                "Supabase غير متصل"
-            );
-
-            return;
-
-        }
-
-
-        /* ===============================================
-           GET USER
-        =============================================== */
-
-        const {
-            data: authData,
-            error: authError
-        } =
-        await supabaseClient.auth.getUser();
-
-
-        if (
-            authError ||
-            !authData.user
-        ) {
-
-            window.location.href =
-                "auth.html";
-
-            return;
-
-        }
-
-
-        const user =
-            authData.user;
-
-
-        /* ===============================================
-           GET STUDENT
-        =============================================== */
-
-        const {
-            data: student,
-            error: studentError
-        } =
-        await supabaseClient
-            .from("students")
-            .select(`
-                id,
-                full_name,
-                phone,
-                grade,
-                points,
-                avatar_url
-            `)
-            .eq(
-                "id",
-                user.id
-            )
-            .maybeSingle();
-
-
-        if (studentError) {
-
-            console.error(
-                "Student:",
-                studentError
-            );
-
-            document.getElementById(
-                "studentName"
-            ).textContent =
-                "مرحباً بك";
-
-        } else if (student) {
-
-            document.getElementById(
-                "studentName"
-            ).textContent =
-                student.full_name ||
-                "طالب";
-
-
-            document.getElementById(
-                "pointsValue"
-            ).textContent =
-                Number(
-                    student.points || 0
-                );
-
-        }
-
-
-        /* ===============================================
-           LOAD COURSES
-        =============================================== */
-
-        loadCourses(user.id);
-
-
-        /* ===============================================
-           LOAD EXAMS
-        =============================================== */
-
-        loadExams(user.id);
-
-
-        /* ===============================================
-           LOGOUT
-        =============================================== */
-
-        document
-            .getElementById(
-                "logoutBtn"
-            )
-            .addEventListener(
-                "click",
-                async function () {
-
-                    await supabaseClient.auth.signOut();
-
-                    window.location.href =
-                        "auth.html";
-
-                }
-            );
-
-    }
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
 
 /* =====================================================
-   COURSES
+   GLOBAL
 ===================================================== */
 
-async function loadCourses(
-    studentId
-) {
+let currentUser = null;
+let currentStudent = null;
 
-    const grid =
-        document.getElementById(
-            "coursesGrid"
-        );
 
-    try {
+/* =====================================================
+   START
+===================================================== */
+
+document.addEventListener(
+"DOMContentLoaded",
+async function(){
+
+    try{
 
         const {
             data,
             error
         } =
-        await supabaseClient
-            .from("course_students")
-            .select(`
-                course_id,
-                courses (
-                    id,
-                    title,
-                    description,
-                    image_url,
-                    grade,
-                    is_active
-                )
-            `)
-            .eq(
-                "student_id",
-                studentId
-            );
+        await supabaseClient.auth.getUser();
 
+        if(
+            error ||
+            !data ||
+            !data.user
+        ){
 
-        if (error) {
-            throw error;
-        }
-
-
-        const courses =
-            (data || [])
-                .map(
-                    item =>
-                        item.courses
-                )
-                .filter(
-                    course =>
-                        course &&
-                        course.is_active
-                );
-
-
-        document.getElementById(
-            "coursesCount"
-        ).textContent =
-            courses.length;
-
-
-        if (!courses.length) {
-
-            grid.innerHTML = `
-                <div class="empty">
-                    📚 لا توجد كورسات متاحة لك حالياً.
-                </div>
-            `;
+            window.location.href =
+            "auth.html";
 
             return;
-
         }
 
-
-        grid.innerHTML = "";
-
-
-        courses.forEach(
-            course => {
-
-                const card =
-                    document.createElement(
-                        "div"
-                    );
-
-                card.className =
-                    "card";
+        currentUser =
+        data.user;
 
 
-                card.innerHTML = `
-
-                    <div class="card-icon">
-                        📚
-                    </div>
-
-                    <h3>
-                        ${escapeHTML(
-                            course.title
-                        )}
-                    </h3>
-
-                    <p>
-                        ${escapeHTML(
-                            course.description ||
-                            "كورسات تعليمية متاحة لك."
-                        )}
-                    </p>
-
-                    ${
-                        course.grade
-                        ?
-                        `<p style="margin-top:8px;">
-                            🎓 ${escapeHTML(course.grade)}
-                        </p>`
-                        :
-                        ""
-                    }
-
-                `;
+        await loadStudent();
 
 
-                grid.appendChild(card);
+        await Promise.allSettled([
+            loadVideos(),
+            loadPDFs(),
+            loadExams(),
+            loadBestStudents()
+        ]);
 
+
+    }catch(error){
+
+        console.error(
+            "HOME ERROR:",
+            error
+        );
+
+        document.getElementById(
+            "studentName"
+        ).textContent =
+        "مرحباً بك";
+
+    }
+
+});
+
+
+/* =====================================================
+   STUDENT
+===================================================== */
+
+async function loadStudent(){
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("students")
+        .select(`
+            id,
+            full_name,
+            phone,
+            grade,
+            points,
+            avatar_url
+        `)
+        .eq(
+            "id",
+            currentUser.id
+        )
+        .maybeSingle();
+
+
+    if(error){
+
+        console.error(
+            "STUDENT ERROR:",
+            error
+        );
+
+        document.getElementById(
+            "studentName"
+        ).textContent =
+        "مرحباً بك";
+
+        return;
+    }
+
+
+    currentStudent =
+    data;
+
+
+    if(!currentStudent){
+
+        document.getElementById(
+            "studentName"
+        ).textContent =
+        currentUser.phone ||
+        currentUser.email ||
+        "طالب";
+
+        return;
+    }
+
+
+    document.getElementById(
+        "studentName"
+    ).textContent =
+    currentStudent.full_name ||
+    "طالب";
+
+
+    document.getElementById(
+        "pointsValue"
+    ).textContent =
+    Number(
+        currentStudent.points || 0
+    );
+
+
+    document.getElementById(
+        "studentGradeLabel"
+    ).textContent =
+    currentStudent.grade ||
+    "حسب صفك";
+
+
+    document.getElementById(
+        "bestGradeTitle"
+    ).textContent =
+    currentStudent.grade
+    ?
+    "أفضل الطلاب في " +
+    currentStudent.grade
+    :
+    "حسب صفك";
+
+}
+
+
+/* =====================================================
+   VIDEOS
+===================================================== */
+
+async function loadVideos(){
+
+    const grid =
+    document.getElementById(
+        "videosGrid"
+    );
+
+
+    if(
+        !currentStudent ||
+        !currentStudent.grade
+    ){
+
+        grid.innerHTML = `
+            <div class="empty">
+                🎥 لا يمكن تحديد الصف الدراسي حالياً.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("videos")
+        .select(`
+            id,
+            title,
+            description,
+            grade,
+            youtube_url,
+            thumbnail_url,
+            is_active,
+            created_at
+        `)
+        .eq(
+            "is_active",
+            true
+        )
+        .eq(
+            "grade",
+            currentStudent.grade
+        )
+        .order(
+            "created_at",
+            {
+                ascending:false
             }
         );
 
 
-    } catch (error) {
+    if(error){
 
         console.error(
-            "Courses:",
+            "VIDEOS ERROR:",
             error
         );
 
         grid.innerHTML = `
             <div class="empty">
-                ❌ تعذر تحميل الكورسات.
+                ❌ تعذر تحميل الفيديوهات حالياً.
             </div>
         `;
 
+        return;
     }
+
+
+    document.getElementById(
+        "videosCount"
+    ).textContent =
+    data?.length || 0;
+
+
+    if(!data || !data.length){
+
+        grid.innerHTML = `
+            <div class="empty">
+                🎥 لا توجد فيديوهات متاحة لصفك حالياً.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    grid.innerHTML = "";
+
+
+    data.forEach(
+    video => {
+
+        const card =
+        document.createElement(
+            "div"
+        );
+
+        card.className =
+        "card";
+
+
+        const youtube =
+        normalizeYouTubeURL(
+            video.youtube_url
+        );
+
+
+        const thumbnail =
+        video.thumbnail_url ||
+        getYouTubeThumbnail(
+            video.youtube_url
+        );
+
+
+        card.innerHTML = `
+
+            ${
+                thumbnail
+                ?
+                `
+                <img
+                    src="${escapeHTML(thumbnail)}"
+                    alt=""
+                    style="
+                        width:100%;
+                        height:170px;
+                        object-fit:cover;
+                        border-radius:15px;
+                        margin-bottom:15px;
+                    "
+                >
+                `
+                :
+                `
+                <div class="card-icon">
+                    🎥
+                </div>
+                `
+            }
+
+            <h3>
+                ${escapeHTML(
+                    video.title ||
+                    "فيديو تعليمي"
+                )}
+            </h3>
+
+            <p>
+                ${escapeHTML(
+                    video.description ||
+                    "شرح تعليمي متاح لك."
+                )}
+            </p>
+
+            ${
+                youtube
+                ?
+                `
+                <a
+                    href="${escapeHTML(youtube)}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="main-btn card-link"
+                >
+                    ▶️ مشاهدة الفيديو
+                </a>
+                `
+                :
+                `
+                <div
+                    style="
+                        margin-top:15px;
+                        color:#ff9d9d;
+                        font-size:12px;
+                    "
+                >
+                    رابط الفيديو غير متوفر.
+                </div>
+                `
+            }
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* =====================================================
+   PDF FILES
+===================================================== */
+
+async function loadPDFs(){
+
+    const grid =
+    document.getElementById(
+        "filesGrid"
+    );
+
+
+    if(
+        !currentStudent ||
+        !currentStudent.grade
+    ){
+
+        grid.innerHTML = `
+            <div class="empty">
+                📄 لا يمكن تحديد الصف الدراسي حالياً.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("pdf_files")
+        .select(`
+            id,
+            title,
+            description,
+            grade,
+            pdf_url,
+            is_active,
+            created_at
+        `)
+        .eq(
+            "is_active",
+            true
+        )
+        .eq(
+            "grade",
+            currentStudent.grade
+        )
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        );
+
+
+    if(error){
+
+        console.error(
+            "PDF ERROR:",
+            error
+        );
+
+        grid.innerHTML = `
+            <div class="empty">
+                ❌ تعذر تحميل ملفات PDF حالياً.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    if(!data || !data.length){
+
+        grid.innerHTML = `
+            <div class="empty">
+                📄 لا توجد ملفات PDF متاحة لصفك حالياً.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    grid.innerHTML = "";
+
+
+    data.forEach(
+    file => {
+
+        const card =
+        document.createElement(
+            "div"
+        );
+
+        card.className =
+        "card";
+
+
+        card.innerHTML = `
+
+            <div class="card-icon">
+                📄
+            </div>
+
+            <h3>
+                ${escapeHTML(
+                    file.title ||
+                    "ملف PDF"
+                )}
+            </h3>
+
+            <p>
+                ${escapeHTML(
+                    file.description ||
+                    "ملف تعليمي متاح لك."
+                )}
+            </p>
+
+            ${
+                file.grade
+                ?
+                `
+                <p style="margin-top:8px;">
+                    🎓 ${escapeHTML(file.grade)}
+                </p>
+                `
+                :
+                ""
+            }
+
+            ${
+                file.pdf_url
+                ?
+                `
+                <a
+                    href="${escapeHTML(file.pdf_url)}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="main-btn card-link"
+                >
+                    📖 فتح ملف PDF
+                </a>
+                `
+                :
+                `
+                <div
+                    style="
+                        margin-top:15px;
+                        color:#ff9d9d;
+                        font-size:12px;
+                    "
+                >
+                    رابط الملف غير متوفر.
+                </div>
+                `
+            }
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
 
 }
 
@@ -1522,137 +1677,46 @@ async function loadCourses(
    EXAMS
 ===================================================== */
 
-async function loadExams(
-    studentId
-) {
+async function loadExams(){
 
     const grid =
-        document.getElementById(
-            "examsGrid"
-        );
+    document.getElementById(
+        "examsGrid"
+    );
 
 
-    try {
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-            .from("exams")
-            .select(`
-                id,
-                title,
-                description,
-                grade,
-                duration_minutes,
-                exam_code,
-                is_active
-            `)
-            .eq(
-                "is_active",
-                true
-            )
-            .order(
-                "created_at",
-                {
-                    ascending: false
-                }
-            );
-
-
-        if (error) {
-            throw error;
-        }
-
-
-        const exams =
-            data || [];
-
-
-        document.getElementById(
-            "examsCount"
-        ).textContent =
-            exams.length;
-
-
-        if (!exams.length) {
-
-            grid.innerHTML = `
-                <div class="empty">
-                    📝 لا توجد امتحانات متاحة حالياً.
-                </div>
-            `;
-
-            return;
-
-        }
-
-
-        grid.innerHTML = "";
-
-
-        exams.forEach(
-            exam => {
-
-                const card =
-                    document.createElement(
-                        "div"
-                    );
-
-                card.className =
-                    "card";
-
-
-                card.innerHTML = `
-
-                    <div class="card-icon">
-                        📝
-                    </div>
-
-                    <h3>
-                        ${escapeHTML(
-                            exam.title
-                        )}
-                    </h3>
-
-                    <p>
-                        ${escapeHTML(
-                            exam.description ||
-                            "اختبار متاح للطلاب."
-                        )}
-                    </p>
-
-                    <p style="margin-top:8px;">
-                        ⏱️ ${Number(
-                            exam.duration_minutes || 30
-                        )} دقيقة
-                    </p>
-
-                    <a
-                        href="exam.html?id=${encodeURIComponent(exam.id)}"
-                        class="main-btn"
-                        style="
-                            width:100%;
-                            margin-top:15px;
-                        "
-                    >
-                        🚀 بدء الامتحان
-                    </a>
-
-                `;
-
-
-                grid.appendChild(card);
-
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("exams")
+        .select(`
+            id,
+            title,
+            description,
+            grade,
+            duration_minutes,
+            exam_code,
+            is_active,
+            created_at
+        `)
+        .eq(
+            "is_active",
+            true
+        )
+        .order(
+            "created_at",
+            {
+                ascending:false
             }
         );
 
 
-    } catch (error) {
+    if(error){
 
         console.error(
-            "Exams:",
+            "EXAMS ERROR:",
             error
         );
 
@@ -1662,44 +1726,552 @@ async function loadExams(
             </div>
         `;
 
+        return;
     }
+
+
+    let exams =
+    data || [];
+
+
+    if(
+        currentStudent &&
+        currentStudent.grade
+    ){
+
+        exams =
+        exams.filter(
+        exam =>
+            !exam.grade ||
+            exam.grade ===
+            currentStudent.grade
+        );
+
+    }
+
+
+    document.getElementById(
+        "examsCount"
+    ).textContent =
+    exams.length;
+
+
+    if(!exams.length){
+
+        grid.innerHTML = `
+            <div class="empty">
+                📝 لا توجد امتحانات متاحة لصفك حالياً.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    grid.innerHTML = "";
+
+
+    exams.forEach(
+    exam => {
+
+        const card =
+        document.createElement(
+            "div"
+        );
+
+        card.className =
+        "card";
+
+
+        card.innerHTML = `
+
+            <div class="card-icon">
+                📝
+            </div>
+
+            <h3>
+                ${escapeHTML(
+                    exam.title ||
+                    "امتحان"
+                )}
+            </h3>
+
+            <p>
+                ${escapeHTML(
+                    exam.description ||
+                    "اختبار متاح لك."
+                )}
+            </p>
+
+            <p style="margin-top:8px;">
+                ⏱️ ${Number(
+                    exam.duration_minutes ||
+                    30
+                )} دقيقة
+            </p>
+
+            ${
+                exam.grade
+                ?
+                `
+                <p style="margin-top:7px;">
+                    🎓 ${escapeHTML(exam.grade)}
+                </p>
+                `
+                :
+                ""
+            }
+
+            <a
+                href="exam.html?id=${encodeURIComponent(exam.id)}"
+                class="main-btn card-link"
+                style="width:100%;"
+            >
+                🚀 بدء الامتحان
+            </a>
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
 
 }
 
 
 /* =====================================================
-   ESCAPE
+   BEST STUDENTS
 ===================================================== */
 
-function escapeHTML(
-    value
-) {
+async function loadBestStudents(){
+
+    const grid =
+    document.getElementById(
+        "bestStudentsGrid"
+    );
+
+
+    if(
+        !currentStudent ||
+        !currentStudent.grade
+    ){
+
+        grid.innerHTML = `
+            <div class="best-empty">
+                🏆 لا يمكن تحديد الصف الدراسي حالياً.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("top_students")
+        .select(`
+            id,
+            student_id,
+            name,
+            grade,
+            photo_url,
+            rank,
+            points,
+            achievement,
+            is_active
+        `)
+        .eq(
+            "is_active",
+            true
+        )
+        .eq(
+            "grade",
+            currentStudent.grade
+        )
+        .order(
+            "rank",
+            {
+                ascending:true,
+                nullsFirst:false
+            }
+        )
+        .order(
+            "points",
+            {
+                ascending:false
+            }
+        );
+
+
+    if(error){
+
+        console.error(
+            "TOP STUDENTS ERROR:",
+            error
+        );
+
+        grid.innerHTML = `
+            <div class="best-error">
+                ❌ تعذر تحميل أفضل الطلاب.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    if(!data || !data.length){
+
+        grid.innerHTML = `
+            <div class="best-empty">
+                🏆 لا يوجد أفضل طلاب مضافون لصفك حالياً.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    grid.innerHTML = "";
+
+
+    data.forEach(
+    (student,index) => {
+
+        const rank =
+        student.rank ||
+        index + 1;
+
+
+        let medal =
+        "🏅";
+
+        if(rank === 1)
+            medal = "🥇";
+
+        else if(rank === 2)
+            medal = "🥈";
+
+        else if(rank === 3)
+            medal = "🥉";
+
+
+        const card =
+        document.createElement(
+            "div"
+        );
+
+        card.className =
+        "student-card";
+
+
+        const avatar =
+        student.photo_url
+        ?
+        `
+        <img
+            src="${escapeHTML(student.photo_url)}"
+            alt="${escapeHTML(student.name || "طالب")}"
+        >
+        `
+        :
+        `
+        <div class="student-emoji">
+            👨‍🎓
+        </div>
+        `;
+
+
+        card.innerHTML = `
+
+            <div class="student-rank">
+                ${medal}
+                ${rank}
+            </div>
+
+            <div class="student-avatar">
+                ${avatar}
+            </div>
+
+            <div class="best-name">
+                ${escapeHTML(
+                    student.name ||
+                    "طالب"
+                )}
+            </div>
+
+            <div class="student-points">
+                ⭐ ${Number(
+                    student.points || 0
+                )} نقطة
+            </div>
+
+            ${
+                student.achievement
+                ?
+                `
+                <div class="student-achievement">
+                    ${escapeHTML(
+                        student.achievement
+                    )}
+                </div>
+                `
+                :
+                ""
+            }
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* =====================================================
+   YOUTUBE
+===================================================== */
+
+function normalizeYouTubeURL(url){
+
+    if(!url)
+        return "";
+
+
+    let value =
+    String(url).trim();
+
+
+    if(
+        value.includes("youtube.com/watch")
+    ){
+
+        try{
+
+            const parsed =
+            new URL(value);
+
+            const id =
+            parsed.searchParams.get(
+                "v"
+            );
+
+            if(id){
+
+                return
+                "https://www.youtube.com/watch?v=" +
+                encodeURIComponent(id);
+
+            }
+
+        }catch(e){}
+
+    }
+
+
+    if(
+        value.includes("youtu.be/")
+    ){
+
+        try{
+
+            const parsed =
+            new URL(value);
+
+            const id =
+            parsed.pathname
+                .replace("/","")
+                .trim();
+
+            if(id){
+
+                return
+                "https://www.youtube.com/watch?v=" +
+                encodeURIComponent(id);
+
+            }
+
+        }catch(e){}
+
+    }
+
+
+    return value;
+
+}
+
+
+/* =====================================================
+   YOUTUBE THUMBNAIL
+===================================================== */
+
+function getYouTubeThumbnail(url){
+
+    if(!url)
+        return "";
+
+
+    try{
+
+        const parsed =
+        new URL(url);
+
+
+        let id = "";
+
+
+        if(
+            parsed.hostname.includes(
+                "youtu.be"
+            )
+        ){
+
+            id =
+            parsed.pathname
+                .replace("/","");
+
+        }
+        else{
+
+            id =
+            parsed.searchParams.get(
+                "v"
+            ) || "";
+
+        }
+
+
+        if(id){
+
+            return
+            "https://img.youtube.com/vi/" +
+            encodeURIComponent(id) +
+            "/hqdefault.jpg";
+
+        }
+
+    }catch(error){}
+
+
+    return "";
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
 
     return String(
         value ?? ""
     )
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
 
 }
+
+
+/* =====================================================
+   OFFER BUTTON
+===================================================== */
+
+document
+.getElementById("offerButton")
+.addEventListener(
+"click",
+function(){
+
+    const content =
+    document.getElementById(
+        "offerContent"
+    );
+
+
+    content.classList.toggle(
+        "show"
+    );
+
+
+    this.textContent =
+    content.classList.contains("show")
+    ?
+    "⬆️ إخفاء المحتوى"
+    :
+    "✨ ماذا نقدم لكم؟";
+
+});
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+document
+.getElementById("logoutBtn")
+.addEventListener(
+"click",
+async function(){
+
+    this.disabled =
+    true;
+
+    this.textContent =
+    "جاري الخروج...";
+
+
+    const {
+        error
+    } =
+    await supabaseClient.auth.signOut();
+
+
+    if(error){
+
+        console.error(
+            "LOGOUT:",
+            error
+        );
+
+        this.disabled =
+        false;
+
+        this.textContent =
+        "خروج";
+
+        return;
+    }
+
+
+    window.location.href =
+    "auth.html";
+
+});
 
 </script>
 
