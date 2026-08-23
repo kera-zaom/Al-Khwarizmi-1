@@ -1,0 +1,3308 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>الخوارزمي | إدارة المحتوى</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../supabase.js"></script>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Tahoma,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:
+    radial-gradient(circle at 10% 10%,rgba(116,72,232,.18),transparent 30%),
+    radial-gradient(circle at 90% 80%,rgba(49,84,223,.14),transparent 30%),
+    #050509;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+button,
+input,
+select,
+textarea{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.container{
+    width:min(1200px,94%);
+    margin:auto;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+#loadingScreen{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:18px;
+    background:#050509;
+}
+
+.loader{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    border:4px solid rgba(255,255,255,.08);
+    border-top-color:#7952ed;
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* =========================
+   ACCESS
+========================= */
+
+#accessDenied{
+    display:none;
+    min-height:100vh;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.denied{
+    width:min(450px,100%);
+    text-align:center;
+    padding:40px 25px;
+    border-radius:25px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.denied-icon{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.denied h2{
+    margin-bottom:10px;
+}
+
+.denied p{
+    color:#888;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.back-btn{
+    display:inline-block;
+    padding:13px 20px;
+    border-radius:13px;
+    color:#fff;
+    text-decoration:none;
+    background:linear-gradient(135deg,#7448e8,#3154df);
+}
+
+/* =========================
+   APP
+========================= */
+
+#adminApp{
+    display:none;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    height:70px;
+    background:rgba(5,5,9,.85);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.header-inner{
+    width:min(1200px,94%);
+    height:70px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.logo{
+    font-size:23px;
+    font-weight:900;
+    background:linear-gradient(90deg,#fff,#9b7cff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.header-btn{
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.04);
+    color:#fff;
+    padding:9px 13px;
+    border-radius:12px;
+    text-decoration:none;
+    font-size:13px;
+}
+
+.logout{
+    background:rgba(255,60,60,.08);
+    border-color:rgba(255,60,60,.15);
+}
+
+/* =========================
+   TOP
+========================= */
+
+.page-top{
+    padding:40px 0 25px;
+}
+
+.page-top h1{
+    font-size:clamp(28px,5vw,44px);
+    margin-bottom:10px;
+}
+
+.page-top p{
+    color:#888;
+    line-height:1.8;
+}
+
+/* =========================
+   TABS
+========================= */
+
+.tabs{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-bottom:25px;
+}
+
+.tab{
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.035);
+    color:#aaa;
+    padding:16px 10px;
+    border-radius:16px;
+    transition:.25s;
+    font-size:14px;
+}
+
+.tab:hover{
+    border-color:rgba(116,72,232,.35);
+}
+
+.tab.active{
+    color:#fff;
+    border-color:rgba(116,72,232,.5);
+    background:linear-gradient(
+        135deg,
+        rgba(116,72,232,.25),
+        rgba(49,84,223,.18)
+    );
+    box-shadow:0 10px 30px rgba(116,72,232,.08);
+}
+
+/* =========================
+   PANELS
+========================= */
+
+.panel{
+    display:none;
+}
+
+.panel.active{
+    display:block;
+}
+
+/* =========================
+   FORM CARD
+========================= */
+
+.card{
+    padding:25px;
+    border-radius:23px;
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.08);
+    margin-bottom:25px;
+}
+
+.card-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.card-title h2{
+    font-size:21px;
+}
+
+.card-title span{
+    color:#8e72ef;
+    font-size:12px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.field{
+    margin-bottom:2px;
+}
+
+.field.full{
+    grid-column:1/-1;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    color:#ddd;
+    font-size:13px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:14px;
+    border-radius:13px;
+    border:1px solid #29293a;
+    outline:none;
+    background:#090910;
+    color:#fff;
+    font-size:14px;
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#7448e8;
+    box-shadow:0 0 15px rgba(116,72,232,.12);
+}
+
+select option{
+    background:#090910;
+    color:#fff;
+}
+
+.form-actions{
+    margin-top:20px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.primary-btn{
+    border:0;
+    padding:14px 22px;
+    border-radius:13px;
+    color:#fff;
+    font-weight:bold;
+    background:linear-gradient(135deg,#7448e8,#3154df);
+}
+
+.secondary-btn{
+    border:1px solid rgba(255,255,255,.09);
+    padding:14px 22px;
+    border-radius:13px;
+    color:#ddd;
+    background:rgba(255,255,255,.04);
+}
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message{
+    display:none;
+    margin-top:15px;
+    padding:13px;
+    border-radius:12px;
+    text-align:center;
+    font-size:13px;
+}
+
+.message.success{
+    display:block;
+    color:#5cffad;
+    background:rgba(40,200,120,.10);
+    border:1px solid rgba(40,200,120,.2);
+}
+
+.message.error{
+    display:block;
+    color:#ff7b88;
+    background:rgba(255,60,80,.10);
+    border:1px solid rgba(255,60,80,.2);
+}
+
+/* =========================
+   LIST
+========================= */
+
+.list{
+    display:grid;
+    gap:12px;
+}
+
+.item{
+    padding:18px;
+    border-radius:17px;
+    background:rgba(255,255,255,.025);
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.item-main{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:15px;
+}
+
+.item h3{
+    margin-bottom:7px;
+    font-size:16px;
+}
+
+.item p{
+    color:#888;
+    font-size:13px;
+    line-height:1.7;
+}
+
+.item-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-top:10px;
+}
+
+.badge{
+    padding:6px 9px;
+    border-radius:20px;
+    color:#cfc4ff;
+    background:rgba(116,72,232,.10);
+    border:1px solid rgba(116,72,232,.16);
+    font-size:11px;
+}
+
+.item-actions{
+    display:flex;
+    gap:7px;
+    flex-shrink:0;
+}
+
+.delete-btn{
+    border:1px solid rgba(255,70,70,.18);
+    background:rgba(255,70,70,.07);
+    color:#ff8b94;
+    padding:8px 11px;
+    border-radius:10px;
+    font-size:12px;
+}
+
+.empty{
+    text-align:center;
+    color:#777;
+    padding:30px;
+}
+
+/* =========================
+   TOP STUDENT
+========================= */
+
+.rank-box{
+    display:grid;
+    grid-template-columns:100px 1fr;
+    gap:15px;
+    align-items:end;
+}
+
+.rank-number{
+    text-align:center;
+    padding:15px;
+    border-radius:14px;
+    background:rgba(116,72,232,.08);
+    border:1px solid rgba(116,72,232,.15);
+}
+
+.rank-number strong{
+    display:block;
+    font-size:28px;
+    color:#c5b7ff;
+}
+
+.rank-number span{
+    color:#888;
+    font-size:11px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+    padding:35px 0;
+    color:#666;
+    font-size:12px;
+}
+
+footer span{
+    color:#9b7cff;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+    .tabs{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .field.full{
+        grid-column:auto;
+    }
+
+    .rank-box{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .header-inner{
+        height:65px;
+    }
+
+    header{
+        height:65px;
+    }
+
+    .logo{
+        font-size:19px;
+    }
+
+    .header-btn{
+        padding:8px 10px;
+        font-size:11px;
+    }
+
+    .page-top{
+        padding-top:30px;
+    }
+
+    .card{
+        padding:18px;
+    }
+
+    .item-main{
+        flex-direction:column;
+    }
+
+    .item-actions{
+        width:100%;
+    }
+
+    .delete-btn{
+        width:100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     LOADING
+========================= -->
+
+<div id="loadingScreen">
+
+    <div class="loader"></div>
+
+    <div style="color:#888;font-size:13px">
+        جاري التحقق من صلاحيات الأدمن...
+    </div>
+
+</div>
+
+
+<!-- =========================
+     ACCESS DENIED
+========================= -->
+
+<div id="accessDenied">
+
+    <div class="denied">
+
+        <div class="denied-icon">
+            🔒
+        </div>
+
+        <h2>
+            غير مسموح بالدخول
+        </h2>
+
+        <p>
+            هذه الصفحة مخصصة للأدمن فقط.
+        </p>
+
+        <a
+            href="../auth.html"
+            class="back-btn"
+        >
+            تسجيل الدخول
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     APP
+========================= -->
+
+<div id="adminApp">
+
+
+<header>
+
+<div class="header-inner">
+
+    <div class="logo">
+        الخوارزمي
+    </div>
+
+    <div class="header-actions">
+
+        <a
+            href="index.html"
+            class="header-btn"
+        >
+            لوحة الإدارة
+        </a>
+
+        <button
+            id="logoutBtn"
+            class="header-btn logout"
+        >
+            تسجيل الخروج
+        </button>
+
+    </div>
+
+</div>
+
+</header>
+
+
+<main>
+
+<div class="container">
+
+
+<!-- =========================
+     TOP
+========================= -->
+
+<section class="page-top">
+
+    <h1>
+        إدارة المحتوى 👑
+    </h1>
+
+    <p>
+        من هنا يمكنك إضافة الامتحانات والملفات والفيديوهات
+        وتحديد الصف الدراسي وإدارة أفضل الطلاب.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     TABS
+========================= -->
+
+<div class="tabs">
+
+    <button
+        class="tab active"
+        data-tab="examPanel"
+    >
+        📝 إضافة امتحان
+    </button>
+
+    <button
+        class="tab"
+        data-tab="pdfPanel"
+    >
+        📄 إضافة PDF
+    </button>
+
+    <button
+        class="tab"
+        data-tab="videoPanel"
+    >
+        🎬 إضافة فيديو
+    </button>
+
+    <button
+        class="tab"
+        data-tab="topPanel"
+    >
+        🏆 أفضل الطلاب
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     EXAM PANEL
+===================================================== -->
+
+<section
+    id="examPanel"
+    class="panel active"
+>
+
+<div class="card">
+
+<div class="card-title">
+
+    <h2>
+        إضافة امتحان جديد
+    </h2>
+
+    <span>
+        EXAM
+    </span>
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="field">
+
+<label>
+اسم الامتحان
+</label>
+
+<input
+    id="examTitle"
+    type="text"
+    placeholder="مثال: اختبار الرياضيات الأول"
+/>
+
+</div>
+
+
+<div class="field">
+
+<label>
+الصف الدراسي
+</label>
+
+<select id="examGrade">
+
+<option value="">
+اختر الصف
+</option>
+
+<option value="أولى إعدادي">
+أولى إعدادي
+</option>
+
+<option value="ثانية إعدادي">
+ثانية إعدادي
+</option>
+
+<option value="ثالثة إعدادي">
+ثالثة إعدادي
+</option>
+
+<option value="أولى ثانوي">
+أولى ثانوي
+</option>
+
+<option value="ثانية ثانوي">
+ثانية ثانوي
+</option>
+
+<option value="ثالثة ثانوي">
+ثالثة ثانوي
+</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+مدة الامتحان بالدقائق
+</label>
+
+<input
+    id="examDuration"
+    type="number"
+    min="1"
+    value="30"
+/>
+
+</div>
+
+
+<div class="field">
+
+<label>
+كود الامتحان
+</label>
+
+<input
+    id="examCode"
+    type="text"
+    placeholder="مثال: MATH2026"
+/>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+وصف الامتحان
+</label>
+
+<textarea
+    id="examDescription"
+    placeholder="اكتب وصفًا مختصرًا للامتحان..."
+></textarea>
+
+</div>
+
+
+</div>
+
+
+<div class="form-actions">
+
+<button
+    id="addExamBtn"
+    class="primary-btn"
+>
+➕ إضافة الامتحان
+</button>
+
+<button
+    id="clearExamBtn"
+    class="secondary-btn"
+>
+مسح
+</button>
+
+</div>
+
+
+<div
+    id="examMessage"
+    class="message"
+></div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-title">
+
+<h2>
+الامتحانات المضافة
+</h2>
+
+<span>
+آخر الامتحانات
+</span>
+
+</div>
+
+<div
+    id="examsList"
+    class="list"
+>
+
+<div class="empty">
+جاري تحميل الامتحانات...
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PDF PANEL
+===================================================== -->
+
+<section
+    id="pdfPanel"
+    class="panel"
+>
+
+<div class="card">
+
+<div class="card-title">
+
+<h2>
+إضافة ملف PDF
+</h2>
+
+<span>
+PDF
+</span>
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="field">
+
+<label>
+اسم الملف
+</label>
+
+<input
+    id="pdfTitle"
+    type="text"
+    placeholder="مثال: مراجعة الوحدة الأولى"
+/>
+
+</div>
+
+
+<div class="field">
+
+<label>
+الصف الدراسي
+</label>
+
+<select id="pdfGrade">
+
+<option value="">
+اختر الصف
+</option>
+
+<option value="أولى إعدادي">
+أولى إعدادي
+</option>
+
+<option value="ثانية إعدادي">
+ثانية إعدادي
+</option>
+
+<option value="ثالثة إعدادي">
+ثالثة إعدادي
+</option>
+
+<option value="أولى ثانوي">
+أولى ثانوي
+</option>
+
+<option value="ثانية ثانوي">
+ثانية ثانوي
+</option>
+
+<option value="ثالثة ثانوي">
+ثالثة ثانوي
+</option>
+
+</select>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+رابط ملف PDF
+</label>
+
+<input
+    id="pdfUrl"
+    type="url"
+    placeholder="https://..."
+/>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+وصف الملف
+</label>
+
+<textarea
+    id="pdfDescription"
+    placeholder="وصف مختصر للملف..."
+></textarea>
+
+</div>
+
+
+</div>
+
+
+<div class="form-actions">
+
+<button
+    id="addPdfBtn"
+    class="primary-btn"
+>
+📄 إضافة PDF
+</button>
+
+<button
+    id="clearPdfBtn"
+    class="secondary-btn"
+>
+مسح
+</button>
+
+</div>
+
+
+<div
+    id="pdfMessage"
+    class="message"
+></div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-title">
+
+<h2>
+ملفات PDF
+</h2>
+
+<span>
+المضافة
+</span>
+
+</div>
+
+<div
+    id="pdfList"
+    class="list"
+>
+
+<div class="empty">
+جاري تحميل الملفات...
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     VIDEO PANEL
+===================================================== -->
+
+<section
+    id="videoPanel"
+    class="panel"
+>
+
+<div class="card">
+
+<div class="card-title">
+
+<h2>
+إضافة فيديو YouTube
+</h2>
+
+<span>
+YOUTUBE
+</span>
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="field">
+
+<label>
+اسم الفيديو
+</label>
+
+<input
+    id="videoTitle"
+    type="text"
+    placeholder="مثال: شرح الدرس الأول"
+/>
+
+</div>
+
+
+<div class="field">
+
+<label>
+الصف الدراسي
+</label>
+
+<select id="videoGrade">
+
+<option value="">
+اختر الصف
+</option>
+
+<option value="أولى إعدادي">
+أولى إعدادي
+</option>
+
+<option value="ثانية إعدادي">
+ثانية إعدادي
+</option>
+
+<option value="ثالثة إعدادي">
+ثالثة إعدادي
+</option>
+
+<option value="أولى ثانوي">
+أولى ثانوي
+</option>
+
+<option value="ثانية ثانوي">
+ثانية ثانوي
+</option>
+
+<option value="ثالثة ثانوي">
+ثالثة ثانوي
+</option>
+
+</select>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+رابط YouTube
+</label>
+
+<input
+    id="videoUrl"
+    type="url"
+    placeholder="https://www.youtube.com/watch?v=..."
+/>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+وصف الفيديو
+</label>
+
+<textarea
+    id="videoDescription"
+    placeholder="اكتب وصف الفيديو..."
+></textarea>
+
+</div>
+
+
+</div>
+
+
+<div class="form-actions">
+
+<button
+    id="addVideoBtn"
+    class="primary-btn"
+>
+🎬 إضافة الفيديو
+</button>
+
+<button
+    id="clearVideoBtn"
+    class="secondary-btn"
+>
+مسح
+</button>
+
+</div>
+
+
+<div
+    id="videoMessage"
+    class="message"
+></div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-title">
+
+<h2>
+الفيديوهات المضافة
+</h2>
+
+<span>
+YouTube
+</span>
+
+</div>
+
+<div
+    id="videoList"
+    class="list"
+>
+
+<div class="empty">
+جاري تحميل الفيديوهات...
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     TOP STUDENTS
+===================================================== -->
+
+<section
+    id="topPanel"
+    class="panel"
+>
+
+<div class="card">
+
+<div class="card-title">
+
+<h2>
+إضافة أفضل طالب
+</h2>
+
+<span>
+TOP STUDENTS
+</span>
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="field">
+
+<label>
+الصف الدراسي
+</label>
+
+<select id="topGrade">
+
+<option value="">
+اختر الصف
+</option>
+
+<option value="أولى إعدادي">
+أولى إعدادي
+</option>
+
+<option value="ثانية إعدادي">
+ثانية إعدادي
+</option>
+
+<option value="ثالثة إعدادي">
+ثالثة إعدادي
+</option>
+
+<option value="أولى ثانوي">
+أولى ثانوي
+</option>
+
+<option value="ثانية ثانوي">
+ثانية ثانوي
+</option>
+
+<option value="ثالثة ثانوي">
+ثالثة ثانوي
+</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+رقم الطالب
+</label>
+
+<input
+    id="topStudentId"
+    type="text"
+    placeholder="UUID الخاص بالطالب"
+/>
+
+</div>
+
+
+<div class="field">
+
+<label>
+الترتيب
+</label>
+
+<input
+    id="topRank"
+    type="number"
+    min="1"
+    value="1"
+/>
+
+</div>
+
+
+<div class="field">
+
+<label>
+الدرجة
+</label>
+
+<input
+    id="topScore"
+    type="number"
+    min="0"
+    value="0"
+/>
+
+</div>
+
+
+<div class="field">
+
+<label>
+اللقب
+</label>
+
+<input
+    id="topTitle"
+    type="text"
+    placeholder="مثال: المركز الأول"
+/>
+
+</div>
+
+
+<div class="field">
+
+<label>
+رابط صورة الطالب
+</label>
+
+<input
+    id="topPhoto"
+    type="url"
+    placeholder="https://..."
+/>
+
+</div>
+
+
+</div>
+
+
+<div class="form-actions">
+
+<button
+    id="addTopBtn"
+    class="primary-btn"
+>
+🏆 إضافة الطالب
+</button>
+
+<button
+    id="clearTopBtn"
+    class="secondary-btn"
+>
+مسح
+</button>
+
+</div>
+
+
+<div
+    id="topMessage"
+    class="message"
+></div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-title">
+
+<h2>
+أفضل الطلاب
+</h2>
+
+<span>
+الطلاب المميزون
+</span>
+
+</div>
+
+<div
+    id="topList"
+    class="list"
+>
+
+<div class="empty">
+جاري تحميل الطلاب...
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+</div>
+
+</main>
+
+
+<footer>
+
+<div class="container">
+
+© 2026 منصة
+<span>الخوارزمي</span>
+— إدارة المحتوى
+
+</div>
+
+</footer>
+
+
+</div>
+
+
+<script>
+
+"use strict";
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+let supabaseClient = null;
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const loadingScreen =
+    document.getElementById("loadingScreen");
+
+const accessDenied =
+    document.getElementById("accessDenied");
+
+const adminApp =
+    document.getElementById("adminApp");
+
+
+/* =====================================================
+   DENY
+===================================================== */
+
+function denyAccess(){
+
+    loadingScreen.style.display = "none";
+
+    adminApp.style.display = "none";
+
+    accessDenied.style.display = "flex";
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(
+    element,
+    text,
+    type
+){
+
+    element.textContent = text;
+
+    element.className =
+        "message " + type;
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(value){
+
+    if(value === null || value === undefined){
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+
+/* =====================================================
+   INIT
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    init
+);
+
+
+async function init(){
+
+    try{
+
+        /*
+         * supabase.js يجب أن ينشئ:
+         * window.supabaseClient
+         */
+
+        supabaseClient =
+            window.supabaseClient;
+
+
+        if(!supabaseClient){
+
+            console.error(
+                "window.supabaseClient غير موجود"
+            );
+
+            denyAccess();
+
+            return;
+        }
+
+
+        /* =============================================
+           CHECK USER
+        ============================================= */
+
+        const {
+            data: {
+                user
+            },
+            error: userError
+        } =
+            await supabaseClient.auth.getUser();
+
+
+        if(
+            userError ||
+            !user
+        ){
+
+            window.location.replace(
+                "../auth.html"
+            );
+
+            return;
+        }
+
+
+        /* =============================================
+           CHECK ADMIN
+        ============================================= */
+
+        const {
+            data: roleData,
+            error: roleError
+        } =
+            await supabaseClient
+                .from("user_roles")
+                .select("role")
+                .eq(
+                    "user_id",
+                    user.id
+                )
+                .maybeSingle();
+
+
+        if(roleError){
+
+            console.error(
+                "ROLE ERROR:",
+                roleError
+            );
+
+            denyAccess();
+
+            return;
+        }
+
+
+        if(
+            !roleData ||
+            roleData.role !== "admin"
+        ){
+
+            denyAccess();
+
+            return;
+        }
+
+
+        /* =============================================
+           SHOW APP
+        ============================================= */
+
+        loadingScreen.style.display =
+            "none";
+
+        adminApp.style.display =
+            "block";
+
+
+        /* =============================================
+           EVENTS
+        ============================================= */
+
+        setupTabs();
+
+        setupButtons();
+
+
+        /* =============================================
+           LOAD DATA
+        ============================================= */
+
+        await Promise.all([
+            loadExams(),
+            loadPdfs(),
+            loadVideos(),
+            loadTopStudents()
+        ]);
+
+    }
+    catch(error){
+
+        console.error(
+            "CONTENT INIT ERROR:",
+            error
+        );
+
+        denyAccess();
+
+    }
+
+}
+
+
+/* =====================================================
+   TABS
+===================================================== */
+
+function setupTabs(){
+
+    const tabs =
+        document.querySelectorAll(".tab");
+
+    tabs.forEach(tab => {
+
+        tab.addEventListener(
+            "click",
+            function(){
+
+                tabs.forEach(t =>
+                    t.classList.remove("active")
+                );
+
+                document
+                    .querySelectorAll(".panel")
+                    .forEach(panel =>
+                        panel.classList.remove("active")
+                    );
+
+                this.classList.add("active");
+
+                const id =
+                    this.dataset.tab;
+
+                const panel =
+                    document.getElementById(id);
+
+                if(panel){
+                    panel.classList.add("active");
+                }
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+function setupButtons(){
+
+    document
+        .getElementById("addExamBtn")
+        .addEventListener(
+            "click",
+            addExam
+        );
+
+
+    document
+        .getElementById("clearExamBtn")
+        .addEventListener(
+            "click",
+            clearExam
+        );
+
+
+    document
+        .getElementById("addPdfBtn")
+        .addEventListener(
+            "click",
+            addPdf
+        );
+
+
+    document
+        .getElementById("clearPdfBtn")
+        .addEventListener(
+            "click",
+            clearPdf
+        );
+
+
+    document
+        .getElementById("addVideoBtn")
+        .addEventListener(
+            "click",
+            addVideo
+        );
+
+
+    document
+        .getElementById("clearVideoBtn")
+        .addEventListener(
+            "click",
+            clearVideo
+        );
+
+
+    document
+        .getElementById("addTopBtn")
+        .addEventListener(
+            "click",
+            addTopStudent
+        );
+
+
+    document
+        .getElementById("clearTopBtn")
+        .addEventListener(
+            "click",
+            clearTop
+        );
+
+
+    document
+        .getElementById("logoutBtn")
+        .addEventListener(
+            "click",
+            logout
+        );
+
+}
+
+
+/* =====================================================
+   ADD EXAM
+===================================================== */
+
+async function addExam(){
+
+    const btn =
+        document.getElementById("addExamBtn");
+
+    const message =
+        document.getElementById("examMessage");
+
+
+    const title =
+        document.getElementById("examTitle")
+        .value
+        .trim();
+
+    const grade =
+        document.getElementById("examGrade")
+        .value;
+
+    const duration =
+        Number(
+            document.getElementById("examDuration")
+            .value
+        ) || 30;
+
+    const code =
+        document.getElementById("examCode")
+        .value
+        .trim();
+
+    const description =
+        document.getElementById("examDescription")
+        .value
+        .trim();
+
+
+    if(!title){
+
+        showMessage(
+            message,
+            "اكتب اسم الامتحان.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(!grade){
+
+        showMessage(
+            message,
+            "اختر الصف الدراسي.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    btn.disabled = true;
+
+    btn.textContent =
+        "جاري الإضافة...";
+
+
+    try{
+
+        const {
+            data: {
+                user
+            }
+        } =
+            await supabaseClient.auth.getUser();
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from("exams")
+                .insert({
+
+                    title: title,
+
+                    description:
+                        description || null,
+
+                    grade: grade,
+
+                    duration: duration,
+
+                    code:
+                        code || null,
+
+                    is_active: true,
+
+                    created_by:
+                        user.id
+
+                });
+
+
+        if(error){
+
+            console.error(
+                "ADD EXAM ERROR:",
+                error
+            );
+
+            showMessage(
+                message,
+                error.message,
+                "error"
+            );
+
+            return;
+        }
+
+
+        showMessage(
+            message,
+            "تم إضافة الامتحان بنجاح ✅",
+            "success"
+        );
+
+
+        clearExam();
+
+        await loadExams();
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        showMessage(
+            message,
+            "حدث خطأ أثناء إضافة الامتحان.",
+            "error"
+        );
+
+    }
+    finally{
+
+        btn.disabled = false;
+
+        btn.textContent =
+            "➕ إضافة الامتحان";
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD EXAMS
+===================================================== */
+
+async function loadExams(){
+
+    const list =
+        document.getElementById("examsList");
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("exams")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending:false
+                }
+            );
+
+
+    if(error){
+
+        console.error(
+            "LOAD EXAMS:",
+            error
+        );
+
+        list.innerHTML =
+            `<div class="empty">
+                تعذر تحميل الامتحانات.
+            </div>`;
+
+        return;
+    }
+
+
+    if(!data || !data.length){
+
+        list.innerHTML =
+            `<div class="empty">
+                لا توجد امتحانات حتى الآن.
+            </div>`;
+
+        return;
+    }
+
+
+    list.innerHTML =
+        data.map(exam => {
+
+            return `
+            <div class="item">
+
+                <div class="item-main">
+
+                    <div>
+
+                        <h3>
+                            ${escapeHtml(exam.title)}
+                        </h3>
+
+                        <p>
+                            ${escapeHtml(
+                                exam.description || "بدون وصف"
+                            )}
+                        </p>
+
+                        <div class="item-meta">
+
+                            <span class="badge">
+                                ${escapeHtml(exam.grade)}
+                            </span>
+
+                            <span class="badge">
+                                ⏱ ${exam.duration || 30} دقيقة
+                            </span>
+
+                            ${
+                                exam.code
+                                ?
+                                `<span class="badge">
+                                    🔑 ${escapeHtml(exam.code)}
+                                </span>`
+                                :
+                                ""
+                            }
+
+                        </div>
+
+                    </div>
+
+                    <div class="item-actions">
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteExam('${exam.id}')"
+                        >
+                            حذف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            `;
+
+        }).join("");
+
+}
+
+
+/* =====================================================
+   DELETE EXAM
+===================================================== */
+
+async function deleteExam(id){
+
+    if(!confirm("هل تريد حذف هذا الامتحان؟")){
+        return;
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+            .from("exams")
+            .delete()
+            .eq("id",id);
+
+
+    if(error){
+
+        alert(
+            "تعذر حذف الامتحان: " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    await loadExams();
+
+}
+
+
+/* =====================================================
+   CLEAR EXAM
+===================================================== */
+
+function clearExam(){
+
+    document.getElementById("examTitle").value = "";
+
+    document.getElementById("examGrade").value = "";
+
+    document.getElementById("examDuration").value = "30";
+
+    document.getElementById("examCode").value = "";
+
+    document.getElementById("examDescription").value = "";
+
+}
+
+
+/* =====================================================
+   ADD PDF
+===================================================== */
+
+async function addPdf(){
+
+    const btn =
+        document.getElementById("addPdfBtn");
+
+    const message =
+        document.getElementById("pdfMessage");
+
+
+    const title =
+        document.getElementById("pdfTitle")
+        .value
+        .trim();
+
+    const grade =
+        document.getElementById("pdfGrade")
+        .value;
+
+    const pdfUrl =
+        document.getElementById("pdfUrl")
+        .value
+        .trim();
+
+    const description =
+        document.getElementById("pdfDescription")
+        .value
+        .trim();
+
+
+    if(!title){
+
+        showMessage(
+            message,
+            "اكتب اسم الملف.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(!grade){
+
+        showMessage(
+            message,
+            "اختر الصف الدراسي.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(!pdfUrl){
+
+        showMessage(
+            message,
+            "ضع رابط ملف PDF.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    btn.disabled = true;
+
+    btn.textContent =
+        "جاري الإضافة...";
+
+
+    try{
+
+        const {
+            data: {
+                user
+            }
+        } =
+            await supabaseClient.auth.getUser();
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from("pdf_files")
+                .insert({
+
+                    title:title,
+
+                    description:
+                        description || null,
+
+                    grade:grade,
+
+                    pdf_url:pdfUrl,
+
+                    is_active:true,
+
+                    created_by:user.id
+
+                });
+
+
+        if(error){
+
+            console.error(
+                "ADD PDF ERROR:",
+                error
+            );
+
+            showMessage(
+                message,
+                error.message,
+                "error"
+            );
+
+            return;
+        }
+
+
+        showMessage(
+            message,
+            "تم إضافة ملف PDF بنجاح ✅",
+            "success"
+        );
+
+
+        clearPdf();
+
+        await loadPdfs();
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        showMessage(
+            message,
+            "حدث خطأ أثناء إضافة الملف.",
+            "error"
+        );
+
+    }
+    finally{
+
+        btn.disabled = false;
+
+        btn.textContent =
+            "📄 إضافة PDF";
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD PDF
+===================================================== */
+
+async function loadPdfs(){
+
+    const list =
+        document.getElementById("pdfList");
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("pdf_files")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending:false
+                }
+            );
+
+
+    if(error){
+
+        console.error(
+            "LOAD PDF:",
+            error
+        );
+
+        list.innerHTML =
+            `<div class="empty">
+                تعذر تحميل ملفات PDF.
+            </div>`;
+
+        return;
+    }
+
+
+    if(!data || !data.length){
+
+        list.innerHTML =
+            `<div class="empty">
+                لا توجد ملفات PDF حتى الآن.
+            </div>`;
+
+        return;
+    }
+
+
+    list.innerHTML =
+        data.map(pdf => {
+
+            return `
+            <div class="item">
+
+                <div class="item-main">
+
+                    <div>
+
+                        <h3>
+                            📄 ${escapeHtml(pdf.title)}
+                        </h3>
+
+                        <p>
+                            ${escapeHtml(
+                                pdf.description || "بدون وصف"
+                            )}
+                        </p>
+
+                        <div class="item-meta">
+
+                            <span class="badge">
+                                ${escapeHtml(pdf.grade)}
+                            </span>
+
+                            <a
+                                href="${escapeHtml(pdf.pdf_url)}"
+                                target="_blank"
+                                rel="noopener"
+                                class="badge"
+                                style="text-decoration:none"
+                            >
+                                فتح PDF
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="item-actions">
+
+                        <button
+                            class="delete-btn"
+                            onclick="deletePdf('${pdf.id}')"
+                        >
+                            حذف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            `;
+
+        }).join("");
+
+}
+
+
+/* =====================================================
+   DELETE PDF
+===================================================== */
+
+async function deletePdf(id){
+
+    if(!confirm("هل تريد حذف ملف PDF؟")){
+        return;
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+            .from("pdf_files")
+            .delete()
+            .eq("id",id);
+
+
+    if(error){
+
+        alert(
+            "تعذر حذف الملف: " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    await loadPdfs();
+
+}
+
+
+/* =====================================================
+   CLEAR PDF
+===================================================== */
+
+function clearPdf(){
+
+    document.getElementById("pdfTitle").value = "";
+
+    document.getElementById("pdfGrade").value = "";
+
+    document.getElementById("pdfUrl").value = "";
+
+    document.getElementById("pdfDescription").value = "";
+
+}
+
+
+/* =====================================================
+   ADD VIDEO
+===================================================== */
+
+async function addVideo(){
+
+    const btn =
+        document.getElementById("addVideoBtn");
+
+    const message =
+        document.getElementById("videoMessage");
+
+
+    const title =
+        document.getElementById("videoTitle")
+        .value
+        .trim();
+
+    const grade =
+        document.getElementById("videoGrade")
+        .value;
+
+    const youtubeUrl =
+        document.getElementById("videoUrl")
+        .value
+        .trim();
+
+    const description =
+        document.getElementById("videoDescription")
+        .value
+        .trim();
+
+
+    if(!title){
+
+        showMessage(
+            message,
+            "اكتب اسم الفيديو.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(!grade){
+
+        showMessage(
+            message,
+            "اختر الصف الدراسي.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(!youtubeUrl){
+
+        showMessage(
+            message,
+            "ضع رابط YouTube.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(
+        !youtubeUrl.includes("youtube.com") &&
+        !youtubeUrl.includes("youtu.be")
+    ){
+
+        showMessage(
+            message,
+            "الرابط يجب أن يكون من YouTube.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    btn.disabled = true;
+
+    btn.textContent =
+        "جاري الإضافة...";
+
+
+    try{
+
+        const {
+            data: {
+                user
+            }
+        } =
+            await supabaseClient.auth.getUser();
+
+
+        const thumbnail =
+            getYoutubeThumbnail(
+                youtubeUrl
+            );
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from("videos")
+                .insert({
+
+                    title:title,
+
+                    description:
+                        description || null,
+
+                    grade:grade,
+
+                    youtube_url:youtubeUrl,
+
+                    thumbnail_url:
+                        thumbnail,
+
+                    is_active:true,
+
+                    created_by:user.id
+
+                });
+
+
+        if(error){
+
+            console.error(
+                "ADD VIDEO ERROR:",
+                error
+            );
+
+            showMessage(
+                message,
+                error.message,
+                "error"
+            );
+
+            return;
+        }
+
+
+        showMessage(
+            message,
+            "تم إضافة الفيديو بنجاح ✅",
+            "success"
+        );
+
+
+        clearVideo();
+
+        await loadVideos();
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        showMessage(
+            message,
+            "حدث خطأ أثناء إضافة الفيديو.",
+            "error"
+        );
+
+    }
+    finally{
+
+        btn.disabled = false;
+
+        btn.textContent =
+            "🎬 إضافة الفيديو";
+
+    }
+
+}
+
+
+/* =====================================================
+   YOUTUBE THUMBNAIL
+===================================================== */
+
+function getYoutubeThumbnail(url){
+
+    try{
+
+        let videoId = null;
+
+        const parsed =
+            new URL(url);
+
+
+        if(
+            parsed.hostname.includes(
+                "youtu.be"
+            )
+        ){
+
+            videoId =
+                parsed.pathname
+                    .replace("/","")
+                    .split("?")[0];
+
+        }
+        else if(
+            parsed.hostname.includes(
+                "youtube.com"
+            )
+        ){
+
+            videoId =
+                parsed.searchParams.get(
+                    "v"
+                );
+
+            if(!videoId){
+
+                const parts =
+                    parsed.pathname.split("/");
+
+                const index =
+                    parts.indexOf("embed");
+
+                if(index !== -1){
+                    videoId =
+                        parts[index + 1];
+                }
+
+            }
+
+        }
+
+
+        if(videoId){
+
+            return
+                "https://img.youtube.com/vi/" +
+                videoId +
+                "/hqdefault.jpg";
+
+        }
+
+    }
+    catch(error){
+
+        console.warn(
+            "Thumbnail error:",
+            error
+        );
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =====================================================
+   LOAD VIDEOS
+===================================================== */
+
+async function loadVideos(){
+
+    const list =
+        document.getElementById("videoList");
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("videos")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending:false
+                }
+            );
+
+
+    if(error){
+
+        console.error(
+            "LOAD VIDEOS:",
+            error
+        );
+
+        list.innerHTML =
+            `<div class="empty">
+                تعذر تحميل الفيديوهات.
+            </div>`;
+
+        return;
+    }
+
+
+    if(!data || !data.length){
+
+        list.innerHTML =
+            `<div class="empty">
+                لا توجد فيديوهات حتى الآن.
+            </div>`;
+
+        return;
+    }
+
+
+    list.innerHTML =
+        data.map(video => {
+
+            return `
+            <div class="item">
+
+                <div class="item-main">
+
+                    <div>
+
+                        <h3>
+                            🎬 ${escapeHtml(video.title)}
+                        </h3>
+
+                        <p>
+                            ${escapeHtml(
+                                video.description || "بدون وصف"
+                            )}
+                        </p>
+
+                        <div class="item-meta">
+
+                            <span class="badge">
+                                ${escapeHtml(video.grade)}
+                            </span>
+
+                            <a
+                                href="${escapeHtml(video.youtube_url)}"
+                                target="_blank"
+                                rel="noopener"
+                                class="badge"
+                                style="text-decoration:none"
+                            >
+                                مشاهدة YouTube
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="item-actions">
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteVideo('${video.id}')"
+                        >
+                            حذف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            `;
+
+        }).join("");
+
+}
+
+
+/* =====================================================
+   DELETE VIDEO
+===================================================== */
+
+async function deleteVideo(id){
+
+    if(!confirm("هل تريد حذف الفيديو؟")){
+        return;
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+            .from("videos")
+            .delete()
+            .eq("id",id);
+
+
+    if(error){
+
+        alert(
+            "تعذر حذف الفيديو: " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    await loadVideos();
+
+}
+
+
+/* =====================================================
+   CLEAR VIDEO
+===================================================== */
+
+function clearVideo(){
+
+    document.getElementById("videoTitle").value = "";
+
+    document.getElementById("videoGrade").value = "";
+
+    document.getElementById("videoUrl").value = "";
+
+    document.getElementById("videoDescription").value = "";
+
+}
+
+
+/* =====================================================
+   ADD TOP STUDENT
+===================================================== */
+
+async function addTopStudent(){
+
+    const btn =
+        document.getElementById("addTopBtn");
+
+    const message =
+        document.getElementById("topMessage");
+
+
+    const grade =
+        document.getElementById("topGrade")
+        .value;
+
+    const studentId =
+        document.getElementById("topStudentId")
+        .value
+        .trim();
+
+    const rank =
+        Number(
+            document.getElementById("topRank")
+            .value
+        );
+
+    const score =
+        Number(
+            document.getElementById("topScore")
+            .value
+        ) || 0;
+
+    const title =
+        document.getElementById("topTitle")
+        .value
+        .trim();
+
+    const photoUrl =
+        document.getElementById("topPhoto")
+        .value
+        .trim();
+
+
+    if(!grade){
+
+        showMessage(
+            message,
+            "اختر الصف الدراسي.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(!studentId){
+
+        showMessage(
+            message,
+            "اكتب رقم الطالب UUID.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(!rank || rank < 1){
+
+        showMessage(
+            message,
+            "الترتيب غير صحيح.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    btn.disabled = true;
+
+    btn.textContent =
+        "جاري الإضافة...";
+
+
+    try{
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from("top_students")
+                .insert({
+
+                    student_id:
+                        studentId,
+
+                    grade:
+                        grade,
+
+                    rank:
+                        rank,
+
+                    title:
+                        title || null,
+
+                    photo_url:
+                        photoUrl || null,
+
+                    score:
+                        score
+
+                });
+
+
+        if(error){
+
+            console.error(
+                "ADD TOP STUDENT:",
+                error
+            );
+
+            showMessage(
+                message,
+                error.message,
+                "error"
+            );
+
+            return;
+        }
+
+
+        showMessage(
+            message,
+            "تم إضافة الطالب إلى أفضل الطلاب 🏆",
+            "success"
+        );
+
+
+        clearTop();
+
+        await loadTopStudents();
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        showMessage(
+            message,
+            "حدث خطأ أثناء إضافة الطالب.",
+            "error"
+        );
+
+    }
+    finally{
+
+        btn.disabled = false;
+
+        btn.textContent =
+            "🏆 إضافة الطالب";
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD TOP STUDENTS
+===================================================== */
+
+async function loadTopStudents(){
+
+    const list =
+        document.getElementById("topList");
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("top_students")
+            .select("*")
+            .order(
+                "grade",
+                {
+                    ascending:true
+                }
+            )
+            .order(
+                "rank",
+                {
+                    ascending:true
+                }
+            );
+
+
+    if(error){
+
+        console.error(
+            "LOAD TOP:",
+            error
+        );
+
+        list.innerHTML =
+            `<div class="empty">
+                تعذر تحميل أفضل الطلاب.
+            </div>`;
+
+        return;
+    }
+
+
+    if(!data || !data.length){
+
+        list.innerHTML =
+            `<div class="empty">
+                لم تتم إضافة أفضل الطلاب حتى الآن.
+            </div>`;
+
+        return;
+    }
+
+
+    list.innerHTML =
+        data.map(student => {
+
+            return `
+            <div class="item">
+
+                <div class="rank-box">
+
+                    <div class="rank-number">
+
+                        <strong>
+                            #${escapeHtml(student.rank)}
+                        </strong>
+
+                        <span>
+                            الترتيب
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            🏆 ${escapeHtml(
+                                student.title || "طالب مميز"
+                            )}
+                        </h3>
+
+                        <p>
+                            الصف:
+                            ${escapeHtml(student.grade)}
+                        </p>
+
+                        <p>
+                            رقم الطالب:
+                            ${escapeHtml(student.student_id)}
+                        </p>
+
+                        <div class="item-meta">
+
+                            <span class="badge">
+                                الدرجة: ${escapeHtml(student.score)}
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="item-actions"
+                            style="margin-top:12px"
+                        >
+
+                            <button
+                                class="delete-btn"
+                                onclick="deleteTopStudent('${student.id}')"
+                            >
+                                حذف
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            `;
+
+        }).join("");
+
+}
+
+
+/* =====================================================
+   DELETE TOP STUDENT
+===================================================== */
+
+async function deleteTopStudent(id){
+
+    if(!confirm(
+        "هل تريد إزالة الطالب من قائمة أفضل الطلاب؟"
+    )){
+        return;
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+            .from("top_students")
+            .delete()
+            .eq("id",id);
+
+
+    if(error){
+
+        alert(
+            "تعذر الحذف: " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    await loadTopStudents();
+
+}
+
+
+/* =====================================================
+   CLEAR TOP
+===================================================== */
+
+function clearTop(){
+
+    document.getElementById("topGrade").value = "";
+
+    document.getElementById("topStudentId").value = "";
+
+    document.getElementById("topRank").value = "1";
+
+    document.getElementById("topScore").value = "0";
+
+    document.getElementById("topTitle").value = "";
+
+    document.getElementById("topPhoto").value = "";
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+async function logout(){
+
+    const btn =
+        document.getElementById("logoutBtn");
+
+    btn.disabled = true;
+
+    btn.textContent =
+        "جاري تسجيل الخروج...";
+
+
+    try{
+
+        await supabaseClient.auth.signOut();
+
+    }
+    finally{
+
+        window.location.replace(
+            "../auth.html"
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+
+  </html>
