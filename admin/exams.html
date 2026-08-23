@@ -1,0 +1,2338 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>الخوارزمي | إدارة الاختبارات</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Tahoma,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    color:#fff;
+
+    background:
+    radial-gradient(
+        circle at 15% 10%,
+        rgba(116,72,232,.20),
+        transparent 30%
+    ),
+    radial-gradient(
+        circle at 90% 80%,
+        rgba(49,84,223,.18),
+        transparent 35%
+    ),
+    #050509;
+}
+
+.container{
+    width:min(1200px,94%);
+    margin:auto;
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    padding:15px 0;
+
+    background:rgba(5,5,9,.88);
+
+    border-bottom:
+    1px solid rgba(255,255,255,.07);
+
+    backdrop-filter:blur(18px);
+}
+
+.nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.logo{
+    font-size:21px;
+    font-weight:900;
+
+    background:
+    linear-gradient(
+        90deg,
+        #fff,
+        #9b7cff
+    );
+
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.back{
+    text-decoration:none;
+    color:#ddd;
+
+    padding:10px 15px;
+
+    border-radius:12px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+}
+
+main{
+    padding:35px 0 70px;
+}
+
+.page-title{
+    margin-bottom:25px;
+}
+
+.page-title h1{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.page-title p{
+    color:#858591;
+    line-height:1.8;
+}
+
+.tabs{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.tab{
+    padding:12px 18px;
+
+    border-radius:13px;
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    background:
+    rgba(255,255,255,.04);
+
+    color:#ddd;
+
+    cursor:pointer;
+}
+
+.tab.active{
+    background:
+    linear-gradient(
+        135deg,
+        #7448e8,
+        #3154df
+    );
+
+    border-color:transparent;
+}
+
+.panel{
+    display:none;
+
+    padding:25px;
+
+    border-radius:25px;
+
+    background:
+    rgba(255,255,255,.035);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    margin-bottom:25px;
+}
+
+.panel.active{
+    display:block;
+}
+
+.form-grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:15px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.field.full{
+    grid-column:1/-1;
+}
+
+label{
+    color:#aaaab5;
+    font-size:13px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+
+    padding:13px 14px;
+
+    border-radius:13px;
+
+    border:
+    1px solid rgba(255,255,255,.09);
+
+    outline:none;
+
+    background:
+    rgba(0,0,0,.35);
+
+    color:#fff;
+
+    font-size:14px;
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#7448e8;
+}
+
+select option{
+    background:#111118;
+    color:#fff;
+}
+
+.levels{
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:12px;
+
+    margin-top:15px;
+}
+
+.level{
+    padding:18px;
+
+    border-radius:18px;
+
+    background:
+    rgba(255,255,255,.035);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+}
+
+.level h3{
+    margin-bottom:14px;
+}
+
+.level.easy h3{
+    color:#76e39a;
+}
+
+.level.medium h3{
+    color:#ffd76a;
+}
+
+.level.hard h3{
+    color:#ff8585;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+
+    margin-top:22px;
+}
+
+.btn{
+    border:0;
+
+    padding:13px 20px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    color:#fff;
+
+    font-weight:800;
+}
+
+.btn-primary{
+    background:
+    linear-gradient(
+        135deg,
+        #7448e8,
+        #3154df
+    );
+}
+
+.btn-ai{
+    background:
+    linear-gradient(
+        135deg,
+        #7b42e8,
+        #b04cff
+    );
+}
+
+.btn-danger{
+    background:
+    rgba(255,70,70,.12);
+
+    border:
+    1px solid rgba(255,70,70,.25);
+}
+
+.btn-dark{
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+}
+
+.btn:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.ai-box{
+    margin-top:25px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(116,72,232,.10),
+        rgba(49,84,223,.04)
+    );
+
+    border:
+    1px solid rgba(116,72,232,.20);
+}
+
+.ai-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+
+    margin-bottom:15px;
+}
+
+.ai-title h2{
+    font-size:20px;
+}
+
+.ai-status{
+    color:#9b7cff;
+    font-size:12px;
+}
+
+.questions{
+    display:grid;
+    gap:15px;
+    margin-top:20px;
+}
+
+.question{
+    padding:20px;
+
+    border-radius:18px;
+
+    background:
+    rgba(0,0,0,.25);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+}
+
+.question-head{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:12px;
+}
+
+.question-number{
+    font-weight:900;
+    color:#a98cff;
+}
+
+.question-level{
+    font-size:12px;
+    color:#999;
+}
+
+.question textarea{
+    min-height:80px;
+}
+
+.options{
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:10px;
+
+    margin-top:10px;
+}
+
+.option{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.option input{
+    width:auto;
+}
+
+.exam-list{
+    display:grid;
+    gap:13px;
+}
+
+.exam-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:
+    rgba(255,255,255,.035);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+}
+
+.exam-info h3{
+    margin-bottom:7px;
+}
+
+.exam-info p{
+    color:#858591;
+    font-size:13px;
+}
+
+.exam-actions{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.badge{
+    display:inline-block;
+
+    padding:6px 10px;
+
+    border-radius:30px;
+
+    font-size:11px;
+    margin-top:8px;
+}
+
+.badge.active{
+    color:#8ff0ae;
+    background:rgba(50,220,110,.08);
+}
+
+.badge.off{
+    color:#ff9999;
+    background:rgba(255,70,70,.08);
+}
+
+.empty{
+    padding:30px;
+    text-align:center;
+
+    color:#777784;
+
+    border:
+    1px dashed rgba(255,255,255,.10);
+
+    border-radius:18px;
+}
+
+.loading{
+    text-align:center;
+    color:#888;
+    padding:25px;
+}
+
+.toast{
+    position:fixed;
+
+    bottom:20px;
+    right:20px;
+
+    z-index:9999;
+
+    max-width:350px;
+
+    padding:15px 18px;
+
+    border-radius:15px;
+
+    background:#15151e;
+
+    border:
+    1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.35);
+
+    display:none;
+}
+
+.toast.show{
+    display:block;
+}
+
+.toast.success{
+    border-color:
+    rgba(70,220,120,.35);
+}
+
+.toast.error{
+    border-color:
+    rgba(255,70,70,.35);
+}
+
+@media(max-width:800px){
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .levels{
+        grid-template-columns:1fr;
+    }
+
+    .options{
+        grid-template-columns:1fr;
+    }
+
+    .exam-item{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container nav">
+
+<div class="logo">
+🎓 الخوارزمي | إدارة الاختبارات
+</div>
+
+<a
+href="index.html"
+class="back"
+>
+← لوحة الإدارة
+</a>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+<div class="page-title">
+
+<h1>
+📝 الاختبارات
+</h1>
+
+<p>
+أنشئ الاختبار يدويًا أو اجعل الذكاء الاصطناعي يقترح الاختبار ثم راجعه قبل النشر.
+</p>
+
+</div>
+
+
+<div class="tabs">
+
+<button
+class="tab active"
+data-tab="create"
+>
+➕ إنشاء اختبار
+</button>
+
+<button
+class="tab"
+data-tab="list"
+>
+📚 الاختبارات الحالية
+</button>
+
+</div>
+
+
+<!-- ================= CREATE ================= -->
+
+<section
+id="create"
+class="panel active"
+>
+
+<div class="form-grid">
+
+<div class="field">
+
+<label>
+اسم الاختبار
+</label>
+
+<input
+id="title"
+type="text"
+placeholder="مثال: اختبار الجبر الأول"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+الصف الدراسي
+</label>
+
+<select id="grade">
+
+<option value="">
+اختر الصف
+</option>
+
+<option value="أولى إعدادي">
+أولى إعدادي
+</option>
+
+<option value="ثانية إعدادي">
+ثانية إعدادي
+</option>
+
+<option value="ثالثة إعدادي">
+ثالثة إعدادي
+</option>
+
+<option value="أولى ثانوي">
+أولى ثانوي
+</option>
+
+<option value="ثانية ثانوي">
+ثانية ثانوي
+</option>
+
+<option value="ثالثة ثانوي">
+ثالثة ثانوي
+</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+مدة الاختبار بالدقائق
+</label>
+
+<input
+id="duration"
+type="number"
+min="1"
+value="30"
+>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+وصف الاختبار
+</label>
+
+<textarea
+id="description"
+placeholder="اكتب وصفًا مختصرًا للاختبار..."
+></textarea>
+
+</div>
+
+</div>
+
+
+<div class="ai-box">
+
+<div class="ai-title">
+
+<h2>
+🤖 إنشاء الاختبار بالذكاء الاصطناعي
+</h2>
+
+<span
+id="aiStatus"
+class="ai-status"
+>
+جاهز
+</span>
+
+</div>
+
+
+<div class="form-grid">
+
+<div class="field">
+
+<label>
+موضوع الاختبار
+</label>
+
+<input
+id="aiTopic"
+type="text"
+placeholder="مثال: المعادلات من الدرجة الأولى"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+عدد الأسئلة الكلي
+</label>
+
+<input
+id="aiCount"
+type="number"
+min="1"
+max="50"
+value="15"
+>
+
+</div>
+
+</div>
+
+
+<div class="levels">
+
+<div class="level easy">
+
+<h3>
+🟢 سهل
+</h3>
+
+<div class="field">
+
+<label>
+عدد الأسئلة
+</label>
+
+<input
+id="easyCount"
+type="number"
+min="0"
+value="5"
+>
+
+</div>
+
+<div
+class="field"
+style="margin-top:10px;"
+>
+
+<label>
+النقاط لكل سؤال
+</label>
+
+<input
+id="easyPoints"
+type="number"
+min="1"
+value="1"
+>
+
+</div>
+
+</div>
+
+
+<div class="level medium">
+
+<h3>
+🟡 متوسط
+</h3>
+
+<div class="field">
+
+<label>
+عدد الأسئلة
+</label>
+
+<input
+id="mediumCount"
+type="number"
+min="0"
+value="5"
+>
+
+</div>
+
+<div
+class="field"
+style="margin-top:10px;"
+>
+
+<label>
+النقاط لكل سؤال
+</label>
+
+<input
+id="mediumPoints"
+type="number"
+min="1"
+value="2"
+>
+
+</div>
+
+</div>
+
+
+<div class="level hard">
+
+<h3>
+🔴 صعب
+</h3>
+
+<div class="field">
+
+<label>
+عدد الأسئلة
+</label>
+
+<input
+id="hardCount"
+type="number"
+min="0"
+value="5"
+>
+
+</div>
+
+<div
+class="field"
+style="margin-top:10px;"
+>
+
+<label>
+النقاط لكل سؤال
+</label>
+
+<input
+id="hardPoints"
+type="number"
+min="1"
+value="3"
+>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+id="generateBtn"
+class="btn btn-ai"
+type="button"
+>
+🤖 إنشاء اختبار بواسطة Gemini
+</button>
+
+</div>
+
+
+<div
+id="questionsBox"
+style="display:none;"
+>
+
+<div class="question-head" style="margin-top:25px;">
+
+<h2>
+📋 مراجعة الأسئلة
+</h2>
+
+</div>
+
+<div
+id="questionsList"
+class="questions"
+></div>
+
+
+<div class="actions">
+
+<button
+id="saveBtn"
+class="btn btn-primary"
+type="button"
+>
+💾 حفظ الاختبار ونشره
+</button>
+
+<button
+id="draftBtn"
+class="btn btn-dark"
+type="button"
+>
+💾 حفظ بدون نشر
+</button>
+
+<button
+id="clearBtn"
+class="btn btn-danger"
+type="button"
+>
+🗑️ مسح
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= LIST ================= -->
+
+<section
+id="list"
+class="panel"
+>
+
+<div
+id="examList"
+class="exam-list"
+>
+
+<div class="loading">
+⏳ جاري تحميل الاختبارات...
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<div
+id="toast"
+class="toast"
+></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../supabase.js"></script>
+
+
+<script>
+
+"use strict";
+
+
+let generatedQuestions = [];
+
+let currentUser = null;
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+const $ = id =>
+document.getElementById(id);
+
+
+function toast(message,type="success"){
+
+    const box = $("toast");
+
+    box.textContent = message;
+
+    box.className =
+        "toast show " + type;
+
+    setTimeout(
+        () => {
+            box.className = "toast";
+        },
+        3500
+    );
+
+}
+
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   AUTH
+===================================================== */
+
+document.addEventListener(
+"DOMContentLoaded",
+async function(){
+
+    if(
+        typeof supabaseClient ===
+        "undefined" ||
+        !supabaseClient
+    ){
+
+        toast(
+            "Supabase غير متصل",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient.auth.getUser();
+
+
+    if(
+        error ||
+        !data ||
+        !data.user
+    ){
+
+        window.location.href =
+            "../auth.html";
+
+        return;
+
+    }
+
+
+    currentUser =
+        data.user;
+
+
+    loadExams();
+
+});
+
+
+/* =====================================================
+   TABS
+===================================================== */
+
+document.querySelectorAll(".tab")
+.forEach(button => {
+
+    button.addEventListener(
+    "click",
+    function(){
+
+        document
+        .querySelectorAll(".tab")
+        .forEach(
+            x =>
+            x.classList.remove("active")
+        );
+
+        document
+        .querySelectorAll(".panel")
+        .forEach(
+            x =>
+            x.classList.remove("active")
+        );
+
+        this.classList.add("active");
+
+        $(this.dataset.tab)
+        .classList.add("active");
+
+        if(
+            this.dataset.tab ===
+            "list"
+        ){
+
+            loadExams();
+
+        }
+
+    });
+
+});
+
+
+/* =====================================================
+   GENERATE AI
+===================================================== */
+
+$("generateBtn")
+.addEventListener(
+"click",
+async function(){
+
+    const topic =
+        $("aiTopic").value.trim();
+
+    const grade =
+        $("grade").value;
+
+    const count =
+        Number(
+            $("aiCount").value
+        );
+
+    const easy =
+        Number(
+            $("easyCount").value
+        );
+
+    const medium =
+        Number(
+            $("mediumCount").value
+        );
+
+    const hard =
+        Number(
+            $("hardCount").value
+        );
+
+
+    if(!topic){
+
+        toast(
+            "اكتب موضوع الاختبار أولاً",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(!grade){
+
+        toast(
+            "اختر الصف الدراسي",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        easy +
+        medium +
+        hard !==
+        count
+    ){
+
+        toast(
+            "عدد أسئلة المستويات يجب أن يساوي العدد الكلي",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    $("generateBtn").disabled = true;
+
+    $("aiStatus").textContent =
+        "🤖 جاري إنشاء الاختبار...";
+
+
+    try{
+
+        /*
+         * مهم:
+         * لا تضع GEMINI_API_KEY هنا.
+         *
+         * الصفحة تستدعي Supabase Edge Function
+         * اسمها:
+         *
+         * generate-exam
+         */
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+        .functions
+        .invoke(
+            "generate-exam",
+            {
+                body:{
+                    topic,
+                    grade,
+                    total_questions:count,
+
+                    levels:[
+                        {
+                            name:"سهل",
+                            count:easy,
+                            points:Number(
+                                $("easyPoints").value
+                            )
+                        },
+                        {
+                            name:"متوسط",
+                            count:medium,
+                            points:Number(
+                                $("mediumPoints").value
+                            )
+                        },
+                        {
+                            name:"صعب",
+                            count:hard,
+                            points:Number(
+                                $("hardPoints").value
+                            )
+                        }
+                    ]
+                }
+            }
+        );
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        if(
+            !data ||
+            !Array.isArray(
+                data.questions
+            )
+        ){
+
+            throw new Error(
+                "الـAI لم يرجع أسئلة صحيحة"
+            );
+
+        }
+
+
+        generatedQuestions =
+            data.questions;
+
+
+        renderQuestions();
+
+
+        $("questionsBox")
+        .style.display =
+            "block";
+
+
+        $("aiStatus").textContent =
+            "✅ تم إنشاء الاختبار";
+
+
+        toast(
+            "تم إنشاء الاختبار، راجعه قبل النشر"
+        );
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        $("aiStatus").textContent =
+            "❌ فشل الإنشاء";
+
+        toast(
+            error.message ||
+            "حدث خطأ أثناء إنشاء الاختبار",
+            "error"
+        );
+
+    }
+    finally{
+
+        $("generateBtn").disabled =
+            false;
+
+    }
+
+});
+
+
+/* =====================================================
+   RENDER QUESTIONS
+===================================================== */
+
+function renderQuestions(){
+
+    const box =
+        $("questionsList");
+
+    box.innerHTML = "";
+
+
+    generatedQuestions
+    .forEach(
+    (question,index) => {
+
+        const options =
+            Array.isArray(
+                question.options
+            )
+            ?
+            question.options
+            :
+            [];
+
+
+        const div =
+            document.createElement(
+                "div"
+            );
+
+        div.className =
+            "question";
+
+
+        div.innerHTML = `
+
+            <div class="question-head">
+
+                <span class="question-number">
+                    السؤال ${index + 1}
+                </span>
+
+                <span class="question-level">
+                    ${escapeHTML(
+                        question.level ||
+                        "متوسط"
+                    )}
+                    —
+                    ${Number(
+                        question.points || 1
+                    )} نقطة
+                </span>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    نص السؤال
+                </label>
+
+                <textarea
+                    data-question="${index}"
+                    data-field="question"
+                >${escapeHTML(
+                    question.question || ""
+                )}</textarea>
+
+            </div>
+
+
+            <div class="options">
+
+                ${[0,1,2,3].map(
+                    optionIndex => `
+
+                    <div class="option">
+
+                        <input
+                            type="radio"
+                            name="correct_${index}"
+                            value="${optionIndex}"
+                            ${
+                                Number(
+                                    question.correct_index
+                                ) ===
+                                optionIndex
+                                ?
+                                "checked"
+                                :
+                                ""
+                            }
+                            data-question="${index}"
+                            class="correct-option"
+                        >
+
+                        <input
+                            type="text"
+                            value="${escapeHTML(
+                                options[optionIndex] || ""
+                            )}"
+                            data-question="${index}"
+                            data-option="${optionIndex}"
+                            placeholder="الاختيار ${optionIndex + 1}"
+                        >
+
+                    </div>
+
+                    `
+                ).join("")}
+
+            </div>
+
+
+            <div class="field"
+                 style="margin-top:12px;">
+
+                <label>
+                    النقاط
+                </label>
+
+                <input
+                    type="number"
+                    min="1"
+                    value="${Number(
+                        question.points || 1
+                    )}"
+                    data-question="${index}"
+                    data-field="points"
+                >
+
+            </div>
+
+        `;
+
+
+        box.appendChild(div);
+
+    });
+
+}
+
+
+/* =====================================================
+   UPDATE QUESTION DATA
+===================================================== */
+
+document.addEventListener(
+"input",
+function(event){
+
+    const target =
+        event.target;
+
+    if(
+        target.dataset.question ===
+        undefined
+    ){
+
+        return;
+
+    }
+
+
+    const index =
+        Number(
+            target.dataset.question
+        );
+
+
+    if(
+        !generatedQuestions[index]
+    ){
+
+        return;
+
+    }
+
+
+    if(
+        target.dataset.field ===
+        "question"
+    ){
+
+        generatedQuestions[index]
+        .question =
+            target.value;
+
+    }
+
+
+    if(
+        target.dataset.field ===
+        "points"
+    ){
+
+        generatedQuestions[index]
+        .points =
+            Number(
+                target.value
+            );
+
+    }
+
+
+    if(
+        target.dataset.option !==
+        undefined
+    ){
+
+        if(
+            !Array.isArray(
+                generatedQuestions[index]
+                .options
+            )
+        ){
+
+            generatedQuestions[index]
+            .options =
+                [];
+
+        }
+
+
+        generatedQuestions[index]
+        .options[
+            Number(
+                target.dataset.option
+            )
+        ] =
+            target.value;
+
+    }
+
+});
+
+
+document.addEventListener(
+"change",
+function(event){
+
+    const target =
+        event.target;
+
+    if(
+        !target.classList
+        .contains(
+            "correct-option"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    const index =
+        Number(
+            target.dataset.question
+        );
+
+
+    generatedQuestions[index]
+    .correct_index =
+        Number(
+            target.value
+        );
+
+});
+
+
+/* =====================================================
+   SAVE EXAM
+===================================================== */
+
+async function saveExam(
+    publish
+){
+
+    if(
+        !currentUser
+    ){
+
+        toast(
+            "يجب تسجيل الدخول",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const title =
+        $("title").value.trim();
+
+    const grade =
+        $("grade").value;
+
+    const description =
+        $("description").value.trim();
+
+    const duration =
+        Number(
+            $("duration").value
+        );
+
+
+    if(!title){
+
+        toast(
+            "اكتب اسم الاختبار",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(!grade){
+
+        toast(
+            "اختر الصف",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !generatedQuestions.length
+    ){
+
+        toast(
+            "لا توجد أسئلة لحفظها",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        /*
+         * جدول exams الحالي:
+         *
+         * id
+         * title
+         * description
+         * grade
+         * duration_minutes
+         * teacher_id
+         * is_active
+         * created_at
+         * updated_at
+         */
+
+
+        const {
+            data:exam,
+            error:examError
+        } =
+        await supabaseClient
+        .from("exams")
+        .insert({
+
+            title,
+
+            description:
+                description ||
+                null,
+
+            grade,
+
+            duration_minutes:
+                duration,
+
+            teacher_id:
+                currentUser.id,
+
+            is_active:
+                publish
+
+        })
+        .select(
+            "id"
+        )
+        .single();
+
+
+        if(examError){
+
+            throw examError;
+
+        }
+
+
+        const levelMap =
+            {};
+
+
+        /*
+         * حفظ المستويات
+         */
+
+        const levelDefinitions = [
+
+            {
+                name:"سهل",
+                count:Number(
+                    $("easyCount").value
+                ),
+                points:Number(
+                    $("easyPoints").value
+                ),
+                order:1
+            },
+
+            {
+                name:"متوسط",
+                count:Number(
+                    $("mediumCount").value
+                ),
+                points:Number(
+                    $("mediumPoints").value
+                ),
+                order:2
+            },
+
+            {
+                name:"صعب",
+                count:Number(
+                    $("hardCount").value
+                ),
+                points:Number(
+                    $("hardPoints").value
+                ),
+                order:3
+            }
+
+        ];
+
+
+        const levelsToInsert =
+            levelDefinitions
+            .filter(
+                level =>
+                    level.count > 0
+            )
+            .map(
+                level => ({
+
+                    exam_id:
+                        exam.id,
+
+                    level_name:
+                        level.name,
+
+                    question_count:
+                        level.count,
+
+                    points_per_question:
+                        level.points,
+
+                    sort_order:
+                        level.order
+
+                })
+            );
+
+
+        const {
+            data:levels,
+            error:levelsError
+        } =
+        await supabaseClient
+        .from(
+            "exam_levels"
+        )
+        .insert(
+            levelsToInsert
+        )
+        .select(
+            "id,level_name"
+        );
+
+
+        if(levelsError){
+
+            throw levelsError;
+
+        }
+
+
+        levels.forEach(
+            level => {
+
+                levelMap[
+                    level.level_name
+                ] =
+                    level.id;
+
+            }
+        );
+
+
+        /*
+         * حفظ الأسئلة
+         */
+
+        const questionsToInsert =
+            generatedQuestions
+            .map(
+                (question,index) => {
+
+                    const options =
+                        Array.isArray(
+                            question.options
+                        )
+                        ?
+                        question.options
+                        :
+                        [];
+
+
+                    return {
+
+                        exam_id:
+                            exam.id,
+
+                        level_id:
+                            levelMap[
+                                question.level
+                            ] ||
+                            null,
+
+                        question_text:
+                            question.question ||
+                            "",
+
+                        question_type:
+                            "mcq",
+
+                        options:
+                            options,
+
+                        correct_answer:
+                            String(
+                                Number(
+                                    question.correct_index ??
+                                    0
+                                )
+                            ),
+
+                        points:
+                            Number(
+                                question.points ||
+                                1
+                            ),
+
+                        sort_order:
+                            index + 1
+
+                    };
+
+                }
+            );
+
+
+        const {
+            error:questionsError
+        } =
+        await supabaseClient
+        .from(
+            "exam_questions"
+        )
+        .insert(
+            questionsToInsert
+        );
+
+
+        if(questionsError){
+
+            throw questionsError;
+
+        }
+
+
+        toast(
+            publish
+            ?
+            "🎉 تم حفظ الاختبار ونشره"
+            :
+            "💾 تم حفظ الاختبار بدون نشر"
+        );
+
+
+        clearForm();
+
+        loadExams();
+
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        toast(
+            error.message ||
+            "فشل حفظ الاختبار",
+            "error"
+        );
+
+    }
+
+}
+
+
+$("saveBtn")
+.addEventListener(
+"click",
+() =>
+saveExam(true)
+);
+
+
+$("draftBtn")
+.addEventListener(
+"click",
+() =>
+saveExam(false)
+);
+
+
+/* =====================================================
+   CLEAR
+===================================================== */
+
+function clearForm(){
+
+    $("title").value = "";
+
+    $("description").value = "";
+
+    $("aiTopic").value = "";
+
+    generatedQuestions = [];
+
+    $("questionsList")
+    .innerHTML = "";
+
+    $("questionsBox")
+    .style.display =
+        "none";
+
+    $("aiStatus").textContent =
+        "جاهز";
+
+}
+
+
+$("clearBtn")
+.addEventListener(
+"click",
+function(){
+
+    if(
+        confirm(
+            "هل تريد مسح الاختبار الحالي؟"
+        )
+    ){
+
+        clearForm();
+
+    }
+
+});
+
+
+/* =====================================================
+   LOAD EXAMS
+===================================================== */
+
+async function loadExams(){
+
+    const list =
+        $("examList");
+
+    list.innerHTML =
+        `<div class="loading">
+            ⏳ جاري تحميل الاختبارات...
+        </div>`;
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+        .from("exams")
+        .select(`
+            id,
+            title,
+            description,
+            grade,
+            duration_minutes,
+            teacher_id,
+            is_active,
+            created_at
+        `)
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        );
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        if(
+            !data ||
+            !data.length
+        ){
+
+            list.innerHTML =
+                `<div class="empty">
+                    لا توجد اختبارات حتى الآن.
+                </div>`;
+
+            return;
+
+        }
+
+
+        list.innerHTML = "";
+
+
+        data.forEach(
+            exam => {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+                item.className =
+                    "exam-item";
+
+
+                item.innerHTML = `
+
+                    <div class="exam-info">
+
+                        <h3>
+                            ${escapeHTML(
+                                exam.title
+                            )}
+                        </h3>
+
+                        <p>
+                            🎓 ${escapeHTML(
+                                exam.grade
+                            )}
+                            —
+                            ⏱️ ${Number(
+                                exam.duration_minutes ||
+                                30
+                            )} دقيقة
+                        </p>
+
+                        <span
+                            class="badge ${
+                                exam.is_active
+                                ?
+                                "active"
+                                :
+                                "off"
+                            }"
+                        >
+                            ${
+                                exam.is_active
+                                ?
+                                "🟢 منشور"
+                                :
+                                "⚪ غير منشور"
+                            }
+                        </span>
+
+                    </div>
+
+
+                    <div class="exam-actions">
+
+                        <button
+                            class="btn btn-dark"
+                            onclick="toggleExam('${exam.id}',${exam.is_active})"
+                        >
+                            ${
+                                exam.is_active
+                                ?
+                                "⏸️ إلغاء النشر"
+                                :
+                                "🚀 نشر"
+                            }
+                        </button>
+
+                        <button
+                            class="btn btn-danger"
+                            onclick="deleteExam('${exam.id}')"
+                        >
+                            🗑️ حذف
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                list.appendChild(item);
+
+            }
+        );
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        list.innerHTML =
+            `<div class="empty">
+                ❌ تعذر تحميل الاختبارات.
+                <br>
+                ${escapeHTML(
+                    error.message
+                )}
+            </div>`;
+
+    }
+
+}
+
+
+/* =====================================================
+   TOGGLE PUBLISH
+===================================================== */
+
+async function toggleExam(
+    id,
+    current
+){
+
+    try{
+
+        const {
+            error
+        } =
+        await supabaseClient
+        .from("exams")
+        .update({
+
+            is_active:
+                !current,
+
+            updated_at:
+                new Date()
+                .toISOString()
+
+        })
+        .eq(
+            "id",
+            id
+        );
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        toast(
+            current
+            ?
+            "تم إلغاء نشر الاختبار"
+            :
+            "تم نشر الاختبار"
+        );
+
+
+        loadExams();
+
+    }
+    catch(error){
+
+        toast(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DELETE
+===================================================== */
+
+async function deleteExam(
+    id
+){
+
+    if(
+        !confirm(
+            "حذف الاختبار سيحذف مستوياته وأسئلته أيضًا. هل أنت متأكد؟"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    try{
+
+        const {
+            error
+        } =
+        await supabaseClient
+        .from("exams")
+        .delete()
+        .eq(
+            "id",
+            id
+        );
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        toast(
+            "تم حذف الاختبار"
+        );
+
+
+        loadExams();
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        toast(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+
+  </html>
