@@ -5,18 +5,11 @@
 
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>الخوارزمي | لوحة الإدارة</title>
 
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
 
 *{
     margin:0;
@@ -25,710 +18,372 @@
     font-family:Arial,Tahoma,sans-serif;
 }
 
-html{
-    scroll-behavior:smooth;
-}
-
 body{
-
     min-height:100vh;
-
     background:
-    radial-gradient(
-        circle at 10% 10%,
-        rgba(116,72,232,.18),
-        transparent 30%
-    ),
-
-    radial-gradient(
-        circle at 90% 70%,
-        rgba(49,84,223,.14),
-        transparent 32%
-    ),
-
+    radial-gradient(circle at 10% 10%,rgba(116,72,232,.18),transparent 30%),
+    radial-gradient(circle at 90% 70%,rgba(49,84,223,.14),transparent 32%),
     #050509;
-
     color:#fff;
-
-    overflow-x:hidden;
 }
-
-
-/* =====================================================
-   BACKGROUND
-===================================================== */
 
 .bg-circle{
-
     position:fixed;
-
     border-radius:50%;
-
     pointer-events:none;
-
     filter:blur(5px);
-
     opacity:.15;
-
     z-index:-1;
-
     animation:float 8s ease-in-out infinite;
 }
 
 .bg-one{
-
     width:180px;
     height:180px;
-
     background:#7448e8;
-
     top:-70px;
     right:-50px;
 }
 
 .bg-two{
-
     width:130px;
     height:130px;
-
     background:#3154df;
-
     bottom:-40px;
     left:-30px;
-
-    animation-delay:2s;
 }
 
 @keyframes float{
-
     0%,100%{
         transform:translate(0,0);
     }
-
     50%{
         transform:translate(20px,-25px);
     }
 }
 
-
-/* =====================================================
-   LOADING
-===================================================== */
-
 #loadingScreen{
-
     position:fixed;
-
     inset:0;
-
     z-index:99999;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     flex-direction:column;
-
     gap:18px;
-
     background:#050509;
 }
 
 .loader{
-
     width:55px;
     height:55px;
-
     border-radius:50%;
-
-    border:4px solid
-    rgba(255,255,255,.08);
-
+    border:4px solid rgba(255,255,255,.08);
     border-top-color:#7952ed;
-
     animation:spin 1s linear infinite;
 }
 
 @keyframes spin{
-
     to{
         transform:rotate(360deg);
     }
 }
 
 .loading-text{
-
     color:#999;
-
     font-size:14px;
-
+    text-align:center;
 }
 
-
-/* =====================================================
-   ACCESS DENIED
-===================================================== */
-
 #accessDenied{
-
     display:none;
-
     min-height:100vh;
-
     align-items:center;
-
     justify-content:center;
-
     padding:20px;
 }
 
 .denied-box{
-
     width:min(450px,100%);
-
     text-align:center;
-
     padding:40px 25px;
-
     border-radius:28px;
-
-    background:
-    rgba(255,255,255,.04);
-
-    border:
-    1px solid
-    rgba(255,255,255,.08);
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
 }
 
 .denied-icon{
-
     font-size:60px;
-
     margin-bottom:20px;
 }
 
 .denied-box h2{
-
     margin-bottom:12px;
 }
 
 .denied-box p{
-
     color:#888;
-
     line-height:1.8;
-
     margin-bottom:25px;
 }
 
 .denied-btn{
-
     display:inline-block;
-
     padding:13px 22px;
-
     border-radius:14px;
-
     color:#fff;
-
     text-decoration:none;
-
-    background:
-    linear-gradient(
-        135deg,
-        #7448e8,
-        #3154df
-    );
+    background:linear-gradient(135deg,#7448e8,#3154df);
 }
 
-
-/* =====================================================
-   APP
-===================================================== */
-
 #adminApp{
-
     display:none;
 }
 
-
-/* =====================================================
-   HEADER
-===================================================== */
-
 header{
-
     position:sticky;
-
     top:0;
-
     z-index:1000;
-
     height:70px;
-
-    background:
-    rgba(5,5,9,.82);
-
+    background:rgba(5,5,9,.82);
     backdrop-filter:blur(18px);
-
-    border-bottom:
-    1px solid
-    rgba(255,255,255,.07);
+    border-bottom:1px solid rgba(255,255,255,.07);
 }
 
 .header-inner{
-
     width:min(1200px,94%);
-
     height:70px;
-
     margin:auto;
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     gap:15px;
 }
 
 .logo{
-
     font-size:23px;
-
     font-weight:900;
-
-    background:
-    linear-gradient(
-        90deg,
-        #fff,
-        #9b7cff
-    );
-
+    background:linear-gradient(90deg,#fff,#9b7cff);
     -webkit-background-clip:text;
-
     background-clip:text;
-
     color:transparent;
 }
 
 .admin-badge{
-
     padding:7px 12px;
-
     border-radius:30px;
-
     color:#c9baff;
-
-    background:
-    rgba(116,72,232,.10);
-
-    border:
-    1px solid
-    rgba(116,72,232,.22);
-
+    background:rgba(116,72,232,.10);
+    border:1px solid rgba(116,72,232,.22);
     font-size:12px;
 }
 
-
-/* =====================================================
-   CONTAINER
-===================================================== */
-
 .container{
-
     width:min(1200px,94%);
-
     margin:auto;
 }
 
-
-/* =====================================================
-   TOP
-===================================================== */
-
 .admin-top{
-
     padding:45px 0 25px;
 }
 
 .admin-top h1{
-
-    font-size:
-    clamp(28px,5vw,45px);
-
+    font-size:clamp(28px,5vw,45px);
     margin-bottom:10px;
 }
 
 .admin-top p{
-
     color:#888;
 }
 
-
-/* =====================================================
-   STATS
-===================================================== */
-
 .stats-grid{
-
     display:grid;
-
-    grid-template-columns:
-    repeat(4,1fr);
-
+    grid-template-columns:repeat(4,1fr);
     gap:15px;
 }
 
 .stat-card{
-
-    position:relative;
-
-    overflow:hidden;
-
     padding:24px;
-
     border-radius:22px;
-
-    background:
-    rgba(255,255,255,.04);
-
-    border:
-    1px solid
-    rgba(255,255,255,.08);
-
-    transition:.3s;
-}
-
-.stat-card:hover{
-
-    transform:translateY(-5px);
-
-    border-color:
-    rgba(116,72,232,.35);
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
 }
 
 .stat-icon{
-
     font-size:28px;
-
     margin-bottom:15px;
 }
 
 .stat-title{
-
     color:#888;
-
     font-size:13px;
-
     margin-bottom:8px;
 }
 
 .stat-number{
-
     font-size:30px;
-
     font-weight:900;
 }
 
-
-/* =====================================================
-   SECTION
-===================================================== */
-
 .section{
-
     padding:35px 0;
 }
 
 .section-title{
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     gap:10px;
-
     margin-bottom:18px;
 }
 
 .section-title h2{
-
     font-size:24px;
 }
 
 .section-title span{
-
     color:#7952ed;
-
     font-size:13px;
 }
 
-
-/* =====================================================
-   ACTIONS
-===================================================== */
-
 .actions-grid{
-
     display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:15px;
 }
 
 .action-card{
-
     display:block;
-
     text-decoration:none;
-
     color:#fff;
-
     padding:25px;
-
     border-radius:22px;
-
-    background:
-    linear-gradient(
+    background:linear-gradient(
         145deg,
         rgba(116,72,232,.10),
         rgba(255,255,255,.035)
     );
-
-    border:
-    1px solid
-    rgba(255,255,255,.08);
-
+    border:1px solid rgba(255,255,255,.08);
     transition:.3s;
 }
 
 .action-card:hover{
-
     transform:translateY(-6px);
-
-    border-color:
-    rgba(116,72,232,.4);
-
-    box-shadow:
-    0 20px 50px
-    rgba(116,72,232,.10);
+    border-color:rgba(116,72,232,.4);
 }
 
 .action-icon{
-
     width:52px;
     height:52px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     border-radius:15px;
-
-    background:
-    rgba(116,72,232,.12);
-
+    background:rgba(116,72,232,.12);
     font-size:25px;
-
     margin-bottom:16px;
 }
 
 .action-card h3{
-
     margin-bottom:8px;
 }
 
 .action-card p{
-
     color:#858590;
-
     font-size:13px;
-
     line-height:1.8;
 }
 
-
-/* =====================================================
-   QUICK INFO
-===================================================== */
-
 .info-box{
-
     padding:25px;
-
     border-radius:22px;
-
-    background:
-    rgba(255,255,255,.035);
-
-    border:
-    1px solid
-    rgba(255,255,255,.07);
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.07);
 }
 
 .info-row{
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     gap:15px;
-
     padding:15px 0;
-
-    border-bottom:
-    1px solid
-    rgba(255,255,255,.06);
+    border-bottom:1px solid rgba(255,255,255,.06);
 }
 
 .info-row:last-child{
-
     border-bottom:0;
 }
 
 .info-label{
-
     color:#858590;
 }
 
 .info-value{
-
     font-weight:bold;
-
     color:#cfc6ff;
-
     word-break:break-all;
 }
 
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
 .logout-btn{
-
     border:0;
-
     cursor:pointer;
-
     padding:10px 15px;
-
     border-radius:12px;
-
     color:#fff;
-
-    background:
-    rgba(255,70,70,.08);
-
-    border:
-    1px solid
-    rgba(255,70,70,.16);
-
-    transition:.3s;
+    background:rgba(255,70,70,.08);
+    border:1px solid rgba(255,70,70,.16);
 }
-
-.logout-btn:hover{
-
-    background:
-    rgba(255,70,70,.15);
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
 
 footer{
-
     padding:35px 0;
-
     margin-top:20px;
-
     text-align:center;
-
-    border-top:
-    1px solid
-    rgba(255,255,255,.07);
-
+    border-top:1px solid rgba(255,255,255,.07);
     color:#666;
-
     font-size:13px;
 }
 
 footer span{
-
     color:#9b7cff;
 }
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
 
 @media(max-width:900px){
 
     .stats-grid{
-
-        grid-template-columns:
-        repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
     }
 
     .actions-grid{
-
-        grid-template-columns:
-        repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
     }
 }
 
 @media(max-width:600px){
 
+    header,
     .header-inner{
-
-        height:65px;
-    }
-
-    header{
-
         height:65px;
     }
 
     .logo{
-
         font-size:19px;
     }
 
     .admin-badge{
-
         display:none;
     }
 
     .stats-grid,
     .actions-grid{
-
         grid-template-columns:1fr;
     }
 
     .admin-top{
-
         padding-top:30px;
     }
 
     .info-row{
-
         align-items:flex-start;
-
         flex-direction:column;
     }
 }
@@ -737,37 +392,25 @@ footer span{
 
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
-     BACKGROUND
-===================================================== -->
-
 <div class="bg-circle bg-one"></div>
-
 <div class="bg-circle bg-two"></div>
 
-
-<!-- =====================================================
-     LOADING
-===================================================== -->
 
 <div id="loadingScreen">
 
     <div class="loader"></div>
 
-    <div class="loading-text">
-        جاري التحقق من صلاحيات الأدمن...
+    <div
+        id="loadingText"
+        class="loading-text"
+    >
+        جاري الاتصال بقاعدة البيانات...
     </div>
 
 </div>
 
-
-<!-- =====================================================
-     ACCESS DENIED
-===================================================== -->
 
 <div id="accessDenied">
 
@@ -781,7 +424,7 @@ footer span{
             غير مسموح بالدخول
         </h2>
 
-        <p>
+        <p id="deniedMessage">
             هذه الصفحة مخصصة للأدمن فقط.
         </p>
 
@@ -797,12 +440,7 @@ footer span{
 </div>
 
 
-<!-- =====================================================
-     ADMIN APP
-===================================================== -->
-
 <div id="adminApp">
-
 
 <header>
 
@@ -839,10 +477,6 @@ footer span{
 </header>
 
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
 <main>
 
 <div class="container">
@@ -860,10 +494,6 @@ footer span{
 
 </section>
 
-
-<!-- =====================================================
-     STATS
-===================================================== -->
 
 <section>
 
@@ -954,10 +584,6 @@ footer span{
 
 </section>
 
-
-<!-- =====================================================
-     CONTENT MANAGEMENT
-===================================================== -->
 
 <section class="section">
 
@@ -1102,10 +728,6 @@ Content Management
 </section>
 
 
-<!-- =====================================================
-     PLATFORM MANAGEMENT
-===================================================== -->
-
 <section class="section">
 
 <div class="section-title">
@@ -1209,10 +831,6 @@ Admin Control
 </section>
 
 
-<!-- =====================================================
-     ACCOUNT INFO
-===================================================== -->
-
 <section class="section">
 
 <div class="section-title">
@@ -1237,7 +855,7 @@ Admin Control
     id="accountRole"
     class="info-value"
 >
-Admin
+—
 </span>
 
 </div>
@@ -1297,17 +915,12 @@ Admin
 
 </footer>
 
-
 </div>
 
 
-<!-- =====================================================
-     SUPABASE LIBRARY
-===================================================== -->
+<!-- Supabase -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script src="../supabase.js"></script>
 
 
 <script>
@@ -1316,128 +929,81 @@ Admin
 
 
 /* =====================================================
-   GLOBAL
+   SUPABASE
+   الاتصال هنا مباشرة
+   لا نعتمد على supabase.js
 ===================================================== */
 
-let supabaseClient = null;
+const SUPABASE_URL =
+    "https://fdqolsygigqukejlwcon.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_fO1Xb-dtqq8rnGuvXcPahg_zz9WeW9x";
 
 
-/* =====================================================
-   WAIT FOR SUPABASE
-===================================================== */
-
-async function waitForSupabase(){
-
-    for(let i = 0; i < 50; i++){
-
-        if(
-            window.supabaseClient &&
-            typeof window.supabaseClient.auth === "object"
-        ){
-
-            return window.supabaseClient;
-        }
-
-        await new Promise(
-            resolve =>
-            setTimeout(resolve,100)
-        );
-    }
-
-    return null;
-}
-
-
-/* =====================================================
-   DENY ACCESS
-===================================================== */
-
-function denyAccess(){
-
-    const loadingScreen =
-        document.getElementById("loadingScreen");
-
-    const accessDenied =
-        document.getElementById("accessDenied");
-
-    const adminApp =
-        document.getElementById("adminApp");
-
-
-    if(loadingScreen){
-
-        loadingScreen.style.display =
-            "none";
-    }
-
-
-    if(adminApp){
-
-        adminApp.style.display =
-            "none";
-    }
-
-
-    if(accessDenied){
-
-        accessDenied.style.display =
-            "flex";
-    }
-}
-
-
-/* =====================================================
-   GO LOGIN
-===================================================== */
-
-function goToLogin(){
-
-    window.location.replace(
-        "../auth.html"
+const client =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
     );
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const loadingScreen =
+    document.getElementById("loadingScreen");
+
+const loadingText =
+    document.getElementById("loadingText");
+
+const accessDenied =
+    document.getElementById("accessDenied");
+
+const adminApp =
+    document.getElementById("adminApp");
+
+const deniedMessage =
+    document.getElementById("deniedMessage");
+
+
+/* =====================================================
+   LOADING TEXT
+===================================================== */
+
+function setLoading(text){
+
+    if(loadingText){
+        loadingText.textContent = text;
+    }
 }
 
 
 /* =====================================================
-   SHOW ADMIN
+   DENY
 ===================================================== */
 
-function showAdmin(user){
+function deny(message){
 
-    document.getElementById(
-        "accountId"
-    ).textContent =
-        user.id || "—";
+    console.error(
+        "ADMIN ACCESS DENIED:",
+        message
+    );
 
+    if(deniedMessage){
+        deniedMessage.textContent =
+            message;
+    }
 
-    document.getElementById(
-        "accountPhone"
-    ).textContent =
-        user.phone || "—";
-
-
-    document.getElementById(
-        "accountRole"
-    ).textContent =
-        "👑 Admin";
-
-
-    document.getElementById(
-        "loadingScreen"
-    ).style.display =
+    loadingScreen.style.display =
         "none";
 
-
-    document.getElementById(
-        "accessDenied"
-    ).style.display =
+    adminApp.style.display =
         "none";
 
-
-    document.getElementById(
-        "adminApp"
-    ).style.display =
-        "block";
+    accessDenied.style.display =
+        "flex";
 }
 
 
@@ -1449,54 +1015,50 @@ async function checkAdmin(){
 
     try{
 
-
-        /* ---------------------------------------------
-           SUPABASE
-        --------------------------------------------- */
-
-        supabaseClient =
-            await waitForSupabase();
+        setLoading(
+            "جاري قراءة جلسة تسجيل الدخول..."
+        );
 
 
-        if(!supabaseClient){
-
-            console.error(
-                "❌ Supabase Client غير موجود"
-            );
-
-            denyAccess();
-
-            return false;
-        }
-
-
-        /* ---------------------------------------------
-           SESSION
-        --------------------------------------------- */
+        /* =========================================
+           GET SESSION
+        ========================================= */
 
         const {
-            data: sessionData,
-            error: sessionError
+            data,
+            error
         } =
-            await supabaseClient.auth.getSession();
+            await client.auth.getSession();
 
 
-        if(sessionError){
+        if(error){
 
             console.error(
-                "❌ Session Error:",
-                sessionError
+                "SESSION ERROR:",
+                error
             );
 
-            goToLogin();
+            deny(
+                "حدث خطأ أثناء قراءة جلسة تسجيل الدخول."
+            );
 
-            return false;
+            return;
         }
 
 
         const session =
-            sessionData?.session;
+            data?.session;
 
+
+        console.log(
+            "SESSION:",
+            session
+        );
+
+
+        /* =========================================
+           NO SESSION
+        ========================================= */
 
         if(
             !session ||
@@ -1504,12 +1066,14 @@ async function checkAdmin(){
         ){
 
             console.warn(
-                "❌ لا يوجد مستخدم مسجل الدخول"
+                "NO SESSION"
             );
 
-            goToLogin();
+            window.location.replace(
+                "../auth.html"
+            );
 
-            return false;
+            return;
         }
 
 
@@ -1518,20 +1082,25 @@ async function checkAdmin(){
 
 
         console.log(
-            "✅ Current User ID:",
+            "AUTH USER ID:",
             user.id
         );
 
 
-        /* ---------------------------------------------
+        setLoading(
+            "جاري التحقق من صلاحيات الأدمن..."
+        );
+
+
+        /* =========================================
            GET ROLE
-        --------------------------------------------- */
+        ========================================= */
 
         const {
-            data: roleData,
+            data: role,
             error: roleError
         } =
-            await supabaseClient
+            await client
                 .from("user_roles")
                 .select(
                     "user_id, role"
@@ -1543,108 +1112,145 @@ async function checkAdmin(){
                 .maybeSingle();
 
 
-        if(roleError){
-
-            console.error(
-                "❌ ROLE ERROR:",
-                roleError
-            );
-
-            console.error(
-                "Code:",
-                roleError.code
-            );
-
-            console.error(
-                "Message:",
-                roleError.message
-            );
-
-            denyAccess();
-
-            return false;
-        }
-
-
         console.log(
-            "🔐 Role:",
-            roleData
+            "USER ROLE:",
+            role
         );
 
 
-        /* ---------------------------------------------
-           ROLE NOT FOUND
-        --------------------------------------------- */
+        /* =========================================
+           ROLE ERROR
+        ========================================= */
 
-        if(!roleData){
+        if(roleError){
 
-            console.warn(
-                "❌ لم يتم العثور على صلاحية لهذا المستخدم"
+            console.error(
+                "ROLE ERROR:",
+                roleError
             );
 
-            denyAccess();
+            deny(
+                "تعذر قراءة صلاحيات الأدمن من قاعدة البيانات."
+            );
 
-            return false;
+            return;
         }
 
 
-        /* ---------------------------------------------
-           ADMIN CHECK
-        --------------------------------------------- */
+        /* =========================================
+           ROLE NOT FOUND
+        ========================================= */
+
+        if(!role){
+
+            console.error(
+                "NO ROLE FOR USER:",
+                user.id
+            );
+
+            deny(
+                "هذا الحساب ليس لديه صلاحية Admin."
+            );
+
+            return;
+        }
+
+
+        /* =========================================
+           CHECK ADMIN
+        ========================================= */
 
         if(
-            String(roleData.role)
+            String(role.role)
                 .trim()
                 .toLowerCase()
             !==
             "admin"
         ){
 
-            console.warn(
-                "❌ المستخدم ليس Admin:",
-                roleData.role
+            deny(
+                "الحساب الحالي ليس حساب Admin."
             );
 
-            denyAccess();
-
-            return false;
+            return;
         }
 
 
-        /* ---------------------------------------------
-           ACCESS GRANTED
-        --------------------------------------------- */
+        /* =========================================
+           ADMIN OK
+        ========================================= */
 
         console.log(
-            "👑 ADMIN ACCESS GRANTED"
+            "================================"
+        );
+
+        console.log(
+            "ADMIN ACCESS GRANTED"
+        );
+
+        console.log(
+            "USER:",
+            user.id
+        );
+
+        console.log(
+            "ROLE:",
+            role.role
+        );
+
+        console.log(
+            "================================"
         );
 
 
-        showAdmin(user);
+        document.getElementById(
+            "accountId"
+        ).textContent =
+            user.id;
 
 
-        /* ---------------------------------------------
-           STATS
-        --------------------------------------------- */
-
-        await loadStats(
-            supabaseClient
-        );
+        document.getElementById(
+            "accountPhone"
+        ).textContent =
+            user.phone || "—";
 
 
-        return true;
+        document.getElementById(
+            "accountRole"
+        ).textContent =
+            "👑 Admin";
+
+
+        loadingScreen.style.display =
+            "none";
+
+
+        accessDenied.style.display =
+            "none";
+
+
+        adminApp.style.display =
+            "block";
+
+
+        /* =========================================
+           LOAD STATS
+        ========================================= */
+
+        loadStats();
+
 
     }
     catch(error){
 
         console.error(
-            "❌ ADMIN ERROR:",
+            "ADMIN ERROR:",
             error
         );
 
-        denyAccess();
-
-        return false;
+        deny(
+            "حدث خطأ غير متوقع أثناء التحقق."
+        );
     }
 }
 
@@ -1653,19 +1259,16 @@ async function checkAdmin(){
    LOAD STATS
 ===================================================== */
 
-async function loadStats(client){
+async function loadStats(){
 
 
-    /* =============================================
+    /* =========================================
        STUDENTS
-    ============================================= */
+    ========================================= */
 
     try{
 
-        const {
-            count,
-            error
-        } =
+        const result =
             await client
                 .from("students")
                 .select(
@@ -1676,12 +1279,11 @@ async function loadStats(client){
                     }
                 );
 
-
-        if(error){
+        if(result.error){
 
             console.error(
-                "❌ Students:",
-                error
+                "STUDENTS ERROR:",
+                result.error
             );
 
         }
@@ -1690,29 +1292,26 @@ async function loadStats(client){
             document.getElementById(
                 "studentsCount"
             ).textContent =
-                count ?? 0;
+                result.count ?? 0;
         }
 
     }
     catch(error){
 
         console.error(
-            "❌ Students Exception:",
+            "STUDENTS:",
             error
         );
     }
 
 
-    /* =============================================
+    /* =========================================
        EXAMS
-    ============================================= */
+    ========================================= */
 
     try{
 
-        const {
-            count,
-            error
-        } =
+        const result =
             await client
                 .from("exams")
                 .select(
@@ -1723,12 +1322,11 @@ async function loadStats(client){
                     }
                 );
 
-
-        if(error){
+        if(result.error){
 
             console.error(
-                "❌ Exams:",
-                error
+                "EXAMS ERROR:",
+                result.error
             );
 
         }
@@ -1737,29 +1335,26 @@ async function loadStats(client){
             document.getElementById(
                 "examsCount"
             ).textContent =
-                count ?? 0;
+                result.count ?? 0;
         }
 
     }
     catch(error){
 
         console.error(
-            "❌ Exams Exception:",
+            "EXAMS:",
             error
         );
     }
 
 
-    /* =============================================
+    /* =========================================
        RESULTS
-    ============================================= */
+    ========================================= */
 
     try{
 
-        const {
-            count,
-            error
-        } =
+        const result =
             await client
                 .from("results")
                 .select(
@@ -1770,12 +1365,11 @@ async function loadStats(client){
                     }
                 );
 
-
-        if(error){
+        if(result.error){
 
             console.error(
-                "❌ Results:",
-                error
+                "RESULTS ERROR:",
+                result.error
             );
 
         }
@@ -1784,29 +1378,26 @@ async function loadStats(client){
             document.getElementById(
                 "resultsCount"
             ).textContent =
-                count ?? 0;
+                result.count ?? 0;
         }
 
     }
     catch(error){
 
         console.error(
-            "❌ Results Exception:",
+            "RESULTS:",
             error
         );
     }
 
 
-    /* =============================================
+    /* =========================================
        TOP STUDENTS
-    ============================================= */
+    ========================================= */
 
     try{
 
-        const {
-            count,
-            error
-        } =
+        const result =
             await client
                 .from("top_students")
                 .select(
@@ -1817,12 +1408,11 @@ async function loadStats(client){
                     }
                 );
 
-
-        if(error){
+        if(result.error){
 
             console.error(
-                "❌ Top Students:",
-                error
+                "TOP STUDENTS ERROR:",
+                result.error
             );
 
         }
@@ -1831,17 +1421,18 @@ async function loadStats(client){
             document.getElementById(
                 "topStudentsCount"
             ).textContent =
-                count ?? 0;
+                result.count ?? 0;
         }
 
     }
     catch(error){
 
         console.error(
-            "❌ Top Students Exception:",
+            "TOP STUDENTS:",
             error
         );
     }
+
 }
 
 
@@ -1849,76 +1440,37 @@ async function loadStats(client){
    LOGOUT
 ===================================================== */
 
-function setupLogout(){
+document
+.getElementById("logoutBtn")
+.addEventListener(
+    "click",
+    async function(){
 
-    const logoutBtn =
-        document.getElementById(
-            "logoutBtn"
+        this.disabled =
+            true;
+
+        this.textContent =
+            "جاري تسجيل الخروج...";
+
+
+        await client.auth.signOut();
+
+
+        window.location.replace(
+            "../auth.html"
         );
 
-
-    if(!logoutBtn){
-
-        return;
     }
-
-
-    logoutBtn.addEventListener(
-        "click",
-        async function(){
-
-            logoutBtn.disabled =
-                true;
-
-            logoutBtn.textContent =
-                "جاري تسجيل الخروج...";
-
-
-            try{
-
-                if(supabaseClient){
-
-                    await supabaseClient
-                        .auth
-                        .signOut();
-                }
-
-            }
-            catch(error){
-
-                console.error(
-                    "❌ Logout Error:",
-                    error
-                );
-            }
-
-
-            window.location.replace(
-                "../auth.html"
-            );
-
-        }
-    );
-}
+);
 
 
 /* =====================================================
    START
 ===================================================== */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    async function(){
-
-        await checkAdmin();
-
-        setupLogout();
-
-    }
-);
+checkAdmin();
 
 </script>
-
 
 </body>
 
