@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>الخوارزمي | إدارة الطلاب</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Tahoma,sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:
+    radial-gradient(
+        circle at 15% 10%,
+        rgba(116,72,232,.20),
+        transparent 30%
+    ),
+
+    radial-gradient(
+        circle at 85% 50%,
+        rgba(49,84,223,.16),
+        transparent 32%
+    ),
+
+    #050509;
+
+    color:#fff;
+
+    padding-bottom:50px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+    background:
+    rgba(5,5,9,.85);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:
+    1px solid
+    rgba(255,255,255,.08);
+}
+
+.header-inner{
+
+    width:min(1150px,94%);
+
+    margin:auto;
+
+    min-height:70px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+}
+
+.logo{
+
+    font-size:23px;
+
+    font-weight:900;
+
+    background:
+    linear-gradient(
+        90deg,
+        #fff,
+        #9b7cff
+    );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    color:transparent;
+}
+
+.header-actions{
+
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+}
+
+.header-btn{
+
+    border:1px solid
+    rgba(255,255,255,.09);
+
+    background:
+    rgba(255,255,255,.05);
+
+    color:#fff;
+
+    text-decoration:none;
+
+    padding:9px 14px;
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:13px;
+}
+
+.header-btn:hover{
+
+    transform:translateY(-2px);
+
+    border-color:
+    rgba(116,72,232,.4);
+}
+
+.header-btn.logout{
+
+    color:#ff9caa;
+
+    border-color:
+    rgba(255,80,100,.18);
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+
+    width:min(1150px,94%);
+
+    margin:30px auto;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.page-title{
+
+    margin-bottom:25px;
+}
+
+.page-title small{
+
+    color:#9b7cff;
+
+    display:block;
+
+    margin-bottom:8px;
+}
+
+.page-title h1{
+
+    font-size:34px;
+
+    margin-bottom:8px;
+}
+
+.page-title p{
+
+    color:#888;
+
+    line-height:1.8;
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+    margin-bottom:25px;
+}
+
+.stat{
+
+    padding:22px;
+
+    border-radius:20px;
+
+    background:
+    rgba(255,255,255,.04);
+
+    border:
+    1px solid
+    rgba(255,255,255,.08);
+}
+
+.stat-label{
+
+    color:#888;
+
+    font-size:13px;
+
+    margin-bottom:10px;
+}
+
+.stat-value{
+
+    font-size:28px;
+
+    font-weight:900;
+
+    color:#b49cff;
+}
+
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.toolbar{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:18px;
+}
+
+.search{
+
+    flex:1;
+
+    min-width:230px;
+}
+
+.search input{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border-radius:14px;
+
+    outline:none;
+
+    border:
+    1px solid
+    rgba(255,255,255,.09);
+
+    background:
+    rgba(255,255,255,.04);
+
+    color:#fff;
+
+    font-size:14px;
+}
+
+.search input:focus{
+
+    border-color:#7448e8;
+
+    box-shadow:
+    0 0 18px
+    rgba(116,72,232,.12);
+}
+
+.refresh-btn{
+
+    padding:13px 18px;
+
+    border:0;
+
+    border-radius:13px;
+
+    color:#fff;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7448e8,
+        #3154df
+    );
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-box{
+
+    overflow-x:auto;
+
+    border-radius:22px;
+
+    border:
+    1px solid
+    rgba(255,255,255,.08);
+
+    background:
+    rgba(255,255,255,.035);
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:850px;
+}
+
+thead{
+
+    background:
+    rgba(116,72,232,.08);
+}
+
+th{
+
+    padding:17px 14px;
+
+    text-align:right;
+
+    color:#c7baff;
+
+    font-size:13px;
+
+    white-space:nowrap;
+}
+
+td{
+
+    padding:15px 14px;
+
+    border-top:
+    1px solid
+    rgba(255,255,255,.06);
+
+    color:#ddd;
+
+    font-size:13px;
+}
+
+tbody tr{
+
+    transition:.25s;
+}
+
+tbody tr:hover{
+
+    background:
+    rgba(116,72,232,.045);
+}
+
+
+/* =========================
+   STUDENT
+========================= */
+
+.student-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+.avatar{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-shrink:0;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7448e8,
+        #3154df
+    );
+
+    border:
+    2px solid
+    rgba(139,105,255,.5);
+
+    font-weight:bold;
+}
+
+.avatar img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+}
+
+.student-name{
+
+    font-weight:bold;
+
+    color:#fff;
+}
+
+.phone{
+
+    direction:ltr;
+
+    text-align:right;
+
+    color:#aaa;
+}
+
+.grade{
+
+    display:inline-block;
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    background:
+    rgba(116,72,232,.10);
+
+    border:
+    1px solid
+    rgba(116,72,232,.20);
+
+    color:#c7baff;
+
+    font-size:12px;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.actions{
+
+    display:flex;
+
+    gap:7px;
+
+    flex-wrap:wrap;
+}
+
+.action-btn{
+
+    border:0;
+
+    border-radius:9px;
+
+    padding:7px 10px;
+
+    cursor:pointer;
+
+    color:#fff;
+
+    font-size:12px;
+}
+
+.delete-btn{
+
+    background:
+    rgba(255,60,80,.12);
+
+    border:
+    1px solid
+    rgba(255,60,80,.20);
+
+    color:#ff929f;
+}
+
+.view-btn{
+
+    background:
+    rgba(116,72,232,.12);
+
+    border:
+    1px solid
+    rgba(116,72,232,.20);
+
+    color:#c9bbff;
+}
+
+
+/* =========================
+   STATES
+========================= */
+
+.state{
+
+    text-align:center;
+
+    padding:50px 20px;
+
+    color:#888;
+}
+
+.loading{
+
+    color:#a895ff;
+}
+
+.error{
+
+    color:#ff8f9d;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(0,0,0,.72);
+
+    backdrop-filter:blur(8px);
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:1000;
+}
+
+.modal.show{
+
+    display:flex;
+}
+
+.modal-box{
+
+    width:min(500px,100%);
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    border-radius:24px;
+
+    padding:25px;
+
+    background:#11111b;
+
+    border:
+    1px solid
+    rgba(140,100,255,.22);
+
+    box-shadow:
+    0 25px 80px
+    rgba(0,0,0,.6);
+}
+
+.modal-head{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-bottom:20px;
+}
+
+.modal-head h2{
+
+    font-size:21px;
+}
+
+.close-btn{
+
+    width:35px;
+
+    height:35px;
+
+    border:0;
+
+    border-radius:10px;
+
+    background:
+    rgba(255,255,255,.06);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:18px;
+}
+
+.detail{
+
+    padding:13px 0;
+
+    border-bottom:
+    1px solid
+    rgba(255,255,255,.06);
+}
+
+.detail:last-child{
+
+    border-bottom:0;
+}
+
+.detail-label{
+
+    color:#777;
+
+    font-size:12px;
+
+    margin-bottom:5px;
+}
+
+.detail-value{
+
+    color:#eee;
+
+    word-break:break-word;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    .stats{
+
+        grid-template-columns:1fr;
+    }
+
+    .page-title h1{
+
+        font-size:28px;
+    }
+
+    .header-inner{
+
+        padding:10px 0;
+
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+    .header-actions{
+
+        width:100%;
+    }
+
+    .header-btn{
+
+        flex:1;
+
+        text-align:center;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+<div class="header-inner">
+
+<div class="logo">
+الخوارزمي | الإدارة
+</div>
+
+
+<div class="header-actions">
+
+<a
+    href="index.html"
+    class="header-btn"
+>
+🏠 الرئيسية
+</a>
+
+
+<a
+    href="exams.html"
+    class="header-btn"
+>
+📝 الاختبارات
+</a>
+
+
+<button
+    id="logoutBtn"
+    class="header-btn logout"
+    type="button"
+>
+🚪 خروج
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="container">
+
+
+<div class="page-title">
+
+<small>
+👨‍🎓 لوحة الإدارة
+</small>
+
+<h1>
+إدارة الطلاب
+</h1>
+
+<p>
+عرض ومتابعة جميع الطلاب المسجلين في منصة الخوارزمي.
+</p>
+
+</div>
+
+
+<!-- =========================
+     STATS
+========================= -->
+
+<div class="stats">
+
+
+<div class="stat">
+
+<div class="stat-label">
+إجمالي الطلاب
+</div>
+
+<div
+    class="stat-value"
+    id="totalStudents"
+>
+0
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-label">
+الطلاب الظاهرون
+</div>
+
+<div
+    class="stat-value"
+    id="visibleStudents"
+>
+0
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-label">
+حالة قاعدة البيانات
+</div>
+
+<div
+    class="stat-value"
+    id="databaseStatus"
+    style="font-size:18px"
+>
+جاري الفحص...
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================
+     TOOLBAR
+========================= -->
+
+<div class="toolbar">
+
+
+<div class="search">
+
+<input
+    type="search"
+    id="searchInput"
+    placeholder="🔎 ابحث بالاسم أو رقم الهاتف أو الصف..."
+>
+
+</div>
+
+
+<button
+    class="refresh-btn"
+    id="refreshBtn"
+    type="button"
+>
+🔄 تحديث
+</button>
+
+
+</div>
+
+
+<!-- =========================
+     TABLE
+========================= -->
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+الطالب
+</th>
+
+<th>
+رقم الهاتف
+</th>
+
+<th>
+الصف
+</th>
+
+<th>
+المدينة
+</th>
+
+<th>
+المدرسة
+</th>
+
+<th>
+الإجراءات
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="studentsBody">
+
+<tr>
+
+<td
+    colspan="6"
+    class="state loading"
+>
+⏳ جاري تحميل الطلاب...
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+</main>
+
+
+<!-- =========================
+     MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="studentModal"
+>
+
+<div class="modal-box">
+
+
+<div class="modal-head">
+
+<h2>
+👨‍🎓 بيانات الطالب
+</h2>
+
+<button
+    class="close-btn"
+    id="closeModal"
+    type="button"
+>
+×
+</button>
+
+</div>
+
+
+<div id="studentDetails"></div>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+"use strict";
+
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+    "https://fdqolsygigqukejlwcon.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_fO1Xb-dtqq8rnGuvXcPahg_zz9WeW9x";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const studentsBody =
+    document.getElementById(
+        "studentsBody"
+    );
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+const totalStudents =
+    document.getElementById(
+        "totalStudents"
+    );
+
+const visibleStudents =
+    document.getElementById(
+        "visibleStudents"
+    );
+
+const databaseStatus =
+    document.getElementById(
+        "databaseStatus"
+    );
+
+const refreshBtn =
+    document.getElementById(
+        "refreshBtn"
+    );
+
+const modal =
+    document.getElementById(
+        "studentModal"
+    );
+
+const studentDetails =
+    document.getElementById(
+        "studentDetails"
+    );
+
+const closeModal =
+    document.getElementById(
+        "closeModal"
+    );
+
+const logoutBtn =
+    document.getElementById(
+        "logoutBtn"
+    );
+
+
+let students = [];
+
+
+/* =====================================================
+   CHECK ADMIN
+===================================================== */
+
+async function checkAdmin(){
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.auth
+            .getUser();
+
+
+    if(error || !data.user){
+
+        window.location.href =
+            "../auth.html";
+
+        return false;
+
+    }
+
+
+    const user =
+        data.user;
+
+
+    const {
+        data:roleData,
+        error:roleError
+    } =
+        await supabaseClient
+            .from("user_roles")
+            .select("role")
+            .eq(
+                "user_id",
+                user.id
+            )
+            .maybeSingle();
+
+
+    if(
+        roleError ||
+        !roleData ||
+        roleData.role !== "admin"
+    ){
+
+        alert(
+            "ليس لديك صلاحية دخول لوحة الإدارة."
+        );
+
+        window.location.href =
+            "../home.html";
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =====================================================
+   LOAD STUDENTS
+===================================================== */
+
+async function loadStudents(){
+
+    studentsBody.innerHTML = `
+
+        <tr>
+
+            <td
+                colspan="6"
+                class="state loading"
+            >
+                ⏳ جاري تحميل الطلاب...
+            </td>
+
+        </tr>
+
+    `;
+
+
+    databaseStatus.textContent =
+        "جاري التحميل...";
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("students")
+            .select(`
+                id,
+                full_name,
+                phone,
+                parent_phone,
+                grade,
+                city,
+                school,
+                governorate,
+                photo_url
+            `)
+            .order(
+                "full_name",
+                {
+                    ascending:true
+                }
+            );
+
+
+    if(error){
+
+        console.error(
+            "STUDENTS ERROR:",
+            error
+        );
+
+
+        databaseStatus.textContent =
+            "خطأ";
+
+
+        studentsBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="6"
+                    class="state error"
+                >
+                    ❌ تعذر تحميل الطلاب.<br><br>
+                    ${escapeHtml(error.message)}
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    students =
+        data || [];
+
+
+    totalStudents.textContent =
+        students.length;
+
+
+    databaseStatus.textContent =
+        "متصل";
+
+
+    databaseStatus.style.color =
+        "#5cffad";
+
+
+    renderStudents(
+        students
+    );
+
+}
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function renderStudents(list){
+
+    visibleStudents.textContent =
+        list.length;
+
+
+    if(!list.length){
+
+        studentsBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="6"
+                    class="state"
+                >
+                    👨‍🎓 لا يوجد طلاب.
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    studentsBody.innerHTML =
+        list.map(
+            student => {
+
+                const photo =
+                    student.photo_url
+                    ? `
+                        <img
+                            src="${escapeAttr(student.photo_url)}"
+                            alt=""
+                        >
+                    `
+                    : "👤";
+
+
+                return `
+
+                <tr>
+
+                    <td>
+
+                        <div
+                            class="student-info"
+                        >
+
+                            <div class="avatar">
+
+                                ${photo}
+
+                            </div>
+
+                            <div>
+
+                                <div
+                                    class="student-name"
+                                >
+                                    ${escapeHtml(
+                                        student.full_name ||
+                                        "بدون اسم"
+                                    )}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+
+                    <td>
+
+                        <div class="phone">
+
+                            ${escapeHtml(
+                                student.phone ||
+                                "-"
+                            )}
+
+                        </div>
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="grade">
+
+                            ${escapeHtml(
+                                student.grade ||
+                                "غير محدد"
+                            )}
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        ${escapeHtml(
+                            student.city ||
+                            "-"
+                        )}
+
+                    </td>
+
+
+                    <td>
+
+                        ${escapeHtml(
+                            student.school ||
+                            "-"
+                        )}
+
+                    </td>
+
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button
+                                class="action-btn view-btn"
+                                type="button"
+                                onclick="viewStudent('${student.id}')"
+                            >
+                                👁 عرض
+                            </button>
+
+
+                            <button
+                                class="action-btn delete-btn"
+                                type="button"
+                                onclick="deleteStudent('${student.id}')"
+                            >
+                                🗑 حذف
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+searchInput.addEventListener(
+    "input",
+    function(){
+
+        const query =
+            this.value
+            .trim()
+            .toLowerCase();
+
+
+        if(!query){
+
+            renderStudents(
+                students
+            );
+
+            return;
+
+        }
+
+
+        const filtered =
+            students.filter(
+                student => {
+
+                    return [
+
+                        student.full_name,
+
+                        student.phone,
+
+                        student.grade,
+
+                        student.city,
+
+                        student.school,
+
+                        student.governorate
+
+                    ]
+                    .filter(Boolean)
+                    .some(
+                        value =>
+                            String(value)
+                            .toLowerCase()
+                            .includes(query)
+                    );
+
+                }
+            );
+
+
+        renderStudents(
+            filtered
+        );
+
+    }
+);
+
+
+/* =====================================================
+   VIEW STUDENT
+===================================================== */
+
+window.viewStudent =
+function(id){
+
+    const student =
+        students.find(
+            item =>
+                String(item.id) ===
+                String(id)
+        );
+
+
+    if(!student){
+        return;
+    }
+
+
+    studentDetails.innerHTML = `
+
+        <div class="detail">
+
+            <div class="detail-label">
+                الاسم
+            </div>
+
+            <div class="detail-value">
+                ${escapeHtml(
+                    student.full_name ||
+                    "-"
+                )}
+            </div>
+
+        </div>
+
+
+        <div class="detail">
+
+            <div class="detail-label">
+                رقم الهاتف
+            </div>
+
+            <div class="detail-value">
+                ${escapeHtml(
+                    student.phone ||
+                    "-"
+                )}
+            </div>
+
+        </div>
+
+
+        <div class="detail">
+
+            <div class="detail-label">
+                رقم ولي الأمر
+            </div>
+
+            <div class="detail-value">
+                ${escapeHtml(
+                    student.parent_phone ||
+                    "-"
+                )}
+            </div>
+
+        </div>
+
+
+        <div class="detail">
+
+            <div class="detail-label">
+                الصف الدراسي
+            </div>
+
+            <div class="detail-value">
+                ${escapeHtml(
+                    student.grade ||
+                    "-"
+                )}
+            </div>
+
+        </div>
+
+
+        <div class="detail">
+
+            <div class="detail-label">
+                المحافظة
+            </div>
+
+            <div class="detail-value">
+                ${escapeHtml(
+                    student.governorate ||
+                    "-"
+                )}
+            </div>
+
+        </div>
+
+
+        <div class="detail">
+
+            <div class="detail-label">
+                المدينة
+            </div>
+
+            <div class="detail-value">
+                ${escapeHtml(
+                    student.city ||
+                    "-"
+                )}
+            </div>
+
+        </div>
+
+
+        <div class="detail">
+
+            <div class="detail-label">
+                المدرسة
+            </div>
+
+            <div class="detail-value">
+                ${escapeHtml(
+                    student.school ||
+                    "-"
+                )}
+            </div>
+
+        </div>
+
+    `;
+
+
+    modal.classList.add(
+        "show"
+    );
+
+};
+
+
+/* =====================================================
+   DELETE STUDENT
+===================================================== */
+
+window.deleteStudent =
+async function(id){
+
+    const student =
+        students.find(
+            item =>
+                String(item.id) ===
+                String(id)
+        );
+
+
+    if(!student){
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            "هل أنت متأكد من حذف بيانات الطالب:\n\n" +
+            (
+                student.full_name ||
+                "هذا الطالب"
+            ) +
+            "\n\nلا يمكن التراجع عن هذه العملية."
+        );
+
+
+    if(!confirmed){
+        return;
+    }
+
+
+    /*
+     * نحذف بيانات الطالب من جدول students.
+     *
+     * حذف حساب Auth نفسه يحتاج Server/Edge Function
+     * بصلاحيات Service Role، ولا نضع Service Role Key
+     * داخل HTML.
+     */
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+            .from("students")
+            .delete()
+            .eq(
+                "id",
+                id
+            );
+
+
+    if(error){
+
+        console.error(
+            "DELETE ERROR:",
+            error
+        );
+
+
+        alert(
+            "تعذر حذف الطالب:\n" +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        "تم حذف بيانات الطالب بنجاح."
+    );
+
+
+    await loadStudents();
+
+};
+
+
+/* =====================================================
+   REFRESH
+===================================================== */
+
+refreshBtn.addEventListener(
+    "click",
+    loadStudents
+);
+
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
+
+closeModal.addEventListener(
+    "click",
+    function(){
+
+        modal.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+
+modal.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target === modal
+        ){
+
+            modal.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+logoutBtn.addEventListener(
+    "click",
+    async function(){
+
+        const confirmed =
+            confirm(
+                "هل تريد تسجيل الخروج؟"
+            );
+
+
+        if(!confirmed){
+            return;
+        }
+
+
+        await supabaseClient.auth.signOut();
+
+
+        window.location.href =
+            "../auth.html";
+
+    }
+);
+
+
+/* =====================================================
+   ESCAPE
+===================================================== */
+
+function escapeHtml(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttr(value){
+
+    return escapeHtml(value);
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+(async function(){
+
+    const isAdmin =
+        await checkAdmin();
+
+
+    if(!isAdmin){
+        return;
+    }
+
+
+    await loadStudents();
+
+})();
+
+</script>
+
+</body>
+
+</html>
