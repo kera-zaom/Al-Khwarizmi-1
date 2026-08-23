@@ -7,7 +7,6 @@ window.ADMIN_AUTH = {
 
     async init() {
 
-        // الحصول على Supabase
         if (!window.supabaseClient) {
             throw new Error(
                 "Supabase غير متصل. تأكد من ../supabase.js"
@@ -16,92 +15,81 @@ window.ADMIN_AUTH = {
 
         this.client = window.supabaseClient;
 
-
-        // الحصول على الجلسة
         const {
             data,
             error
         } = await this.client.auth.getSession();
 
-
         if (error) {
-            throw error;
+            throw new Error(
+                "خطأ في جلسة الدخول: " +
+                error.message
+            );
         }
-
 
         if (
             !data ||
             !data.session ||
             !data.session.user
         ) {
-
-            window.location.replace(
-                "../auth.html"
-            );
-
+            window.location.replace("../auth.html");
             return false;
         }
 
-
-        this.user =
-            data.session.user;
-
+        this.user = data.session.user;
 
         console.log(
-            "CURRENT ADMIN:",
+            "CURRENT USER:",
             this.user.id
         );
 
-
-        // التحقق من الدور
         const {
-            data: role,
+            data: roleData,
             error: roleError
         } = await this.client
             .from("user_roles")
-            .select("role")
-            .eq(
-                "user_id",
-                this.user.id
-            )
+            .select("user_id, role")
+            .eq("user_id", this.user.id)
             .maybeSingle();
 
-
         if (roleError) {
-            throw roleError;
-        }
-
-
-        if (
-            !role ||
-            role.role !== "admin"
-        ) {
-
             throw new Error(
-                "الحساب الحالي ليس Admin"
+                "خطأ في قراءة صلاحيات الأدمن: " +
+                roleError.message
             );
         }
 
+        if (
+            !roleData ||
+            String(roleData.role).toLowerCase() !== "admin"
+        ) {
+            throw new Error(
+                "هذا الحساب ليس لديه صلاحية Admin."
+            );
+        }
 
-        console.log(
-            "ADMIN VERIFIED"
-        );
-
+        console.log("ADMIN VERIFIED");
 
         return true;
     },
 
-
     async logout() {
 
-        if (this.client) {
+        try {
 
-            await this.client.auth.signOut();
+            if (this.client) {
+                await this.client.auth.signOut();
+            }
+
+        } catch (error) {
+
+            console.error(
+                "LOGOUT ERROR:",
+                error
+            );
 
         }
 
-        window.location.replace(
-            "../auth.html"
-        );
+        window.location.replace("../auth.html");
     }
 };
