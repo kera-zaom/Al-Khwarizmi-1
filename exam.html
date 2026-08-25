@@ -18,20 +18,10 @@
 
 body{
     min-height:100vh;
-
     background:
-        radial-gradient(
-            circle at 15% 10%,
-            rgba(116,72,232,.25),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 90% 85%,
-            rgba(49,84,223,.20),
-            transparent 35%
-        ),
+        radial-gradient(circle at 15% 10%,rgba(116,72,232,.25),transparent 35%),
+        radial-gradient(circle at 90% 85%,rgba(49,84,223,.20),transparent 35%),
         #050509;
-
     color:#fff;
     padding:12px;
 }
@@ -202,22 +192,12 @@ body{
     display:flex;
     align-items:flex-start;
     gap:10px;
-
     width:100%;
-
     padding:14px;
-
     border:1px solid #29293b;
     background:#11111b;
     border-radius:12px;
-
     cursor:pointer;
-
-    transition:.2s;
-}
-
-.option:hover{
-    border-color:#805cff;
 }
 
 .option.selected{
@@ -227,44 +207,32 @@ body{
 
 .option input{
     flex:0 0 auto;
-
     width:19px;
     height:19px;
-
     margin-top:2px;
-
     accent-color:#805cff;
 }
 
 .option-letter{
-    flex:0 0 28px;
-
-    width:28px;
-    height:28px;
-
+    flex:0 0 30px;
+    width:30px;
+    height:30px;
     display:flex;
     align-items:center;
     justify-content:center;
-
     background:#211b35;
     color:#bcaaff;
-
     border-radius:7px;
-
     font-weight:bold;
     direction:ltr;
 }
 
 .option-text{
     flex:1;
-
     min-width:0;
-
     color:#fff;
-
     font-size:15px;
     line-height:1.8;
-
     overflow-wrap:anywhere;
     word-break:break-word;
 }
@@ -349,21 +317,10 @@ body{
     width:100%;
     margin-top:18px;
     padding:14px;
-
     border-radius:12px;
-
     text-decoration:none;
     color:#fff;
-
     background:linear-gradient(135deg,#805cff,#3154df);
-}
-
-.debug{
-    display:none;
-    margin-top:15px;
-    color:#777;
-    font-size:11px;
-    word-break:break-all;
 }
 
 @media(max-width:600px){
@@ -457,10 +414,6 @@ body{
 
         </button>
 
-        <div id="debug"
-             class="debug">
-        </div>
-
     </div>
 
 
@@ -537,7 +490,6 @@ body{
 
         <div id="resultTitle"
              class="result-title">
-            تم تصحيح الاختبار
         </div>
 
         <div id="score"
@@ -565,7 +517,6 @@ body{
 
             </div>
 
-
             <div class="result-item">
 
                 <div class="result-item-title">
@@ -579,7 +530,6 @@ body{
 
             </div>
 
-
             <div class="result-item">
 
                 <div class="result-item-title">
@@ -592,7 +542,6 @@ body{
                 </div>
 
             </div>
-
 
             <div class="result-item">
 
@@ -608,7 +557,6 @@ body{
 
         </div>
 
-
         <a href="tests.html"
            class="back-tests">
 
@@ -623,8 +571,7 @@ body{
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="supabase.js"></script>
-
+<script src="js/supabase.js"></script>
 
 <script>
 
@@ -646,9 +593,6 @@ const errorMessage =
 
 const errorStep =
     document.getElementById("errorStep");
-
-const debugBox =
-    document.getElementById("debug");
 
 const examBox =
     document.getElementById("exam");
@@ -698,17 +642,17 @@ let questions = [];
 
 let currentUser = null;
 
+let attemptId = null;
+
 let timer = null;
 
 let secondsLeft = 0;
 
 let submitting = false;
 
-let attemptId = null;
-
 
 /* =====================================================
-   SHOW ERROR
+   ERROR
 ===================================================== */
 
 function showError(message,step=""){
@@ -738,14 +682,11 @@ function showError(message,step=""){
         ? "📍 المرحلة: " + step
         : "";
 
-    debugBox.textContent =
-        "URL: " +
-        window.location.href;
 }
 
 
 /* =====================================================
-   ESCAPE HTML
+   ESCAPE
 ===================================================== */
 
 function escapeHTML(value){
@@ -756,24 +697,86 @@ function escapeHTML(value){
         .replace(/>/g,"&gt;")
         .replace(/"/g,"&quot;")
         .replace(/'/g,"&#039;");
+
 }
 
 
 /* =====================================================
-   NORMALIZE ANSWER
+   NORMALIZE
 ===================================================== */
 
 function normalizeAnswer(value){
 
-    if(value === null ||
-       value === undefined){
+    if(
+        value === null ||
+        value === undefined
+    ){
 
         return "";
+
     }
 
     return String(value)
         .trim()
-        .toLowerCase();
+        .toLowerCase()
+        .replace(/[()]/g,"");
+
+}
+
+
+/* =====================================================
+   CREATE ATTEMPT
+===================================================== */
+
+async function createAttempt(){
+
+    const {
+        data,
+        error
+    } =
+    await client
+        .from("exam_attempts")
+        .insert({
+
+            exam_id:
+                examId,
+
+            student_id:
+                currentUser.id
+
+        })
+        .select("id")
+        .single();
+
+
+    if(error){
+
+        throw new Error(
+            "تعذر إنشاء محاولة الاختبار.\n\n" +
+            error.message +
+            "\n\n" +
+            JSON.stringify(
+                error,
+                null,
+                2
+            )
+        );
+
+    }
+
+
+    if(!data?.id){
+
+        throw new Error(
+            "تم إنشاء المحاولة ولكن لم يتم الحصول على attempt_id."
+        );
+
+    }
+
+
+    attemptId =
+        data.id;
+
 }
 
 
@@ -784,10 +787,6 @@ function normalizeAnswer(value){
 async function start(){
 
     try{
-
-        /* =============================================
-           SUPABASE
-        ============================================= */
 
         client =
             window.supabaseClient;
@@ -801,12 +800,11 @@ async function start(){
             );
 
             return;
+
         }
 
 
-        /* =============================================
-           EXAM ID
-        ============================================= */
+        /* URL */
 
         const params =
             new URLSearchParams(
@@ -821,17 +819,16 @@ async function start(){
         if(!examId){
 
             showError(
-                "معرف الاختبار غير موجود في الرابط.\n\nافتح الاختبار من صفحة الاختبارات واضغط «بدء الاختبار».",
-                "قراءة رابط الاختبار"
+                "معرف الاختبار غير موجود في الرابط.",
+                "رابط الاختبار"
             );
 
             return;
+
         }
 
 
-        /* =============================================
-           USER
-        ============================================= */
+        /* USER */
 
         const {
             data:userData,
@@ -843,31 +840,34 @@ async function start(){
         if(userError){
 
             showError(
-                "تعذر التحقق من تسجيل الدخول.\n\n" +
                 userError.message,
-                "التحقق من الطالب"
+                "التحقق من تسجيل الدخول"
             );
 
             return;
+
         }
 
 
         if(!userData?.user){
 
             showError(
-                "أنت غير مسجل الدخول.\n\nسيتم تحويلك إلى صفحة تسجيل الدخول.",
+                "أنت غير مسجل الدخول.\nسيتم تحويلك إلى صفحة الدخول.",
                 "تسجيل الدخول"
             );
 
             setTimeout(
                 () => {
+
                     location.href =
                         "auth.html";
+
                 },
                 1500
             );
 
             return;
+
         }
 
 
@@ -875,9 +875,7 @@ async function start(){
             userData.user;
 
 
-        /* =============================================
-           EXAM
-        ============================================= */
+        /* EXAM */
 
         const {
             data:exam,
@@ -893,24 +891,24 @@ async function start(){
         if(examError){
 
             showError(
-                "تعذر قراءة الاختبار من قاعدة البيانات.\n\n" +
                 examError.message,
                 "قراءة جدول exams"
             );
 
             return;
+
         }
 
 
         if(!exam){
 
             showError(
-                "الاختبار غير موجود.\n\nمعرف الاختبار:\n" +
-                examId,
+                "الاختبار غير موجود.",
                 "البحث عن الاختبار"
             );
 
             return;
+
         }
 
 
@@ -922,6 +920,7 @@ async function start(){
             );
 
             return;
+
         }
 
 
@@ -929,9 +928,7 @@ async function start(){
             exam;
 
 
-        /* =============================================
-           QUESTIONS
-        ============================================= */
+        /* QUESTIONS */
 
         const {
             data:questionData,
@@ -940,7 +937,10 @@ async function start(){
         await client
             .from("questions")
             .select("*")
-            .eq("exam_id",examId)
+            .eq(
+                "exam_id",
+                examId
+            )
             .order(
                 "question_order",
                 {
@@ -952,12 +952,12 @@ async function start(){
         if(questionError){
 
             showError(
-                "تم العثور على الاختبار، لكن تعذر تحميل الأسئلة.\n\n" +
                 questionError.message,
                 "قراءة جدول questions"
             );
 
             return;
+
         }
 
 
@@ -967,11 +967,12 @@ async function start(){
         ){
 
             showError(
-                "الاختبار موجود، لكن لا توجد أسئلة مرتبطة به.",
+                "الاختبار موجود ولكن لا توجد أسئلة.",
                 "تحميل الأسئلة"
             );
 
             return;
+
         }
 
 
@@ -979,17 +980,15 @@ async function start(){
             questionData;
 
 
-        /* =============================================
-           ATTEMPT ID
-        ============================================= */
+        /*
+         * إنشاء محاولة حقيقية
+         * قبل إنشاء النتيجة
+         */
 
-        attemptId =
-            crypto.randomUUID();
+        await createAttempt();
 
 
-        /* =============================================
-           DISPLAY
-        ============================================= */
+        /* DISPLAY */
 
         examTitle.textContent =
             exam.title ||
@@ -1052,7 +1051,7 @@ async function start(){
         showError(
             error?.message ||
             String(error),
-            "خطأ غير متوقع"
+            "تحميل الاختبار"
         );
 
     }
@@ -1061,7 +1060,7 @@ async function start(){
 
 
 /* =====================================================
-   RENDER QUESTIONS
+   QUESTIONS
 ===================================================== */
 
 function renderQuestions(){
@@ -1085,7 +1084,7 @@ function renderQuestions(){
                 "";
 
 
-            const list = [
+            const options = [
 
                 ["a",question.option_a],
 
@@ -1098,7 +1097,7 @@ function renderQuestions(){
             ];
 
 
-            list.forEach(
+            options.forEach(
                 ([letter,value]) => {
 
                     if(
@@ -1107,15 +1106,11 @@ function renderQuestions(){
                         String(value).trim() !== ""
                     ){
 
-                        const upper =
-                            letter.toUpperCase();
-
-
                         optionsHTML += `
 
                             <label
                                 class="option"
-                                data-option="${letter}"
+                                data-letter="${letter}"
                             >
 
                                 <input
@@ -1125,7 +1120,7 @@ function renderQuestions(){
                                 >
 
                                 <span class="option-letter">
-                                    ${upper}
+                                    ${letter.toUpperCase()}
                                 </span>
 
                                 <span class="option-text">
@@ -1161,17 +1156,11 @@ function renderQuestions(){
             `;
 
 
-            questionsBox.appendChild(
-                card
-            );
+            questionsBox.appendChild(card);
 
         }
     );
 
-
-    /* =============================================
-       SELECTED STYLE
-    ============================================= */
 
     questionsBox
         .querySelectorAll(".option")
@@ -1182,17 +1171,12 @@ function renderQuestions(){
                     "click",
                     () => {
 
-                        const parent =
-                            option.parentElement;
-
-
-                        parent
-                            .querySelectorAll(
-                                ".option"
-                            )
+                        option
+                            .parentElement
+                            .querySelectorAll(".option")
                             .forEach(
-                                item =>
-                                    item.classList.remove(
+                                x =>
+                                    x.classList.remove(
                                         "selected"
                                     )
                             );
@@ -1212,7 +1196,7 @@ function renderQuestions(){
 
 
 /* =====================================================
-   GET STUDENT ANSWERS
+   ANSWERS
 ===================================================== */
 
 function getAnswers(){
@@ -1223,7 +1207,7 @@ function getAnswers(){
     questions.forEach(
         question => {
 
-            const selected =
+            const input =
                 document.querySelector(
                     `input[name="question_${CSS.escape(String(question.id))}"]:checked`
                 );
@@ -1232,8 +1216,8 @@ function getAnswers(){
             answers[
                 String(question.id)
             ] =
-                selected
-                ? normalizeAnswer(selected.value)
+                input
+                ? normalizeAnswer(input.value)
                 : "";
 
         }
@@ -1246,7 +1230,7 @@ function getAnswers(){
 
 
 /* =====================================================
-   CALCULATE RESULT
+   CALCULATE
 ===================================================== */
 
 function calculateResult(){
@@ -1255,20 +1239,26 @@ function calculateResult(){
         getAnswers();
 
 
-    let score = 0;
+    let score =
+        0;
 
-    let totalPoints = 0;
+    let totalPoints =
+        0;
 
-    let correctCount = 0;
+    let correctCount =
+        0;
 
-    let wrongCount = 0;
+    let wrongCount =
+        0;
 
 
     questions.forEach(
         question => {
 
             const points =
-                Number(question.points) || 1;
+                Number(
+                    question.points
+                ) || 1;
 
 
             totalPoints +=
@@ -1288,11 +1278,6 @@ function calculateResult(){
                     question.correct_answer
                 );
 
-
-            /*
-             * الإجابة الصحيحة المفترضة:
-             * a / b / c / d
-             */
 
             if(
                 studentAnswer &&
@@ -1322,18 +1307,11 @@ function calculateResult(){
         : 0;
 
 
-    /*
-     * النجاح هنا 50%.
-     * لو عندك نسبة نجاح مختلفة نغيرها.
-     */
-
     const passed =
         percentage >= 50;
 
 
     return {
-
-        answers,
 
         score,
 
@@ -1356,21 +1334,7 @@ function calculateResult(){
    SAVE RESULT
 ===================================================== */
 
-async function saveResult(resultData){
-
-    const {
-
-        score,
-
-        totalPoints,
-
-        percentage,
-
-        passed
-
-    } =
-    resultData;
-
+async function saveResult(result){
 
     const payload = {
 
@@ -1384,51 +1348,48 @@ async function saveResult(resultData){
             attemptId,
 
         score:
-            score,
+            result.score,
 
         total_points:
-            totalPoints,
+            result.totalPoints,
 
         percentage:
-            percentage,
+            result.percentage,
 
         passed:
-            passed
+            result.passed
 
     };
 
 
     console.log(
-        "RESULT PAYLOAD:",
+        "RESULT:",
         payload
     );
 
 
     const {
-        data,
         error
     } =
     await client
         .from("results")
-        .insert(payload)
-        .select()
-        .single();
+        .insert(payload);
 
 
     if(error){
 
         throw new Error(
-            "تعذر حفظ النتيجة في قاعدة البيانات.\n\n" +
+            "تعذر حفظ النتيجة.\n\n" +
             error.message +
             "\n\n" +
-            "تفاصيل الخطأ:\n" +
-            JSON.stringify(error,null,2)
+            JSON.stringify(
+                error,
+                null,
+                2
+            )
         );
 
     }
-
-
-    return data;
 
 }
 
@@ -1437,10 +1398,7 @@ async function saveResult(resultData){
    SHOW RESULT
 ===================================================== */
 
-function showResult(resultData){
-
-    clearInterval(timer);
-
+function showResult(result){
 
     examBox.style.display =
         "none";
@@ -1452,33 +1410,14 @@ function showResult(resultData){
         "block";
 
 
-    const {
-
-        score,
-
-        totalPoints,
-
-        percentage,
-
-        passed,
-
-        correctCount,
-
-        wrongCount
-
-    } =
-    resultData;
-
+    const resultIcon =
+        document.getElementById(
+            "resultIcon"
+        );
 
     const resultTitle =
         document.getElementById(
             "resultTitle"
-        );
-
-
-    const resultIcon =
-        document.getElementById(
-            "resultIcon"
         );
 
 
@@ -1488,7 +1427,7 @@ function showResult(resultData){
     );
 
 
-    if(passed){
+    if(result.passed){
 
         resultBox.classList.add(
             "success"
@@ -1518,45 +1457,51 @@ function showResult(resultData){
     document.getElementById(
         "score"
     ).textContent =
-        `${score} / ${totalPoints}`;
+        `${result.score} / ${result.totalPoints}`;
 
 
     document.getElementById(
         "percentage"
     ).textContent =
-        `${percentage}%`;
+        `${result.percentage}%`;
 
 
     document.getElementById(
         "correctCount"
     ).textContent =
-        correctCount;
+        result.correctCount;
 
 
     document.getElementById(
         "wrongCount"
     ).textContent =
-        wrongCount;
+        result.wrongCount;
 
 
     document.getElementById(
         "totalPoints"
     ).textContent =
-        totalPoints;
+        result.totalPoints;
 
 
     document.getElementById(
         "passed"
     ).textContent =
-        passed
+        result.passed
         ? "ناجح ✅"
         : "راسب ❌";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
 }
 
 
 /* =====================================================
-   SUBMIT EXAM
+   SUBMIT
 ===================================================== */
 
 async function submitExam(autoSubmit=false){
@@ -1564,6 +1509,31 @@ async function submitExam(autoSubmit=false){
     if(submitting){
 
         return;
+
+    }
+
+
+    /*
+     * دي نقطة التأكيد:
+     *
+     * الطالب يضغط إنهاء
+     * تظهر رسالة:
+     * هل أنت متأكد؟
+     */
+
+    if(!autoSubmit){
+
+        const confirmed =
+            confirm(
+                "⚠️ هل أنت متأكد من إنهاء الاختبار؟\n\nنعم = تصحيح الاختبار وإظهار النتيجة فورًا.\nإلغاء = العودة للأسئلة."
+            );
+
+
+        if(!confirmed){
+
+            return;
+
+        }
 
     }
 
@@ -1578,63 +1548,32 @@ async function submitExam(autoSubmit=false){
 
     try{
 
-        if(timer){
-
-            clearInterval(timer);
-
-        }
+        clearInterval(timer);
 
 
-        if(!autoSubmit){
+        /*
+         * تصحيح فوري
+         */
 
-            const confirmed =
-                confirm(
-                    "هل أنت متأكد من إنهاء الاختبار؟\n\nبعد الإنهاء سيتم تصحيح إجاباتك وحفظ النتيجة."
-                );
-
-
-            if(!confirmed){
-
-                submitting =
-                    false;
-
-                submitButton.disabled =
-                    false;
-
-                startTimer(
-                    secondsLeft
-                );
-
-                return;
-
-            }
-
-        }
-
-
-        /* =============================================
-           CALCULATE
-        ============================================= */
-
-        const resultData =
+        const result =
             calculateResult();
 
 
-        /* =============================================
-           SAVE
-        ============================================= */
+        /*
+         * حفظ النتيجة
+         */
 
         await saveResult(
-            resultData
+            result
         );
 
 
-        /* =============================================
-           SHOW
-        ============================================= */
+        /*
+         * إظهار النتيجة فورًا
+         */
 
         showResult(
-            resultData
+            result
         );
 
 
@@ -1689,8 +1628,9 @@ function startTimer(seconds){
 
                     clearInterval(timer);
 
+
                     alert(
-                        "⏰ انتهى وقت الاختبار.\nسيتم تصحيح إجاباتك وحفظ النتيجة."
+                        "⏰ انتهى وقت الاختبار.\nسيتم تصحيح إجاباتك الآن."
                     );
 
 
@@ -1725,17 +1665,9 @@ function updateTimer(){
             .padStart(2,"0");
 
 
-    if(
-        secondsLeft <= 60
-    ){
+    if(secondsLeft <= 60){
 
         timerBox.classList.add(
-            "warning"
-        );
-
-    }else{
-
-        timerBox.classList.remove(
             "warning"
         );
 
@@ -1745,7 +1677,7 @@ function updateTimer(){
 
 
 /* =====================================================
-   SUBMIT BUTTON
+   BUTTON
 ===================================================== */
 
 submitButton.addEventListener(
@@ -1759,7 +1691,7 @@ submitButton.addEventListener(
 
 
 /* =====================================================
-   RUN
+   START
 ===================================================== */
 
 start();
