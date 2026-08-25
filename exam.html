@@ -17,16 +17,17 @@
 
 body{
     min-height:100vh;
-    color:#fff;
     background:
-        radial-gradient(circle at 20% 10%,rgba(116,72,232,.25),transparent 35%),
-        radial-gradient(circle at 90% 80%,rgba(49,84,223,.20),transparent 35%),
+        radial-gradient(circle at 15% 10%,rgba(116,72,232,.25),transparent 35%),
+        radial-gradient(circle at 90% 85%,rgba(49,84,223,.20),transparent 35%),
         #050509;
-    padding:20px;
+    color:#fff;
+    padding:12px;
 }
 
 .container{
-    width:min(900px,100%);
+    width:100%;
+    max-width:900px;
     margin:auto;
 }
 
@@ -34,11 +35,12 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:20px;
+    gap:10px;
+    margin-bottom:18px;
 }
 
 .logo{
-    font-size:24px;
+    font-size:21px;
     font-weight:900;
 }
 
@@ -51,29 +53,71 @@ body{
     text-decoration:none;
     background:#171722;
     border:1px solid rgba(255,255,255,.1);
-    padding:10px 16px;
-    border-radius:12px;
+    padding:9px 12px;
+    border-radius:10px;
+    white-space:nowrap;
 }
 
 .card{
     background:rgba(17,17,28,.94);
     border:1px solid rgba(140,100,255,.18);
-    border-radius:22px;
-    padding:24px;
-    margin-bottom:18px;
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:15px;
 }
 
 .loading{
     text-align:center;
-    padding:60px 20px;
+    padding:50px 15px;
     color:#bbb;
+}
+
+.loading-icon{
+    font-size:35px;
+    margin-bottom:15px;
 }
 
 .error{
     display:none;
-    color:#ff858f;
+    border-color:rgba(255,70,90,.4);
+    background:rgba(80,15,25,.45);
+}
+
+.error-title{
+    color:#ff6f7c;
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.error-message{
+    color:#ffd1d5;
     line-height:1.8;
     white-space:pre-wrap;
+    word-break:break-word;
+    background:#170b0e;
+    border:1px solid rgba(255,80,100,.2);
+    border-radius:12px;
+    padding:14px;
+    font-size:14px;
+}
+
+.error-step{
+    color:#aaa;
+    margin-top:12px;
+    font-size:13px;
+}
+
+.retry{
+    width:100%;
+    border:0;
+    margin-top:15px;
+    padding:13px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#805cff,#3154df);
+    color:#fff;
+    font-weight:bold;
+    font-size:15px;
 }
 
 .exam{
@@ -81,8 +125,8 @@ body{
 }
 
 .exam-title{
-    font-size:28px;
-    margin-bottom:10px;
+    font-size:25px;
+    margin-bottom:8px;
 }
 
 .description{
@@ -93,24 +137,35 @@ body{
 .info{
     display:flex;
     flex-wrap:wrap;
-    gap:10px;
-    margin-top:18px;
+    gap:8px;
+    margin-top:15px;
 }
 
 .badge{
     background:#0b0b13;
     border:1px solid #29293b;
-    padding:8px 12px;
-    border-radius:10px;
+    padding:7px 10px;
+    border-radius:9px;
     color:#bbb;
+    font-size:13px;
+}
+
+.timer{
+    position:sticky;
+    top:8px;
+    z-index:10;
+    text-align:center;
+    font-size:21px;
+    font-weight:bold;
+}
+
+.timer.warning{
+    color:#ff6f7c;
+    border-color:rgba(255,70,90,.4);
 }
 
 .question{
     background:#0b0b13;
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:18px;
-    padding:20px;
-    margin-bottom:18px;
 }
 
 .question-number{
@@ -120,29 +175,24 @@ body{
 }
 
 .question-text{
-    font-size:18px;
+    font-size:17px;
     line-height:1.9;
-    margin-bottom:18px;
+    margin-bottom:15px;
 }
 
 .options{
     display:grid;
-    gap:10px;
+    gap:9px;
 }
 
 .option{
     display:flex;
     align-items:center;
-    gap:12px;
-    padding:14px;
+    gap:10px;
+    padding:13px;
     border:1px solid #29293b;
     background:#11111b;
-    border-radius:12px;
-    cursor:pointer;
-}
-
-.option:hover{
-    border-color:#805cff;
+    border-radius:11px;
 }
 
 .option input{
@@ -151,44 +201,25 @@ body{
     accent-color:#805cff;
 }
 
-.timer{
-    position:sticky;
-    top:10px;
-    z-index:5;
-    text-align:center;
-    font-size:22px;
-    font-weight:bold;
-}
-
-.warning{
-    color:#ff737f;
-}
-
 .submit{
     width:100%;
     border:0;
     padding:15px;
-    border-radius:14px;
+    border-radius:13px;
     background:linear-gradient(135deg,#805cff,#3154df);
-    color:white;
+    color:#fff;
     font-size:16px;
     font-weight:bold;
-    cursor:pointer;
 }
 
-@media(max-width:600px){
-    body{
-        padding:12px;
-    }
-
-    .card{
-        padding:17px;
-    }
-
-    .exam-title{
-        font-size:23px;
-    }
+.debug{
+    display:none;
+    margin-top:15px;
+    color:#777;
+    font-size:11px;
+    word-break:break-all;
 }
+
 </style>
 </head>
 
@@ -209,37 +240,102 @@ body{
     </div>
 
 
+    <!-- LOADING -->
+
     <div id="loading" class="card loading">
-        جاري تحميل الاختبار...
+
+        <div class="loading-icon">
+            ⏳
+        </div>
+
+        <div>
+            جاري تحميل الاختبار...
+        </div>
+
     </div>
 
 
-    <div id="error" class="card error"></div>
+    <!-- ERROR -->
 
+    <div id="errorBox" class="card error">
+
+        <div class="error-title">
+            ⚠️ حدث خطأ في تحميل الاختبار
+        </div>
+
+        <div
+            id="errorMessage"
+            class="error-message">
+        </div>
+
+        <div
+            id="errorStep"
+            class="error-step">
+        </div>
+
+        <button
+            class="retry"
+            onclick="location.reload()">
+
+            🔄 إعادة المحاولة
+
+        </button>
+
+        <div
+            id="debug"
+            class="debug">
+        </div>
+
+    </div>
+
+
+    <!-- EXAM -->
 
     <div id="exam" class="exam">
 
         <div class="card">
 
-            <h1 id="title" class="exam-title"></h1>
+            <h1
+                id="examTitle"
+                class="exam-title">
+            </h1>
 
-            <div id="description" class="description"></div>
+            <div
+                id="examDescription"
+                class="description">
+            </div>
 
             <div class="info">
 
-                <span id="grade" class="badge"></span>
+                <span
+                    id="examGrade"
+                    class="badge">
+                </span>
 
-                <span id="duration" class="badge"></span>
+                <span
+                    id="examDuration"
+                    class="badge">
+                </span>
 
-                <span id="count" class="badge"></span>
+                <span
+                    id="examQuestions"
+                    class="badge">
+                </span>
 
             </div>
 
         </div>
 
 
-        <div id="timer" class="card timer">
-            ⏱ <span id="time">00:00</span>
+        <div
+            id="timer"
+            class="card timer">
+
+            ⏱
+            <span id="time">
+                00:00
+            </span>
+
         </div>
 
 
@@ -265,7 +361,7 @@ body{
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="supabase.js"></script>
+<script src="js/supabase.js"></script>
 
 
 <script>
@@ -273,49 +369,62 @@ body{
 "use strict";
 
 
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
 const loading =
     document.getElementById("loading");
 
 const errorBox =
-    document.getElementById("error");
+    document.getElementById("errorBox");
+
+const errorMessage =
+    document.getElementById("errorMessage");
+
+const errorStep =
+    document.getElementById("errorStep");
+
+const debugBox =
+    document.getElementById("debug");
 
 const examBox =
     document.getElementById("exam");
 
-const titleElement =
-    document.getElementById("title");
+const examTitle =
+    document.getElementById("examTitle");
 
-const descriptionElement =
-    document.getElementById("description");
+const examDescription =
+    document.getElementById("examDescription");
 
-const gradeElement =
-    document.getElementById("grade");
+const examGrade =
+    document.getElementById("examGrade");
 
-const durationElement =
-    document.getElementById("duration");
+const examDuration =
+    document.getElementById("examDuration");
 
-const countElement =
-    document.getElementById("count");
+const examQuestions =
+    document.getElementById("examQuestions");
 
-const questionsElement =
+const questionsBox =
     document.getElementById("questions");
 
-const timeElement =
-    document.getElementById("time");
-
-const timerElement =
+const timerBox =
     document.getElementById("timer");
 
-const submitButton =
-    document.getElementById("submit");
+const timeBox =
+    document.getElementById("time");
 
 
-let client =
-    window.supabaseClient;
+/* =====================================================
+   STATE
+===================================================== */
+
+let client = null;
 
 let examId = null;
 
-let examData = null;
+let currentExam = null;
 
 let questions = [];
 
@@ -325,10 +434,13 @@ let secondsLeft = 0;
 
 
 /* =====================================================
-   ERROR
+   SHOW ERROR
 ===================================================== */
 
-function showError(message){
+function showError(
+    message,
+    step = ""
+){
 
     console.error(
         "EXAM ERROR:",
@@ -344,8 +456,17 @@ function showError(message){
     errorBox.style.display =
         "block";
 
-    errorBox.textContent =
+    errorMessage.textContent =
         message;
+
+    errorStep.textContent =
+        step
+        ? "📍 المرحلة: " + step
+        : "";
+
+    debugBox.textContent =
+        "URL: " +
+        window.location.href;
 
 }
 
@@ -370,60 +491,56 @@ function escapeHTML(value){
    START
 ===================================================== */
 
-(async function(){
+async function start(){
 
     try{
 
-        console.log(
-            "1. بدء تحميل صفحة الاختبار"
-        );
+        /* =============================================
+           1
+        ============================================= */
+
+        client =
+            window.supabaseClient;
 
 
         if(!client){
 
-            throw new Error(
-                "Supabase Client غير موجود.\n\nتأكد أن js/supabase.js يتم تحميله قبل هذا الكود."
+            showError(
+                "لم يتم إنشاء اتصال Supabase.",
+                "الاتصال بقاعدة البيانات"
             );
 
+            return;
         }
 
 
-        console.log(
-            "2. Supabase Client موجود"
-        );
+        /* =============================================
+           2
+        ============================================= */
 
-
-        /* ==============================================
-           ID
-        ============================================== */
-
-        const urlParams =
+        const params =
             new URLSearchParams(
                 window.location.search
             );
 
         examId =
-            urlParams.get("id");
-
-
-        console.log(
-            "3. Exam ID:",
-            examId
-        );
+            params.get("id");
 
 
         if(!examId){
 
-            throw new Error(
-                "لم يتم العثور على id للاختبار في الرابط.\n\nالرابط الصحيح يجب أن يكون:\nexam.html?id=EXAM_ID"
+            showError(
+                "معرف الاختبار غير موجود في الرابط.\n\nافتح الاختبار من صفحة الاختبارات واضغط «بدء الاختبار».",
+                "قراءة رابط الاختبار"
             );
 
+            return;
         }
 
 
-        /* ==============================================
-           USER
-        ============================================== */
+        /* =============================================
+           3
+        ============================================= */
 
         const {
             data:userData,
@@ -432,40 +549,40 @@ function escapeHTML(value){
         await client.auth.getUser();
 
 
-        console.log(
-            "4. User:",
-            userData?.user
-        );
-
-
         if(userError){
 
-            throw new Error(
-                "خطأ في تسجيل الدخول:\n" +
-                userError.message
+            showError(
+                "تعذر التحقق من تسجيل الدخول.\n\n" +
+                userError.message,
+                "التحقق من الطالب"
             );
 
+            return;
         }
 
 
         if(!userData?.user){
 
-            location.href =
-                "auth.html";
+            showError(
+                "أنت غير مسجل الدخول.\n\nسيتم تحويلك إلى صفحة تسجيل الدخول.",
+                "تسجيل الدخول"
+            );
+
+            setTimeout(
+                () => {
+                    location.href =
+                        "auth.html";
+                },
+                1500
+            );
 
             return;
-
         }
 
 
-        /* ==============================================
-           EXAM
-        ============================================== */
-
-        console.log(
-            "5. جاري تحميل الاختبار من exams..."
-        );
-
+        /* =============================================
+           4 - EXAM
+        ============================================= */
 
         const {
             data:exam,
@@ -478,30 +595,27 @@ function escapeHTML(value){
             .maybeSingle();
 
 
-        console.log(
-            "6. Exam result:",
-            exam,
-            examError
-        );
-
-
         if(examError){
 
-            throw new Error(
-                "خطأ في قراءة جدول exams:\n" +
-                examError.message
+            showError(
+                "تعذر قراءة الاختبار من قاعدة البيانات.\n\n" +
+                examError.message,
+                "قراءة جدول exams"
             );
 
+            return;
         }
 
 
         if(!exam){
 
-            throw new Error(
-                "لم يتم العثور على الاختبار.\n\nExam ID:\n" +
-                examId
+            showError(
+                "الاختبار غير موجود.\n\nمعرف الاختبار:\n" +
+                examId,
+                "البحث عن الاختبار"
             );
 
+            return;
         }
 
 
@@ -509,25 +623,22 @@ function escapeHTML(value){
             exam.is_active === false
         ){
 
-            throw new Error(
-                "هذا الاختبار غير نشط حاليًا."
+            showError(
+                "هذا الاختبار غير متاح حاليًا.",
+                "حالة الاختبار"
             );
 
+            return;
         }
 
 
-        examData =
+        currentExam =
             exam;
 
 
-        /* ==============================================
-           QUESTIONS
-        ============================================== */
-
-        console.log(
-            "7. جاري تحميل الأسئلة..."
-        );
-
+        /* =============================================
+           5 - QUESTIONS
+        ============================================= */
 
         const {
             data:questionData,
@@ -548,20 +659,15 @@ function escapeHTML(value){
             );
 
 
-        console.log(
-            "8. Questions:",
-            questionData,
-            questionError
-        );
-
-
         if(questionError){
 
-            throw new Error(
-                "خطأ في قراءة جدول questions:\n" +
-                questionError.message
+            showError(
+                "تم العثور على الاختبار، لكن تعذر تحميل الأسئلة.\n\n" +
+                questionError.message,
+                "قراءة جدول questions"
             );
 
+            return;
         }
 
 
@@ -570,10 +676,12 @@ function escapeHTML(value){
             questionData.length === 0
         ){
 
-            throw new Error(
-                "الاختبار موجود ولكن لا توجد أسئلة مرتبطة به."
+            showError(
+                "الاختبار موجود، لكن لا توجد أسئلة مرتبطة به.",
+                "تحميل الأسئلة"
             );
 
+            return;
         }
 
 
@@ -581,22 +689,26 @@ function escapeHTML(value){
             questionData;
 
 
-        /* ==============================================
-           DISPLAY
-        ============================================== */
+        /* =============================================
+           6 - DISPLAY
+        ============================================= */
 
-        titleElement.textContent =
-            exam.title || "اختبار";
+        examTitle.textContent =
+            exam.title ||
+            "اختبار";
 
 
-        descriptionElement.textContent =
+        examDescription.textContent =
             exam.description ||
             "اختبار رياضيات";
 
 
-        gradeElement.textContent =
+        examGrade.textContent =
             "📚 " +
-            (exam.grade || "غير محدد");
+            (
+                exam.grade ||
+                "غير محدد"
+            );
 
 
         const duration =
@@ -607,13 +719,13 @@ function escapeHTML(value){
             );
 
 
-        durationElement.textContent =
+        examDuration.textContent =
             "⏱ " +
             duration +
             " دقيقة";
 
 
-        countElement.textContent =
+        examQuestions.textContent =
             "📝 " +
             questions.length +
             " سؤال";
@@ -625,6 +737,9 @@ function escapeHTML(value){
         loading.style.display =
             "none";
 
+        errorBox.style.display =
+            "none";
+
         examBox.style.display =
             "block";
 
@@ -633,56 +748,51 @@ function escapeHTML(value){
             duration * 60
         );
 
-
-        console.log(
-            "9. تم تحميل الاختبار بنجاح ✅"
-        );
-
-
     }catch(error){
 
         showError(
             error?.message ||
-            "حدث خطأ غير معروف."
+            String(error),
+            "خطأ غير متوقع"
         );
 
     }
 
-})();
+}
 
 
 /* =====================================================
-   RENDER
+   QUESTIONS
 ===================================================== */
 
 function renderQuestions(){
 
-    questionsElement.innerHTML =
+    questionsBox.innerHTML =
         "";
 
 
     questions.forEach(
-        (q,index) => {
+        (question,index) => {
 
-            const div =
+            const card =
                 document.createElement("div");
 
-            div.className =
+            card.className =
                 "card question";
 
 
             let options = "";
 
 
-            const values = [
-                ["a",q.option_a],
-                ["b",q.option_b],
-                ["c",q.option_c],
-                ["d",q.option_d]
+            const list = [
+                ["a",question.option_a],
+                ["b",question.option_b],
+                ["c",question.option_c],
+                ["d",question.option_d]
             ];
 
 
-            values.forEach(
+            list.forEach(
                 ([letter,value]) => {
 
                     if(
@@ -697,7 +807,7 @@ function renderQuestions(){
 
                                 <input
                                     type="radio"
-                                    name="q_${escapeHTML(q.id)}"
+                                    name="question_${escapeHTML(question.id)}"
                                     value="${letter}">
 
                                 <span>
@@ -714,7 +824,7 @@ function renderQuestions(){
             );
 
 
-            div.innerHTML = `
+            card.innerHTML = `
 
                 <div class="question-number">
                     السؤال ${index + 1}
@@ -722,7 +832,7 @@ function renderQuestions(){
 
                 <div class="question-text">
                     ${escapeHTML(
-                        q.question_text
+                        question.question_text
                     )}
                 </div>
 
@@ -733,8 +843,8 @@ function renderQuestions(){
             `;
 
 
-            questionsElement.appendChild(
-                div
+            questionsBox.appendChild(
+                card
             );
 
         }
@@ -747,10 +857,10 @@ function renderQuestions(){
    TIMER
 ===================================================== */
 
-function startTimer(totalSeconds){
+function startTimer(seconds){
 
     secondsLeft =
-        totalSeconds;
+        Number(seconds) || 1800;
 
 
     updateTimer();
@@ -769,9 +879,7 @@ function startTimer(totalSeconds){
                     secondsLeft <= 0
                 ){
 
-                    clearInterval(
-                        timer
-                    );
+                    clearInterval(timer);
 
                     alert(
                         "انتهى وقت الاختبار."
@@ -797,17 +905,19 @@ function updateTimer(){
         secondsLeft % 60;
 
 
-    timeElement.textContent =
-        String(minutes).padStart(2,"0") +
+    timeBox.textContent =
+        String(minutes)
+            .padStart(2,"0") +
         ":" +
-        String(seconds).padStart(2,"0");
+        String(seconds)
+            .padStart(2,"0");
 
 
     if(
         secondsLeft <= 60
     ){
 
-        timerElement.classList.add(
+        timerBox.classList.add(
             "warning"
         );
 
@@ -820,16 +930,25 @@ function updateTimer(){
    SUBMIT
 ===================================================== */
 
-submitButton.addEventListener(
-    "click",
-    () => {
+document
+    .getElementById("submit")
+    .addEventListener(
+        "click",
+        () => {
 
-        alert(
-            "تم اختيار إنهاء الاختبار.\nسيتم ربط الحفظ والنتيجة بعد التأكد من تحميل الاختبار والأسئلة بشكل صحيح."
-        );
+            alert(
+                "تم استلام طلب إنهاء الاختبار.\nسيتم ربط حفظ النتيجة بعد التأكد من تحميل الاختبار والأسئلة."
+            );
 
-    }
-);
+        }
+    );
+
+
+/* =====================================================
+   RUN
+===================================================== */
+
+start();
 
 </script>
 
