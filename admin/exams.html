@@ -2,8 +2,13 @@
 <html lang="ar" dir="rtl">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>الخوارزمي | إنشاء اختبار</title>
 
@@ -21,9 +26,18 @@
 body{
     min-height:100vh;
     color:#fff;
+
     background:
-        radial-gradient(circle at 20% 20%,rgba(125,82,255,.20),transparent 35%),
-        radial-gradient(circle at 80% 80%,rgba(49,84,223,.16),transparent 35%),
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(125,82,255,.20),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(49,84,223,.16),
+            transparent 35%
+        ),
         #06060a;
 }
 
@@ -165,8 +179,17 @@ textarea:focus{
     font-size:15px;
 }
 
+.btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
 .primary{
-    background:linear-gradient(135deg,#805cff,#4d61e8);
+    background:linear-gradient(
+        135deg,
+        #805cff,
+        #4d61e8
+    );
 }
 
 .secondary{
@@ -224,6 +247,8 @@ textarea:focus{
     padding:15px;
     border-radius:13px;
     margin-top:20px;
+    line-height:1.8;
+    word-break:break-word;
 }
 
 .status.show{
@@ -248,6 +273,15 @@ textarea:focus{
     color:#c8baff;
 }
 
+.debug{
+    margin-top:12px;
+    font-size:12px;
+    color:#777;
+    direction:ltr;
+    text-align:left;
+    white-space:pre-wrap;
+}
+
 @media(max-width:700px){
 
     .modes,
@@ -267,7 +301,9 @@ textarea:focus{
 }
 
 </style>
+
 </head>
+
 
 <body>
 
@@ -279,20 +315,28 @@ textarea:focus{
             الخوارزمي <span>|</span> الإدارة
         </div>
 
-        <button class="back" onclick="goBack()">
+        <button
+            class="back"
+            onclick="goBack()"
+        >
             ← رجوع
         </button>
 
     </div>
 
-    <h1>إنشاء اختبار</h1>
+
+    <h1>
+        إنشاء اختبار
+    </h1>
 
     <p class="subtitle">
         أنشئ اختبارًا يدويًا أو استخدم الذكاء الاصطناعي لإنشائه تلقائيًا.
     </p>
 
 
-    <!-- نوع الاختبار -->
+    <!-- =================================================
+         MODES
+    ================================================== -->
 
     <div class="card">
 
@@ -301,9 +345,12 @@ textarea:focus{
             <button
                 id="manualMode"
                 class="mode active"
-                onclick="setMode('manual')">
+                onclick="setMode('manual')"
+            >
 
-                <strong>📝 اختبار يدوي</strong>
+                <strong>
+                    📝 اختبار يدوي
+                </strong>
 
                 <small>
                     أضف الأسئلة والاختيارات بنفسك.
@@ -315,9 +362,12 @@ textarea:focus{
             <button
                 id="aiMode"
                 class="mode"
-                onclick="setMode('ai')">
+                onclick="setMode('ai')"
+            >
 
-                <strong>🤖 اختبار AI</strong>
+                <strong>
+                    🤖 اختبار AI
+                </strong>
 
                 <small>
                     الذكاء الاصطناعي ينشئ الأسئلة تلقائيًا.
@@ -330,34 +380,49 @@ textarea:focus{
     </div>
 
 
-    <!-- بيانات الاختبار -->
+    <!-- =================================================
+         EXAM DATA
+    ================================================== -->
 
     <div class="card">
 
         <div class="grid">
 
             <div>
-                <label>اسم الاختبار</label>
+
+                <label>
+                    اسم الاختبار
+                </label>
 
                 <input
                     id="title"
                     type="text"
-                    placeholder="مثال: اختبار الجبر">
+                    placeholder="مثال: اختبار الجبر"
+                >
+
             </div>
 
 
             <div>
-                <label>كود الاختبار</label>
+
+                <label>
+                    كود الاختبار
+                </label>
 
                 <input
                     id="examCode"
                     type="text"
-                    placeholder="مثال: ALG101">
+                    placeholder="مثال: ALG101"
+                >
+
             </div>
 
 
             <div>
-                <label>الصف</label>
+
+                <label>
+                    الصف
+                </label>
 
                 <select id="grade">
 
@@ -365,36 +430,61 @@ textarea:focus{
                         اختر الصف
                     </option>
 
-                    <option>أولى إعدادي</option>
-                    <option>ثانية إعدادي</option>
-                    <option>ثالثة إعدادي</option>
+                    <option>
+                        أولى إعدادي
+                    </option>
 
-                    <option>أولى ثانوي</option>
-                    <option>ثانية ثانوي</option>
-                    <option>ثالثة ثانوي</option>
+                    <option>
+                        ثانية إعدادي
+                    </option>
+
+                    <option>
+                        ثالثة إعدادي
+                    </option>
+
+                    <option>
+                        أولى ثانوي
+                    </option>
+
+                    <option>
+                        ثانية ثانوي
+                    </option>
+
+                    <option>
+                        ثالثة ثانوي
+                    </option>
 
                 </select>
+
             </div>
 
 
             <div>
-                <label>مدة الاختبار بالدقائق</label>
+
+                <label>
+                    مدة الاختبار بالدقائق
+                </label>
 
                 <input
                     id="duration"
                     type="number"
                     value="30"
-                    min="1">
+                    min="1"
+                >
+
             </div>
 
 
             <div class="full">
 
-                <label>وصف الاختبار</label>
+                <label>
+                    وصف الاختبار
+                </label>
 
                 <textarea
                     id="description"
-                    placeholder="وصف مختصر للاختبار"></textarea>
+                    placeholder="وصف مختصر للاختبار"
+                ></textarea>
 
             </div>
 
@@ -403,47 +493,59 @@ textarea:focus{
     </div>
 
 
-    <!-- AI -->
+    <!-- =================================================
+         AI
+    ================================================== -->
 
     <div
         id="aiBox"
-        class="card ai-box">
+        class="card ai-box"
+    >
 
         <h2 style="margin-bottom:20px">
             🤖 إعداد اختبار AI
         </h2>
 
+
         <div class="grid">
 
             <div>
 
-                <label>عدد الأسئلة</label>
+                <label>
+                    عدد الأسئلة
+                </label>
 
                 <input
                     id="questionCount"
                     type="number"
                     min="1"
-                    max="100"
-                    value="10">
+                    max="50"
+                    value="10"
+                >
 
             </div>
 
 
             <div>
 
-                <label>المستوى</label>
+                <label>
+                    المستوى
+                </label>
 
                 <select id="level">
 
-                    <option value="easy">
+                    <option value="سهل">
                         سهل
                     </option>
 
-                    <option value="medium" selected>
+                    <option
+                        value="متوسط"
+                        selected
+                    >
                         متوسط
                     </option>
 
-                    <option value="hard">
+                    <option value="صعب">
                         صعب
                     </option>
 
@@ -454,22 +556,28 @@ textarea:focus{
 
             <div class="full">
 
-                <label>موضوع الأسئلة</label>
+                <label>
+                    موضوع الأسئلة
+                </label>
 
                 <input
                     id="topic"
                     type="text"
-                    placeholder="مثال: المعادلات من الدرجة الأولى">
+                    placeholder="مثال: المعادلات من الدرجة الأولى"
+                >
 
             </div>
 
         </div>
 
+
         <div class="actions">
 
             <button
+                id="generateButton"
                 class="btn primary"
-                onclick="generateAI()">
+                onclick="generateAI()"
+            >
 
                 🤖 إنشاء الاختبار بالـAI
 
@@ -480,34 +588,38 @@ textarea:focus{
     </div>
 
 
-    <!-- MANUAL -->
+    <!-- =================================================
+         MANUAL
+    ================================================== -->
 
     <div
         id="manualBox"
-        class="card manual-box show">
+        class="card manual-box show"
+    >
 
         <h2 style="margin-bottom:20px">
             📝 أسئلة الاختبار
         </h2>
 
+
         <div id="questions"></div>
+
 
         <div class="actions">
 
             <button
                 class="btn secondary"
-                onclick="addQuestion()">
-
+                onclick="addQuestion()"
+            >
                 + إضافة سؤال
-
             </button>
+
 
             <button
                 class="btn primary"
-                onclick="saveManual()">
-
+                onclick="saveManual()"
+            >
                 💾 حفظ الاختبار
-
             </button>
 
         </div>
@@ -517,8 +629,8 @@ textarea:focus{
 
     <div
         id="status"
-        class="status">
-    </div>
+        class="status"
+    ></div>
 
 </div>
 
@@ -526,7 +638,7 @@ textarea:focus{
 <script>
 
 /* =====================================================
-   SUPABASE CONNECTION
+   SUPABASE
 ===================================================== */
 
 const SUPABASE_URL =
@@ -543,12 +655,23 @@ const supabaseClient =
 
 
 /* =====================================================
+   EDGE FUNCTION URL
+===================================================== */
+
+const GENERATE_EXAM_URL =
+    SUPABASE_URL +
+    "/functions/v1/generate-exam";
+
+
+/* =====================================================
    STATE
 ===================================================== */
 
-let mode = "manual";
+let mode =
+    "manual";
 
-let questionNumber = 0;
+let questionNumber =
+    0;
 
 
 /* =====================================================
@@ -556,16 +679,24 @@ let questionNumber = 0;
 ===================================================== */
 
 const aiBox =
-    document.getElementById("aiBox");
+    document.getElementById(
+        "aiBox"
+    );
 
 const manualBox =
-    document.getElementById("manualBox");
+    document.getElementById(
+        "manualBox"
+    );
 
 const questions =
-    document.getElementById("questions");
+    document.getElementById(
+        "questions"
+    );
 
 const statusBox =
-    document.getElementById("status");
+    document.getElementById(
+        "status"
+    );
 
 
 /* =====================================================
@@ -574,31 +705,38 @@ const statusBox =
 
 function setMode(value){
 
-    mode = value;
+    mode =
+        value;
 
     document
-        .getElementById("manualMode")
+        .getElementById(
+            "manualMode"
+        )
         .classList.toggle(
             "active",
             value === "manual"
         );
 
     document
-        .getElementById("aiMode")
+        .getElementById(
+            "aiMode"
+        )
         .classList.toggle(
             "active",
             value === "ai"
         );
 
-    manualBox.classList.toggle(
-        "show",
-        value === "manual"
-    );
+    manualBox
+        .classList.toggle(
+            "show",
+            value === "manual"
+        );
 
-    aiBox.classList.toggle(
-        "show",
-        value === "ai"
-    );
+    aiBox
+        .classList.toggle(
+            "show",
+            value === "ai"
+        );
 
 }
 
@@ -607,13 +745,56 @@ function setMode(value){
    STATUS
 ===================================================== */
 
-function status(message,type){
+function showStatus(
+    message,
+    type,
+    debug = ""
+){
 
     statusBox.className =
-        "status show " + type;
+        "status show " +
+        type;
 
     statusBox.innerHTML =
-        message;
+        message +
+        (
+            debug
+            ?
+            `<div class="debug">${escapeHtml(debug)}</div>`
+            :
+            ""
+        );
+
+}
+
+
+/* =====================================================
+   ESCAPE
+===================================================== */
+
+function escapeHtml(value){
+
+    return String(value)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
@@ -622,7 +803,9 @@ function status(message,type){
    ADD QUESTION
 ===================================================== */
 
-function addQuestion(data = {}){
+function addQuestion(
+    data = {}
+){
 
     questionNumber++;
 
@@ -633,7 +816,8 @@ function addQuestion(data = {}){
 
         <div
             class="question"
-            id="q-${n}">
+            id="q-${n}"
+        >
 
             <div class="question-head">
 
@@ -643,10 +827,9 @@ function addQuestion(data = {}){
 
                 <button
                     class="delete"
-                    onclick="removeQuestion(${n})">
-
+                    onclick="removeQuestion(${n})"
+                >
                     حذف
-
                 </button>
 
             </div>
@@ -658,7 +841,10 @@ function addQuestion(data = {}){
 
             <textarea
                 class="q-text"
-                placeholder="اكتب السؤال">${data.question_text || ""}</textarea>
+                placeholder="اكتب السؤال"
+            >${escapeHtml(
+                data.question_text || ""
+            )}</textarea>
 
 
             <div class="options">
@@ -669,8 +855,11 @@ function addQuestion(data = {}){
 
                     <input
                         class="q-a"
-                        value="${data.option_a || ""}"
-                        placeholder="الاختيار A">
+                        value="${escapeHtml(
+                            data.option_a || ""
+                        )}"
+                        placeholder="الاختيار A"
+                    >
 
                 </div>
 
@@ -681,8 +870,11 @@ function addQuestion(data = {}){
 
                     <input
                         class="q-b"
-                        value="${data.option_b || ""}"
-                        placeholder="الاختيار B">
+                        value="${escapeHtml(
+                            data.option_b || ""
+                        )}"
+                        placeholder="الاختيار B"
+                    >
 
                 </div>
 
@@ -693,8 +885,11 @@ function addQuestion(data = {}){
 
                     <input
                         class="q-c"
-                        value="${data.option_c || ""}"
-                        placeholder="الاختيار C">
+                        value="${escapeHtml(
+                            data.option_c || ""
+                        )}"
+                        placeholder="الاختيار C"
+                    >
 
                 </div>
 
@@ -705,15 +900,21 @@ function addQuestion(data = {}){
 
                     <input
                         class="q-d"
-                        value="${data.option_d || ""}"
-                        placeholder="الاختيار D">
+                        value="${escapeHtml(
+                            data.option_d || ""
+                        )}"
+                        placeholder="الاختيار D"
+                    >
 
                 </div>
 
             </div>
 
 
-            <div class="grid" style="margin-top:15px">
+            <div
+                class="grid"
+                style="margin-top:15px"
+            >
 
                 <div>
 
@@ -721,29 +922,67 @@ function addQuestion(data = {}){
                         الإجابة الصحيحة
                     </label>
 
-                    <select class="q-answer">
+                    <select
+                        class="q-answer"
+                    >
 
                         <option value="">
                             اختر
                         </option>
 
-                        <option value="a"
-                            ${data.correct_answer === "a" ? "selected" : ""}>
+                        <option
+                            value="A"
+                            ${
+                                String(
+                                    data.correct_answer || ""
+                                ).toUpperCase()
+                                === "A"
+                                ? "selected"
+                                : ""
+                            }
+                        >
                             A
                         </option>
 
-                        <option value="b"
-                            ${data.correct_answer === "b" ? "selected" : ""}>
+                        <option
+                            value="B"
+                            ${
+                                String(
+                                    data.correct_answer || ""
+                                ).toUpperCase()
+                                === "B"
+                                ? "selected"
+                                : ""
+                            }
+                        >
                             B
                         </option>
 
-                        <option value="c"
-                            ${data.correct_answer === "c" ? "selected" : ""}>
+                        <option
+                            value="C"
+                            ${
+                                String(
+                                    data.correct_answer || ""
+                                ).toUpperCase()
+                                === "C"
+                                ? "selected"
+                                : ""
+                            }
+                        >
                             C
                         </option>
 
-                        <option value="d"
-                            ${data.correct_answer === "d" ? "selected" : ""}>
+                        <option
+                            value="D"
+                            ${
+                                String(
+                                    data.correct_answer || ""
+                                ).toUpperCase()
+                                === "D"
+                                ? "selected"
+                                : ""
+                            }
+                        >
                             D
                         </option>
 
@@ -762,7 +1001,8 @@ function addQuestion(data = {}){
                         class="q-points"
                         type="number"
                         min="1"
-                        value="${data.points || 1}">
+                        value="${data.points || 1}"
+                    >
 
                 </div>
 
@@ -780,7 +1020,7 @@ function addQuestion(data = {}){
 
 
 /* =====================================================
-   REMOVE
+   REMOVE QUESTION
 ===================================================== */
 
 function removeQuestion(n){
@@ -808,48 +1048,69 @@ function collectQuestions(){
             ".question"
         );
 
-    return [...cards].map(
+    return [
+        ...cards
+    ].map(
         (card,index) => {
 
             return {
 
                 question_text:
                     card
-                        .querySelector(".q-text")
-                        .value.trim(),
+                        .querySelector(
+                            ".q-text"
+                        )
+                        .value
+                        .trim(),
 
                 question_type:
-                    "multiple_choice",
+                    "mcq",
 
                 option_a:
                     card
-                        .querySelector(".q-a")
-                        .value.trim(),
+                        .querySelector(
+                            ".q-a"
+                        )
+                        .value
+                        .trim(),
 
                 option_b:
                     card
-                        .querySelector(".q-b")
-                        .value.trim(),
+                        .querySelector(
+                            ".q-b"
+                        )
+                        .value
+                        .trim(),
 
                 option_c:
                     card
-                        .querySelector(".q-c")
-                        .value.trim(),
+                        .querySelector(
+                            ".q-c"
+                        )
+                        .value
+                        .trim(),
 
                 option_d:
                     card
-                        .querySelector(".q-d")
-                        .value.trim(),
+                        .querySelector(
+                            ".q-d"
+                        )
+                        .value
+                        .trim(),
 
                 correct_answer:
                     card
-                        .querySelector(".q-answer")
+                        .querySelector(
+                            ".q-answer"
+                        )
                         .value,
 
                 points:
                     Number(
                         card
-                            .querySelector(".q-points")
+                            .querySelector(
+                                ".q-points"
+                            )
                             .value
                     ) || 1,
 
@@ -857,7 +1118,7 @@ function collectQuestions(){
                     index + 1,
 
                 level:
-                    "medium"
+                    "متوسط"
 
             };
 
@@ -868,7 +1129,7 @@ function collectQuestions(){
 
 
 /* =====================================================
-   GET EXAM DATA
+   GET EXAM
 ===================================================== */
 
 function getExam(){
@@ -877,28 +1138,41 @@ function getExam(){
 
         title:
             document
-                .getElementById("title")
-                .value.trim(),
+                .getElementById(
+                    "title"
+                )
+                .value
+                .trim(),
 
         exam_code:
             document
-                .getElementById("examCode")
-                .value.trim(),
+                .getElementById(
+                    "examCode"
+                )
+                .value
+                .trim(),
 
         grade:
             document
-                .getElementById("grade")
+                .getElementById(
+                    "grade"
+                )
                 .value,
 
         description:
             document
-                .getElementById("description")
-                .value.trim(),
+                .getElementById(
+                    "description"
+                )
+                .value
+                .trim(),
 
         duration:
             Number(
                 document
-                    .getElementById("duration")
+                    .getElementById(
+                        "duration"
+                    )
                     .value
             ) || 30
 
@@ -922,7 +1196,7 @@ async function saveManual(){
 
     if(!exam.title){
 
-        status(
+        showStatus(
             "اكتب اسم الاختبار.",
             "error"
         );
@@ -933,7 +1207,7 @@ async function saveManual(){
 
     if(!exam.grade){
 
-        status(
+        showStatus(
             "اختر الصف.",
             "error"
         );
@@ -944,7 +1218,7 @@ async function saveManual(){
 
     if(qs.length === 0){
 
-        status(
+        showStatus(
             "أضف سؤالًا واحدًا على الأقل.",
             "error"
         );
@@ -959,12 +1233,13 @@ async function saveManual(){
         i++
     ){
 
-        const q = qs[i];
+        const q =
+            qs[i];
 
         if(!q.question_text){
 
-            status(
-                `اكتب نص السؤال رقم ${i+1}.`,
+            showStatus(
+                `اكتب نص السؤال رقم ${i + 1}.`,
                 "error"
             );
 
@@ -978,8 +1253,8 @@ async function saveManual(){
             !q.option_d
         ){
 
-            status(
-                `أكمل اختيارات السؤال رقم ${i+1}.`,
+            showStatus(
+                `أكمل اختيارات السؤال رقم ${i + 1}.`,
                 "error"
             );
 
@@ -988,8 +1263,8 @@ async function saveManual(){
 
         if(!q.correct_answer){
 
-            status(
-                `حدد إجابة السؤال رقم ${i+1}.`,
+            showStatus(
+                `حدد إجابة السؤال رقم ${i + 1}.`,
                 "error"
             );
 
@@ -999,7 +1274,7 @@ async function saveManual(){
     }
 
 
-    status(
+    showStatus(
         "⏳ جاري حفظ الاختبار...",
         "loading"
     );
@@ -1018,7 +1293,10 @@ async function saveManual(){
             .getUser();
 
 
-        if(error || !user){
+        if(
+            error ||
+            !user
+        ){
 
             throw new Error(
                 "يجب تسجيل الدخول أولًا."
@@ -1067,7 +1345,10 @@ async function saveManual(){
 
                 total_points:
                     qs.reduce(
-                        (sum,q) =>
+                        (
+                            sum,
+                            q
+                        ) =>
                             sum + q.points,
                         0
                     )
@@ -1085,42 +1366,51 @@ async function saveManual(){
 
 
         const rows =
-            qs.map(q => ({
+            qs.map(
+                q => ({
 
-                exam_id:
-                    examRow.id,
+                    exam_id:
+                        examRow.id,
 
-                question_text:
-                    q.question_text,
+                    question_text:
+                        q.question_text,
 
-                question_type:
-                    q.question_type,
+                    question_type:
+                        q.question_type,
 
-                option_a:
-                    q.option_a,
+                    option_a:
+                        q.option_a,
 
-                option_b:
-                    q.option_b,
+                    option_b:
+                        q.option_b,
 
-                option_c:
-                    q.option_c,
+                    option_c:
+                        q.option_c,
 
-                option_d:
-                    q.option_d,
+                    option_d:
+                        q.option_d,
 
-                correct_answer:
-                    q.correct_answer,
+                    correct_answer:
+                        q.correct_answer,
 
-                points:
-                    q.points,
+                    points:
+                        q.points,
 
-                question_order:
-                    q.question_order,
+                    question_order:
+                        q.question_order,
 
-                level:
-                    q.level
+                    options:{
+                        A:q.option_a,
+                        B:q.option_b,
+                        C:q.option_c,
+                        D:q.option_d
+                    },
 
-            }));
+                    level:
+                        q.level
+
+                })
+            );
 
 
         const {
@@ -1128,7 +1418,9 @@ async function saveManual(){
         } =
         await supabaseClient
             .from("questions")
-            .insert(rows);
+            .insert(
+                rows
+            );
 
 
         if(questionError){
@@ -1146,7 +1438,7 @@ async function saveManual(){
         }
 
 
-        status(
+        showStatus(
             "تم إنشاء الاختبار اليدوي بنجاح ✅",
             "success"
         );
@@ -1154,8 +1446,10 @@ async function saveManual(){
 
         setTimeout(
             () => {
+
                 location.href =
                     "exams.html";
+
             },
             1200
         );
@@ -1163,12 +1457,15 @@ async function saveManual(){
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "MANUAL ERROR:",
+            error
+        );
 
-        status(
-            "حدث خطأ: " +
-            error.message,
-            "error"
+        showStatus(
+            "حدث خطأ أثناء حفظ الاختبار.",
+            "error",
+            error?.message || error
         );
 
     }
@@ -1177,35 +1474,55 @@ async function saveManual(){
 
 
 /* =====================================================
-   AI
+   AI GENERATION
 ===================================================== */
 
 async function generateAI(){
 
+    const button =
+        document.getElementById(
+            "generateButton"
+        );
+
+
     const exam =
         getExam();
 
+
     const topic =
         document
-            .getElementById("topic")
-            .value.trim();
+            .getElementById(
+                "topic"
+            )
+            .value
+            .trim();
+
 
     const count =
         Number(
             document
-                .getElementById("questionCount")
+                .getElementById(
+                    "questionCount"
+                )
                 .value
         );
 
+
     const level =
         document
-            .getElementById("level")
+            .getElementById(
+                "level"
+            )
             .value;
 
 
+    /* =================================================
+       VALIDATION
+    ================================================= */
+
     if(!exam.title){
 
-        status(
+        showStatus(
             "اكتب اسم الاختبار.",
             "error"
         );
@@ -1216,7 +1533,7 @@ async function generateAI(){
 
     if(!exam.grade){
 
-        status(
+        showStatus(
             "اختر الصف.",
             "error"
         );
@@ -1227,7 +1544,7 @@ async function generateAI(){
 
     if(!topic){
 
-        status(
+        showStatus(
             "اكتب موضوع الاختبار.",
             "error"
         );
@@ -1239,11 +1556,11 @@ async function generateAI(){
     if(
         !count ||
         count < 1 ||
-        count > 100
+        count > 50
     ){
 
-        status(
-            "عدد الأسئلة يجب أن يكون من 1 إلى 100.",
+        showStatus(
+            "عدد الأسئلة يجب أن يكون من 1 إلى 50.",
             "error"
         );
 
@@ -1251,13 +1568,28 @@ async function generateAI(){
     }
 
 
-    status(
-        "🤖 جاري إنشاء الأسئلة بالذكاء الاصطناعي...",
+    /* =================================================
+       BUTTON
+    ================================================= */
+
+    button.disabled =
+        true;
+
+    button.textContent =
+        "⏳ جاري إنشاء الأسئلة...";
+
+
+    showStatus(
+        "🤖 جاري الاتصال بالذكاء الاصطناعي وإنشاء الأسئلة...<br>قد يستغرق الأمر بعض الوقت.",
         "loading"
     );
 
 
     try{
+
+        /* =============================================
+           GET SESSION
+        ============================================= */
 
         const {
             data:{
@@ -1271,68 +1603,188 @@ async function generateAI(){
 
 
         if(
-            sessionError ||
-            !session
+            sessionError
         ){
 
             throw new Error(
-                "يجب تسجيل الدخول أولًا."
+                "تعذر قراءة جلسة تسجيل الدخول: " +
+                sessionError.message
             );
 
         }
 
 
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-            .functions
-            .invoke(
-                "generate-exam",
+        if(
+            !session ||
+            !session.access_token
+        ){
+
+            throw new Error(
+                "الجلسة غير موجودة. سجل الدخول مرة أخرى."
+            );
+
+        }
+
+
+        /* =============================================
+           REQUEST BODY
+        ============================================= */
+
+        const requestBody = {
+
+            title:
+                exam.title,
+
+            description:
+                exam.description,
+
+            grade:
+                exam.grade,
+
+            subject:
+                "رياضيات",
+
+            duration:
+                exam.duration,
+
+            question_count:
+                count,
+
+            level:
+                level,
+
+            exam_type:
+                "اختيار من متعدد",
+
+            topic:
+                topic
+
+        };
+
+
+        console.log(
+            "GENERATE EXAM REQUEST:",
+            requestBody
+        );
+
+
+        /* =============================================
+           FETCH EDGE FUNCTION
+        ============================================= */
+
+        const response =
+            await fetch(
+                GENERATE_EXAM_URL,
                 {
 
-                    body: {
+                    method:
+                        "POST",
 
-                        title:
-                            exam.title,
+                    headers:{
 
-                        description:
-                            exam.description,
+                        "Content-Type":
+                            "application/json",
 
-                        exam_code:
-                            exam.exam_code,
+                        "apikey":
+                            SUPABASE_KEY,
 
-                        grade:
-                            exam.grade,
+                        "Authorization":
+                            "Bearer " +
+                            session.access_token
 
-                        subject:
-                            "رياضيات",
+                    },
 
-                        duration:
-                            exam.duration,
-
-                        questionCount:
-                            count,
-
-                        level:
-                            level,
-
-                        topic:
-                            topic
-
-                    }
+                    body:
+                        JSON.stringify(
+                            requestBody
+                        )
 
                 }
             );
 
 
-        if(error){
+        /* =============================================
+           READ RESPONSE
+        ============================================= */
 
-            throw error;
+        const responseText =
+            await response.text();
+
+
+        console.log(
+            "EDGE STATUS:",
+            response.status
+        );
+
+        console.log(
+            "EDGE RESPONSE:",
+            responseText
+        );
+
+
+        /* =============================================
+           PARSE RESPONSE
+        ============================================= */
+
+        let data = null;
+
+        try{
+
+            data =
+                responseText
+                ?
+                JSON.parse(
+                    responseText
+                )
+                :
+                null;
+
+        }catch(parseError){
+
+            throw new Error(
+                "Edge Function أرسلت ردًا غير JSON: " +
+                responseText.substring(
+                    0,
+                    1000
+                )
+            );
 
         }
 
+
+        /* =============================================
+           HTTP ERROR
+        ============================================= */
+
+        if(
+            !response.ok
+        ){
+
+            let errorMessage =
+                data?.error ||
+                data?.message ||
+                "فشل تشغيل Edge Function.";
+
+            if(
+                data?.details
+            ){
+
+                errorMessage +=
+                    "<br><br>التفاصيل: " +
+                    data.details;
+
+            }
+
+            throw new Error(
+                errorMessage
+            );
+
+        }
+
+
+        /* =============================================
+           APPLICATION ERROR
+        ============================================= */
 
         if(
             !data ||
@@ -1341,40 +1793,87 @@ async function generateAI(){
 
             throw new Error(
                 data?.error ||
-                "فشل إنشاء الاختبار."
+                "الذكاء الاصطناعي لم ينشئ الاختبار."
             );
 
         }
 
 
-        status(
-            `تم إنشاء اختبار AI بنجاح ✅<br>
-             عدد الأسئلة: ${data.questions?.length || count}`,
+        /* =============================================
+           SUCCESS
+        ============================================= */
+
+        showStatus(
+            `
+            ✅ تم إنشاء اختبار AI بنجاح.
+            <br>
+            📚 الاختبار:
+            ${escapeHtml(
+                data.title ||
+                exam.title
+            )}
+            <br>
+            📝 عدد الأسئلة:
+            ${data.question_count ||
+             data.questions?.length ||
+             count}
+            <br>
+            🔑 كود الاختبار:
+            ${escapeHtml(
+                data.exam_code ||
+                exam.exam_code ||
+                ""
+            )}
+            `,
             "success"
+        );
+
+
+        console.log(
+            "AI EXAM SUCCESS:",
+            data
         );
 
 
         setTimeout(
             () => {
+
                 location.href =
                     "exams.html";
+
             },
-            1500
+            1800
         );
 
 
     }catch(error){
 
         console.error(
-            "AI ERROR:",
+            "AI GENERATION ERROR:",
             error
         );
 
-        status(
-            "خطأ في إنشاء اختبار AI:<br>" +
-            error.message,
+
+        showStatus(
+            `
+            ❌ فشل إنشاء اختبار AI.
+            <br><br>
+            ${escapeHtml(
+                error?.message ||
+                String(error)
+            )}
+            `,
             "error"
         );
+
+
+    }finally{
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            "🤖 إنشاء الاختبار بالـAI";
 
     }
 
@@ -1387,17 +1886,38 @@ async function generateAI(){
 
 async function checkAuth(){
 
-    const {
-        data:{
-            user
+    try{
+
+        const {
+            data:{
+                user
+            }
+        } =
+        await supabaseClient
+            .auth
+            .getUser();
+
+
+        if(!user){
+
+            location.href =
+                "login.html";
+
+            return;
+
         }
-    } =
-    await supabaseClient
-        .auth
-        .getUser();
 
+        console.log(
+            "Logged user:",
+            user.id
+        );
 
-    if(!user){
+    }catch(error){
+
+        console.error(
+            "AUTH ERROR:",
+            error
+        );
 
         location.href =
             "login.html";
@@ -1430,4 +1950,5 @@ checkAuth();
 </script>
 
 </body>
+
 </html>
