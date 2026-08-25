@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>الاختبار | الخوارزمي</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Tahoma,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    color:#fff;
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(116,72,232,.25),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(49,84,223,.20),
+            transparent 35%
+        ),
+        #050509;
+    padding:20px;
+}
+
+.container{
+    width:min(900px,100%);
+    margin:auto;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:900;
+}
+
+.logo span{
+    color:#805cff;
+}
+
+.back{
+    color:#fff;
+    text-decoration:none;
+    background:#171722;
+    border:1px solid rgba(255,255,255,.1);
+    padding:10px 16px;
+    border-radius:12px;
+}
+
+.card{
+    background:rgba(17,17,28,.92);
+    border:1px solid rgba(140,100,255,.18);
+    border-radius:22px;
+    padding:24px;
+    margin-bottom:18px;
+}
+
+.exam-title{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.exam-description{
+    color:#999;
+    line-height:1.8;
+}
+
+.info{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:18px;
+}
+
+.badge{
+    background:#0b0b13;
+    border:1px solid #29293b;
+    padding:8px 12px;
+    border-radius:10px;
+    color:#bbb;
+    font-size:14px;
+}
+
+.timer{
+    position:sticky;
+    top:10px;
+    z-index:10;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    color:#fff;
+}
+
+.timer.warning{
+    color:#ff737f;
+}
+
+.question{
+    background:#0b0b13;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:18px;
+}
+
+.question-number{
+    color:#a98cff;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.question-text{
+    font-size:18px;
+    line-height:1.9;
+    margin-bottom:18px;
+}
+
+.options{
+    display:grid;
+    gap:10px;
+}
+
+.option{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:#11111b;
+    border:1px solid #29293b;
+    border-radius:12px;
+    padding:14px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.option:hover{
+    border-color:#805cff;
+}
+
+.option.selected{
+    border-color:#805cff;
+    background:rgba(128,92,255,.13);
+}
+
+.option input{
+    accent-color:#805cff;
+    width:18px;
+    height:18px;
+}
+
+.submit{
+    width:100%;
+    border:0;
+    padding:15px;
+    border-radius:14px;
+    background:linear-gradient(
+        135deg,
+        #805cff,
+        #3154df
+    );
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.submit:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.loading,
+.error,
+.empty{
+    text-align:center;
+    padding:60px 20px;
+}
+
+.error{
+    color:#ff7d88;
+}
+
+.empty{
+    color:#aaa;
+}
+
+.result{
+    display:none;
+    text-align:center;
+}
+
+.result.show{
+    display:block;
+}
+
+.score{
+    font-size:45px;
+    font-weight:900;
+    color:#a98cff;
+    margin:15px 0;
+}
+
+.result-message{
+    color:#aaa;
+    margin-bottom:20px;
+}
+
+.home-btn{
+    display:inline-block;
+    text-decoration:none;
+    color:#fff;
+    background:linear-gradient(
+        135deg,
+        #805cff,
+        #3154df
+    );
+    padding:13px 25px;
+    border-radius:13px;
+}
+
+@media(max-width:600px){
+
+    body{
+        padding:12px;
+    }
+
+    .card{
+        padding:17px;
+    }
+
+    .exam-title{
+        font-size:23px;
+    }
+
+    .question-text{
+        font-size:16px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <div class="logo">
+            الخوارزمي <span>|</span> الاختبار
+        </div>
+
+        <a
+            href="tests.html"
+            class="back">
+            ← الاختبارات
+        </a>
+
+    </div>
+
+
+    <!-- التحميل -->
+
+    <div
+        id="loading"
+        class="card loading">
+
+        جاري تحميل الاختبار...
+
+    </div>
+
+
+    <!-- الخطأ -->
+
+    <div
+        id="error"
+        class="card error"
+        style="display:none">
+
+    </div>
+
+
+    <!-- الاختبار -->
+
+    <div
+        id="examContainer"
+        style="display:none">
+
+
+        <div class="card">
+
+            <h1
+                id="examTitle"
+                class="exam-title">
+            </h1>
+
+            <p
+                id="examDescription"
+                class="exam-description">
+            </p>
+
+
+            <div class="info">
+
+                <span
+                    id="examGrade"
+                    class="badge">
+                </span>
+
+                <span
+                    id="examDuration"
+                    class="badge">
+                </span>
+
+                <span
+                    id="questionCount"
+                    class="badge">
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- الوقت -->
+
+        <div
+            id="timer"
+            class="card timer">
+
+            ⏱
+            <span id="time">
+                00:00
+            </span>
+
+        </div>
+
+
+        <!-- الأسئلة -->
+
+        <div
+            id="questions">
+        </div>
+
+
+        <!-- إرسال -->
+
+        <div class="card">
+
+            <button
+                id="submitBtn"
+                class="submit"
+                type="button">
+
+                إنهاء الاختبار وتسليم الإجابات
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- النتيجة -->
+
+    <div
+        id="result"
+        class="card result">
+
+        <h2>
+            تم إنهاء الاختبار ✅
+        </h2>
+
+        <div
+            id="score"
+            class="score">
+            0 / 0
+        </div>
+
+        <div
+            id="resultMessage"
+            class="result-message">
+        </div>
+
+        <a
+            href="tests.html"
+            class="home-btn">
+
+            العودة إلى الاختبارات
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+
+
+<script>
+
+"use strict";
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const loading =
+    document.getElementById("loading");
+
+const errorBox =
+    document.getElementById("error");
+
+const examContainer =
+    document.getElementById("examContainer");
+
+const examTitle =
+    document.getElementById("examTitle");
+
+const examDescription =
+    document.getElementById("examDescription");
+
+const examGrade =
+    document.getElementById("examGrade");
+
+const examDuration =
+    document.getElementById("examDuration");
+
+const questionCount =
+    document.getElementById("questionCount");
+
+const questionsBox =
+    document.getElementById("questions");
+
+const timerBox =
+    document.getElementById("timer");
+
+const timeElement =
+    document.getElementById("time");
+
+const submitBtn =
+    document.getElementById("submitBtn");
+
+const resultBox =
+    document.getElementById("result");
+
+const scoreElement =
+    document.getElementById("score");
+
+const resultMessage =
+    document.getElementById("resultMessage");
+
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+const supabaseClient =
+    window.supabaseClient;
+
+
+if(!supabaseClient){
+
+    showError(
+        "Supabase غير متصل. تأكد من ملف js/supabase.js"
+    );
+
+}
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let currentExam = null;
+
+let currentQuestions = [];
+
+let currentUser = null;
+
+let timerInterval = null;
+
+let remainingSeconds = 0;
+
+let submitted = false;
+
+
+/* =====================================================
+   GET EXAM ID
+===================================================== */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const examId =
+    params.get("id");
+
+
+if(!examId){
+
+    showError(
+        "معرف الاختبار غير موجود في الرابط."
+    );
+
+}else{
+
+    loadExam();
+
+}
+
+
+/* =====================================================
+   LOAD EXAM
+===================================================== */
+
+async function loadExam(){
+
+    try{
+
+        if(!supabaseClient){
+
+            return;
+
+        }
+
+
+        /* ================================
+           USER
+        ================================= */
+
+        const {
+            data:{
+                user
+            },
+            error:userError
+        } =
+        await supabaseClient
+            .auth
+            .getUser();
+
+
+        if(userError){
+
+            throw userError;
+
+        }
+
+
+        if(!user){
+
+            location.href =
+                "auth.html";
+
+            return;
+
+        }
+
+
+        currentUser =
+            user;
+
+
+        /* ================================
+           EXAM
+        ================================= */
+
+        const {
+            data:exam,
+            error:examError
+        } =
+        await supabaseClient
+            .from("exams")
+            .select(`
+                id,
+                title,
+                description,
+                grade,
+                duration_minutes,
+                duration,
+                total_points,
+                exam_code,
+                is_active
+            `)
+            .eq(
+                "id",
+                examId
+            )
+            .maybeSingle();
+
+
+        if(examError){
+
+            throw examError;
+
+        }
+
+
+        if(!exam){
+
+            throw new Error(
+                "الاختبار غير موجود."
+            );
+
+        }
+
+
+        if(exam.is_active === false){
+
+            throw new Error(
+                "هذا الاختبار غير متاح حاليًا."
+            );
+
+        }
+
+
+        currentExam =
+            exam;
+
+
+        /* ================================
+           QUESTIONS
+        ================================= */
+
+        const {
+            data:questions,
+            error:questionsError
+        } =
+        await supabaseClient
+            .from("questions")
+            .select(`
+                id,
+                question_text,
+                question_type,
+                option_a,
+                option_b,
+                option_c,
+                option_d,
+                points,
+                question_order
+            `)
+            .eq(
+                "exam_id",
+                examId
+            )
+            .order(
+                "question_order",
+                {
+                    ascending:true
+                }
+            );
+
+
+        if(questionsError){
+
+            throw questionsError;
+
+        }
+
+
+        if(
+            !questions ||
+            questions.length === 0
+        ){
+
+            throw new Error(
+                "لا توجد أسئلة لهذا الاختبار."
+            );
+
+        }
+
+
+        currentQuestions =
+            questions;
+
+
+        /* ================================
+           DISPLAY
+        ================================= */
+
+        examTitle.textContent =
+            exam.title || "اختبار";
+
+        examDescription.textContent =
+            exam.description ||
+            "اختبار رياضيات";
+
+        examGrade.textContent =
+            "📚 " +
+            (exam.grade || "غير محدد");
+
+
+        const duration =
+            Number(
+                exam.duration_minutes ||
+                exam.duration ||
+                30
+            );
+
+
+        examDuration.textContent =
+            "⏱ " +
+            duration +
+            " دقيقة";
+
+
+        questionCount.textContent =
+            "📝 " +
+            questions.length +
+            " سؤال";
+
+
+        renderQuestions();
+
+
+        loading.style.display =
+            "none";
+
+        examContainer.style.display =
+            "block";
+
+
+        startTimer(
+            duration * 60
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "LOAD EXAM ERROR:",
+            error
+        );
+
+        showError(
+            "فشل تحميل الاختبار:<br><br>" +
+            escapeHTML(
+                error.message ||
+                "خطأ غير معروف"
+            )
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER QUESTIONS
+===================================================== */
+
+function renderQuestions(){
+
+    questionsBox.innerHTML = "";
+
+
+    currentQuestions.forEach(
+        (question,index) => {
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "card question";
+
+
+            const questionNumber =
+                index + 1;
+
+
+            card.innerHTML = `
+
+                <div class="question-number">
+                    السؤال ${questionNumber}
+                </div>
+
+                <div class="question-text">
+                    ${escapeHTML(
+                        question.question_text
+                    )}
+                </div>
+
+                <div class="options">
+
+                    ${createOption(
+                        question.id,
+                        "a",
+                        question.option_a
+                    )}
+
+                    ${createOption(
+                        question.id,
+                        "b",
+                        question.option_b
+                    )}
+
+                    ${createOption(
+                        question.id,
+                        "c",
+                        question.option_c
+                    )}
+
+                    ${createOption(
+                        question.id,
+                        "d",
+                        question.option_d
+                    )}
+
+                </div>
+
+            `;
+
+
+            questionsBox.appendChild(card);
+
+        }
+    );
+
+
+    /* ================================
+       اختيار الإجابة
+    ================================= */
+
+    document
+        .querySelectorAll(
+            ".option input"
+        )
+        .forEach(input => {
+
+            input.addEventListener(
+                "change",
+                function(){
+
+                    const all =
+                        document.querySelectorAll(
+                            `input[name="${this.name}"]`
+                        );
+
+                    all.forEach(
+                        radio => {
+
+                            radio
+                                .closest(".option")
+                                ?.classList
+                                .remove("selected");
+
+                        }
+                    );
+
+
+                    this
+                        .closest(".option")
+                        ?.classList
+                        .add("selected");
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =====================================================
+   CREATE OPTION
+===================================================== */
+
+function createOption(
+    questionId,
+    letter,
+    text
+){
+
+    if(
+        text === null ||
+        text === undefined ||
+        String(text).trim() === ""
+    ){
+
+        return "";
+
+    }
+
+
+    return `
+
+        <label class="option">
+
+            <input
+                type="radio"
+                name="question_${escapeHTML(questionId)}"
+                value="${letter}">
+
+            <span>
+                ${escapeHTML(text)}
+            </span>
+
+        </label>
+
+    `;
+
+}
+
+
+/* =====================================================
+   TIMER
+===================================================== */
+
+function startTimer(seconds){
+
+    remainingSeconds =
+        Number(seconds) || 1800;
+
+
+    updateTimer();
+
+
+    timerInterval =
+        setInterval(
+            () => {
+
+                remainingSeconds--;
+
+                updateTimer();
+
+
+                if(
+                    remainingSeconds <= 0
+                ){
+
+                    clearInterval(
+                        timerInterval
+                    );
+
+                    submitExam(
+                        true
+                    );
+
+                }
+
+            },
+            1000
+        );
+
+}
+
+
+/* =====================================================
+   UPDATE TIMER
+===================================================== */
+
+function updateTimer(){
+
+    const minutes =
+        Math.floor(
+            remainingSeconds / 60
+        );
+
+    const seconds =
+        remainingSeconds % 60;
+
+
+    timeElement.textContent =
+        String(minutes)
+            .padStart(2,"0") +
+        ":" +
+        String(seconds)
+            .padStart(2,"0");
+
+
+    if(
+        remainingSeconds <= 60
+    ){
+
+        timerBox.classList.add(
+            "warning"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   SUBMIT
+===================================================== */
+
+submitBtn.addEventListener(
+    "click",
+    () => {
+
+        if(submitted){
+            return;
+        }
+
+
+        const unanswered =
+            currentQuestions.filter(
+                question => {
+
+                    return !document.querySelector(
+                        `input[name="question_${question.id}"]:checked`
+                    );
+
+                }
+            );
+
+
+        if(unanswered.length > 0){
+
+            const confirmed =
+                confirm(
+                    `يوجد ${unanswered.length} سؤال بدون إجابة.\n\nهل تريد إنهاء الاختبار؟`
+                );
+
+
+            if(!confirmed){
+
+                return;
+
+            }
+
+        }
+
+
+        submitExam(false);
+
+    }
+);
+
+
+/* =====================================================
+   SUBMIT EXAM
+===================================================== */
+
+async function submitExam(
+    autoSubmit
+){
+
+    if(submitted){
+        return;
+    }
+
+
+    submitted = true;
+
+
+    if(timerInterval){
+
+        clearInterval(
+            timerInterval
+        );
+
+    }
+
+
+    submitBtn.disabled =
+        true;
+
+
+    let score = 0;
+
+    let total = 0;
+
+
+    /*
+     * مهم:
+     * الإجابة الصحيحة لا يتم جلبها
+     * في واجهة الطالب.
+     *
+     * لذلك نرسل الإجابات إلى Edge Function
+     * لو كانت موجودة.
+     */
+
+    const answers =
+        currentQuestions.map(
+            question => {
+
+                const selected =
+                    document.querySelector(
+                        `input[name="question_${question.id}"]:checked`
+                    );
+
+
+                return {
+
+                    question_id:
+                        question.id,
+
+                    answer:
+                        selected
+                            ? selected.value
+                            : null
+
+                };
+
+            }
+        );
+
+
+    try{
+
+        /*
+         * نحاول استخدام Edge Function
+         * لحساب النتيجة وحفظها بأمان.
+         */
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+            .functions
+            .invoke(
+                "submit-exam",
+                {
+                    body:{
+                        exam_id:
+                            currentExam.id,
+
+                        answers:
+                            answers
+                    }
+                }
+            );
+
+
+        if(
+            !error &&
+            data &&
+            data.success
+        ){
+
+            score =
+                Number(
+                    data.score || 0
+                );
+
+            total =
+                Number(
+                    data.total_points ||
+                    currentExam.total_points ||
+                    0
+                );
+
+
+        }else{
+
+            /*
+             * لو submit-exam غير موجود،
+             * نحاول الحساب محليًا.
+             *
+             * لن نحتاج الإجابة الصحيحة
+             * من قاعدة البيانات في الصفحة
+             * في الحالة الطبيعية.
+             */
+
+            throw new Error(
+                error?.message ||
+                data?.error ||
+                "دالة submit-exam غير متاحة."
+            );
+
+        }
+
+
+        showResult(
+            score,
+            total,
+            autoSubmit
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "SUBMIT EXAM ERROR:",
+            error
+        );
+
+
+        submitted =
+            false;
+
+        submitBtn.disabled =
+            false;
+
+
+        alert(
+            "تعذر تسليم الاختبار.\n\n" +
+            (
+                error.message ||
+                "حدث خطأ"
+            )
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+function showResult(
+    score,
+    total,
+    autoSubmit
+){
+
+    examContainer.style.display =
+        "none";
+
+
+    resultBox.classList.add(
+        "show"
+    );
+
+
+    scoreElement.textContent =
+        `${score} / ${total}`;
+
+
+    if(autoSubmit){
+
+        resultMessage.textContent =
+            "انتهى الوقت وتم تسليم الاختبار تلقائيًا.";
+
+    }else{
+
+        resultMessage.textContent =
+            "تم تسليم الاختبار بنجاح.";
+
+    }
+
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+function showError(message){
+
+    loading.style.display =
+        "none";
+
+    examContainer.style.display =
+        "none";
+
+    errorBox.style.display =
+        "block";
+
+    errorBox.innerHTML =
+        message;
+
+}
+
+
+/* =====================================================
+   ESCAPE
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+</script>
+
+</body>
+</html>
