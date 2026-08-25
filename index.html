@@ -1208,6 +1208,348 @@ footer span{
     }
 }
 
+    /* =====================================================
+   KHARWIZMI MESSAGE
+===================================================== */
+
+.khwarizmi-message{
+    margin-top:45px;
+}
+
+.message-box{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:35px;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(116,72,232,.14),
+            rgba(49,84,223,.08),
+            rgba(255,255,255,.025)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.09);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.25);
+}
+
+.message-glow{
+
+    position:absolute;
+
+    width:300px;
+    height:300px;
+
+    left:-130px;
+    top:-140px;
+
+    border-radius:50%;
+
+    background:
+        rgba(116,72,232,.18);
+
+    filter:blur(50px);
+
+    pointer-events:none;
+}
+
+.message-content{
+
+    position:relative;
+
+    z-index:2;
+}
+
+.message-badge{
+
+    display:inline-flex;
+
+    padding:8px 15px;
+
+    border-radius:30px;
+
+    color:#cfc4ff;
+
+    background:
+        rgba(116,72,232,.12);
+
+    border:
+        1px solid
+        rgba(116,72,232,.25);
+
+    font-size:12px;
+
+    font-weight:bold;
+}
+
+.message-content h2{
+
+    margin-top:15px;
+
+    font-size:
+        clamp(25px,5vw,38px);
+
+    font-weight:900;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #a98cff
+        );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.message-intro{
+
+    max-width:700px;
+
+    margin-top:12px;
+
+    color:#92929e;
+
+    line-height:2;
+
+    font-size:14px;
+}
+
+
+/* ================= GOALS ================= */
+
+.message-goals{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:13px;
+
+    margin-top:25px;
+}
+
+.goal-card{
+
+    padding:18px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+
+    transition:.3s;
+}
+
+.goal-card:hover{
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(116,72,232,.35);
+
+    background:
+        rgba(116,72,232,.07);
+}
+
+.goal-icon{
+
+    width:45px;
+    height:45px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:14px;
+
+    background:
+        rgba(116,72,232,.13);
+
+    font-size:22px;
+
+    margin-bottom:12px;
+}
+
+.goal-card h3{
+
+    font-size:15px;
+
+    margin-bottom:7px;
+}
+
+.goal-card p{
+
+    color:#81818d;
+
+    font-size:12px;
+
+    line-height:1.8;
+}
+
+
+/* ================= SUCCESS ================= */
+
+.success-message{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-top:18px;
+
+    padding:18px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,193,7,.07),
+            rgba(116,72,232,.06)
+        );
+
+    border:
+        1px solid
+        rgba(255,193,7,.12);
+}
+
+.success-icon{
+
+    width:55px;
+    height:55px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:17px;
+
+    background:
+        rgba(255,193,7,.09);
+
+    font-size:27px;
+}
+
+.success-message strong{
+
+    font-size:16px;
+}
+
+.success-message p{
+
+    margin-top:5px;
+
+    color:#888894;
+
+    font-size:12px;
+
+    line-height:1.8;
+}
+
+
+/* ================= QUOTE ================= */
+
+.khwarizmi-quote{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:18px;
+
+    padding-top:18px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.07);
+}
+
+.khwarizmi-quote > span{
+
+    color:#8d6cff;
+
+    font-size:35px;
+
+    line-height:1;
+}
+
+.khwarizmi-quote strong{
+
+    font-size:14px;
+}
+
+.khwarizmi-quote p{
+
+    margin-top:5px;
+
+    color:#777783;
+
+    font-size:12px;
+
+    line-height:1.8;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+    .message-goals{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:560px){
+
+    .message-box{
+
+        padding:23px 17px;
+
+        border-radius:24px;
+
+    }
+
+    .message-goals{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .success-message{
+
+        align-items:flex-start;
+
+    }
+
+}
+
 </style>
 
 </head>
@@ -1547,38 +1889,160 @@ class="offer-content"
 </div>
 
 
-<!-- ================= BEST STUDENTS ================= -->
+<!-- =====================================================
+     رسالة الخوارزمي
+===================================================== -->
 
-<section class="section">
+<section class="section khwarizmi-message">
 
-    <div class="section-title">
+    <div class="message-box">
 
-        <h2>🏆 أفضل الطلاب</h2>
+        <div class="message-glow"></div>
 
-        <a
-            href="top-students.html"
-            class="secondary-btn"
-        >
-            🏆 عرض الكل
-        </a>
+        <div class="message-content">
+
+            <div class="message-badge">
+                ✨ رسالة من الخوارزمي
+            </div>
+
+            <h2>
+                مستقبلك يبدأ من قرارك اليوم
+            </h2>
+
+            <p class="message-intro">
+                لا تنتظر أن تكون مستعدًا تمامًا...
+                ابدأ، ذاكر، جرّب، واخطئ ثم تعلّم.
+                كل خطوة صغيرة تقرّبك من هدفك.
+            </p>
+
+
+            <div class="message-goals">
+
+                <div class="goal-card">
+
+                    <div class="goal-icon">
+                        🎯
+                    </div>
+
+                    <div>
+                        <h3>حدد هدفك</h3>
+
+                        <p>
+                            اعرف أنت عايز توصل لفين،
+                            وحط لنفسك هدف واضح واسعى له كل يوم.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="goal-card">
+
+                    <div class="goal-icon">
+                        📚
+                    </div>
+
+                    <div>
+                        <h3>ذاكر بانتظام</h3>
+
+                        <p>
+                            مش مهم تذاكر ساعات طويلة،
+                            المهم تستمر وتراجع كل يوم.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="goal-card">
+
+                    <div class="goal-icon">
+                        🧠
+                    </div>
+
+                    <div>
+                        <h3>اتعلم من أخطائك</h3>
+
+                        <p>
+                            الغلط مش فشل، الغلط فرصة تعرف
+                            نقطة ضعفك وتحسن مستواك.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="goal-card">
+
+                    <div class="goal-icon">
+                        🏆
+                    </div>
+
+                    <div>
+                        <h3>نافس نفسك</h3>
+
+                        <p>
+                            هدفك الحقيقي إنك تكون أفضل من
+                            نفسك اللي كانت موجودة امبارح.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="success-message">
+
+                <div class="success-icon">
+                    🥇
+                </div>
+
+                <div>
+
+                    <strong>
+                        نفسك تكون الأول؟
+                    </strong>
+
+                    <p>
+                        ابدأ من دلوقتي.
+                        كل درجة بتجمعها،
+                        وكل اختبار بتنجحه،
+                        بيقربك خطوة من الترتيب اللي بتحلم بيه.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="khwarizmi-quote">
+
+                <span>❝</span>
+
+                <div>
+                    <strong>
+                        في الخوارزمي...
+                    </strong>
+
+                    <p>
+                        إحنا مش بنساعدك تنجح في الامتحان بس،
+                        إحنا بنساعدك تبني عقل يعرف يحقق أهدافه.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
-    <iframe
-        src="top-students.html"
-        style="
-            width:100%;
-            min-height:500px;
-            border:0;
-            border-radius:20px;
-        "
-        loading="lazy"
-        title="أفضل الطلاب"
-    ></iframe>
-
 </section>
-<!-- ================= DEVELOPER ================= -->
-
+    
+<!-- =====================================================
+     المطور ي بررووو
+===================================================== -->
+    
 <section class="developer">
 
 <div class="container">
