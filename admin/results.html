@@ -21,18 +21,17 @@ body{
     background:
         radial-gradient(
             circle at 15% 10%,
-            rgba(116,72,232,.22),
+            rgba(116,72,232,.25),
             transparent 35%
         ),
         radial-gradient(
-            circle at 90% 90%,
-            rgba(49,84,223,.18),
+            circle at 90% 85%,
+            rgba(49,84,223,.20),
             transparent 35%
         ),
         #050509;
-
     color:#fff;
-    padding:15px;
+    padding:12px;
 }
 
 .container{
@@ -50,7 +49,7 @@ body{
 }
 
 .logo{
-    font-size:23px;
+    font-size:22px;
     font-weight:900;
 }
 
@@ -63,7 +62,7 @@ body{
     text-decoration:none;
     background:#171722;
     border:1px solid rgba(255,255,255,.1);
-    padding:10px 14px;
+    padding:10px 13px;
     border-radius:11px;
 }
 
@@ -78,27 +77,26 @@ body{
 .title{
     font-size:25px;
     font-weight:900;
-    margin-bottom:6px;
+    margin-bottom:7px;
 }
 
 .subtitle{
-    color:#888;
-    line-height:1.7;
+    color:#999;
+    line-height:1.8;
 }
 
 .stats{
     display:grid;
-    grid-template-columns:
-        repeat(4,1fr);
+    grid-template-columns:repeat(4,1fr);
     gap:12px;
-    margin-top:15px;
+    margin-top:18px;
 }
 
 .stat{
     background:#0b0b13;
     border:1px solid #29293b;
     border-radius:14px;
-    padding:16px;
+    padding:15px;
 }
 
 .stat-title{
@@ -127,6 +125,45 @@ body{
     border-color:#805cff;
 }
 
+.refresh{
+    width:100%;
+    border:0;
+    margin-top:10px;
+    padding:13px;
+    border-radius:12px;
+    background:linear-gradient(
+        135deg,
+        #805cff,
+        #3154df
+    );
+    color:#fff;
+    font-weight:bold;
+    font-size:15px;
+}
+
+.loading{
+    text-align:center;
+    padding:45px 15px;
+    color:#aaa;
+}
+
+.error{
+    display:none;
+    background:#180b0e;
+    border:1px solid rgba(255,70,90,.35);
+    color:#ffd1d5;
+    line-height:1.8;
+    white-space:pre-wrap;
+    word-break:break-word;
+}
+
+.empty{
+    display:none;
+    text-align:center;
+    padding:45px;
+    color:#888;
+}
+
 .table-wrap{
     overflow-x:auto;
 }
@@ -134,7 +171,7 @@ body{
 table{
     width:100%;
     border-collapse:collapse;
-    min-width:900px;
+    min-width:950px;
 }
 
 th{
@@ -156,6 +193,24 @@ tr:hover td{
     background:rgba(128,92,255,.05);
 }
 
+.student-name{
+    font-weight:900;
+    font-size:15px;
+}
+
+.student-id{
+    color:#666;
+    font-size:10px;
+    direction:ltr;
+    display:block;
+    margin-top:5px;
+}
+
+.points{
+    color:#c4aaff;
+    font-weight:900;
+}
+
 .badge{
     display:inline-block;
     padding:6px 10px;
@@ -167,77 +222,14 @@ tr:hover td{
 .success{
     color:#61e6a7;
     background:rgba(40,180,110,.12);
-    border:1px solid rgba(40,180,110,.2);
 }
 
 .fail{
     color:#ff6f7c;
     background:rgba(255,70,90,.10);
-    border:1px solid rgba(255,70,90,.2);
-}
-
-.points{
-    color:#c4aaff;
-    font-weight:900;
-}
-
-.loading{
-    text-align:center;
-    padding:45px;
-    color:#aaa;
-}
-
-.error{
-    display:none;
-    color:#ffd1d5;
-    background:#170b0e;
-    border:1px solid rgba(255,70,90,.3);
-    line-height:1.8;
-    white-space:pre-wrap;
-    word-break:break-word;
-}
-
-.empty{
-    display:none;
-    text-align:center;
-    padding:45px;
-    color:#888;
-}
-
-.refresh{
-    border:0;
-    background:linear-gradient(
-        135deg,
-        #805cff,
-        #3154df
-    );
-    color:#fff;
-    padding:12px 18px;
-    border-radius:11px;
-    font-weight:bold;
-    cursor:pointer;
-    margin-top:12px;
-}
-
-@media(max-width:700px){
-
-    body{
-        padding:9px;
-    }
-
-    .stats{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .title{
-        font-size:21px;
-    }
-
 }
 
 </style>
-
 </head>
 
 <body>
@@ -267,13 +259,12 @@ tr:hover td{
     <div class="card">
 
         <div class="title">
-            📊 نتائج الاختبارات
+            📊 نتائج الطلاب
         </div>
 
         <div class="subtitle">
-            جميع نتائج الطلاب والنقاط المكتسبة من الاختبارات.
+            هنا تظهر نتائج جميع الطلاب والنقاط التي حصلوا عليها.
         </div>
-
 
         <div class="stats">
 
@@ -369,7 +360,7 @@ tr:hover td{
     <!-- ERROR -->
 
     <div
-        id="error"
+        id="errorBox"
         class="card error"
     ></div>
 
@@ -427,7 +418,7 @@ tr:hover td{
                         </th>
 
                         <th>
-                            الحالة
+                            النتيجة
                         </th>
 
                         <th>
@@ -476,7 +467,7 @@ const loading =
 
 const errorBox =
     document.getElementById(
-        "error"
+        "errorBox"
     );
 
 const emptyBox =
@@ -489,7 +480,7 @@ const tableCard =
         "tableCard"
     );
 
-const body =
+const resultsBody =
     document.getElementById(
         "resultsBody"
     );
@@ -497,6 +488,11 @@ const body =
 const search =
     document.getElementById(
         "search"
+    );
+
+const refresh =
+    document.getElementById(
+        "refresh"
     );
 
 
@@ -510,30 +506,17 @@ let allResults = [];
 
 
 /* =====================================================
-   ERROR
+   ESCAPE
 ===================================================== */
 
-function showError(message){
+function escapeHTML(value){
 
-    console.error(
-        message
-    );
-
-    loading.style.display =
-        "none";
-
-    tableCard.style.display =
-        "none";
-
-    emptyBox.style.display =
-        "none";
-
-    errorBox.style.display =
-        "block";
-
-    errorBox.textContent =
-        "⚠️ حدث خطأ:\n\n" +
-        message;
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
 
@@ -550,18 +533,16 @@ function formatDate(value){
 
     try{
 
-        return new Date(
-            value
-        ).toLocaleString(
-            "ar-EG",
-            {
-                dateStyle:"medium",
-                timeStyle:"short"
-            }
-        );
+        return new Date(value)
+            .toLocaleString(
+                "ar-EG",
+                {
+                    dateStyle:"medium",
+                    timeStyle:"short"
+                }
+            );
 
-    }
-    catch{
+    }catch{
 
         return value;
 
@@ -571,7 +552,37 @@ function formatDate(value){
 
 
 /* =====================================================
-   LOAD
+   ERROR
+===================================================== */
+
+function showError(message){
+
+    console.error(
+        "RESULTS ERROR:",
+        message
+    );
+
+    loading.style.display =
+        "none";
+
+    tableCard.style.display =
+        "none";
+
+    emptyBox.style.display =
+        "none";
+
+    errorBox.style.display =
+        "block";
+
+    errorBox.textContent =
+        "⚠️ حدث خطأ\n\n" +
+        message;
+
+}
+
+
+/* =====================================================
+   LOAD RESULTS
 ===================================================== */
 
 async function loadResults(){
@@ -591,6 +602,10 @@ async function loadResults(){
             "none";
 
 
+        /* =============================================
+           SUPABASE
+        ============================================= */
+
         client =
             window.supabaseClient;
 
@@ -598,7 +613,9 @@ async function loadResults(){
         if(!client){
 
             showError(
-                "لم يتم إنشاء اتصال Supabase."
+                "لم يتم إنشاء اتصال Supabase.\n\n" +
+                "تأكد من ملف:\n" +
+                "../js/supabase.js"
             );
 
             return;
@@ -607,7 +624,7 @@ async function loadResults(){
 
 
         /* =============================================
-           AUTH
+           USER
         ============================================= */
 
         const {
@@ -638,13 +655,9 @@ async function loadResults(){
         }
 
 
-        /*
-         * نقرأ النتائج.
-         *
-         * لا نستخدم join مع profiles
-         * حتى لا نكسر الاستعلام لو
-         * العلاقة غير معرفة في Supabase.
-         */
+        /* =============================================
+           RESULTS
+        ============================================= */
 
         const {
             data:results,
@@ -672,34 +685,18 @@ async function loadResults(){
         }
 
 
-        if(
-            !results ||
-            results.length === 0
-        ){
-
-            allResults = [];
-
-            updateStats();
-
-            loading.style.display =
-                "none";
-
-            emptyBox.style.display =
-                "block";
-
-            return;
-
-        }
+        allResults =
+            results || [];
 
 
-        /*
-         * جلب أسماء الاختبارات
-         */
+        /* =============================================
+           EXAMS
+        ============================================= */
 
         const examIds =
             [
                 ...new Set(
-                    results
+                    allResults
                         .map(
                             r => r.exam_id
                         )
@@ -711,7 +708,7 @@ async function loadResults(){
         let exams = [];
 
 
-        if(examIds.length){
+        if(examIds.length > 0){
 
             const {
                 data:examData,
@@ -728,68 +725,76 @@ async function loadResults(){
                 );
 
 
-            if(examError){
-
-                console.warn(
-                    "Exam names error:",
-                    examError.message
-                );
-
-            }
-            else{
+            if(!examError){
 
                 exams =
                     examData || [];
 
-            }
-
-        }
-
-
-        /*
-         * جلب النقاط
-         */
-
-        const resultIds =
-            results
-                .map(
-                    r => r.id
-                )
-                .filter(Boolean);
-
-
-        let points = [];
-
-
-        if(resultIds.length){
-
-            const {
-                data:pointsData,
-                error:pointsError
-            } =
-            await client
-                .from("student_points")
-                .select(
-                    "result_id,points"
-                )
-                .in(
-                    "result_id",
-                    resultIds
-                );
-
-
-            if(pointsError){
+            }else{
 
                 console.warn(
-                    "Points error:",
-                    pointsError.message
+                    "EXAMS:",
+                    examError.message
                 );
 
             }
-            else{
 
-                points =
-                    pointsData || [];
+        }
+
+
+        /* =============================================
+           STUDENTS
+        ============================================= */
+
+        const studentIds =
+            [
+                ...new Set(
+                    allResults
+                        .map(
+                            r => r.student_id
+                        )
+                        .filter(Boolean)
+                )
+            ];
+
+
+        let students = [];
+
+
+        /*
+         * أول محاولة:
+         * جدول students
+         */
+
+        if(studentIds.length > 0){
+
+            const {
+                data:studentData,
+                error:studentError
+            } =
+            await client
+                .from("students")
+                .select("*")
+                .in(
+                    "id",
+                    studentIds
+                );
+
+
+            if(
+                !studentError &&
+                studentData
+            ){
+
+                students =
+                    studentData;
+
+            }else{
+
+                console.warn(
+                    "students table:",
+                    studentError?.message
+                );
 
             }
 
@@ -797,27 +802,104 @@ async function loadResults(){
 
 
         /*
-         * بناء البيانات النهائية
+         * ثاني محاولة:
+         * profiles
          */
 
+        let profiles = [];
+
+
+        if(studentIds.length > 0){
+
+            const {
+                data:profileData,
+                error:profileError
+            } =
+            await client
+                .from("profiles")
+                .select("*")
+                .in(
+                    "id",
+                    studentIds
+                );
+
+
+            if(
+                !profileError &&
+                profileData
+            ){
+
+                profiles =
+                    profileData;
+
+            }else{
+
+                console.warn(
+                    "profiles table:",
+                    profileError?.message
+                );
+
+            }
+
+        }
+
+
+        /* =============================================
+           BUILD
+        ============================================= */
+
         allResults =
-            results.map(
+            allResults.map(
                 result => {
 
                     const exam =
                         exams.find(
                             e =>
-                                e.id ===
-                                result.exam_id
+                                String(e.id) ===
+                                String(result.exam_id)
                         );
 
 
-                    const point =
-                        points.find(
+                    const student =
+                        students.find(
+                            s =>
+                                String(s.id) ===
+                                String(result.student_id)
+                        );
+
+
+                    const profile =
+                        profiles.find(
                             p =>
-                                p.result_id ===
-                                result.id
+                                String(p.id) ===
+                                String(result.student_id)
                         );
+
+
+                    /*
+                     * نحاول معرفة الاسم من
+                     * أكثر من اسم محتمل للعمود
+                     */
+
+                    const studentName =
+
+                        student?.name ||
+
+                        student?.full_name ||
+
+                        student?.student_name ||
+
+                        student?.display_name ||
+
+                        profile?.name ||
+
+                        profile?.full_name ||
+
+                        profile?.student_name ||
+
+                        profile?.display_name ||
+
+                        "اسم الطالب غير موجود";
 
 
                     return {
@@ -828,18 +910,18 @@ async function loadResults(){
                             exam?.title ||
                             "اختبار غير معروف",
 
-                        points:
-                            Number(
-                                point?.points ??
-                                result.score ??
-                                0
-                            )
+                        studentName:
+                            studentName
 
                     };
 
                 }
             );
 
+
+        /* =============================================
+           DISPLAY
+        ============================================= */
 
         updateStats();
 
@@ -848,8 +930,7 @@ async function loadResults(){
         );
 
 
-    }
-    catch(error){
+    }catch(error){
 
         showError(
             error?.message ||
@@ -873,8 +954,9 @@ function updateStats(){
 
     const passed =
         allResults.filter(
-            r =>
-                r.passed === true
+            result =>
+                result.passed === true ||
+                result.passed === "true"
         ).length;
 
 
@@ -882,15 +964,21 @@ function updateStats(){
         total - passed;
 
 
-    const points =
+    const totalPoints =
         allResults.reduce(
-            (sum,r) =>
-                sum +
-                (
-                    Number(
-                        r.points
-                    ) || 0
-                ),
+            (
+                sum,
+                result
+            ) => {
+
+                return sum +
+                    (
+                        Number(
+                            result.score
+                        ) || 0
+                    );
+
+            },
             0
         );
 
@@ -916,7 +1004,7 @@ function updateStats(){
     document.getElementById(
         "totalPoints"
     ).textContent =
-        points;
+        totalPoints;
 
 }
 
@@ -931,7 +1019,7 @@ function renderResults(results){
         "none";
 
 
-    body.innerHTML =
+    resultsBody.innerHTML =
         "";
 
 
@@ -968,30 +1056,29 @@ function renderResults(results){
 
 
             const passed =
-                result.passed === true;
+                result.passed === true ||
+                result.passed === "true";
 
 
             row.innerHTML = `
 
                 <td>
 
-                    <strong>
-                        الطالب
-                    </strong>
+                    <div class="student-name">
 
-                    <br>
+                        ${escapeHTML(
+                            result.studentName
+                        )}
 
-                    <small
-                        style="
-                            color:#777;
-                            direction:ltr;
-                            display:inline-block;
-                        "
-                    >
+                    </div>
+
+                    <span class="student-id">
+
                         ${escapeHTML(
                             result.student_id
                         )}
-                    </small>
+
+                    </span>
 
                 </td>
 
@@ -1036,12 +1123,11 @@ function renderResults(results){
                 <td>
 
                     <span
-                        class="
-                            badge
-                            ${passed
-                                ? "success"
-                                : "fail"}
-                        "
+                        class="badge ${
+                            passed
+                            ? "success"
+                            : "fail"
+                        }"
                     >
 
                         ${
@@ -1059,11 +1145,13 @@ function renderResults(results){
 
                     <span class="points">
 
-                        ⭐ +
+                        ⭐
 
                         ${escapeHTML(
-                            result.points
+                            result.score
                         )}
+
+                        نقطة
 
                     </span>
 
@@ -1083,7 +1171,7 @@ function renderResults(results){
             `;
 
 
-            body.appendChild(
+            resultsBody.appendChild(
                 row
             );
 
@@ -1094,31 +1182,15 @@ function renderResults(results){
 
 
 /* =====================================================
-   ESCAPE
-===================================================== */
-
-function escapeHTML(value){
-
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
-
-
-/* =====================================================
    SEARCH
 ===================================================== */
 
 search.addEventListener(
     "input",
-    () => {
+    function(){
 
         const value =
-            search.value
+            this.value
                 .trim()
                 .toLowerCase();
 
@@ -1141,10 +1213,12 @@ search.addEventListener(
                     return (
 
                         String(
-                            result.student_id
+                            result.studentName
                         )
                         .toLowerCase()
-                        .includes(value)
+                        .includes(
+                            value
+                        )
 
                         ||
 
@@ -1152,7 +1226,19 @@ search.addEventListener(
                             result.examTitle
                         )
                         .toLowerCase()
-                        .includes(value)
+                        .includes(
+                            value
+                        )
+
+                        ||
+
+                        String(
+                            result.student_id
+                        )
+                        .toLowerCase()
+                        .includes(
+                            value
+                        )
 
                     );
 
@@ -1172,16 +1258,14 @@ search.addEventListener(
    REFRESH
 ===================================================== */
 
-document
-    .getElementById("refresh")
-    .addEventListener(
-        "click",
-        loadResults
-    );
+refresh.addEventListener(
+    "click",
+    loadResults
+);
 
 
 /* =====================================================
-   RUN
+   START
 ===================================================== */
 
 loadResults();
