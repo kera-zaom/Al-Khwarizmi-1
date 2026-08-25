@@ -14,61 +14,103 @@
 
 <style>
 
+/* =====================================================
+   RESET
+===================================================== */
+
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:Arial,Tahoma,sans-serif;
+    font-family:
+        Arial,
+        Tahoma,
+        sans-serif;
 }
+
+
+/* =====================================================
+   BODY
+===================================================== */
 
 body{
 
     min-height:100vh;
 
     background:
+
         radial-gradient(
             circle at 15% 10%,
             rgba(116,72,232,.25),
             transparent 35%
         ),
+
         radial-gradient(
             circle at 90% 85%,
             rgba(49,84,223,.20),
             transparent 35%
         ),
+
         #050509;
 
     color:#fff;
+
     padding:12px;
+
 }
 
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
 .container{
+
     width:100%;
+
     max-width:900px;
+
     margin:auto;
+
 }
+
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 .header{
 
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     gap:10px;
+
     margin-bottom:18px;
+
 }
 
 .logo{
+
     font-size:21px;
+
     font-weight:900;
+
 }
 
 .logo span{
+
     color:#805cff;
+
 }
 
 .back{
 
     color:#fff;
+
     text-decoration:none;
 
     background:#171722;
@@ -80,7 +122,13 @@ body{
     border-radius:10px;
 
     white-space:nowrap;
+
 }
+
+
+/* =====================================================
+   CARD
+===================================================== */
 
 .card{
 
@@ -93,7 +141,13 @@ body{
     padding:18px;
 
     margin-bottom:15px;
+
 }
+
+
+/* =====================================================
+   LOADING
+===================================================== */
 
 .loading{
 
@@ -102,6 +156,7 @@ body{
     padding:50px 15px;
 
     color:#bbb;
+
 }
 
 .loading-icon{
@@ -109,15 +164,24 @@ body{
     font-size:35px;
 
     margin-bottom:15px;
+
 }
+
+
+/* =====================================================
+   ERROR
+===================================================== */
 
 .error{
 
     display:none;
 
-    border-color:rgba(255,70,90,.4);
+    border-color:
+        rgba(255,70,90,.4);
 
-    background:rgba(80,15,25,.45);
+    background:
+        rgba(80,15,25,.45);
+
 }
 
 .error-title{
@@ -129,6 +193,7 @@ body{
     font-weight:bold;
 
     margin-bottom:15px;
+
 }
 
 .error-message{
@@ -141,56 +206,28 @@ body{
 
     word-break:break-word;
 
-    overflow-wrap:anywhere;
-
     background:#170b0e;
 
-    border:1px solid rgba(255,80,100,.2);
+    border:1px solid
+        rgba(255,80,100,.2);
 
     border-radius:12px;
 
     padding:14px;
 
     font-size:14px;
+
 }
 
-.error-step{
 
-    color:#aaa;
-
-    margin-top:12px;
-
-    font-size:13px;
-}
-
-.retry{
-
-    width:100%;
-
-    border:0;
-
-    margin-top:15px;
-
-    padding:13px;
-
-    border-radius:12px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #805cff,
-            #3154df
-        );
-
-    color:#fff;
-
-    font-weight:bold;
-
-    font-size:15px;
-}
+/* =====================================================
+   EXAM
+===================================================== */
 
 .exam{
+
     display:none;
+
 }
 
 .exam-title{
@@ -198,6 +235,7 @@ body{
     font-size:25px;
 
     margin-bottom:8px;
+
 }
 
 .description{
@@ -205,6 +243,7 @@ body{
     color:#999;
 
     line-height:1.8;
+
 }
 
 .info{
@@ -216,6 +255,7 @@ body{
     gap:8px;
 
     margin-top:15px;
+
 }
 
 .badge{
@@ -231,7 +271,13 @@ body{
     color:#bbb;
 
     font-size:13px;
+
 }
+
+
+/* =====================================================
+   TIMER
+===================================================== */
 
 .timer{
 
@@ -246,6 +292,7 @@ body{
     font-size:21px;
 
     font-weight:bold;
+
 }
 
 .timer.warning{
@@ -254,11 +301,18 @@ body{
 
     border-color:
         rgba(255,70,90,.4);
+
 }
+
+
+/* =====================================================
+   QUESTION
+===================================================== */
 
 .question{
 
     background:#0b0b13;
+
 }
 
 .question-number{
@@ -268,6 +322,7 @@ body{
     font-weight:bold;
 
     margin-bottom:12px;
+
 }
 
 .question-text{
@@ -278,14 +333,19 @@ body{
 
     margin-bottom:15px;
 
-    overflow-wrap:anywhere;
 }
+
+
+/* =====================================================
+   OPTIONS
+===================================================== */
 
 .options{
 
     display:grid;
 
     gap:10px;
+
 }
 
 .option{
@@ -296,36 +356,26 @@ body{
 
     gap:10px;
 
-    width:100%;
-
     padding:14px;
 
     border:1px solid #29293b;
 
     background:#11111b;
 
-    border-radius:12px;
+    border-radius:11px;
 
     cursor:pointer;
 
     transition:.2s;
+
 }
 
 .option:hover{
 
     border-color:#805cff;
-}
 
-.option.selected{
+    background:#151323;
 
-    border-color:#805cff;
-
-    background:
-        rgba(128,92,255,.14);
-
-    box-shadow:
-        0 0 18px
-        rgba(128,92,255,.10);
 }
 
 .option input{
@@ -334,20 +384,21 @@ body{
 
     height:19px;
 
-    margin-top:5px;
+    accent-color:#805cff;
 
     flex-shrink:0;
 
-    accent-color:#805cff;
+    margin-top:2px;
+
 }
 
 .option-letter{
 
-    width:31px;
+    width:28px;
 
-    height:31px;
+    height:28px;
 
-    flex-shrink:0;
+    min-width:28px;
 
     display:flex;
 
@@ -355,33 +406,26 @@ body{
 
     justify-content:center;
 
-    background:#211b35;
-
-    color:#bcaaff;
-
     border-radius:8px;
+
+    background:#211b38;
+
+    color:#bba8ff;
 
     font-weight:bold;
 
-    direction:ltr;
 }
 
 .option-text{
 
-    flex:1;
+    line-height:1.7;
 
-    min-width:0;
-
-    color:#fff;
-
-    font-size:15px;
-
-    line-height:1.8;
-
-    overflow-wrap:anywhere;
-
-    word-break:break-word;
 }
+
+
+/* =====================================================
+   SUBMIT
+===================================================== */
 
 .submit{
 
@@ -407,43 +451,45 @@ body{
     font-weight:bold;
 
     cursor:pointer;
+
 }
 
-.submit:disabled{
-    opacity:.6;
-}
 
 /* =====================================================
-   CONFIRM
+   MODAL
 ===================================================== */
 
-.confirm-overlay{
-
-    display:none;
+.modal{
 
     position:fixed;
 
     inset:0;
 
-    z-index:9999;
+    background:
+        rgba(0,0,0,.78);
 
-    padding:20px;
+    backdrop-filter:
+        blur(8px);
+
+    display:none;
 
     align-items:center;
 
     justify-content:center;
 
-    background:rgba(0,0,0,.72);
+    padding:18px;
 
-    backdrop-filter:blur(8px);
+    z-index:1000;
+
 }
 
-.confirm-overlay.show{
+.modal.show{
 
     display:flex;
+
 }
 
-.confirm-box{
+.modal-box{
 
     width:100%;
 
@@ -451,9 +497,9 @@ body{
 
     background:
         linear-gradient(
-            145deg,
-            #171522,
-            #0c0b12
+            180deg,
+            #191624,
+            #0d0d14
         );
 
     border:
@@ -462,94 +508,105 @@ body{
 
     border-radius:24px;
 
-    padding:25px 20px;
+    padding:25px;
 
     text-align:center;
 
     box-shadow:
         0 25px 80px
-        rgba(0,0,0,.65);
+        rgba(0,0,0,.6);
 
     animation:
-        confirmIn
-        .22s
-        ease-out;
+        modalIn .25s ease;
+
 }
 
-@keyframes confirmIn{
+@keyframes modalIn{
 
     from{
+
         opacity:0;
-        transform:scale(.88) translateY(15px);
+
+        transform:
+            translateY(20px)
+            scale(.96);
+
     }
 
     to{
+
         opacity:1;
-        transform:scale(1) translateY(0);
+
+        transform:
+            translateY(0)
+            scale(1);
+
     }
 
 }
 
-.confirm-icon{
 
-    width:70px;
+/* =====================================================
+   TEACHER IMAGE
+===================================================== */
 
-    height:70px;
+.teacher-image{
 
-    margin:0 auto 15px;
+    width:105px;
 
-    display:flex;
+    height:105px;
 
-    align-items:center;
-
-    justify-content:center;
+    object-fit:cover;
 
     border-radius:50%;
 
-    background:
-        rgba(128,92,255,.14);
-
     border:
-        1px solid
-        rgba(128,92,255,.30);
+        3px solid
+        #805cff;
 
-    font-size:35px;
+    box-shadow:
+        0 0 30px
+        rgba(128,92,255,.45);
+
+    margin-bottom:15px;
+
 }
 
-.confirm-title{
+.modal-title{
 
-    font-size:23px;
+    font-size:22px;
 
     font-weight:900;
 
     margin-bottom:10px;
+
 }
 
-.confirm-text{
+.modal-text{
 
     color:#aaa;
 
     line-height:1.8;
 
-    font-size:14px;
+    margin-bottom:20px;
 
-    margin-bottom:22px;
 }
 
-.confirm-buttons{
+.modal-buttons{
 
     display:grid;
 
     grid-template-columns:1fr 1fr;
 
     gap:10px;
+
 }
 
-.confirm-btn{
+.modal-btn{
 
     border:0;
 
-    padding:14px 10px;
+    padding:13px;
 
     border-radius:12px;
 
@@ -558,20 +615,18 @@ body{
     font-weight:bold;
 
     cursor:pointer;
+
 }
 
-.cancel-btn{
+.cancel{
+
+    background:#22222d;
 
     color:#fff;
 
-    background:#252431;
-
-    border:1px solid #373545;
 }
 
-.yes-btn{
-
-    color:#fff;
+.confirm{
 
     background:
         linear-gradient(
@@ -579,151 +634,101 @@ body{
             #805cff,
             #3154df
         );
+
+    color:#fff;
+
 }
 
-.yes-btn:disabled{
-    opacity:.6;
-}
 
 /* =====================================================
-   RESULT
+   RESULT MODAL
 ===================================================== */
 
-.result{
+.result-modal-box{
 
-    display:none;
+    width:100%;
+
+    max-width:420px;
+
+    background:#11111b;
+
+    border:
+        1px solid
+        rgba(128,92,255,.35);
+
+    border-radius:25px;
+
+    padding:25px;
 
     text-align:center;
 
 }
 
-.result-icon{
-
-    font-size:65px;
-
-    margin-bottom:10px;
-}
-
 .result-title{
 
-    font-size:27px;
+    font-size:25px;
 
     font-weight:900;
-
-    margin-bottom:20px;
-}
-
-.result.success .result-title{
-
-    color:#61e6a7;
-}
-
-.result.fail .result-title{
-
-    color:#ff6f7c;
-}
-
-.score{
-
-    font-size:43px;
-
-    font-weight:900;
-
-    margin-bottom:8px;
-}
-
-.percentage{
-
-    font-size:22px;
-
-    color:#bbb;
-
-    margin-bottom:20px;
-}
-
-.points-earned{
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(128,92,255,.18),
-            rgba(49,84,223,.12)
-        );
-
-    border:
-        1px solid
-        rgba(128,92,255,.3);
-
-    border-radius:15px;
-
-    padding:18px;
 
     margin-bottom:18px;
+
 }
 
-.points-number{
+.result-score{
 
-    font-size:30px;
+    font-size:42px;
 
     font-weight:900;
 
-    color:#c2aaff;
+    color:#bba8ff;
 
-    margin-top:6px;
+    margin-bottom:8px;
+
 }
 
-.result-info{
+.result-percentage{
 
-    display:grid;
+    color:#aaa;
 
-    grid-template-columns:
-        repeat(2,1fr);
+    margin-bottom:20px;
 
-    gap:10px;
 }
 
-.result-item{
+.result-points{
 
     background:#0b0b13;
 
     border:1px solid #29293b;
 
-    border-radius:12px;
+    border-radius:14px;
 
-    padding:14px;
+    padding:16px;
+
+    margin-bottom:18px;
+
 }
 
-.result-item-title{
-
-    color:#888;
-
-    font-size:12px;
-
-    margin-bottom:6px;
-}
-
-.result-item-value{
-
-    font-size:18px;
-
-    font-weight:bold;
-}
-
-.back-tests{
+.result-points strong{
 
     display:block;
 
+    color:#c4aaff;
+
+    font-size:25px;
+
+    margin-top:5px;
+
+}
+
+.result-close{
+
     width:100%;
 
-    margin-top:18px;
+    border:0;
 
     padding:14px;
 
     border-radius:12px;
-
-    text-decoration:none;
-
-    color:#fff;
 
     background:
         linear-gradient(
@@ -731,36 +736,44 @@ body{
             #805cff,
             #3154df
         );
+
+    color:#fff;
+
+    font-weight:bold;
+
+    font-size:15px;
+
 }
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:600px){
 
-    body{
-        padding:9px;
+    .header{
+
+        align-items:flex-start;
+
     }
 
-    .card{
-        padding:14px;
+    .logo{
+
+        font-size:18px;
+
     }
 
     .exam-title{
+
         font-size:21px;
+
     }
 
     .question-text{
+
         font-size:16px;
-    }
 
-    .option{
-        padding:12px;
-    }
-
-    .option-text{
-        font-size:14px;
-    }
-
-    .result-info{
-        grid-template-columns:1fr;
     }
 
 }
@@ -769,34 +782,45 @@ body{
 
 </head>
 
+
 <body>
+
 
 <div class="container">
 
 
-    <!-- HEADER -->
+    <!-- =================================================
+         HEADER
+    ================================================= -->
 
     <div class="header">
 
         <div class="logo">
 
             الخوارزمي
+
             <span>|</span>
+
             الاختبار
 
         </div>
+
 
         <a
             href="tests.html"
             class="back"
         >
+
             ← الاختبارات
+
         </a>
 
     </div>
 
 
-    <!-- LOADING -->
+    <!-- =================================================
+         LOADING
+    ================================================= -->
 
     <div
         id="loading"
@@ -804,17 +828,23 @@ body{
     >
 
         <div class="loading-icon">
-            ⏳
+
+            جاري التحميل
+
         </div>
 
         <div>
+
             جاري تحميل الاختبار...
+
         </div>
 
     </div>
 
 
-    <!-- ERROR -->
+    <!-- =================================================
+         ERROR
+    ================================================= -->
 
     <div
         id="errorBox"
@@ -822,7 +852,9 @@ body{
     >
 
         <div class="error-title">
-            ⚠️ حدث خطأ
+
+            حدث خطأ
+
         </div>
 
         <div
@@ -830,27 +862,18 @@ body{
             class="error-message"
         ></div>
 
-        <div
-            id="errorStep"
-            class="error-step"
-        ></div>
-
-        <button
-            class="retry"
-            onclick="location.reload()"
-        >
-            🔄 إعادة المحاولة
-        </button>
-
     </div>
 
 
-    <!-- EXAM -->
+    <!-- =================================================
+         EXAM
+    ================================================= -->
 
     <div
         id="exam"
         class="exam"
     >
+
 
         <div class="card">
 
@@ -859,10 +882,12 @@ body{
                 class="exam-title"
             ></h1>
 
+
             <div
                 id="examDescription"
                 class="description"
             ></div>
+
 
             <div class="info">
 
@@ -893,10 +918,12 @@ body{
             class="card timer"
         >
 
-            ⏱
+            الوقت المتبقي:
 
             <span id="time">
+
                 00:00
+
             </span>
 
         </div>
@@ -904,7 +931,9 @@ body{
 
         <!-- QUESTIONS -->
 
-        <div id="questions"></div>
+        <div
+            id="questions"
+        ></div>
 
 
         <!-- SUBMIT -->
@@ -915,184 +944,79 @@ body{
                 id="submit"
                 class="submit"
             >
+
                 إنهاء الاختبار
+
             </button>
 
         </div>
 
-    </div>
-
-
-    <!-- RESULT -->
-
-    <div
-        id="result"
-        class="card result"
-    >
-
-        <div
-            id="resultIcon"
-            class="result-icon"
-        >
-            🏆
-        </div>
-
-        <div
-            id="resultTitle"
-            class="result-title"
-        ></div>
-
-        <div
-            id="score"
-            class="score"
-        >
-            0 / 0
-        </div>
-
-        <div
-            id="percentage"
-            class="percentage"
-        >
-            0%
-        </div>
-
-
-        <div class="points-earned">
-
-            ⭐ النقاط المكتسبة
-
-            <div
-                id="pointsEarned"
-                class="points-number"
-            >
-                +0
-            </div>
-
-        </div>
-
-
-        <div class="result-info">
-
-            <div class="result-item">
-
-                <div class="result-item-title">
-                    الإجابات الصحيحة
-                </div>
-
-                <div
-                    id="correctCount"
-                    class="result-item-value"
-                >
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="result-item">
-
-                <div class="result-item-title">
-                    إجابات خاطئة
-                </div>
-
-                <div
-                    id="wrongCount"
-                    class="result-item-value"
-                >
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="result-item">
-
-                <div class="result-item-title">
-                    الدرجة الكاملة
-                </div>
-
-                <div
-                    id="totalPoints"
-                    class="result-item-value"
-                >
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="result-item">
-
-                <div class="result-item-title">
-                    الحالة
-                </div>
-
-                <div
-                    id="passed"
-                    class="result-item-value"
-                ></div>
-
-            </div>
-
-        </div>
-
-
-        <a
-            href="tests.html"
-            class="back-tests"
-        >
-            العودة إلى الاختبارات
-        </a>
 
     </div>
 
 </div>
 
 
-<!-- CONFIRM -->
+<!-- =====================================================
+     CONFIRM MODAL
+===================================================== -->
 
 <div
-    id="confirmOverlay"
-    class="confirm-overlay"
+    id="confirmModal"
+    class="modal"
 >
 
-    <div class="confirm-box">
+    <div class="modal-box">
 
-        <div class="confirm-icon">
-            ⚠️
-        </div>
 
-        <div class="confirm-title">
-            هل أنت متأكد؟ 🤔
-        </div>
+        <img
+            src="teacher.png"
+            class="teacher-image"
+            alt="المستر"
+            onerror="
+                this.style.display='none';
+            "
+        >
 
-        <div class="confirm-text">
 
-            بعد الضغط على
-            <strong>نعم، أنهِ الاختبار</strong>
-            سيتم إنهاء الاختبار وتصحيح إجاباتك
-            وإظهار النتيجة فورًا.
+        <div class="modal-title">
 
-            <br><br>
-
-            لن تستطيع العودة للأسئلة بعد التأكيد.
+            هل أنت متأكد؟
 
         </div>
 
-        <div class="confirm-buttons">
+
+        <div class="modal-text">
+
+            هل تريد إنهاء الاختبار الآن؟
+
+            <br>
+
+            بعد التأكيد سيتم تصحيح إجاباتك
+            وإظهار النتيجة والنقاط.
+
+        </div>
+
+
+        <div class="modal-buttons">
 
             <button
-                id="cancelConfirm"
-                class="confirm-btn cancel-btn"
+                id="cancelSubmit"
+                class="modal-btn cancel"
             >
-                إلغاء
+
+                رجوع
+
             </button>
 
+
             <button
-                id="yesConfirm"
-                class="confirm-btn yes-btn"
+                id="confirmSubmit"
+                class="modal-btn confirm"
             >
-                نعم، أنهِ الاختبار
+
+                نعم، إنهاء الاختبار
+
             </button>
 
         </div>
@@ -1102,7 +1026,78 @@ body{
 </div>
 
 
-<!-- SUPABASE -->
+<!-- =====================================================
+     RESULT MODAL
+===================================================== -->
+
+<div
+    id="resultModal"
+    class="modal"
+>
+
+    <div class="result-modal-box">
+
+
+        <div class="result-title">
+
+            نتيجة الاختبار
+
+        </div>
+
+
+        <div
+            id="resultScore"
+            class="result-score"
+        >
+
+            0 / 0
+
+        </div>
+
+
+        <div
+            id="resultPercentage"
+            class="result-percentage"
+        >
+
+            0%
+
+        </div>
+
+
+        <div class="result-points">
+
+            النقاط المكتسبة
+
+            <strong
+                id="resultPoints"
+            >
+
+                +0
+
+            </strong>
+
+        </div>
+
+
+        <button
+            id="resultClose"
+            class="result-close"
+        >
+
+            العودة إلى الاختبارات
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1119,58 +1114,109 @@ body{
 ===================================================== */
 
 const loading =
-    document.getElementById("loading");
+    document.getElementById(
+        "loading"
+    );
 
 const errorBox =
-    document.getElementById("errorBox");
+    document.getElementById(
+        "errorBox"
+    );
 
 const errorMessage =
-    document.getElementById("errorMessage");
-
-const errorStep =
-    document.getElementById("errorStep");
+    document.getElementById(
+        "errorMessage"
+    );
 
 const examBox =
-    document.getElementById("exam");
-
-const resultBox =
-    document.getElementById("result");
+    document.getElementById(
+        "exam"
+    );
 
 const examTitle =
-    document.getElementById("examTitle");
+    document.getElementById(
+        "examTitle"
+    );
 
 const examDescription =
-    document.getElementById("examDescription");
+    document.getElementById(
+        "examDescription"
+    );
 
 const examGrade =
-    document.getElementById("examGrade");
+    document.getElementById(
+        "examGrade"
+    );
 
 const examDuration =
-    document.getElementById("examDuration");
+    document.getElementById(
+        "examDuration"
+    );
 
 const examQuestions =
-    document.getElementById("examQuestions");
+    document.getElementById(
+        "examQuestions"
+    );
 
 const questionsBox =
-    document.getElementById("questions");
+    document.getElementById(
+        "questions"
+    );
 
 const timerBox =
-    document.getElementById("timer");
+    document.getElementById(
+        "timer"
+    );
 
 const timeBox =
-    document.getElementById("time");
+    document.getElementById(
+        "time"
+    );
 
 const submitButton =
-    document.getElementById("submit");
+    document.getElementById(
+        "submit"
+    );
 
-const confirmOverlay =
-    document.getElementById("confirmOverlay");
+const confirmModal =
+    document.getElementById(
+        "confirmModal"
+    );
 
-const cancelConfirm =
-    document.getElementById("cancelConfirm");
+const cancelSubmit =
+    document.getElementById(
+        "cancelSubmit"
+    );
 
-const yesConfirm =
-    document.getElementById("yesConfirm");
+const confirmSubmit =
+    document.getElementById(
+        "confirmSubmit"
+    );
+
+const resultModal =
+    document.getElementById(
+        "resultModal"
+    );
+
+const resultScore =
+    document.getElementById(
+        "resultScore"
+    );
+
+const resultPercentage =
+    document.getElementById(
+        "resultPercentage"
+    );
+
+const resultPoints =
+    document.getElementById(
+        "resultPoints"
+    );
+
+const resultClose =
+    document.getElementById(
+        "resultClose"
+    );
 
 
 /* =====================================================
@@ -1187,8 +1233,6 @@ let questions = [];
 
 let currentUser = null;
 
-let attemptId = null;
-
 let timer = null;
 
 let secondsLeft = 0;
@@ -1200,10 +1244,11 @@ let submitting = false;
    ERROR
 ===================================================== */
 
-function showError(message,step=""){
+function showError(
+    message
+){
 
     console.error(
-        "EXAM ERROR:",
         message
     );
 
@@ -1213,23 +1258,11 @@ function showError(message,step=""){
     examBox.style.display =
         "none";
 
-    resultBox.style.display =
-        "none";
-
-    confirmOverlay.classList.remove(
-        "show"
-    );
-
     errorBox.style.display =
         "block";
 
     errorMessage.textContent =
         message;
-
-    errorStep.textContent =
-        step
-        ? "📍 المرحلة: " + step
-        : "";
 
 }
 
@@ -1238,96 +1271,32 @@ function showError(message,step=""){
    ESCAPE
 ===================================================== */
 
-function escapeHTML(value){
+function escapeHTML(
+    value
+){
 
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
-
-
-/* =====================================================
-   NORMALIZE
-===================================================== */
-
-function normalizeAnswer(value){
-
-    if(
-        value === null ||
-        value === undefined
-    ){
-        return "";
-    }
-
-    return String(value)
-        .trim()
-        .toLowerCase()
-        .replace(/[()]/g,"");
-
-}
-
-
-/* =====================================================
-   CREATE ATTEMPT
-===================================================== */
-
-async function createAttempt(){
-
-    const {
-        data,
-        error
-    } =
-    await client
-        .from("exam_attempts")
-        .insert({
-
-            exam_id:
-                examId,
-
-            student_id:
-                currentUser.id,
-
-            started_at:
-                new Date().toISOString(),
-
-            status:
-                "in_progress"
-
-        })
-        .select("id")
-        .single();
-
-
-    if(error){
-
-        throw new Error(
-            "تعذر إنشاء محاولة الاختبار:\n\n" +
-            error.message
-        );
-
-    }
-
-
-    if(!data?.id){
-
-        throw new Error(
-            "لم يتم الحصول على attempt_id."
-        );
-
-    }
-
-
-    attemptId =
-        data.id;
-
-
-    console.log(
-        "ATTEMPT ID:",
-        attemptId
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
     );
 
 }
@@ -1341,6 +1310,11 @@ async function start(){
 
     try{
 
+
+        /* =============================================
+           SUPABASE
+        ============================================= */
+
         client =
             window.supabaseClient;
 
@@ -1348,14 +1322,18 @@ async function start(){
         if(!client){
 
             showError(
-                "لم يتم إنشاء اتصال Supabase.",
-                "الاتصال بقاعدة البيانات"
+                "لم يتم إنشاء اتصال Supabase.\n\n" +
+                "تأكد من ملف js/supabase.js"
             );
 
             return;
 
         }
 
+
+        /* =============================================
+           EXAM ID
+        ============================================= */
 
         const params =
             new URLSearchParams(
@@ -1364,20 +1342,25 @@ async function start(){
 
 
         examId =
-            params.get("id");
+            params.get(
+                "id"
+            );
 
 
         if(!examId){
 
             showError(
-                "معرف الاختبار غير موجود في الرابط.",
-                "قراءة رابط الاختبار"
+                "معرف الاختبار غير موجود في الرابط."
             );
 
             return;
 
         }
 
+
+        /* =============================================
+           USER
+        ============================================= */
 
         const {
             data:userData,
@@ -1389,8 +1372,7 @@ async function start(){
         if(userError){
 
             showError(
-                userError.message,
-                "التحقق من الطالب"
+                userError.message
             );
 
             return;
@@ -1400,18 +1382,8 @@ async function start(){
 
         if(!userData?.user){
 
-            showError(
-                "أنت غير مسجل الدخول.",
-                "تسجيل الدخول"
-            );
-
-            setTimeout(
-                () => {
-                    location.href =
-                        "auth.html";
-                },
-                1200
-            );
+            location.href =
+                "auth.html";
 
             return;
 
@@ -1422,7 +1394,9 @@ async function start(){
             userData.user;
 
 
-        /* EXAM */
+        /* =============================================
+           EXAM
+        ============================================= */
 
         const {
             data:exam,
@@ -1431,15 +1405,18 @@ async function start(){
         await client
             .from("exams")
             .select("*")
-            .eq("id",examId)
+            .eq(
+                "id",
+                examId
+            )
             .maybeSingle();
 
 
         if(examError){
 
             showError(
-                examError.message,
-                "قراءة الاختبار"
+                "تعذر تحميل الاختبار:\n\n" +
+                examError.message
             );
 
             return;
@@ -1450,8 +1427,7 @@ async function start(){
         if(!exam){
 
             showError(
-                "الاختبار غير موجود.",
-                "البحث عن الاختبار"
+                "الاختبار غير موجود."
             );
 
             return;
@@ -1459,11 +1435,12 @@ async function start(){
         }
 
 
-        if(exam.is_active === false){
+        if(
+            exam.is_active === false
+        ){
 
             showError(
-                "هذا الاختبار غير متاح حاليًا.",
-                "حالة الاختبار"
+                "هذا الاختبار غير متاح حاليًا."
             );
 
             return;
@@ -1475,7 +1452,9 @@ async function start(){
             exam;
 
 
-        /* QUESTIONS */
+        /* =============================================
+           QUESTIONS
+        ============================================= */
 
         const {
             data:questionData,
@@ -1484,7 +1463,10 @@ async function start(){
         await client
             .from("questions")
             .select("*")
-            .eq("exam_id",examId)
+            .eq(
+                "exam_id",
+                examId
+            )
             .order(
                 "question_order",
                 {
@@ -1496,8 +1478,8 @@ async function start(){
         if(questionError){
 
             showError(
-                questionError.message,
-                "قراءة الأسئلة"
+                "تعذر تحميل الأسئلة:\n\n" +
+                questionError.message
             );
 
             return;
@@ -1511,8 +1493,7 @@ async function start(){
         ){
 
             showError(
-                "لا توجد أسئلة مرتبطة بهذا الاختبار.",
-                "تحميل الأسئلة"
+                "الاختبار موجود ولكن لا توجد أسئلة."
             );
 
             return;
@@ -1524,14 +1505,9 @@ async function start(){
             questionData;
 
 
-        /*
-         * إنشاء attempt حقيقي
-         */
-
-        await createAttempt();
-
-
-        /* DISPLAY */
+        /* =============================================
+           DISPLAY
+        ============================================= */
 
         examTitle.textContent =
             exam.title ||
@@ -1544,7 +1520,7 @@ async function start(){
 
 
         examGrade.textContent =
-            "📚 " +
+            "الصف: " +
             (
                 exam.grade ||
                 "غير محدد"
@@ -1560,15 +1536,14 @@ async function start(){
 
 
         examDuration.textContent =
-            "⏱ " +
+            "المدة: " +
             duration +
             " دقيقة";
 
 
         examQuestions.textContent =
-            "📝 " +
-            questions.length +
-            " سؤال";
+            "عدد الأسئلة: " +
+            questions.length;
 
 
         renderQuestions();
@@ -1594,9 +1569,7 @@ async function start(){
 
         showError(
             error?.message ||
-            String(error),
-
-            "تحميل الاختبار"
+            String(error)
         );
 
     }
@@ -1615,12 +1588,17 @@ function renderQuestions(){
 
 
     questions.forEach(
-        (question,index) => {
+        (
+            question,
+            index
+        ) => {
+
 
             const card =
                 document.createElement(
                     "div"
                 );
+
 
             card.className =
                 "card question";
@@ -1632,42 +1610,69 @@ function renderQuestions(){
 
             const options = [
 
-                ["a",question.option_a],
+                [
+                    "a",
+                    question.option_a
+                ],
 
-                ["b",question.option_b],
+                [
+                    "b",
+                    question.option_b
+                ],
 
-                ["c",question.option_c],
+                [
+                    "c",
+                    question.option_c
+                ],
 
-                ["d",question.option_d]
+                [
+                    "d",
+                    question.option_d
+                ]
 
             ];
 
 
             options.forEach(
-                ([letter,value]) => {
+                (
+                    [letter,value]
+                ) => {
+
 
                     if(
                         value !== null &&
                         value !== undefined &&
-                        String(value).trim() !== ""
+                        String(value)
+                            .trim() !== ""
                     ){
+
 
                         optionsHTML += `
 
-                            <label class="option">
+                            <label
+                                class="option"
+                            >
 
                                 <input
                                     type="radio"
-                                    name="question_${escapeHTML(question.id)}"
+                                    name="question_${escapeHTML(
+                                        question.id
+                                    )}"
                                     value="${letter}"
                                 >
 
-                                <span class="option-letter">
+                                <span
+                                    class="option-letter"
+                                >
                                     ${letter.toUpperCase()}
                                 </span>
 
-                                <span class="option-text">
-                                    ${escapeHTML(value)}
+                                <span
+                                    class="option-text"
+                                >
+                                    ${escapeHTML(
+                                        value
+                                    )}
                                 </span>
 
                             </label>
@@ -1684,7 +1689,8 @@ function renderQuestions(){
 
                 <div class="question-number">
 
-                    السؤال ${index + 1}
+                    السؤال
+                    ${index + 1}
 
                 </div>
 
@@ -1714,723 +1720,20 @@ function renderQuestions(){
         }
     );
 
-
-    questionsBox
-        .querySelectorAll(".option")
-        .forEach(
-            option => {
-
-                option.addEventListener(
-                    "click",
-                    () => {
-
-                        option
-                            .parentElement
-                            .querySelectorAll(
-                                ".option"
-                            )
-                            .forEach(
-                                item => {
-
-                                    item.classList.remove(
-                                        "selected"
-                                    );
-
-                                }
-                            );
-
-                        option.classList.add(
-                            "selected"
-                        );
-
-                    }
-                );
-
-            }
-        );
-
 }
-
-
-/* =====================================================
-   GET ANSWERS
-===================================================== */
-
-function getAnswers(){
-
-    const answers = {};
-
-
-    questions.forEach(
-        question => {
-
-            const input =
-                document.querySelector(
-                    `input[name="question_${CSS.escape(String(question.id))}"]:checked`
-                );
-
-
-            answers[
-                String(question.id)
-            ] =
-                input
-                ? normalizeAnswer(
-                    input.value
-                )
-                : "";
-
-        }
-    );
-
-
-    return answers;
-
-}
-
-
-/* =====================================================
-   CALCULATE
-===================================================== */
-
-function calculateResult(){
-
-    const answers =
-        getAnswers();
-
-
-    let score = 0;
-
-    let totalPoints = 0;
-
-    let correctCount = 0;
-
-    let wrongCount = 0;
-
-
-    questions.forEach(
-        question => {
-
-            const points =
-                Number(
-                    question.points
-                ) || 1;
-
-
-            totalPoints +=
-                points;
-
-
-            const studentAnswer =
-                normalizeAnswer(
-                    answers[
-                        String(
-                            question.id
-                        )
-                    ]
-                );
-
-
-            const correctAnswer =
-                normalizeAnswer(
-                    question.correct_answer
-                );
-
-
-            if(
-                studentAnswer &&
-                studentAnswer === correctAnswer
-            ){
-
-                score +=
-                    points;
-
-                correctCount++;
-
-            }
-            else{
-
-                wrongCount++;
-
-            }
-
-        }
-    );
-
-
-    const percentage =
-        totalPoints > 0
-
-        ?
-
-        Math.round(
-            (
-                score /
-                totalPoints
-            ) * 100
-        )
-
-        :
-
-        0;
-
-
-    return {
-
-        score,
-
-        totalPoints,
-
-        percentage,
-
-        passed:
-            percentage >= 50,
-
-        correctCount,
-
-        wrongCount,
-
-        points:
-            score
-
-    };
-
-}
-
-
-/* =====================================================
-   UPDATE ATTEMPT
-===================================================== */
-
-async function finishAttempt(result){
-
-    if(!attemptId){
-
-        throw new Error(
-            "attempt_id غير موجود."
-        );
-
-    }
-
-
-    const {
-        error
-    } =
-    await client
-        .from("exam_attempts")
-        .update({
-
-            submitted_at:
-                new Date().toISOString(),
-
-            score:
-                result.score,
-
-            total_points:
-                result.totalPoints,
-
-            status:
-                "submitted"
-
-        })
-        .eq(
-            "id",
-            attemptId
-        );
-
-
-    if(error){
-
-        throw new Error(
-            "تعذر تحديث exam_attempts:\n\n" +
-            error.message
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   SAVE RESULT
-===================================================== */
-
-async function saveResult(result){
-
-    if(!attemptId){
-
-        throw new Error(
-            "attempt_id غير موجود."
-        );
-
-    }
-
-
-    const payload = {
-
-        exam_id:
-            examId,
-
-        student_id:
-            currentUser.id,
-
-        attempt_id:
-            attemptId,
-
-        score:
-            result.score,
-
-        total_points:
-            result.totalPoints,
-
-        percentage:
-            result.percentage,
-
-        passed:
-            result.passed
-
-    };
-
-
-    const {
-        data,
-        error
-    } =
-    await client
-        .from("results")
-        .insert(payload)
-        .select("id")
-        .single();
-
-
-    if(error){
-
-        throw new Error(
-            "تعذر حفظ النتيجة في results:\n\n" +
-            error.message
-        );
-
-    }
-
-
-    if(!data?.id){
-
-        throw new Error(
-            "تم حفظ النتيجة بدون result_id."
-        );
-
-    }
-
-
-    return data.id;
-
-}
-
-
-/* =====================================================
-   SAVE POINTS
-===================================================== */
-
-async function savePoints(
-    resultId,
-    result
-){
-
-    /*
-     * منع تكرار النقاط:
-     * نتحقق أولًا من وجود نقاط
-     * لنفس result_id.
-     */
-
-    const {
-        data:existing,
-        error:checkError
-    } =
-    await client
-        .from("student_points")
-        .select("id")
-        .eq(
-            "result_id",
-            resultId
-        )
-        .maybeSingle();
-
-
-    if(checkError){
-
-        throw new Error(
-            "تعذر التحقق من نقاط الطالب:\n\n" +
-            checkError.message
-        );
-
-    }
-
-
-    if(existing){
-
-        console.log(
-            "النقاط محفوظة بالفعل."
-        );
-
-        return;
-
-    }
-
-
-    const {
-        error
-    } =
-    await client
-        .from("student_points")
-        .insert({
-
-            student_id:
-                currentUser.id,
-
-            exam_id:
-                examId,
-
-            result_id:
-                resultId,
-
-            points:
-                result.points
-
-        });
-
-
-    if(error){
-
-        throw new Error(
-            "تم حفظ النتيجة ولكن تعذر إضافة النقاط:\n\n" +
-            error.message
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   SHOW RESULT
-===================================================== */
-
-function showResult(result){
-
-    clearInterval(
-        timer
-    );
-
-
-    examBox.style.display =
-        "none";
-
-
-    errorBox.style.display =
-        "none";
-
-
-    resultBox.style.display =
-        "block";
-
-
-    const icon =
-        document.getElementById(
-            "resultIcon"
-        );
-
-
-    const title =
-        document.getElementById(
-            "resultTitle"
-        );
-
-
-    resultBox.classList.remove(
-        "success",
-        "fail"
-    );
-
-
-    if(result.passed){
-
-        resultBox.classList.add(
-            "success"
-        );
-
-        icon.textContent =
-            "🏆";
-
-        title.textContent =
-            "مبروك! أنت ناجح 🎉";
-
-    }
-    else{
-
-        resultBox.classList.add(
-            "fail"
-        );
-
-        icon.textContent =
-            "📚";
-
-        title.textContent =
-            "لم تحقق درجة النجاح";
-
-    }
-
-
-    document.getElementById(
-        "score"
-    ).textContent =
-        `${result.score} / ${result.totalPoints}`;
-
-
-    document.getElementById(
-        "percentage"
-    ).textContent =
-        `${result.percentage}%`;
-
-
-    document.getElementById(
-        "pointsEarned"
-    ).textContent =
-        `+${result.points}`;
-
-
-    document.getElementById(
-        "correctCount"
-    ).textContent =
-        result.correctCount;
-
-
-    document.getElementById(
-        "wrongCount"
-    ).textContent =
-        result.wrongCount;
-
-
-    document.getElementById(
-        "totalPoints"
-    ).textContent =
-        result.totalPoints;
-
-
-    document.getElementById(
-        "passed"
-    ).textContent =
-        result.passed
-        ? "ناجح ✅"
-        : "راسب ❌";
-
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-}
-
-
-/* =====================================================
-   SUBMIT
-===================================================== */
-
-async function submitExam(){
-
-    if(submitting){
-        return;
-    }
-
-
-    submitting =
-        true;
-
-
-    submitButton.disabled =
-        true;
-
-
-    yesConfirm.disabled =
-        true;
-
-
-    confirmOverlay.classList.remove(
-        "show"
-    );
-
-
-    try{
-
-        clearInterval(
-            timer
-        );
-
-
-        /*
-         * 1
-         * تصحيح
-         */
-
-        const result =
-            calculateResult();
-
-
-        /*
-         * 2
-         * تحديث attempt
-         */
-
-        await finishAttempt(
-            result
-        );
-
-
-        /*
-         * 3
-         * حفظ result
-         */
-
-        const resultId =
-            await saveResult(
-                result
-            );
-
-
-        /*
-         * 4
-         * إضافة النقاط
-         */
-
-        await savePoints(
-            resultId,
-            result
-        );
-
-
-        /*
-         * 5
-         * إظهار النتيجة
-         */
-
-        showResult(
-            result
-        );
-
-
-    }
-    catch(error){
-
-        console.error(
-            error
-        );
-
-
-        submitting =
-            false;
-
-
-        submitButton.disabled =
-            false;
-
-
-        yesConfirm.disabled =
-            false;
-
-
-        showError(
-            error?.message ||
-            String(error),
-
-            "حفظ وتصحيح النتيجة"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   CONFIRM
-===================================================== */
-
-submitButton.addEventListener(
-    "click",
-    () => {
-
-        if(!submitting){
-
-            confirmOverlay.classList.add(
-                "show"
-            );
-
-        }
-
-    }
-);
-
-
-cancelConfirm.addEventListener(
-    "click",
-    () => {
-
-        if(!submitting){
-
-            confirmOverlay.classList.remove(
-                "show"
-            );
-
-        }
-
-    }
-);
-
-
-yesConfirm.addEventListener(
-    "click",
-    () => {
-
-        submitExam();
-
-    }
-);
-
-
-confirmOverlay.addEventListener(
-    "click",
-    event => {
-
-        if(
-            event.target ===
-            confirmOverlay
-        ){
-
-            if(!submitting){
-
-                confirmOverlay.classList.remove(
-                    "show"
-                );
-
-            }
-
-        }
-
-    }
-);
 
 
 /* =====================================================
    TIMER
 ===================================================== */
 
-function startTimer(seconds){
-
-    clearInterval(
-        timer
-    );
-
+function startTimer(
+    seconds
+){
 
     secondsLeft =
-        Number(seconds) || 1800;
+        Number(seconds) ||
+        1800;
 
 
     updateTimer();
@@ -2438,7 +1741,8 @@ function startTimer(seconds){
 
     timer =
         setInterval(
-            async () => {
+            () => {
+
 
                 secondsLeft--;
 
@@ -2455,14 +1759,12 @@ function startTimer(seconds){
                     );
 
 
-                    alert(
-                        "⏰ انتهى وقت الاختبار.\nسيتم تصحيح إجاباتك وحفظ النتيجة."
+                    submitExam(
+                        true
                     );
 
-
-                    await submitExam();
-
                 }
+
 
             },
             1000
@@ -2470,10 +1772,6 @@ function startTimer(seconds){
 
 }
 
-
-/* =====================================================
-   TIMER DISPLAY
-===================================================== */
 
 function updateTimer(){
 
@@ -2489,12 +1787,11 @@ function updateTimer(){
 
     timeBox.textContent =
 
-        String(
-            minutes
-        ).padStart(
-            2,
-            "0"
-        )
+        String(minutes)
+            .padStart(
+                2,
+                "0"
+            )
 
         +
 
@@ -2502,12 +1799,11 @@ function updateTimer(){
 
         +
 
-        String(
-            seconds
-        ).padStart(
-            2,
-            "0"
-        );
+        String(seconds)
+            .padStart(
+                2,
+                "0"
+            );
 
 
     if(
@@ -2519,11 +1815,443 @@ function updateTimer(){
         );
 
     }
-    else{
 
-        timerBox.classList.remove(
-            "warning"
+}
+
+
+/* =====================================================
+   OPEN CONFIRM
+===================================================== */
+
+submitButton.addEventListener(
+    "click",
+    () => {
+
+
+        if(submitting){
+
+            return;
+
+        }
+
+
+        confirmModal.classList.add(
+            "show"
         );
+
+    }
+);
+
+
+/* =====================================================
+   CANCEL
+===================================================== */
+
+cancelSubmit.addEventListener(
+    "click",
+    () => {
+
+        confirmModal.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+
+/* =====================================================
+   CONFIRM
+===================================================== */
+
+confirmSubmit.addEventListener(
+    "click",
+    () => {
+
+        submitExam(
+            false
+        );
+
+    }
+);
+
+
+/* =====================================================
+   SUBMIT EXAM
+===================================================== */
+
+async function submitExam(
+    autoSubmit
+){
+
+    if(submitting){
+
+        return;
+
+    }
+
+
+    submitting =
+        true;
+
+
+    confirmSubmit.disabled =
+        true;
+
+
+    confirmSubmit.textContent =
+        "جاري التصحيح...";
+
+
+    try{
+
+
+        if(timer){
+
+            clearInterval(
+                timer
+            );
+
+        }
+
+
+        confirmModal.classList.remove(
+            "show"
+        );
+
+
+        /* =============================================
+           GET ANSWERS
+        ============================================= */
+
+        let score =
+            0;
+
+        let totalPoints =
+            0;
+
+
+        questions.forEach(
+            question => {
+
+
+                const points =
+                    Number(
+                        question.points
+                    ) || 1;
+
+
+                totalPoints +=
+                    points;
+
+
+                const selected =
+                    document.querySelector(
+                        `input[name="question_${question.id}"]:checked`
+                    );
+
+
+                if(!selected){
+
+                    return;
+
+                }
+
+
+                const studentAnswer =
+                    String(
+                        selected.value
+                    )
+                    .trim()
+                    .toLowerCase();
+
+
+                const correctAnswer =
+                    String(
+                        question.correct_answer ??
+                        ""
+                    )
+                    .trim()
+                    .toLowerCase();
+
+
+                if(
+                    studentAnswer ===
+                    correctAnswer
+                ){
+
+                    score +=
+                        points;
+
+                }
+
+            }
+        );
+
+
+        /* =============================================
+           PERCENTAGE
+        ============================================= */
+
+        const percentage =
+            totalPoints > 0
+            ? Math.round(
+                (
+                    score /
+                    totalPoints
+                ) * 100
+            )
+            : 0;
+
+
+        /*
+         * النجاح هنا 50%
+         */
+
+        const passed =
+            percentage >= 50;
+
+
+        /* =============================================
+           EXAM ATTEMPT
+        ============================================= */
+
+        const {
+            data:attempt,
+            error:attemptError
+        } =
+        await client
+            .from("exam_attempts")
+            .insert({
+
+                exam_id:
+                    examId,
+
+                student_id:
+                    currentUser.id,
+
+                started_at:
+                    new Date(
+                        Date.now() -
+                        1
+                    ).toISOString(),
+
+                submitted_at:
+                    new Date().toISOString(),
+
+                score:
+                    score,
+
+                total_points:
+                    totalPoints,
+
+                status:
+                    "completed"
+
+            })
+            .select("id")
+            .single();
+
+
+        if(attemptError){
+
+            throw new Error(
+                "تعذر إنشاء محاولة الاختبار:\n\n" +
+                attemptError.message
+            );
+
+        }
+
+
+        /* =============================================
+           RESULT
+        ============================================= */
+
+        const {
+            data:result,
+            error:resultError
+        } =
+        await client
+            .from("results")
+            .insert({
+
+                exam_id:
+                    examId,
+
+                student_id:
+                    currentUser.id,
+
+                attempt_id:
+                    attempt.id,
+
+                score:
+                    score,
+
+                total_points:
+                    totalPoints,
+
+                percentage:
+                    percentage,
+
+                passed:
+                    passed
+
+            })
+            .select("*")
+            .single();
+
+
+        if(resultError){
+
+            throw new Error(
+                "تم إنشاء المحاولة ولكن فشل حفظ النتيجة:\n\n" +
+                resultError.message
+            );
+
+        }
+
+
+        /* =============================================
+           ADD POINTS
+        ============================================= */
+
+        let finalPoints =
+            0;
+
+
+        if(score > 0){
+
+            const {
+                data:pointsData,
+                error:pointsError
+            } =
+            await client.rpc(
+                "add_student_points",
+                {
+
+                    p_student_id:
+                        currentUser.id,
+
+                    p_points:
+                        score,
+
+                    p_result_id:
+                        result.id,
+
+                    p_exam_id:
+                        examId,
+
+                    p_reason:
+                        "إكمال اختبار " +
+                        (
+                            currentExam.title ||
+                            ""
+                        )
+
+                }
+            );
+
+
+            if(pointsError){
+
+                console.error(
+                    "POINTS ERROR:",
+                    pointsError
+                );
+
+                /*
+                 * النتيجة لا تفشل لو النقاط
+                 * واجهت مشكلة.
+                 */
+
+                finalPoints =
+                    score;
+
+            }
+            else{
+
+                finalPoints =
+                    Number(
+                        pointsData
+                    ) || score;
+
+            }
+
+        }
+
+
+        /* =============================================
+           RESULT
+        ============================================= */
+
+        resultScore.textContent =
+
+            score +
+            " / " +
+            totalPoints;
+
+
+        resultPercentage.textContent =
+
+            "النسبة: " +
+            percentage +
+            "%";
+
+
+        resultPoints.innerHTML =
+
+            "النقاط المكتسبة"
+
+            +
+
+            "<strong>+" +
+
+            score +
+
+            "</strong>";
+
+
+        resultModal.classList.add(
+            "show"
+        );
+
+
+    }
+    catch(error){
+
+        alert(
+            "حدث خطأ أثناء حفظ النتيجة:\n\n" +
+            (
+                error?.message ||
+                String(error)
+            )
+        );
+
+
+        /*
+         * لو حصل خطأ نعيد الزر
+         */
+
+        submitting =
+            false;
+
+
+        confirmSubmit.disabled =
+            false;
+
+
+        confirmSubmit.textContent =
+            "نعم، إنهاء الاختبار";
+
+
+        if(
+            secondsLeft > 0
+        ){
+
+            startTimer(
+                secondsLeft
+            );
+
+        }
 
     }
 
@@ -2531,7 +2259,22 @@ function updateTimer(){
 
 
 /* =====================================================
-   START
+   RESULT CLOSE
+===================================================== */
+
+resultClose.addEventListener(
+    "click",
+    () => {
+
+        location.href =
+            "tests.html";
+
+    }
+);
+
+
+/* =====================================================
+   RUN
 ===================================================== */
 
 start();
