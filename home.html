@@ -1372,17 +1372,60 @@ async function loadStudent(){
 
 
     /*
-       النقاط
-    */
+   النقاط
+   يتم جلبها من student_points
+*/
+
+try{
+
+    const {
+        data: pointsData,
+        error: pointsError
+    } =
+    await supabaseClient
+        .from("student_points")
+        .select("total_points")
+        .eq(
+            "student_id",
+            userId
+        )
+        .maybeSingle();
+
+
+    if(pointsError){
+
+        console.error(
+            "STUDENT POINTS ERROR:",
+            pointsError
+        );
+
+        document.getElementById(
+            "pointsValue"
+        ).textContent = "0";
+
+    }else{
+
+        document.getElementById(
+            "pointsValue"
+        ).textContent =
+            Number(
+                pointsData?.total_points || 0
+            );
+
+    }
+
+}catch(error){
+
+    console.error(
+        "POINTS LOAD ERROR:",
+        error
+    );
 
     document.getElementById(
         "pointsValue"
-    ).textContent =
-        Number(
-            student.points ||
-            student.score ||
-            0
-        );
+    ).textContent = "0";
+
+}
 
 
     if(currentGrade){
